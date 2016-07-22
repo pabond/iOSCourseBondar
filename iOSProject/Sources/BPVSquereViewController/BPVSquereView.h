@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  BPVSquereView.h
 //  iOSProject
 //
-//  Created by Bondar Pavel on 7/20/16.
+//  Created by Bondar Pavel on 7/21/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface BPVSquereView : UIView
 
 @end
-

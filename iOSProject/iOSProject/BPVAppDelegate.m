@@ -1,22 +1,31 @@
 //
-//  AppDelegate.m
+//  BPVAppDelegate.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 7/20/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "BPVAppDelegate.h"
 
-@interface AppDelegate ()
+#import "BPVSquereViewController.h"
+
+@interface BPVAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation BPVAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = window;
+    
+    window.rootViewController = [BPVSquereViewController new];
+    window.backgroundColor = [UIColor lightGrayColor];
+    
+    [window makeKeyAndVisible];
+    
     return YES;
 }
 

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  BPVAppDelegate.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 7/20/16.
@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@interface BPVAppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 
