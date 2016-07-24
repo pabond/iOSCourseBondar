@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BPVSquareViewController">
+            <connections>
+                <outlet property="squareView" destination="i5M-Pr-FkT" id="wts-5T-YIH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="600" id="i5M-Pr-FkT" customClass="BPVSquareView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="u8J-wV-Gkl">
+                    <rect key="frame" x="127" y="209" width="100" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="1" blue="0.35090319823524707" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Auto"/>
+                    <connections>
+                        <action selector="onAutoButton:" destination="-1" eventType="touchUpInside" id="uQC-5f-7pm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4o0-2c-pgh">
+                    <rect key="frame" x="127" y="309" width="100" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.93286005793051485" blue="0.00092539059728025119" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Random"/>
+                    <connections>
+                        <action selector="onRandomButton:" destination="-1" eventType="touchUpInside" id="rYC-uN-OBN"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" id="nKO-cr-Gk8">
+                    <rect key="frame" x="0.0" y="468" width="100" height="100"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" red="0.2656651755987357" green="0.91916063285386973" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.89269227242071647" green="0.95496503674776989" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="autoAnimation" destination="u8J-wV-Gkl" id="cbq-Xj-yWH"/>
+                <outlet property="rundomSquarePosition" destination="4o0-2c-pgh" id="1o8-xX-n1F"/>
+                <outlet property="square" destination="nKO-cr-Gk8" id="Lsq-jD-aM1"/>
+            </connections>
+            <point key="canvasLocation" x="230" y="225"/>
+        </view>
+    </objects>
+</document>

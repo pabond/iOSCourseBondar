@@ -8,7 +8,7 @@
 
 #import "BPVAppDelegate.h"
 
-#import "BPVSquereViewController.h"
+#import "BPVSquareViewController.h"
 
 @interface BPVAppDelegate ()
 
@@ -21,7 +21,8 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
     
-    window.rootViewController = [BPVSquereViewController new];
+    BPVSquareViewController *controller = [BPVSquareViewController new];
+    window.rootViewController = controller;
     window.backgroundColor = [UIColor lightGrayColor];
     
     [window makeKeyAndVisible];
