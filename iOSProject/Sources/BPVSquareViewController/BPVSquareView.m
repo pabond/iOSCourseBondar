@@ -77,7 +77,6 @@ static const CGFloat kBPVAnimationDuration = 1;
     }
 }
 
-
 #pragma mark -
 #pragma mark Privat Implementations
 

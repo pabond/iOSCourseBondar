@@ -18,7 +18,6 @@ uint32_t randomNumberFrom(uint32_t number) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 - (IBAction)onAutoButton:(id)sender {
@@ -41,7 +40,6 @@ uint32_t randomNumberFrom(uint32_t number) {
             break;
         }
     } while (YES);
-    
     
     [self.squareView setSquarePosition:randomNumber animated:YES complitionHandler:^{
         
