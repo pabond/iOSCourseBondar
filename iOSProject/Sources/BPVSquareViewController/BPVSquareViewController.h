@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "BPVSquareView.h"
 
 @interface BPVSquareViewController : UIViewController
-@property (nonatomic, strong) IBOutlet BPVSquareView *squareView;
+@property (nonatomic, strong) IBOutlet BPVSquareView    *squareView;
 
-- (void)setSquarePosition:(BPVSquarePositionType)squarePosition;
+@property (nonatomic, strong) IBOutlet UIButton *autoAnimation;
+@property (nonatomic, strong) IBOutlet UIButton *randomSquarePosition;
 
 - (IBAction)onAutoButton:(id)sender;
 - (IBAction)onRandomButton:(id)sender;

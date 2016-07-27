@@ -8,40 +8,44 @@
 
 #import "BPVSquareViewController.h"
 
-@interface BPVSquareViewController ()
+static const NSUInteger kBPVCornersCount = 4;
 
-@end
+uint32_t randomNumberFrom(uint32_t number) {
+    return arc4random_uniform(number);
+}
 
 @implementation BPVSquareViewController
-
--(void)setSquarePosition:(BPVSquarePositionType)squarePosition {
-    CGRect square = squarePosition;
-    if (!CGRectEqualToRect(self.squareView.frame, square)) {
-        self.squarePosition = squarePosition;
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-    NSLog(@"Memory warning");
-}
-
-#pragma mark -
-#pragma mark Interface Handling
 
 - (IBAction)onAutoButton:(id)sender {
-    [self.squareView animateSquare:YES];
+    BPVSquareView *square = self.squareView;
+    BPVSquarePositionType type = square.squarePosition;
+    type = type == BPVSquarePositionRightTop ? BPVSquarePositionLeftTop : type + 1;
+    
+    [square setSquarePosition:type animated:YES complitionHandler:^{
+        
+    }];
 }
 
 - (IBAction)onRandomButton:(id)sender {
+    uint32_t randomNumber = 0;
+    BPVSquarePositionType type = self.squareView.squarePosition;
     
+    do {
+        randomNumber = randomNumberFrom(kBPVCornersCount);
+        if (randomNumber != type) {
+            break;
+        }
+    } while (YES);
+    
+    
+    [self.squareView setSquarePosition:randomNumber animated:YES complitionHandler:^{
+        
+    }];
 }
 
 @end

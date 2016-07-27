@@ -15,18 +15,12 @@ typedef enum {
     BPVSquarePositionRightTop
 } BPVSquarePositionType;
 
-typedef void (^BPVHandler)(void);
+typedef void(^BPVHandler)(void);
 
 @interface BPVSquareView : UIView
-
 @property (nonatomic, assign) BPVSquarePositionType squarePosition;
-@property (nonatomic, strong) IBOutlet UIView   *square;
-
-@property (nonatomic, strong) IBOutlet UIButton *autoAnimation;
-@property (nonatomic, strong) IBOutlet UIButton *rundomSquarePosition;
 
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated;
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)handler;
-- (void)animateSquare:(BOOL)animate;
 
 @end

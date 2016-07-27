@@ -21,7 +21,7 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
     
-    BPVSquareViewController *controller = [BPVSquareViewController new];
+    BPVSquareViewController *controller = [[BPVSquareViewController alloc] initWithNibName:NSStringFromClass([BPVSquareViewController class]) bundle:nil];
     window.rootViewController = controller;
     window.backgroundColor = [UIColor lightGrayColor];
     
