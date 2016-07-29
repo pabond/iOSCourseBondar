@@ -94,6 +94,7 @@ uint32_t randomNumberFrom(uint32_t number) {
 
 - (CGRect)squareWithType:(BPVSquarePositionType)type {
     CGRect sqaure = CGRectMake(0, 0, kBPVSquareSideSize, kBPVSquareSideSize);
+    CGRect frame = self.frame;
     
     switch (type) {
         case BPVSquarePositionLeftTop:
@@ -101,13 +102,13 @@ uint32_t randomNumberFrom(uint32_t number) {
             
         case BPVSquarePositionRightButtom:
         case BPVSquarePositionRightTop:
-            sqaure.origin.x = CGRectGetWidth(self.frame) - kBPVSquareSideSize;
+            sqaure.origin.x = CGRectGetWidth(frame) - kBPVSquareSideSize;
             if (type == BPVSquarePositionRightTop) {
                 break;
             }
             
         case BPVSquarePositionLeftButtom:
-            sqaure.origin.y = CGRectGetHeight(self.frame) - kBPVSquareSideSize;
+            sqaure.origin.y = CGRectGetHeight(frame) - kBPVSquareSideSize;
             break;
             
         default:
