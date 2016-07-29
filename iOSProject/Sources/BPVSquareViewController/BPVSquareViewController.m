@@ -14,35 +14,24 @@
 
 BPVViewControllerBaseViewPropertyWithGetter(BPVSquareViewController, backgroundView, BPVBackgroundView)
 
-@interface BPVSquareViewController ()
-
-- (void)setPositionAnimatedWithType:(BPVSquarePositionType)type;
-- (void)setPositionAnimatedWithType:(BPVSquarePositionType)type handler:(BPVHandler)handler;
-
-@end
-
 @implementation BPVSquareViewController
 
 #pragma mark -
 #pragma Interface Handling
 
 - (IBAction)onAutoButton:(id)sender {
-    [self setPositionAnimatedWithType:[self.backgroundView nextSquarePosition]];
+    BPVBackgroundView *backgroundView = self.backgroundView;
+    if (backgroundView.animated == YES) {
+        backgroundView.animated = NO;
+    } else {
+        backgroundView.animated = YES;
+        [backgroundView startAutoAnimation];
+    }
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    [self setPositionAnimatedWithType:[self.backgroundView rundomSquarePostion]];
+    [self.backgroundView rundomSquarePostion];
 }
 
-#pragma mark -
-#pragma Private implementations
-
-- (void)setPositionAnimatedWithType:(BPVSquarePositionType)type {
-    [self.backgroundView setSquarePosition:type animated:YES];
-}
-
-- (void)setPositionAnimatedWithType:(BPVSquarePositionType)type handler:(BPVHandler)handler {
-    [self.backgroundView setSquarePosition:type animated:YES complitionHandler:handler];
-}
 
 @end

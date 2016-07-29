@@ -10,8 +10,9 @@
 
 #import "BPVMacro.h"
 
-static const CGFloat    kBPVSquareSideSize      = 80;
-static const CGFloat    kBPVAnimationDuration   = 1;
+static const CGFloat    kBPVSquareSideSize      = 80.f;
+static const CGFloat    kBPVAnimationDuration   = 0.8f;
+static const CGFloat    kBPVAnimationDelay      = 1.f;
 static const NSUInteger kBPVCornersCount        = 4;
 
 uint32_t randomNumberFrom(uint32_t number) {
@@ -21,6 +22,10 @@ uint32_t randomNumberFrom(uint32_t number) {
 @interface BPVBackgroundView ()
 
 - (CGRect)squareWithType:(BPVSquarePositionType)type;
+- (BPVSquarePositionType)nextSquarePosition;
+
+- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated;
+- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)handler;
 
 @end
 
@@ -33,11 +38,33 @@ uint32_t randomNumberFrom(uint32_t number) {
     [self setSquarePosition:squarePosition animated:NO];
 }
 
-//- (void)squarePosition {
-//}
-
 #pragma mark -
 #pragma mark Public Implementations
+
+- (void)startAutoAnimation {
+    __weak id weakSelf = self;
+    [self setSquarePosition:[self nextSquarePosition] animated:YES complitionHandler:^{
+        [weakSelf startAutoAnimation];
+    }];
+}
+
+- (void)rundomSquarePostion {
+    uint32_t randomPosition = 0;
+    BPVSquarePositionType type = self.squarePosition;
+    
+    do {
+        randomPosition = randomNumberFrom(kBPVCornersCount);
+        if (randomPosition != type) {
+            break;
+        }
+    } while (YES);
+    
+    [self setSquarePosition:randomPosition];
+}
+
+
+#pragma mark -
+#pragma mark Privat Implementations
 
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated {
     [self setSquarePosition:squarePosition animated:animated complitionHandler:NULL];
@@ -45,22 +72,17 @@ uint32_t randomNumberFrom(uint32_t number) {
 
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)handler {
     if (_squarePosition != squarePosition) {
-        if (animated) {
-            [UIView animateKeyframesWithDuration:kBPVAnimationDuration
-                                           delay:0.0
-                                         options:UIViewKeyframeAnimationOptionLayoutSubviews
-                                      animations:^{
-                                          [self.squareView setFrame:[self squareWithType:squarePosition]];
-                                      }
-                                      completion:^(BOOL finished) {
-                                          NSLog(@"Animation complete");
-                                          _squarePosition = squarePosition;
-                                      }];
-        }
+        [UIView animateWithDuration:kBPVAnimationDuration animations:^{
+            self.squareView.frame = [self squareWithType:squarePosition];
+        }];
         
-        CGRect frame = [self squareWithType:squarePosition];
-        self.squareView.frame = frame;
-        NSLog(@"%@", self);
+        _squarePosition = squarePosition;
+        
+        if (handler && self.animated) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kBPVAnimationDelay * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(),
+                           ^{ handler(); });
+        }
     }
 }
 
@@ -69,23 +91,6 @@ uint32_t randomNumberFrom(uint32_t number) {
     
     return type = type == BPVSquarePositionRightTop ? BPVSquarePositionLeftTop : type + 1;
 }
-
-- (BPVSquarePositionType)rundomSquarePostion {
-    uint32_t randomPosition = 0;
-    BPVSquarePositionType type = self.squarePosition;
-
-    do {
-        randomPosition = randomNumberFrom(kBPVCornersCount);
-        if (randomPosition != type) {
-            break;
-        }
-    } while (YES);
-    
-    return randomPosition;
-}
-
-#pragma mark -
-#pragma mark Privat Implementations
 
 - (CGRect)squareWithType:(BPVSquarePositionType)type {
     CGRect sqaure = CGRectMake(0, 0, kBPVSquareSideSize, kBPVSquareSideSize);

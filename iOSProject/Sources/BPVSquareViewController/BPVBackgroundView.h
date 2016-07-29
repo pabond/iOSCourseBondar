@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "BPVSquareView.h"
-
 typedef enum {
     BPVSquarePositionLeftTop,
     BPVSquarePositionLeftButtom,
@@ -20,16 +18,15 @@ typedef enum {
 typedef void(^BPVHandler)(void);
 
 @interface BPVBackgroundView : UIView
-@property (nonatomic, strong) IBOutlet BPVSquareView    *squareView;
+@property (nonatomic, strong) IBOutlet UIView           *squareView;
 @property (nonatomic, strong) IBOutlet UIButton         *autoAnimation;
 @property (nonatomic, strong) IBOutlet UIButton         *randomSquarePosition;
 
 @property (nonatomic, assign) BPVSquarePositionType     squarePosition;
 
-- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated;
-- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)handler;
+@property (nonatomic, assign, getter=isAnimated) BOOL   animated;
 
-- (BPVSquarePositionType)nextSquarePosition;
-- (BPVSquarePositionType)rundomSquarePostion;
+- (void)startAutoAnimation;
+- (void)rundomSquarePostion;
 
 @end
