@@ -7,17 +7,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BPVSquareViewController">
             <connections>
-                <outlet property="autoAnimation" destination="ED8-Ib-JNP" id="6fQ-Tn-pzZ"/>
-                <outlet property="randomSquarePosition" destination="aou-sQ-P65" id="rsW-ue-mPO"/>
-                <outlet property="squareView" destination="51e-pN-IUw" id="jW5-Yl-YYw"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Fg1-9a-AkG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BPVBackgroundView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" id="51e-pN-IUw" customClass="BPVSquareView">
+                    <rect key="frame" x="0.0" y="0.0" width="88.5" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.26566517560000003" green="0.91916063290000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ED8-Ib-JNP">
                     <rect key="frame" x="90" y="202" width="140" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -27,11 +29,6 @@
                         <action selector="onAutoButton:" destination="-1" eventType="touchUpInside" id="pK6-Iq-x73"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" id="51e-pN-IUw" customClass="BPVSquareView">
-                    <rect key="frame" x="0.0" y="0.0" width="88.5" height="80"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.26566517560000003" green="0.91916063290000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aou-sQ-P65">
                     <rect key="frame" x="90" y="348" width="140" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -42,7 +39,12 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="autoAnimation" destination="ED8-Ib-JNP" id="AaA-ql-EPK"/>
+                <outlet property="randomSquarePosition" destination="aou-sQ-P65" id="ABd-Jt-cau"/>
+                <outlet property="squareView" destination="51e-pN-IUw" id="f1r-aM-MYR"/>
+            </connections>
         </view>
     </objects>
 </document>

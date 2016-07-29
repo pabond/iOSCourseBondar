@@ -8,42 +8,41 @@
 
 #import "BPVSquareViewController.h"
 
-static const NSUInteger kBPVCornersCount = 4;
+#import "BPVBackgroundView.h"
 
-uint32_t randomNumberFrom(uint32_t number) {
-    return arc4random_uniform(number);
-}
+#import "BPVMacro.h"
+
+BPVViewControllerBaseViewPropertyWithGetter(BPVSquareViewController, backgroundView, BPVBackgroundView)
+
+@interface BPVSquareViewController ()
+
+- (void)setPositionAnimatedWithType:(BPVSquarePositionType)type;
+- (void)setPositionAnimatedWithType:(BPVSquarePositionType)type handler:(BPVHandler)handler;
+
+@end
 
 @implementation BPVSquareViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
+#pragma mark -
+#pragma Interface Handling
 
 - (IBAction)onAutoButton:(id)sender {
-    BPVSquareView *square = self.squareView;
-    BPVSquarePositionType type = square.squarePosition;
-    type = type == BPVSquarePositionRightTop ? BPVSquarePositionLeftTop : type + 1;
-    
-    [square setSquarePosition:type animated:YES complitionHandler:^{
-        
-    }];
+    [self setPositionAnimatedWithType:[self.backgroundView nextSquarePosition]];
 }
 
 - (IBAction)onRandomButton:(id)sender {
-    uint32_t randomNumber = 0;
-    BPVSquarePositionType type = self.squareView.squarePosition;
-    
-    do {
-        randomNumber = randomNumberFrom(kBPVCornersCount);
-        if (randomNumber != type) {
-            break;
-        }
-    } while (YES);
-    
-    [self.squareView setSquarePosition:randomNumber animated:YES complitionHandler:^{
-        
-    }];
+    [self setPositionAnimatedWithType:[self.backgroundView rundomSquarePostion]];
+}
+
+#pragma mark -
+#pragma Private implementations
+
+- (void)setPositionAnimatedWithType:(BPVSquarePositionType)type {
+    [self.backgroundView setSquarePosition:type animated:YES];
+}
+
+- (void)setPositionAnimatedWithType:(BPVSquarePositionType)type handler:(BPVHandler)handler {
+    [self.backgroundView setSquarePosition:type animated:YES complitionHandler:handler];
 }
 
 @end
