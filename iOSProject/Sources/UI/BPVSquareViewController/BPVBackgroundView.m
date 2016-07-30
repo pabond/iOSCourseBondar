@@ -12,11 +12,11 @@
 
 static const CGFloat    kBPVSquareSideSize      = 80.f;
 static const CGFloat    kBPVAnimationDuration   = 0.8f;
-static const CGFloat    kBPVAnimationDelay      = 1.f;
+static const CGFloat    kBPVAnimationDelay      = 0.0f;
 static const NSUInteger kBPVCornersCount        = 4;
 
-uint32_t randomNumberFrom(uint32_t number) {
-    return arc4random_uniform(number);
+uint32_t randomWithCount(uint32_t count) {
+    return arc4random_uniform(count);
 }
 
 @interface BPVBackgroundView ()
@@ -43,7 +43,8 @@ uint32_t randomNumberFrom(uint32_t number) {
 
 - (void)startAutoAnimation {
     __weak id weakSelf = self;
-    [self setSquarePosition:[self nextSquarePosition] animated:YES complitionHandler:^{
+    BPVSquarePositionType position = [weakSelf nextSquarePosition];
+    [weakSelf setSquarePosition:position animated:NO complitionHandler:^{
         [weakSelf startAutoAnimation];
     }];
 }
@@ -53,7 +54,7 @@ uint32_t randomNumberFrom(uint32_t number) {
     BPVSquarePositionType type = self.squarePosition;
     
     do {
-        randomPosition = randomNumberFrom(kBPVCornersCount);
+        randomPosition = randomWithCount(kBPVCornersCount);
         if (randomPosition != type) {
             break;
         }
@@ -62,34 +63,34 @@ uint32_t randomNumberFrom(uint32_t number) {
     [self setSquarePosition:randomPosition];
 }
 
-
 #pragma mark -
 #pragma mark Privat Implementations
 
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated {
-    [self setSquarePosition:squarePosition animated:animated complitionHandler:NULL];
+    [self setSquarePosition:squarePosition animated:animated complitionHandler:nil];
 }
 
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)handler {
     if (_squarePosition != squarePosition) {
-        [UIView animateWithDuration:kBPVAnimationDuration animations:^{
-            self.squareView.frame = [self squareWithType:squarePosition];
-        }];
         
         _squarePosition = squarePosition;
         
-        if (handler && self.animated) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kBPVAnimationDelay * NSEC_PER_SEC)),
-                           dispatch_get_main_queue(),
-                           ^{ handler(); });
-        }
+        [UIView animateWithDuration:kBPVAnimationDuration
+                              delay:kBPVAnimationDelay
+                            options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
+                         animations:^{ self.squareView.frame = [self squareWithType:squarePosition]; }
+                         completion:^( BOOL finished) {
+                             if (handler && self.animated) {
+                                 handler();
+                             }
+                         }];
     }
 }
 
 - (BPVSquarePositionType)nextSquarePosition {
     BPVSquarePositionType type = self.squarePosition;
     
-    return type = type == BPVSquarePositionRightTop ? BPVSquarePositionLeftTop : type + 1;
+    return type = (type == BPVSquarePositionRightTop) ? BPVSquarePositionLeftTop : type + 1;
 }
 
 - (CGRect)squareWithType:(BPVSquarePositionType)type {
