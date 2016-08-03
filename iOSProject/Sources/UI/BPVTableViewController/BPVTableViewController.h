@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class BPVUser;
+
 @interface BPVTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) BPVUser *user;
 
 @end

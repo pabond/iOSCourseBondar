@@ -25,6 +25,14 @@
 		2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */; };
 		2DA8E96C1D4CE33A0067032D /* BPVUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E96A1D4CE33A0067032D /* BPVUserCell.m */; };
 		2DA8E96D1D4CE33A0067032D /* BPVUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E96B1D4CE33A0067032D /* BPVUserCell.xib */; };
+		2DA8E97E1D4CE8940067032D /* BPVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E97D1D4CE8940067032D /* BPVUser.m */; };
+		2DA8E98A1D4CE9C30067032D /* NSArray+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9821D4CE9C30067032D /* NSArray+BPVExtensions.m */; };
+		2DA8E98B1D4CE9C30067032D /* NSString+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9851D4CE9C30067032D /* NSString+BPVExtensions.m */; };
+		2DA8E98C1D4CE9C30067032D /* NSTimer+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9891D4CE9C30067032D /* NSTimer+BPVExtensions.m */; };
+		2DA8E98F1D4CF6F60067032D /* NSString+BPVRandomName.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E98E1D4CF6F60067032D /* NSString+BPVRandomName.m */; };
+		2DA8E9921D4CFE5B0067032D /* BPVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9911D4CFE5B0067032D /* BPVUsersView.m */; };
+		2DA8E9971D4D00900067032D /* BPVSupportEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9961D4D00900067032D /* BPVSupportEntity.m */; };
+		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +85,21 @@
 		2DA8E9691D4CE33A0067032D /* BPVUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUserCell.h; sourceTree = "<group>"; };
 		2DA8E96A1D4CE33A0067032D /* BPVUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUserCell.m; sourceTree = "<group>"; };
 		2DA8E96B1D4CE33A0067032D /* BPVUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUserCell.xib; sourceTree = "<group>"; };
+		2DA8E97C1D4CE8940067032D /* BPVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUser.h; sourceTree = "<group>"; };
+		2DA8E97D1D4CE8940067032D /* BPVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUser.m; sourceTree = "<group>"; };
+		2DA8E9811D4CE9C30067032D /* NSArray+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BPVExtensions.h"; sourceTree = "<group>"; };
+		2DA8E9821D4CE9C30067032D /* NSArray+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BPVExtensions.m"; sourceTree = "<group>"; };
+		2DA8E9841D4CE9C30067032D /* NSString+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BPVExtensions.h"; sourceTree = "<group>"; };
+		2DA8E9851D4CE9C30067032D /* NSString+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BPVExtensions.m"; sourceTree = "<group>"; };
+		2DA8E9881D4CE9C30067032D /* NSTimer+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+BPVExtensions.h"; sourceTree = "<group>"; };
+		2DA8E9891D4CE9C30067032D /* NSTimer+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BPVExtensions.m"; sourceTree = "<group>"; };
+		2DA8E98D1D4CF6F60067032D /* NSString+BPVRandomName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BPVRandomName.h"; sourceTree = "<group>"; };
+		2DA8E98E1D4CF6F60067032D /* NSString+BPVRandomName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BPVRandomName.m"; sourceTree = "<group>"; };
+		2DA8E9901D4CFE5B0067032D /* BPVUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersView.h; sourceTree = "<group>"; };
+		2DA8E9911D4CFE5B0067032D /* BPVUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersView.m; sourceTree = "<group>"; };
+		2DA8E9951D4D00900067032D /* BPVSupportEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVSupportEntity.h; sourceTree = "<group>"; };
+		2DA8E9961D4D00900067032D /* BPVSupportEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVSupportEntity.m; sourceTree = "<group>"; };
+		2DA8E99D1D51DF010067032D /* BPVUserLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BPVUserLogo.png; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -153,6 +176,7 @@
 		2D3F41E31D3F6EB600A38A7B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2DA8E9981D4D5F490067032D /* Images */,
 				2D3F41E41D3F6EB600A38A7B /* Assets.xcassets */,
 				2D3F41E51D3F6EB600A38A7B /* LaunchScreen.storyboard */,
 				2D3F41E71D3F6EB600A38A7B /* Main.storyboard */,
@@ -192,6 +216,8 @@
 		2D3F42421D4C021500A38A7B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2DA8E97F1D4CE9C30067032D /* Category */,
+				2DA8E97B1D4CE83E0067032D /* Models */,
 				2D3F42431D4C021500A38A7B /* UI */,
 			);
 			path = Sources;
@@ -225,6 +251,8 @@
 				2DA8E95A1D4C89AE0067032D /* BPVTableViewController.h */,
 				2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */,
 				2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */,
+				2DA8E9901D4CFE5B0067032D /* BPVUsersView.h */,
+				2DA8E9911D4CFE5B0067032D /* BPVUsersView.m */,
 			);
 			path = BPVTableViewController;
 			sourceTree = "<group>";
@@ -263,6 +291,90 @@
 				2DA8E96B1D4CE33A0067032D /* BPVUserCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2DA8E97B1D4CE83E0067032D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E97C1D4CE8940067032D /* BPVUser.h */,
+				2DA8E97D1D4CE8940067032D /* BPVUser.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2DA8E97F1D4CE9C30067032D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E9801D4CE9C30067032D /* NSArray+BPVExtentions */,
+				2DA8E9831D4CE9C30067032D /* NSString+BPVExtentions */,
+				2DA8E9871D4CE9C30067032D /* NSTimer+BPVexteniions */,
+			);
+			name = Category;
+			path = Sources/Category;
+			sourceTree = SOURCE_ROOT;
+		};
+		2DA8E9801D4CE9C30067032D /* NSArray+BPVExtentions */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E9811D4CE9C30067032D /* NSArray+BPVExtensions.h */,
+				2DA8E9821D4CE9C30067032D /* NSArray+BPVExtensions.m */,
+			);
+			path = "NSArray+BPVExtentions";
+			sourceTree = "<group>";
+		};
+		2DA8E9831D4CE9C30067032D /* NSString+BPVExtentions */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E9841D4CE9C30067032D /* NSString+BPVExtensions.h */,
+				2DA8E9851D4CE9C30067032D /* NSString+BPVExtensions.m */,
+				2DA8E9861D4CE9C30067032D /* Private */,
+			);
+			path = "NSString+BPVExtentions";
+			sourceTree = "<group>";
+		};
+		2DA8E9861D4CE9C30067032D /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E98D1D4CF6F60067032D /* NSString+BPVRandomName.h */,
+				2DA8E98E1D4CF6F60067032D /* NSString+BPVRandomName.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		2DA8E9871D4CE9C30067032D /* NSTimer+BPVexteniions */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E9881D4CE9C30067032D /* NSTimer+BPVExtensions.h */,
+				2DA8E9891D4CE9C30067032D /* NSTimer+BPVExtensions.m */,
+				2DA8E9931D4D00900067032D /* Private */,
+			);
+			path = "NSTimer+BPVexteniions";
+			sourceTree = "<group>";
+		};
+		2DA8E9931D4D00900067032D /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E9941D4D00900067032D /* SupportEntity */,
+			);
+			name = Private;
+			path = "Sources/Category/NSTimer+BPVexteniions/Private";
+			sourceTree = SOURCE_ROOT;
+		};
+		2DA8E9941D4D00900067032D /* SupportEntity */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E9951D4D00900067032D /* BPVSupportEntity.h */,
+				2DA8E9961D4D00900067032D /* BPVSupportEntity.m */,
+			);
+			path = SupportEntity;
+			sourceTree = "<group>";
+		};
+		2DA8E9981D4D5F490067032D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8E99D1D51DF010067032D /* BPVUserLogo.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		901516722A207463FCC40A7F /* Pods */ = {
@@ -391,6 +503,7 @@
 				2D3F41FE1D3FA29800A38A7B /* Info.plist in Resources */,
 				2D3F41EF1D3F6EB600A38A7B /* LaunchScreen.storyboard in Resources */,
 				2D3F41F41D3F6EC500A38A7B /* Assets.xcassets in Resources */,
+				2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */,
 				2DA8E96D1D4CE33A0067032D /* BPVUserCell.xib in Resources */,
 				2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */,
 				2DA8E95E1D4C89AE0067032D /* BPVTableViewController.xib in Resources */,
@@ -468,15 +581,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DA8E98F1D4CF6F60067032D /* NSString+BPVRandomName.m in Sources */,
 				2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */,
+				2DA8E97E1D4CE8940067032D /* BPVUser.m in Sources */,
+				2DA8E98C1D4CE9C30067032D /* NSTimer+BPVExtensions.m in Sources */,
 				2D3F41FF1D3FA29800A38A7B /* main.m in Sources */,
 				2D3F424B1D4C021500A38A7B /* BPVBackgroundView.m in Sources */,
 				2DA8E95D1D4C89AE0067032D /* BPVTableViewController.m in Sources */,
 				2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */,
 				2D3F42131D40C5D600A38A7B /* BPVMacro.m in Sources */,
+				2DA8E98A1D4CE9C30067032D /* NSArray+BPVExtensions.m in Sources */,
+				2DA8E9921D4CFE5B0067032D /* BPVUsersView.m in Sources */,
 				2DA8E96C1D4CE33A0067032D /* BPVUserCell.m in Sources */,
 				2D3F41FD1D3FA29800A38A7B /* BPVAppDelegate.m in Sources */,
+				2DA8E98B1D4CE9C30067032D /* NSString+BPVExtensions.m in Sources */,
 				2D3F424C1D4C021500A38A7B /* BPVSquareViewController.m in Sources */,
+				2DA8E9971D4D00900067032D /* BPVSupportEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

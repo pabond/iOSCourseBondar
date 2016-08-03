@@ -8,6 +8,15 @@
 
 #import "BPVTableViewController.h"
 
+#import "BPVUsersView.h"
+#import "BPVUserCell.h"
+
+#import "BPVUser.h"
+
+#import "BPVMacro.h"
+
+BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
+
 @interface BPVTableViewController ()
 
 @end
@@ -26,18 +35,20 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * const kBPVCellName = @"kBPVCellName";
+    NSString *cellClass = NSStringFromClass([BPVUserCell class]);
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kBPVCellName];
+    BPVUserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClass];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kBPVCellName];
+        UINib *nib = [UINib nibWithNibName:cellClass bundle:nil];
+        NSArray *cells = [nib instantiateWithOwner:nil options:nil];
+        cell = [cells firstObject];
     }
     
-    cell.textLabel.text = @"user";
+    cell.user = [BPVUser new];
     
     return cell;
 }

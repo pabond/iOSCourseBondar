@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class BPVUser;
+
 @interface BPVUserCell : UITableViewCell
-@property (nonatomic, strong) IBOutlet UILabel      *fullNameLabel;
+@property (nonatomic, strong) IBOutlet UILabel      *userNameLabel;
 @property (nonatomic, strong) IBOutlet UIImageView  *userImageView;
+
+@property (nonatomic, strong) BPVUser *user;
+
+- (void)fillWithModel:(BPVUser *)user;
 
 @end

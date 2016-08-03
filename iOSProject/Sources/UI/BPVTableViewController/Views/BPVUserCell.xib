@@ -25,6 +25,10 @@
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="userImageView" destination="DI4-qf-pmn" id="XGT-kg-1UG"/>
+                <outlet property="userNameLabel" destination="QFG-MO-Iz2" id="fa5-zW-8xu"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>
