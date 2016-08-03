@@ -33,6 +33,7 @@
 		2DA8E9921D4CFE5B0067032D /* BPVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9911D4CFE5B0067032D /* BPVUsersView.m */; };
 		2DA8E9971D4D00900067032D /* BPVSupportEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9961D4D00900067032D /* BPVSupportEntity.m */; };
 		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
+		2DA8E9A11D52188C0067032D /* BPVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9A01D52188C0067032D /* BPVUsers.m */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,8 @@
 		2DA8E9951D4D00900067032D /* BPVSupportEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVSupportEntity.h; sourceTree = "<group>"; };
 		2DA8E9961D4D00900067032D /* BPVSupportEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVSupportEntity.m; sourceTree = "<group>"; };
 		2DA8E99D1D51DF010067032D /* BPVUserLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BPVUserLogo.png; sourceTree = "<group>"; };
+		2DA8E99F1D52188C0067032D /* BPVUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsers.h; sourceTree = "<group>"; };
+		2DA8E9A01D52188C0067032D /* BPVUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsers.m; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -298,6 +301,8 @@
 			children = (
 				2DA8E97C1D4CE8940067032D /* BPVUser.h */,
 				2DA8E97D1D4CE8940067032D /* BPVUser.m */,
+				2DA8E99F1D52188C0067032D /* BPVUsers.h */,
+				2DA8E9A01D52188C0067032D /* BPVUsers.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -591,6 +596,7 @@
 				2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */,
 				2D3F42131D40C5D600A38A7B /* BPVMacro.m in Sources */,
 				2DA8E98A1D4CE9C30067032D /* NSArray+BPVExtensions.m in Sources */,
+				2DA8E9A11D52188C0067032D /* BPVUsers.m in Sources */,
 				2DA8E9921D4CFE5B0067032D /* BPVUsersView.m in Sources */,
 				2DA8E96C1D4CE33A0067032D /* BPVUserCell.m in Sources */,
 				2D3F41FD1D3FA29800A38A7B /* BPVAppDelegate.m in Sources */,

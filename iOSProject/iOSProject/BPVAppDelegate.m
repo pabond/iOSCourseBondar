@@ -27,7 +27,6 @@
     BPVTableViewController *controller = [[BPVTableViewController alloc] initWithNibName:NSStringFromClass([BPVTableViewController class]) bundle:nil];
     controller.user = [BPVUser new];
     
-    
     window.rootViewController = controller;
     
     [window makeKeyAndVisible];
