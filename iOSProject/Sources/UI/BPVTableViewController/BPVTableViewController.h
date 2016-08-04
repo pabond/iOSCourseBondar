@@ -15,7 +15,6 @@
 @interface BPVTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, BPVCollectionObserver>
 @property (nonatomic, strong) BPVUser *user;
 
-@property (nonatomic, strong) IBOutlet UITableView  *usersTableView;
 @property (nonatomic, strong) IBOutlet UIButton     *editButton;
 @property (nonatomic, strong) IBOutlet UIButton     *doneButton;
 @property (nonatomic, strong) IBOutlet UIButton     *addButton;

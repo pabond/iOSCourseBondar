@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPVUsersView : UITableView
+@interface BPVUsersView : UIView
+@property (nonatomic, strong) IBOutlet UITableView  *usersTableView;
 
 @end

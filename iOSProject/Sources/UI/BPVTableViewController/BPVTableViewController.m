@@ -17,11 +17,6 @@
 
 #import "BPVMacro.h"
 
-typedef enum {
-    BPVTableEditingRemove,
-    BPVTableEditingAdd
-} BPVTableEditingType;
-
 static const NSUInteger kBPVUsersCount = 50;
 static NSString * const kBPVTableTitle = @"USERS LIST";
 
@@ -65,7 +60,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     self.doneButton.hidden = NO;
     self.addButton.hidden = NO;
     
-    self.usersView.editing = YES;
+    self.usersView.usersTableView.editing = YES;
 }
 
 - (IBAction)onDone:(id)sender {
@@ -73,7 +68,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     self.addButton.hidden = YES;
     self.editButton.hidden = NO;
     
-    self.usersView.editing = NO;
+    self.usersView.usersTableView.editing = NO;
 }
 
 - (IBAction)onAdd:(id)sender {
@@ -99,10 +94,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSUInteger count = self.users.users.count;
-    if (count < kBPVUsersCount) {
-        count = kBPVUsersCount;
-    }
-    
+//    if (count < kBPVUsersCount) {
+//        count = kBPVUsersCount;
+//    }
+//    
     return count;
 }
 
@@ -143,7 +138,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark BPVCollectionObserver
 
 - (void)collectionDidChange:(id)collection {
-    [self.usersView reloadData];
+    [self.usersView.usersTableView reloadData];
 }
 
 @end

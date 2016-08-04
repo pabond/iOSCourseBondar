@@ -47,17 +47,19 @@
 - (void)addUser:(id)user {
     if (user) {
         [self.mutableUsers addObject:user];
+        [self notifyOfCollectionDidChange];
     }
 }
 
 - (void)removeUser:(id)user {
     if (user) {
         [self.mutableUsers removeObject:user];
+        [self notifyOfCollectionDidChange];
     }
 }
 
 - (id)userAtIndex:(NSUInteger)index {
-    if (index + 1 <= self.users.count) {
+    if (index < self.count) {
         return [self.mutableUsers objectAtIndex:index];
     }
     
@@ -69,11 +71,20 @@
 }
 
 - (void)insertUser:(id)user atIndex:(NSUInteger)index {
-    [self.mutableUsers insertObject:user atIndex:index];
+    if (user) {
+        [self.mutableUsers insertObject:user atIndex:index];
+    }
 }
 
 - (void)removeUserAtIndex:(NSUInteger)index {
     [self.mutableUsers removeObjectAtIndex:index];
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (void)notifyOfCollectionDidChange {
+    [self notifyOfState:self.count];
 }
 
 #pragma mark -
