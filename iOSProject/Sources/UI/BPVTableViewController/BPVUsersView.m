@@ -2,7 +2,7 @@
 //  BPVUsersView.m
 //  iOSProject
 //
-//  Created by Bondar Pavel on 7/30/16.
+//  Created by Bondar Pavel on 8/4/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 

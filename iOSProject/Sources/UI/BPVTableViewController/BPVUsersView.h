@@ -2,13 +2,12 @@
 //  BPVUsersView.h
 //  iOSProject
 //
-//  Created by Bondar Pavel on 7/30/16.
+//  Created by Bondar Pavel on 8/4/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface BPVUsersView : UIView
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@interface BPVUsersView : UITableView
 
 @end

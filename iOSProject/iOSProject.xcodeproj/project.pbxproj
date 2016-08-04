@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D328D381D5358870064C76D /* BPVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D371D5358870064C76D /* BPVUsersView.m */; };
 		2D3F41D11D3F65EB00A38A7B /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3F41D01D3F65EB00A38A7B /* iOSProjectUITests.m */; };
 		2D3F41EF1D3F6EB600A38A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3F41E51D3F6EB600A38A7B /* LaunchScreen.storyboard */; };
 		2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3F41E71D3F6EB600A38A7B /* Main.storyboard */; };
@@ -30,7 +31,6 @@
 		2DA8E98B1D4CE9C30067032D /* NSString+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9851D4CE9C30067032D /* NSString+BPVExtensions.m */; };
 		2DA8E98C1D4CE9C30067032D /* NSTimer+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9891D4CE9C30067032D /* NSTimer+BPVExtensions.m */; };
 		2DA8E98F1D4CF6F60067032D /* NSString+BPVRandomName.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E98E1D4CF6F60067032D /* NSString+BPVRandomName.m */; };
-		2DA8E9921D4CFE5B0067032D /* BPVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9911D4CFE5B0067032D /* BPVUsersView.m */; };
 		2DA8E9971D4D00900067032D /* BPVSupportEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9961D4D00900067032D /* BPVSupportEntity.m */; };
 		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
 		2DA8E9A11D52188C0067032D /* BPVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9A01D52188C0067032D /* BPVUsers.m */; };
@@ -56,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		2809F6776B7F87F0D9655301 /* Pods-iOSProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D328D361D5358870064C76D /* BPVUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersView.h; sourceTree = "<group>"; };
+		2D328D371D5358870064C76D /* BPVUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersView.m; sourceTree = "<group>"; };
 		2D3F41A81D3F65EB00A38A7B /* iOSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3F41C11D3F65EB00A38A7B /* iOSProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3F41C71D3F65EB00A38A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,8 +98,6 @@
 		2DA8E9891D4CE9C30067032D /* NSTimer+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DA8E98D1D4CF6F60067032D /* NSString+BPVRandomName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BPVRandomName.h"; sourceTree = "<group>"; };
 		2DA8E98E1D4CF6F60067032D /* NSString+BPVRandomName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BPVRandomName.m"; sourceTree = "<group>"; };
-		2DA8E9901D4CFE5B0067032D /* BPVUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersView.h; sourceTree = "<group>"; };
-		2DA8E9911D4CFE5B0067032D /* BPVUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersView.m; sourceTree = "<group>"; };
 		2DA8E9951D4D00900067032D /* BPVSupportEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVSupportEntity.h; sourceTree = "<group>"; };
 		2DA8E9961D4D00900067032D /* BPVSupportEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVSupportEntity.m; sourceTree = "<group>"; };
 		2DA8E99D1D51DF010067032D /* BPVUserLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BPVUserLogo.png; sourceTree = "<group>"; };
@@ -254,8 +254,8 @@
 				2DA8E95A1D4C89AE0067032D /* BPVTableViewController.h */,
 				2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */,
 				2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */,
-				2DA8E9901D4CFE5B0067032D /* BPVUsersView.h */,
-				2DA8E9911D4CFE5B0067032D /* BPVUsersView.m */,
+				2D328D361D5358870064C76D /* BPVUsersView.h */,
+				2D328D371D5358870064C76D /* BPVUsersView.m */,
 			);
 			path = BPVTableViewController;
 			sourceTree = "<group>";
@@ -586,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D328D381D5358870064C76D /* BPVUsersView.m in Sources */,
 				2DA8E98F1D4CF6F60067032D /* NSString+BPVRandomName.m in Sources */,
 				2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */,
 				2DA8E97E1D4CE8940067032D /* BPVUser.m in Sources */,
@@ -597,7 +598,6 @@
 				2D3F42131D40C5D600A38A7B /* BPVMacro.m in Sources */,
 				2DA8E98A1D4CE9C30067032D /* NSArray+BPVExtensions.m in Sources */,
 				2DA8E9A11D52188C0067032D /* BPVUsers.m in Sources */,
-				2DA8E9921D4CFE5B0067032D /* BPVUsersView.m in Sources */,
 				2DA8E96C1D4CE33A0067032D /* BPVUserCell.m in Sources */,
 				2D3F41FD1D3FA29800A38A7B /* BPVAppDelegate.m in Sources */,
 				2DA8E98B1D4CE9C30067032D /* NSString+BPVExtensions.m in Sources */,

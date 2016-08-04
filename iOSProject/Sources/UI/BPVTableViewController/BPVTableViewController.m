@@ -12,11 +12,15 @@
 #import "BPVUserCell.h"
 
 #import "BPVUser.h"
-#import "BPVUsers.h"
 
 #import "BPVObservableObject.h"
 
 #import "BPVMacro.h"
+
+typedef enum {
+    BPVTableEditingRemove,
+    BPVTableEditingAdd
+} BPVTableEditingType;
 
 static const NSUInteger kBPVUsersCount = 50;
 static NSString * const kBPVTableTitle = @"USERS LIST";
@@ -53,6 +57,39 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark -
+#pragma Interface Handling
+
+- (IBAction)onEdit:(id)sender {
+    self.editButton.hidden = YES;
+    self.doneButton.hidden = NO;
+    self.addButton.hidden = NO;
+    
+    self.usersView.editing = YES;
+}
+
+- (IBAction)onDone:(id)sender {
+    self.doneButton.hidden = YES;
+    self.addButton.hidden = YES;
+    self.editButton.hidden = NO;
+    
+    self.usersView.editing = NO;
+}
+
+- (IBAction)onAdd:(id)sender {
+    [self.users addUser:[BPVUser new]];
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.users removeUser:[self.users.users objectAtIndex:indexPath.row]];
+    }
+}
+
 #pragma mark - 
 #pragma mark UITableViewDataSource
 
@@ -61,7 +98,12 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return kBPVUsersCount;
+    NSUInteger count = self.users.users.count;
+    if (count < kBPVUsersCount) {
+        count = kBPVUsersCount;
+    }
+    
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,6 +122,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     if (!user) {
         user = [BPVUser new];
         [users addUser:user];
+        user.surname = [NSString stringWithFormat:@"%@ %ld", user.surname, (long)indexPath.row];
     }
     
     cell.user = user;
@@ -94,6 +137,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath {
     [self.users moveUserFromSourceIndex:sourceIndexPath.row destinationIndex:destinationIndexPath.row];
+}
+
+#pragma mark -
+#pragma mark BPVCollectionObserver
+
+- (void)collectionDidChange:(id)collection {
+    [self.usersView reloadData];
 }
 
 @end

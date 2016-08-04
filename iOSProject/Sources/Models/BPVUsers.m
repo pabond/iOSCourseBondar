@@ -16,6 +16,7 @@
 @implementation BPVUsers
 
 @dynamic users;
+@dynamic count;
 
 #pragma mark -
 #pragma mark Initializations and deallocations
@@ -34,6 +35,10 @@
 
 - (NSArray *)users {
     return [self.mutableUsers copy];
+}
+
+- (NSUInteger)count {
+    return [self.mutableUsers count];
 }
 
 #pragma mark -
@@ -70,5 +75,13 @@
 - (void)removeUserAtIndex:(NSUInteger)index {
     [self.mutableUsers removeObjectAtIndex:index];
 }
+
+#pragma mark -
+#pragma mark Redefinition of parent methods
+
+- (SEL)selectorForState:(NSUInteger)state {
+    return @selector(collectionDidChange:);
+}
+
 
 @end

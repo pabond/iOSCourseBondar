@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BPVUsers.h"
+
 @class BPVUser;
 
-@interface BPVTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BPVTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, BPVCollectionObserver>
 @property (nonatomic, strong) BPVUser *user;
+
+@property (nonatomic, strong) IBOutlet UITableView  *usersTableView;
+@property (nonatomic, strong) IBOutlet UIButton     *editButton;
+@property (nonatomic, strong) IBOutlet UIButton     *doneButton;
+@property (nonatomic, strong) IBOutlet UIButton     *addButton;
+
+- (IBAction)onEdit:(id)sender;
+- (IBAction)onDone:(id)sender;
+- (IBAction)onAdd:(id)sender;
 
 @end

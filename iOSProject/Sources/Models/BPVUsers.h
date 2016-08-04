@@ -8,8 +8,14 @@
 
 #import "BPVObservableObject.h"
 
+@protocol BPVCollectionObserver <NSObject>
+- (void)collectionDidChange:(id)collection;
+
+@end
+
 @interface BPVUsers : BPVObservableObject
-@property (nonatomic, readonly) NSArray *users;
+@property (nonatomic, readonly) NSArray     *users;
+@property (nonatomic, readonly) NSUInteger  count;
 
 - (void)addUser:(id)user;
 - (void)removeUser:(id)user;
