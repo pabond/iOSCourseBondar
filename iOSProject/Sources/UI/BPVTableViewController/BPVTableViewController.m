@@ -12,6 +12,7 @@
 #import "BPVUserCell.h"
 
 #import "BPVUser.h"
+#import "BPVUserData.h"
 
 #import "BPVObservableObject.h"
 
@@ -62,48 +63,39 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 - (IBAction)onEdit:(id)sender {
     self.editButton.hidden = YES;
     self.doneButton.hidden = NO;
-    self.addRemoveControl.hidden = NO;
-    self.addButton.hidden = YES;
     
     self.usersView.usersTableView.editing = YES;
-}
-
-- (IBAction)onDone:(id)sender {
-    self.doneButton.hidden = YES;
-    self.addRemoveControl.hidden = YES;
-    self.editButton.hidden = NO;
-    self.addButton.hidden = NO;
-    
-    self.usersView.usersTableView.editing = NO;
-}
-
-- (IBAction)onAddRemove:(id)sender {
-    
 }
 
 - (IBAction)onAdd:(id)sender {
     [self.users addUser:[BPVUser new]];
 }
 
+- (IBAction)onDone:(id)sender {
+    self.doneButton.hidden = YES;
+    self.editButton.hidden = NO;
+    
+    self.usersView.usersTableView.editing = NO;
+}
+
 #pragma mark -
 #pragma mark UITableViewDelegate
 
-/*
-UITableViewCellEditingStyleNone,
-UITableViewCellEditingStyleDelete,
-UITableViewCellEditingStyleInsert
-*/
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)    tableView:(UITableView *)tableView
+   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+    forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.users removeUserAtIndex:indexPath.row];
         [self.usersView.usersTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
-    } else {
-        [self.usersView.usersTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 
@@ -112,7 +104,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.users.users.count;;
+      NSUInteger value =  self.users.users.count;
+    return value;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -150,9 +143,24 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 #pragma mark -
 #pragma mark BPVCollectionObserver
-
-- (void)collectionDidChange:(id)collection {
-    [self.usersView.usersTableView reloadData];
+- (void)collection:(BPVUsers *)collection didUpdateWithUserData:(BPVUserData *)data {
+    UITableView *table = self.usersView.usersTableView;
+    NSUInteger usersCount = collection.count;
+    NSUInteger cellsCount = [table numberOfRowsInSection:0];
+    
+    BPVUser *user = data.user; 
+    NSUInteger index = data.userIdex;
+    
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    if (usersCount > cellsCount) {
+        [table insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    } else if (cellsCount < usersCount) {
+        [table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    } else {
+        [table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    }
 }
 
 @end

@@ -49,14 +49,15 @@
 - (void)addUser:(id)user {
     if (user) {
         [self.mutableUsers addObject:user];
-        [self notifyOfCollectionDidChange];
+        BPVUserData *data = [[BPVUserData alloc] initWithUser:user index:[self.users indexOfObject:user]];
+        [self notifyOfCollectionDidChangeWhithData:data];
     }
 }
 
 - (void)removeUser:(id)user {
     if (user) {
         [self.mutableUsers removeObject:user];
-        [self notifyOfCollectionDidChange];
+  //      [self notifyOfCollectionDidChangeWhithData:<#(BPVUserData *)#>];
     }
 }
 
@@ -86,15 +87,15 @@
 #pragma mark -
 #pragma mark Private implementations
 
-- (void)notifyOfCollectionDidChange {
-    [self notifyOfState:self.count];
+- (void)notifyOfCollectionDidChangeWhithData:(BPVUserData *)data {
+    [self notifyOfStateWithSelector:@selector(collection:didUpdateWithUserData:) object:data];
 }
 
 #pragma mark -
 #pragma mark Redefinition of parent methods
 
-- (SEL)selectorForState:(NSUInteger)state {
-    return @selector(collectionDidChange:);
-}
+//- (SEL)selectorForState:(NSUInteger)state {
+//    return @selector(collectionDidChange:);
+//}
 
 @end

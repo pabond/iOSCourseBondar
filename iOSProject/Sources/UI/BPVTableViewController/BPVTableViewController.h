@@ -15,16 +15,12 @@
 @interface BPVTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, BPVCollectionObserver>
 @property (nonatomic, strong) BPVUser *user;
 
-@property (nonatomic, strong) IBOutlet UIButton     *editButton;
 @property (nonatomic, strong) IBOutlet UIButton     *doneButton;
-@property (strong, nonatomic) IBOutlet UIButton *addButton;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *addRemoveControl;
+@property (nonatomic, strong) IBOutlet UIButton     *addButton;
+@property (nonatomic, strong) IBOutlet UIButton     *editButton;
 
-- (IBAction)onEdit:(id)sender;
 - (IBAction)onDone:(id)sender;
-- (IBAction)onAddRemove:(id)sender;
+- (IBAction)onEdit:(id)sender;
 - (IBAction)onAdd:(id)sender;
-
-
 
 @end

@@ -10,4 +10,16 @@
 
 @implementation BPVUserData
 
+- (instancetype)initWithUser:(BPVUser *)user
+                       index:(NSUInteger)index
+{
+    self = [super init];
+    if (self) {
+        self.user = user;
+        self.userIdex = index;
+    }
+    
+    return self;
+}
+
 @end

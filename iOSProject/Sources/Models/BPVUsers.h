@@ -8,8 +8,12 @@
 
 #import "BPVObservableObject.h"
 
+@class BPVUsers;
+@class BPVUserData;
+
 @protocol BPVCollectionObserver <NSObject>
-- (void)collectionDidChange:(id)collection;
+- (void)            collection:(BPVUsers *)collection
+         didUpdateWithUserData:(BPVUserData *)data;
 
 @end
 
