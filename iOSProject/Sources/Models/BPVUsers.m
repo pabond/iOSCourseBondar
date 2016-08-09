@@ -7,9 +7,11 @@
 //
 
 #import "BPVUsers.h"
+#import "BPVUserData.h"
 
 @interface BPVUsers ()
-@property (nonatomic, strong) NSMutableArray *mutableUsers;
+@property (nonatomic, strong)   NSMutableArray  *mutableUsers;
+@property (nonatomic, strong)   BPVUserData     *userData;
 
 @end
 
@@ -78,6 +80,7 @@
 
 - (void)removeUserAtIndex:(NSUInteger)index {
     [self.mutableUsers removeObjectAtIndex:index];
+    self.userData.userIdex = index;
 }
 
 #pragma mark -
@@ -93,6 +96,5 @@
 - (SEL)selectorForState:(NSUInteger)state {
     return @selector(collectionDidChange:);
 }
-
 
 @end

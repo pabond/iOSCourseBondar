@@ -17,10 +17,14 @@
 
 @property (nonatomic, strong) IBOutlet UIButton     *editButton;
 @property (nonatomic, strong) IBOutlet UIButton     *doneButton;
-@property (nonatomic, strong) IBOutlet UIButton     *addButton;
+@property (strong, nonatomic) IBOutlet UIButton *addButton;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *addRemoveControl;
 
 - (IBAction)onEdit:(id)sender;
 - (IBAction)onDone:(id)sender;
+- (IBAction)onAddRemove:(id)sender;
 - (IBAction)onAdd:(id)sender;
+
+
 
 @end

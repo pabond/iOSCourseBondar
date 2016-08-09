@@ -17,8 +17,12 @@
 
 #import "BPVMacro.h"
 
-static const NSUInteger kBPVUsersCount = 50;
 static NSString * const kBPVTableTitle = @"USERS LIST";
+
+typedef enum {
+    BPVEditingStyleDelete,
+    BPVEditingStyleAdd
+} BPVEditingStyleType;
 
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
@@ -58,17 +62,23 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 - (IBAction)onEdit:(id)sender {
     self.editButton.hidden = YES;
     self.doneButton.hidden = NO;
-    self.addButton.hidden = NO;
+    self.addRemoveControl.hidden = NO;
+    self.addButton.hidden = YES;
     
     self.usersView.usersTableView.editing = YES;
 }
 
 - (IBAction)onDone:(id)sender {
     self.doneButton.hidden = YES;
-    self.addButton.hidden = YES;
+    self.addRemoveControl.hidden = YES;
     self.editButton.hidden = NO;
+    self.addButton.hidden = NO;
     
     self.usersView.usersTableView.editing = NO;
+}
+
+- (IBAction)onAddRemove:(id)sender {
+    
 }
 
 - (IBAction)onAdd:(id)sender {
@@ -78,27 +88,31 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark UITableViewDelegate
 
+/*
+UITableViewCellEditingStyleNone,
+UITableViewCellEditingStyleDelete,
+UITableViewCellEditingStyleInsert
+*/
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.users removeUser:[self.users.users objectAtIndex:indexPath.row]];
+        [self.users removeUserAtIndex:indexPath.row];
+        [self.usersView.usersTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    } else {
+        [self.usersView.usersTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
-
-#pragma mark - 
-#pragma mark UITableViewDataSource
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return kBPVTableTitle;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSUInteger count = self.users.users.count;
-//    if (count < kBPVUsersCount) {
-//        count = kBPVUsersCount;
-//    }
-//    
-    return count;
+    return self.users.users.count;;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
