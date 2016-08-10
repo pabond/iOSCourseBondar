@@ -13,8 +13,6 @@
 @property (nonatomic, strong)   NSMutableArray  *mutableUsers;
 @property (nonatomic, strong)   BPVUserData     *userData;
 
-- (void)notifyOfCollectionDidChangeWhithData:(BPVUserData *)data;
-
 @end
 
 @implementation BPVUsers
@@ -51,8 +49,7 @@
 - (void)addUser:(id)user {
     if (user) {
         [self.mutableUsers addObject:user];
-        BPVUserData *data = [BPVUserData userDataWithUser:user index:[self indexOfUser:user]];
-        [self notifyOfCollectionDidChangeWhithData:data];
+        [self setStateWithDataUsingIndex:[self indexOfUser:user]];
     }
 }
 
@@ -71,19 +68,26 @@
 }
 
 - (void)moveUserFromSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex {
-    [self.mutableUsers exchangeObjectAtIndex:sourceIndex withObjectAtIndex:destinationIndex];
+    BPVUser *user = [self userAtIndex:sourceIndex];
+    BOOL notify = NO;
+    [self removeUserAtIndex:sourceIndex notify:notify];
+    [self insertUser:user atIndex:destinationIndex notify:notify];
 }
 
-- (void)insertUser:(id)user atIndex:(NSUInteger)index {
+- (void)insertUser:(id)user atIndex:(NSUInteger)index notify:(BOOL)notify {
     if (user) {
         [self.mutableUsers insertObject:user atIndex:index];
+        if (notify) {
+            [self setStateWithDataUsingIndex:index];
+        }
     }
 }
 
-- (void)removeUserAtIndex:(NSUInteger)index {
+- (void)removeUserAtIndex:(NSUInteger)index notify:(BOOL)notify {
     [self.mutableUsers removeObjectAtIndex:index];
-    BPVUserData *data = [BPVUserData userDataWithUser:[self userAtIndex:index] index:index];
-    [self notifyOfCollectionDidChangeWhithData:data];
+    if (notify) {
+        [self setStateWithDataUsingIndex:index];
+    }
 }
 
 - (NSUInteger)indexOfUser:(id)user {
@@ -91,17 +95,18 @@
 }
 
 #pragma mark -
-#pragma mark Private implementations
+#pragma mark Redefinition of parent methods
 
-- (void)notifyOfCollectionDidChangeWhithData:(BPVUserData *)data {
-    [self notifyOfStateWithSelector:@selector(collection:didUpdateWithUserData:) object:data];
+- (SEL)selectorForState:(NSUInteger)state {
+    return @selector(collection:didUpdateWithUserData:);
 }
 
 #pragma mark -
-#pragma mark Redefinition of parent methods
+#pragma mark Private methods
 
-//- (SEL)selectorForState:(NSUInteger)state {
-//    return @selector(collectionDidChange:);
-//}
+- (void)setStateWithDataUsingIndex:(NSUInteger)index {
+    BPVUserData *data = [BPVUserData userDataWithUserIndex:index];
+    [self setState:self.count withObject:data];
+}
 
 @end

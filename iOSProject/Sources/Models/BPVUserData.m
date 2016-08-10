@@ -10,7 +10,7 @@
 
 @interface BPVUserData ()
 
-- (instancetype)initWithUser:(BPVUser *)user index:(NSUInteger)index;
+- (instancetype)initWithUserIndex:(NSUInteger)index;
 
 @end
 
@@ -19,17 +19,16 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)userDataWithUser:(BPVUser *)user index:(NSUInteger)index {
-    return [[self alloc] initWithUser:user index:index];
++ (instancetype)userDataWithUserIndex:(NSUInteger)index {
+    return [[self alloc] initWithUserIndex:index];
 }
 
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
-- (instancetype)initWithUser:(BPVUser *)user index:(NSUInteger)index {
+- (instancetype)initWithUserIndex:(NSUInteger)index {
     self = [super init];
     if (self) {
-        self.user = user;
         self.userIndex = index;
     }
     

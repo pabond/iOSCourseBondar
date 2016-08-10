@@ -89,8 +89,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.users removeUserAtIndex:indexPath.row];
-        //[self.usersView.usersTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        [self.users removeUserAtIndex:indexPath.row notify:YES];
     }
 }
 
@@ -141,18 +140,14 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     UITableView *table = self.usersView.usersTableView;
     NSUInteger usersCount = collection.count;
     NSUInteger cellsCount = [table numberOfRowsInSection:0];
-    
-    BPVUser *user = data.user; 
+ 
     NSUInteger index = data.userIndex;
-
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
     if (usersCount > cellsCount) {
         [table insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     } else if (usersCount < cellsCount) {
         [table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
-    } else {
-        [table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     }
 }
 

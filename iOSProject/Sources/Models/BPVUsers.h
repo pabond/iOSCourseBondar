@@ -28,7 +28,7 @@
 
 - (void)moveUserFromSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
 
-- (void)insertUser:(id)user atIndex:(NSUInteger)index;
-- (void)removeUserAtIndex:(NSUInteger)index;
+- (void)insertUser:(id)user atIndex:(NSUInteger)index notify:(BOOL)notify;
+- (void)removeUserAtIndex:(NSUInteger)index notify:(BOOL)notify;
 
 @end
