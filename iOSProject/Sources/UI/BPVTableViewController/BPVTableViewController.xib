@@ -45,8 +45,8 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8Sg-oI-Nlw">
-                    <rect key="frame" x="274" y="18" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="282" y="18" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Edit"/>
                     <connections>
                         <action selector="onEdit:" destination="-1" eventType="touchUpInside" id="yXI-CQ-PXj"/>

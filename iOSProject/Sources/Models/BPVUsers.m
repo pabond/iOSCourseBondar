@@ -13,6 +13,8 @@
 @property (nonatomic, strong)   NSMutableArray  *mutableUsers;
 @property (nonatomic, strong)   BPVUserData     *userData;
 
+- (void)notifyOfCollectionDidChangeWhithData:(BPVUserData *)data;
+
 @end
 
 @implementation BPVUsers
@@ -23,12 +25,12 @@
 #pragma mark -
 #pragma mark Initializations and deallocations
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.mutableUsers = [NSMutableArray array];
     }
+    
     return self;
 }
 
@@ -49,7 +51,7 @@
 - (void)addUser:(id)user {
     if (user) {
         [self.mutableUsers addObject:user];
-        BPVUserData *data = [[BPVUserData alloc] initWithUser:user index:[self.users indexOfObject:user]];
+        BPVUserData *data = [BPVUserData userDataWithUser:user index:[self indexOfUser:user]];
         [self notifyOfCollectionDidChangeWhithData:data];
     }
 }
@@ -57,7 +59,6 @@
 - (void)removeUser:(id)user {
     if (user) {
         [self.mutableUsers removeObject:user];
-  //      [self notifyOfCollectionDidChangeWhithData:<#(BPVUserData *)#>];
     }
 }
 
@@ -81,7 +82,12 @@
 
 - (void)removeUserAtIndex:(NSUInteger)index {
     [self.mutableUsers removeObjectAtIndex:index];
-    self.userData.userIdex = index;
+    BPVUserData *data = [BPVUserData userDataWithUser:[self userAtIndex:index] index:index];
+    [self notifyOfCollectionDidChangeWhithData:data];
+}
+
+- (NSUInteger)indexOfUser:(id)user {
+    return [self.users indexOfObject:user];
 }
 
 #pragma mark -

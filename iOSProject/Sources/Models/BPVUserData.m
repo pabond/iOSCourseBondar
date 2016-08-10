@@ -8,15 +8,29 @@
 
 #import "BPVUserData.h"
 
+@interface BPVUserData ()
+
+- (instancetype)initWithUser:(BPVUser *)user index:(NSUInteger)index;
+
+@end
+
 @implementation BPVUserData
 
-- (instancetype)initWithUser:(BPVUser *)user
-                       index:(NSUInteger)index
-{
+#pragma mark -
+#pragma mark Class methods
+
++ (instancetype)userDataWithUser:(BPVUser *)user index:(NSUInteger)index {
+    return [[self alloc] initWithUser:user index:index];
+}
+
+#pragma mark -
+#pragma mark Initializationa and deallocations
+
+- (instancetype)initWithUser:(BPVUser *)user index:(NSUInteger)index {
     self = [super init];
     if (self) {
         self.user = user;
-        self.userIdex = index;
+        self.userIndex = index;
     }
     
     return self;

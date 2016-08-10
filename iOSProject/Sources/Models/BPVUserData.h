@@ -11,10 +11,9 @@
 @class BPVUser;
 
 @interface BPVUserData : NSObject
-@property (nonatomic, assign)   NSUInteger  userIdex;
+@property (nonatomic, assign)   NSUInteger  userIndex;
 @property (nonatomic, strong)   BPVUser     *user;
 
-- (instancetype)initWithUser:(BPVUser *)user
-                       index:(NSUInteger)index;
++ (instancetype)userDataWithUser:(BPVUser *)user index:(NSUInteger)index;
 
 @end

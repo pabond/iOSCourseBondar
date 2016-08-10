@@ -20,11 +20,6 @@
 
 static NSString * const kBPVTableTitle = @"USERS LIST";
 
-typedef enum {
-    BPVEditingStyleDelete,
-    BPVEditingStyleAdd
-} BPVEditingStyleType;
-
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
 @interface BPVTableViewController ()
@@ -89,13 +84,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (void)    tableView:(UITableView *)tableView
-   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-    forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)        tableView:(UITableView *)tableView
+       commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+        forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.users removeUserAtIndex:indexPath.row];
-        [self.usersView.usersTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        //[self.usersView.usersTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     }
 }
 
@@ -104,8 +99,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-      NSUInteger value =  self.users.users.count;
-    return value;
+    return self.users.users.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -149,14 +143,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     NSUInteger cellsCount = [table numberOfRowsInSection:0];
     
     BPVUser *user = data.user; 
-    NSUInteger index = data.userIdex;
-    
-    
+    NSUInteger index = data.userIndex;
+
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
     if (usersCount > cellsCount) {
         [table insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    } else if (cellsCount < usersCount) {
+    } else if (usersCount < cellsCount) {
         [table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     } else {
         [table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
