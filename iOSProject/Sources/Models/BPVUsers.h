@@ -12,8 +12,7 @@
 @class BPVUserData;
 
 @protocol BPVCollectionObserver <NSObject>
-- (void)            collection:(BPVUsers *)collection
-         didUpdateWithUserData:(BPVUserData *)data;
+- (void)collection:(BPVUsers *)collection didUpdateWithUserData:(BPVUserData *)data;
 
 @end
 
