@@ -9,6 +9,9 @@
 #import "BPVAppDelegate.h"
 
 #import "BPVSquareViewController.h"
+#import "BPVTableViewController.h"
+
+#import "BPVUser.h"
 
 @interface BPVAppDelegate ()
 
@@ -21,7 +24,9 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
     
-    BPVSquareViewController *controller = [[BPVSquareViewController alloc] initWithNibName:NSStringFromClass([BPVSquareViewController class]) bundle:nil];
+    BPVTableViewController *controller = [[BPVTableViewController alloc] initWithNibName:NSStringFromClass([BPVTableViewController class]) bundle:nil];
+    controller.user = [BPVUser new];
+    
     window.rootViewController = controller;
     
     [window makeKeyAndVisible];
