@@ -20,13 +20,11 @@
 
 - (BOOL)containsObserver:(id)object;
 
-- (SEL)selectorForState:(NSUInteger)state;
-
-- (void)notifyOfState:(NSUInteger)state;
-- (void)notifyOfState:(NSUInteger)state withObject:(id)object;
-
 - (void)setState:(NSUInteger)state withObject:(id)object;
 
-- (void)notifyOfStateWithSelector:(SEL)selector object:(id)object;
+// these methods are called in subclasses
+// you should never call this methods directly from outside subclasses 
+- (void)notifyOfState:(NSUInteger)state;
+- (void)notifyOfState:(NSUInteger)state withObject:(id)object;
 
 @end

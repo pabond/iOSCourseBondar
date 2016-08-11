@@ -25,9 +25,11 @@
 
 - (id)userAtIndex:(NSUInteger)index;
 
-- (void)moveUserFromSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
-
 - (void)insertUser:(id)user atIndex:(NSUInteger)index notify:(BOOL)notify;
 - (void)removeUserAtIndex:(NSUInteger)index notify:(BOOL)notify;
+
+// you should never call this method  directly from outside
+// use instead two previous methos with notify value "YES"
+- (void)moveUserFromSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
 
 @end

@@ -12,22 +12,6 @@
 
 @implementation BPVUserCell
 
-#pragma mark -
-#pragma mark Initializations and deallocations
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    return [super initWithCoder:aDecoder];
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-}
-
 #pragma mark - 
 #pragma mark Accessors
 

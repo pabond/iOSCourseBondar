@@ -11,6 +11,8 @@
 @interface BPVObservableObject ()
 @property (nonatomic, retain) NSHashTable     *observersTable;
 
+- (SEL)selectorForState:(NSUInteger)state;
+
 - (void)notifyOfStateWithSelector:(SEL)selector object:(id)object;
 
 @end
@@ -100,6 +102,9 @@
         [self notifyOfStateWithSelector:[self selectorForState:state] object:object];
     }
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 #pragma mark -
 #pragma mark Private implementations
