@@ -16,6 +16,8 @@
 
 #import "BPVObservableObject.h"
 
+#import "UITableView+BPVExtensions.h"
+
 #import "BPVMacro.h"
 
 static NSString * const kBPVTableTitle = @"USERS LIST";
@@ -97,26 +99,18 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.users.users.count;
+    return self.users.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellClass = NSStringFromClass([BPVUserCell class]);
-    
-    BPVUserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClass];
-    if (!cell) {
-        UINib *nib = [UINib nibWithNibName:cellClass bundle:nil];
-        NSArray *cells = [nib instantiateWithOwner:nil options:nil];
-        cell = [cells firstObject];
-    }
-    
+    BPVUserCell *cell = [tableView cellWithClass:[BPVUserCell class]];
+       
     NSUInteger row = indexPath.row;
     BPVUsers *users = self.users;
     BPVUser *user = [users userAtIndex:row];
     if (!user) {
         user = [BPVUser new];
         [users addUser:user];
-        user.surname = [NSString stringWithFormat:@"%@ %ld", user.surname, (long)indexPath.row];
     }
     
     cell.user = user;
@@ -136,17 +130,16 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark BPVCollectionObserver
 - (void)collection:(BPVUsers *)collection didUpdateWithUserData:(BPVUserData *)data {
-    UITableView *table = self.usersView.usersTableView;
+    UITableView *tableView = self.usersView.usersTableView;
     NSUInteger usersCount = collection.count;
-    NSUInteger cellsCount = [table numberOfRowsInSection:0];
- 
-    NSUInteger index = data.userIndex;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    
+    NSUInteger cellsCount = [tableView numberOfRowsInSection:0];
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:data.userIndex inSection:0];
+
     if (usersCount > cellsCount) {
-        [table insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    } else if (usersCount < cellsCount) {
-        [table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    } else {
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
     }
 }
 
