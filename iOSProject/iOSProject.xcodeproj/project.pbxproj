@@ -233,11 +233,11 @@
 		2D328D631D5CADF70064C76D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2D328D731D5E052D0064C76D /* BPVModelsCollection */,
 				2D328D641D5CADF70064C76D /* BPVImage */,
 				2D328D771D5E1AF30064C76D /* BPVCollectionChangeHelper */,
 				2D328D671D5CADF70064C76D /* BPVUser */,
 				2D328D6C1D5CADF70064C76D /* BPVUsers collection */,
+				2D328D731D5E052D0064C76D /* BPVModelsCollection */,
 			);
 			path = Models;
 			sourceTree = "<group>";

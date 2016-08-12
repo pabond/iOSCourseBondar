@@ -8,6 +8,12 @@
 
 #import "BPVObservableObject.h"
 
+typedef enum {
+    BPVChangingTypeAdd,
+    BPVChangingTypeRemove,
+    BPVChangingTypeMove
+} BPVChangingType;
+
 @protocol BPVCollectionObserver <NSObject>
 - (void)collection:(id)collection didUpdateWithUserData:(id)data;
 
