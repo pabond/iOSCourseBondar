@@ -65,7 +65,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (IBAction)onAdd:(id)sender {
-    [self.users addUser:[BPVUser new]];
+    [self.users addModel:[BPVUser new]];
 }
 
 - (IBAction)onDone:(id)sender {
@@ -90,7 +90,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.users removeUserAtIndex:indexPath.row notify:YES];
+        [self.users removeModelAtIndex:indexPath.row notify:YES];
     }
 }
 
@@ -104,16 +104,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BPVUserCell *cell = [tableView cellWithClass:[BPVUserCell class]];
-       
-    NSUInteger row = indexPath.row;
-    BPVUsers *users = self.users;
-    BPVUser *user = [users userAtIndex:row];
-    if (!user) {
-        user = [BPVUser new];
-        [users addUser:user];
-    }
-    
-    cell.user = user;
+    cell.user = [self.users modelAtIndex:indexPath.row];
     
     return cell;
 }
@@ -124,7 +115,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath {
-    [self.users moveUserFromSourceIndex:sourceIndexPath.row destinationIndex:destinationIndexPath.row];
+    [self.users moveModelFromSourceIndex:sourceIndexPath.row destinationIndex:destinationIndexPath.row];
 }
 
 #pragma mark -

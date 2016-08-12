@@ -10,7 +10,7 @@
 
 @implementation UINib (BPVExtensions)
 
-+ (id)objectUsingNibWithClass:(Class)class {
++ (id)objectWithClass:(Class)class {
     UINib *nib = [UINib nibWithClass:class];
     
     return [nib objectWithClass:class];

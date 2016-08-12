@@ -10,7 +10,7 @@
 
 @interface UINib (BPVExtensions)
 
-+ (id)objectUsingNibWithClass:(Class)cls;
++ (id)objectWithClass:(Class)cls;
 
 + (instancetype)nibWithClass:(Class)cls;
 + (instancetype)nibWithClass:(Class)cls bundle:(NSBundle *)bundle;

@@ -6,30 +6,8 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVObservableObject.h"
+#import "BPVModelsCollection.h"
 
-@class BPVUsers;
-@class BPVUserData;
-
-@protocol BPVCollectionObserver <NSObject>
-- (void)collection:(BPVUsers *)collection didUpdateWithUserData:(BPVUserData *)data;
-
-@end
-
-@interface BPVUsers : BPVObservableObject
-@property (nonatomic, readonly) NSArray     *users;
-@property (nonatomic, readonly) NSUInteger  count;
-
-- (void)addUser:(id)user;
-- (void)removeUser:(id)user;
-
-- (id)userAtIndex:(NSUInteger)index;
-
-- (void)insertUser:(id)user atIndex:(NSUInteger)index notify:(BOOL)notify;
-- (void)removeUserAtIndex:(NSUInteger)index notify:(BOOL)notify;
-
-// you should never call this method  directly from outside
-// use instead two previous methos with notify value "YES"
-- (void)moveUserFromSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
+@interface BPVUsers : BPVModelsCollection
 
 @end
