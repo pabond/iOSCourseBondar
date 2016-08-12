@@ -21,14 +21,14 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVSquareViewController, backgroundV
 
 - (IBAction)onAutoButton:(id)sender {
     BPVBackgroundView *backgroundView = self.backgroundView;
-    if (!backgroundView.animated) {
-        backgroundView.animated = YES;
+    if (!backgroundView.animating) {
+        backgroundView.animating = YES;
         [backgroundView startAutoAnimation];
         
         return;
     }
     
-    backgroundView.animated = NO;
+    backgroundView.animating = NO;
 }
 
 - (IBAction)onRandomButton:(id)sender {

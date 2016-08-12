@@ -24,7 +24,7 @@ typedef void(^BPVHandler)(void);
 
 @property (nonatomic, assign) BPVSquarePositionType     squarePosition;
 
-@property (nonatomic, assign, getter=isAnimated) BOOL   animated;
+@property (nonatomic, assign, getter=isAnimating) BOOL   animating;
 
 - (void)startAutoAnimation;
 - (void)rundomSquarePostion;

@@ -15,7 +15,7 @@ static const CGFloat    kBPVAnimationDuration   = 0.8f;
 static const CGFloat    kBPVAnimationDelay      = 0.0f;
 static const NSUInteger kBPVCornersCount        = 4;
 
-uint32_t randomWithCount(uint32_t count) {
+uint32_t BPVRandomWithCount(uint32_t count) {
     return arc4random_uniform(count);
 }
 
@@ -44,7 +44,7 @@ uint32_t randomWithCount(uint32_t count) {
 - (void)startAutoAnimation {
     __weak id weakSelf = self;
     BPVSquarePositionType position = [weakSelf nextSquarePosition];
-    [weakSelf setSquarePosition:position animated:NO complitionHandler:^{
+    [weakSelf setSquarePosition:position animated:YES complitionHandler:^{
         [weakSelf startAutoAnimation];
     }];
 }
@@ -54,7 +54,7 @@ uint32_t randomWithCount(uint32_t count) {
     BPVSquarePositionType type = self.squarePosition;
     
     do {
-        randomPosition = randomWithCount(kBPVCornersCount);
+        randomPosition = BPVRandomWithCount(kBPVCornersCount);
         if (randomPosition != type) {
             break;
         }
@@ -70,18 +70,17 @@ uint32_t randomWithCount(uint32_t count) {
     [self setSquarePosition:squarePosition animated:animated complitionHandler:nil];
 }
 
-- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)handler {
+- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)complition {
     if (_squarePosition != squarePosition) {
         
-        _squarePosition = squarePosition;
-        
-        [UIView animateWithDuration:kBPVAnimationDuration
+        [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
                               delay:kBPVAnimationDelay
                             options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
                          animations:^{ self.squareView.frame = [self squareWithType:squarePosition]; }
-                         completion:^( BOOL finished) {
-                             if (handler && self.animated) {
-                                 handler();
+                         completion:^(BOOL finished) {
+                             _squarePosition = squarePosition;
+                             if (complition && self.animating) {
+                                 complition();
                              }
                          }];
     }
