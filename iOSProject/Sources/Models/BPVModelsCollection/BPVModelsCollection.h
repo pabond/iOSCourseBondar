@@ -8,6 +8,18 @@
 
 #import "BPVObservableObject.h"
 
+typedef enum {
+    BPVChangingTypeAdd,
+    BPVChangingTypeRemove,
+    BPVChangingTypeMove
+} BPVChangingType;
+
+@protocol BPVCollectionObserver <NSObject>
+
+- (void)collection:(id)collection didUpdateWithUserData:(id)data;
+
+@end
+
 @interface BPVModelsCollection : BPVObservableObject
 @property (nonatomic, readonly) NSArray     *modelsArray;
 @property (nonatomic, readonly) NSUInteger  count;

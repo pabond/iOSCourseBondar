@@ -35,7 +35,7 @@ uint32_t BPVRandomWithCount(uint32_t count) {
 #pragma mark Accessors
 
 -(void)setSquarePosition:(BPVSquarePositionType)squarePosition {
-    [self setSquarePosition:squarePosition animated:NO];
+    [self setSquarePosition:squarePosition animated:YES];
 }
 
 #pragma mark -

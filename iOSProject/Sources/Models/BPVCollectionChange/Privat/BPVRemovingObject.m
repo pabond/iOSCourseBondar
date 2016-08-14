@@ -10,13 +10,5 @@
 
 @implementation BPVRemovingObject
 
-- (instancetype)initRemovingObjectWithIndex:(NSUInteger)index {
-    self = [super init];
-    if (self) {
-        self.index = index;
-    }
-    
-    return self;
-}
 
 @end
