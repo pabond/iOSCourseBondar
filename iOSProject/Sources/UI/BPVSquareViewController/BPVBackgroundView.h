@@ -23,10 +23,11 @@ typedef void(^BPVHandler)(void);
 @property (nonatomic, strong) IBOutlet UIButton         *randomSquarePosition;
 
 @property (nonatomic, assign) BPVSquarePositionType     squarePosition;
+@property (nonatomic, assign) BOOL                      shouldStop;
 
-@property (nonatomic, assign, getter=isAnimating) BOOL   animating;
+@property (nonatomic, assign, getter=isAnimating) BOOL  animating;
 
 - (void)startAutoAnimation;
-- (void)rundomSquarePostion;
+- (void)randomSquarePostion;
 
 @end

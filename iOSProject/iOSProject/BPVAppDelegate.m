@@ -13,6 +13,9 @@
 
 #import "BPVUser.h"
 
+#import "UIViewController+BPVExtensions.h"
+#import "UIWindow+BPVExtensions.h"
+
 @interface BPVAppDelegate ()
 
 @end
@@ -21,13 +24,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIWindow *window = [UIWindow windoWithMainScreenFrame];
     self.window = window;
     
-    BPVTableViewController *controller = [[BPVTableViewController alloc] initWithNibName:NSStringFromClass([BPVTableViewController class]) bundle:nil];
-    controller.user = [BPVUser new];
-    
-    window.rootViewController = controller;
+    window.rootViewController = [BPVSquareViewController selfClassController];
     
     [window makeKeyAndVisible];
     

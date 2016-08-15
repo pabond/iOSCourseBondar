@@ -10,6 +10,7 @@
 
 @interface UINib (BPVExtensions)
 
+//Do not use these methods if you have more than ine nib with same class
 + (id)objectWithClass:(Class)cls;
 
 + (instancetype)nibWithClass:(Class)cls;

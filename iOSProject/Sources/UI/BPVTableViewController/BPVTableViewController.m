@@ -120,6 +120,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 #pragma mark -
 #pragma mark BPVCollectionObserver
+
 - (void)collection:(BPVUsers *)collection didUpdateWithUserData:(BPVUserData *)data {
     UITableView *tableView = self.usersView.usersTableView;
     NSUInteger usersCount = collection.count;

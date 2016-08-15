@@ -34,7 +34,16 @@ uint32_t BPVRandomWithCount(uint32_t count) {
 #pragma mark -
 #pragma mark Accessors
 
--(void)setSquarePosition:(BPVSquarePositionType)squarePosition {
+- (void)setAnimating:(BOOL)animating {
+    if (_animating != animating) {
+        _animating = animating;
+        if (_animating) {
+            [self startAutoAnimation];
+        }
+    }
+}
+
+- (void)setSquarePosition:(BPVSquarePositionType)squarePosition {
     [self setSquarePosition:squarePosition animated:YES];
 }
 
@@ -49,7 +58,7 @@ uint32_t BPVRandomWithCount(uint32_t count) {
     }];
 }
 
-- (void)rundomSquarePostion {
+- (void)randomSquarePostion {
     uint32_t randomPosition = 0;
     BPVSquarePositionType type = self.squarePosition;
     
