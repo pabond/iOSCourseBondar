@@ -10,4 +10,8 @@
 
 @implementation BPVCollectionChange (BPVExtensions)
 
+- (void)applyToTableView:(UITableView *)tableView {
+    [self performChangesToTableView:tableView];
+}
+
 @end

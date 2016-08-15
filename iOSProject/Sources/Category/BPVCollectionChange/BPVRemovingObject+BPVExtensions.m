@@ -10,4 +10,8 @@
 
 @implementation BPVRemovingObject (BPVExtensions)
 
+- (void)removeRowAtIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+}
+
 @end

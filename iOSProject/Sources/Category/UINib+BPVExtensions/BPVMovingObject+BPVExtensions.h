@@ -10,4 +10,8 @@
 
 @interface BPVMovingObject (BPVExtensions)
 
+- (void)moveToIndexPath:(NSIndexPath *)toIndexPath
+          fromIndexPath:(NSIndexPath *)fromIndexPath
+              tableView:(UITableView *)tableView;
+
 @end

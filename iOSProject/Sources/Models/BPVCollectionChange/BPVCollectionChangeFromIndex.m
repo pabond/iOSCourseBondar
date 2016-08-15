@@ -18,9 +18,18 @@
 
 @implementation BPVCollectionChangeFromIndex
 
-- (instancetype)movingObjectwithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
+@dynamic fromIndexPath;
+
+#pragma mark -
+#pragma mark Class methods
+
++ (instancetype)movingObjectwithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
     return [[BPVMovingObject alloc] initWithIndex:index fromIndex:fromIndex];
 }
+
+#pragma mark -
+#pragma mark Initializations and deallocations
+
 
 - (instancetype)initWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
     self = [super initWithIndex:index];
@@ -29,6 +38,13 @@
     }
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSIndexPath *)fromIndexPath {
+    return [NSIndexPath indexPathForRow:self.fromIndex inSection:0];
 }
 
 @end

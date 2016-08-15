@@ -10,4 +10,10 @@
 
 @implementation BPVMovingObject (BPVExtensions)
 
+- (void)moveToIndexPath:(NSIndexPath *)toIndexPath
+          fromIndexPath:(NSIndexPath *)fromIndexPath
+              tableView:(UITableView *)tableView {
+    [tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
+}
+
 @end

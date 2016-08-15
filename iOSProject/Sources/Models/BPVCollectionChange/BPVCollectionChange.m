@@ -13,15 +13,17 @@
 
 @implementation BPVCollectionChange
 
+@dynamic indexPath;
+
 #pragma mark -
 #pragma mark Class methods
 
 + (instancetype)removingObjectWithIndex:(NSUInteger)index {
-    return [[BPVAddingObject alloc] initWithIndex:index];
+    return [[BPVRemovingObject alloc] initWithIndex:index];
 }
 
 + (instancetype)addingObjectWithIndex:(NSUInteger)index{
-    return [[BPVRemovingObject alloc] initWithIndex:index];
+    return [[BPVAddingObject alloc] initWithIndex:index];
 }
 
 #pragma mark -
@@ -34,6 +36,20 @@
     }
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSIndexPath *)indexPath {
+    return [NSIndexPath indexPathForRow:self.index inSection:0];
+}
+
+#pragma mark -
+#pragma mark Public implementations
+
+- (void)performChangesToTableView:(UITableView *)tableView {
+//sould be rewritten in child classes
 }
 
 @end

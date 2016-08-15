@@ -16,7 +16,7 @@ typedef enum {
 
 @protocol BPVCollectionObserver <NSObject>
 
-- (void)collection:(id)collection didUpdateWithUserData:(id)data;
+- (void)collectionUpdatedWithUserData:(id)data;
 
 @end
 
@@ -34,6 +34,6 @@ typedef enum {
 
 // you should never call this method  directly from outside
 // use instead two previous methos with notify value "YES"
-- (void)moveModelFromSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
+- (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 @end

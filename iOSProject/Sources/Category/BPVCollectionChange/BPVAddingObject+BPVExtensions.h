@@ -10,4 +10,6 @@
 
 @interface BPVAddingObject (BPVExtensions)
 
+- (void)insertRowAtIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
+
 @end

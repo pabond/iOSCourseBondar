@@ -10,4 +10,6 @@
 
 @interface BPVRemovingObject (BPVExtensions)
 
+- (void)removeRowAtIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
+
 @end

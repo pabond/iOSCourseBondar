@@ -8,6 +8,12 @@
 
 #import "BPVMovingObject.h"
 
+#import "BPVMovingObject+BPVExtensions.h"
+
 @implementation BPVMovingObject
+
+- (void)performChangesToTableView:(UITableView *)tableView {
+    [self moveToIndexPath:self.indexPath fromIndexPath:self.fromIndexPath tableView:tableView];
+}
 
 @end

@@ -117,7 +117,7 @@
     NSHashTable *observers = self.observersTable;
     for (id observer in observers) {
         if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self withObject:object];
+            [observer performSelector:selector withObject:object withObject:self];
         }
     }
 }

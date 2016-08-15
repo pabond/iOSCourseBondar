@@ -8,7 +8,12 @@
 
 #import "BPVRemovingObject.h"
 
+#import "BPVRemovingObject+BPVExtensions.h"
+
 @implementation BPVRemovingObject
 
+- (void)performChangesToTableView:(UITableView *)tableView {
+    [self removeRowAtIndexPath:self.indexPath tableView:tableView];
+}
 
 @end

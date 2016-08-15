@@ -8,6 +8,12 @@
 
 #import "BPVAddingObject.h"
 
+#import "BPVAddingObject+BPVExtensions.h"
+
 @implementation BPVAddingObject
+
+- (void)performChangesToTableView:(UITableView *)tableView {
+    [self insertRowAtIndexPath:self.indexPath tableView:tableView];
+}
 
 @end

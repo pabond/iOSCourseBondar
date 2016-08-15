@@ -8,6 +8,8 @@
 
 #import "BPVModelsCollection.h"
 
+#import "BPVCollectionChangeFromIndex.h"
+
 #import "BPVUserData.h"
 
 @interface BPVModelsCollection ()
@@ -49,7 +51,7 @@
 - (void)addModel:(id)model {
     if (model) {
         [self.mutableModels addObject:model];
-        [self setStateWithDataUsingIndex:[self indexOfUser:model]];
+        [self notifyOfState:BPVChangingTypeAdd withObject:[BPVCollectionChange addingObjectWithIndex:[self indexOfModel:model]]];
     }
 }
 
@@ -69,18 +71,21 @@
     return nil;
 }
 
-- (void)moveModelFromSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex {
-    id model = [self modelAtIndex:sourceIndex];
+- (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
+    id model = [self modelAtIndex:fromIndex];
     BOOL notify = NO;
-    [self removeModelAtIndex:sourceIndex notify:notify];
-    [self insertModel:model atIndex:destinationIndex notify:notify];
+    [self removeModelAtIndex:fromIndex notify:notify];
+    [self insertModel:model atIndex:toIndex notify:notify];
+    [self notifyOfState:BPVChangingTypeMove
+             withObject:[BPVCollectionChangeFromIndex movingObjectwithIndex:toIndex
+                                                                  fromIndex:fromIndex]];
 }
 
 - (void)insertModel:(id)user atIndex:(NSUInteger)index notify:(BOOL)notify {
     if (user) {
         [self.mutableModels insertObject:user atIndex:index];
         if (notify) {
-            [self setStateWithDataUsingIndex:index];
+            [self notifyOfState:BPVChangingTypeAdd withObject:[BPVCollectionChange addingObjectWithIndex:index]];
         }
     }
 }
@@ -88,19 +93,19 @@
 - (void)removeModelAtIndex:(NSUInteger)index notify:(BOOL)notify {
     [self.mutableModels removeObjectAtIndex:index];
     if (notify) {
-        [self setStateWithDataUsingIndex:index];
+        [self notifyOfState:BPVChangingTypeRemove withObject:[BPVCollectionChange removingObjectWithIndex:index]];
     }
 }
 
-- (NSUInteger)indexOfUser:(id)user {
-    return [self.mutableModels indexOfObject:user];
+- (NSUInteger)indexOfModel:(id)model {
+    return [self.mutableModels indexOfObject:model];
 }
 
 #pragma mark -
 #pragma mark Redefinition of parent methods
 
 - (SEL)selectorForState:(NSUInteger)state {
-    return @selector(collection:didUpdateWithUserData:);
+    return @selector(collectionUpdatedWithUserData:);
 }
 
 #pragma mark -

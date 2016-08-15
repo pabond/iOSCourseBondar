@@ -11,12 +11,16 @@
 #import "BPVUsersView.h"
 #import "BPVUserCell.h"
 
+#import "BPVCollectionChange.h"
+#import "BPVCollectionChange.h"
+
 #import "BPVUser.h"
 #import "BPVUserData.h"
 
 #import "BPVObservableObject.h"
 
 #import "UITableView+BPVExtensions.h"
+#import "BPVCollectionChange+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
@@ -115,24 +119,14 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath {
-    [self.users moveModelFromSourceIndex:sourceIndexPath.row destinationIndex:destinationIndexPath.row];
+    [self.users moveModelFromIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
 }
 
 #pragma mark -
 #pragma mark BPVCollectionObserver
 
-- (void)collection:(BPVUsers *)collection didUpdateWithUserData:(BPVUserData *)data {
-    UITableView *tableView = self.usersView.usersTableView;
-    NSUInteger usersCount = collection.count;
-    NSUInteger cellsCount = [tableView numberOfRowsInSection:0];
-
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:data.userIndex inSection:0];
-
-    if (usersCount > cellsCount) {
-        [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-    } else {
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
-    }
+- (void)collectionUpdatedWithUserData:(BPVCollectionChange *)data {
+    [data applyToTableView:self.usersView.usersTableView];
 }
 
 @end

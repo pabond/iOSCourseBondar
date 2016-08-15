@@ -9,8 +9,9 @@
 #import "BPVCollectionChange.h"
 
 @interface BPVCollectionChangeFromIndex : BPVCollectionChange
-@property (nonatomic, assign) NSUInteger fromIndex;
+@property (nonatomic, assign)   NSUInteger      fromIndex;
+@property (nonatomic, readonly) NSIndexPath     *fromIndexPath;
 
-- (instancetype)movingObjectwithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
++ (instancetype)movingObjectwithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
 
 @end

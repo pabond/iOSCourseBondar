@@ -6,8 +6,12 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
+#import "UIKit/UIKit.h"
+
 #import "BPVCollectionChange.h"
 
 @interface BPVCollectionChange (BPVExtensions)
+
+- (void)applyToTableView:(UITableView *)tableView;
 
 @end
