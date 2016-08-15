@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^BPVBlock)(void);
+
+@protocol BPVBlockPerfomedObservation <NSObject>
+
+- (void)blockPerformed;
+
+@end
+
 @interface BPVObservableObject : NSObject
 @property (nonatomic, assign)   NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observersSet;
@@ -21,6 +29,9 @@
 - (BOOL)containsObserver:(id)object;
 
 - (void)setState:(NSUInteger)state withObject:(id)object;
+
+- (void)performBlockWithNotification:(BPVBlock)block;
+- (void)performBlockWithoutNotification:(BPVBlock)block;
 
 // these methods are called in subclasses
 // you should never call this methods directly from outside subclasses 

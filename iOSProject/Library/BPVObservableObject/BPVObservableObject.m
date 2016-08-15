@@ -103,6 +103,15 @@
     }
 }
 
+- (void)performBlockWithNotification:(BPVBlock)block {
+    [self performBlockWithoutNotification:block];
+    [self notifyOfStateWithSelector:@selector(blockPerformed) object:nil];
+}
+
+- (void)performBlockWithoutNotification:(BPVBlock)block {
+    block();
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
