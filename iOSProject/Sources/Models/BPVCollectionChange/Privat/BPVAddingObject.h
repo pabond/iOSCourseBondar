@@ -6,8 +6,8 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVCollectionChange.h"
+#import "BPVOneIndexArrayChange.h"
 
-@interface BPVAddingObject : BPVCollectionChange
+@interface BPVAddingObject : BPVOneIndexArrayChange
 
 @end

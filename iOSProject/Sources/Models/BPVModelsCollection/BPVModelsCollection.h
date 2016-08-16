@@ -16,7 +16,7 @@ typedef enum {
 
 @protocol BPVCollectionObserver <NSObject>
 
-- (void)collectionUpdatedWithUserData:(id)data;
+- (void)collectionUpdatedWithArrayChangeModel:(id)changeModel;
 
 @end
 

@@ -24,10 +24,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow *window = [UIWindow windoWithMainScreenFrame];
+    UIWindow *window = [UIWindow window];
     self.window = window;
     
-    window.rootViewController = [BPVSquareViewController selfClassController];
+    window.rootViewController = [BPVTableViewController controller];
     
     [window makeKeyAndVisible];
     

@@ -8,8 +8,6 @@
 
 #import "BPVRemovingObject.h"
 
-@interface BPVRemovingObject (BPVExtensions)
-
-- (void)removeRowAtIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
+@interface BPVRemovingObject (UITableView)
 
 @end

@@ -8,7 +8,7 @@
 
 #import "BPVModelsCollection.h"
 
-#import "BPVCollectionChangeFromIndex.h"
+#import "BPVArrayChange.h"
 
 #import "BPVUserData.h"
 
@@ -51,7 +51,7 @@
 - (void)addModel:(id)model {
     if (model) {
         [self.mutableModels addObject:model];
-        [self notifyOfState:BPVChangingTypeAdd withObject:[BPVCollectionChange addingObjectWithIndex:[self indexOfModel:model]]];
+        [self notifyOfState:BPVChangingTypeAdd withObject:[BPVArrayChange addingObjectWithIndex:[self indexOfModel:model]]];
     }
 }
 
@@ -77,7 +77,7 @@
     [self removeModelAtIndex:fromIndex notify:notify];
     [self insertModel:model atIndex:toIndex notify:notify];
     [self notifyOfState:BPVChangingTypeMove
-             withObject:[BPVCollectionChangeFromIndex movingObjectwithIndex:toIndex
+             withObject:[BPVArrayChange movingObjectwithIndex:toIndex
                                                                   fromIndex:fromIndex]];
 }
 
@@ -85,7 +85,7 @@
     if (user) {
         [self.mutableModels insertObject:user atIndex:index];
         if (notify) {
-            [self notifyOfState:BPVChangingTypeAdd withObject:[BPVCollectionChange addingObjectWithIndex:index]];
+            [self notifyOfState:BPVChangingTypeAdd withObject:[BPVArrayChange addingObjectWithIndex:index]];
         }
     }
 }
@@ -93,7 +93,7 @@
 - (void)removeModelAtIndex:(NSUInteger)index notify:(BOOL)notify {
     [self.mutableModels removeObjectAtIndex:index];
     if (notify) {
-        [self notifyOfState:BPVChangingTypeRemove withObject:[BPVCollectionChange removingObjectWithIndex:index]];
+        [self notifyOfState:BPVChangingTypeRemove withObject:[BPVArrayChange removingObjectWithIndex:index]];
     }
 }
 
@@ -105,7 +105,7 @@
 #pragma mark Redefinition of parent methods
 
 - (SEL)selectorForState:(NSUInteger)state {
-    return @selector(collectionUpdatedWithUserData:);
+    return @selector(collectionUpdatedWithArrayChangeModel:);
 }
 
 #pragma mark -

@@ -10,7 +10,7 @@
 
 @implementation UIWindow (BPVExtensions)
 
-+ (instancetype)windoWithMainScreenFrame {
++ (instancetype)window {
     return [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 

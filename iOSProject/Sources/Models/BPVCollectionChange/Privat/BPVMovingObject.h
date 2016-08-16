@@ -6,8 +6,8 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVCollectionChangeFromIndex.h"
+#import "BPVTwoIndexArrayChange.h"
 
-@interface BPVMovingObject : BPVCollectionChangeFromIndex
+@interface BPVMovingObject : BPVTwoIndexArrayChange
 
 @end

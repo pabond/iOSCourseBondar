@@ -10,6 +10,6 @@
 
 @interface UIViewController (BPVExtensions)
 
-+ (instancetype)selfClassController;
++ (instancetype)controller;
 
 @end

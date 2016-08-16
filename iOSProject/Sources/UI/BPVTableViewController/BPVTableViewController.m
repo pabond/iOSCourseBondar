@@ -11,8 +11,7 @@
 #import "BPVUsersView.h"
 #import "BPVUserCell.h"
 
-#import "BPVCollectionChange.h"
-#import "BPVCollectionChange.h"
+#import "BPVArrayChange.h"
 
 #import "BPVUser.h"
 #import "BPVUserData.h"
@@ -20,7 +19,7 @@
 #import "BPVObservableObject.h"
 
 #import "UITableView+BPVExtensions.h"
-#import "BPVCollectionChange+BPVExtensions.h"
+#import "BPVArrayChange+UITableView.h"
 
 #import "BPVMacro.h"
 
@@ -125,8 +124,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark BPVCollectionObserver
 
-- (void)collectionUpdatedWithUserData:(BPVCollectionChange *)data {
-    [data applyToTableView:self.usersView.usersTableView];
+- (void)collectionUpdatedWithArrayChangeModel:(BPVArrayChange *)changeModel {
+    [changeModel applyToTableView:self.usersView.usersTableView];
 }
 
 @end

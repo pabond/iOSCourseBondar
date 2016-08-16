@@ -8,20 +8,10 @@
 
 #import "UIViewController+BPVExtensions.h"
 
-@interface UIViewController ()
-
-- (instancetype)initWithNibNameFromClass:(Class)class;
-
-@end
-
 @implementation UIViewController (BPVExtensions)
 
-+ (instancetype)selfClassController {
-    return [[self alloc] initWithNibNameFromClass:[self class]];
-}
-
-- (instancetype)initWithNibNameFromClass:(Class)class {
-    return [self initWithNibName:NSStringFromClass(class) bundle:nil];
++ (instancetype)controller {
+    return [[self alloc] initWithNibName:NSStringFromClass([self class]) bundle:nil];
 }
 
 @end

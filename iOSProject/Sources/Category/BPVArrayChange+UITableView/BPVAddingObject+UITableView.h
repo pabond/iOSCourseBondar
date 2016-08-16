@@ -8,8 +8,6 @@
 
 #import "BPVAddingObject.h"
 
-@interface BPVAddingObject (BPVExtensions)
-
-- (void)insertRowAtIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
+@interface BPVAddingObject (UITableView)
 
 @end
