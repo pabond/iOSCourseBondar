@@ -13,8 +13,6 @@
 
 - (SEL)selectorForState:(NSUInteger)state;
 
-- (void)notifyOfStateWithSelector:(SEL)selector object:(id)object;
-
 @end
 
 @implementation BPVObservableObject
@@ -104,12 +102,9 @@
 }
 
 - (void)performBlockWithNotification:(BPVBlock)block {
-    [self performBlockWithoutNotification:block];
-    [self notifyOfStateWithSelector:@selector(blockPerformed) object:nil];
-}
-
-- (void)performBlockWithoutNotification:(BPVBlock)block {
-    block();
+    if (block) {
+        block();
+    }
 }
 
 #pragma clang diagnostic push

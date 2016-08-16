@@ -10,12 +10,6 @@
 
 typedef void(^BPVBlock)(void);
 
-@protocol BPVBlockPerfomedObservation <NSObject>
-
-- (void)blockPerformed;
-
-@end
-
 @interface BPVObservableObject : NSObject
 @property (nonatomic, assign)   NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observersSet;
@@ -31,7 +25,6 @@ typedef void(^BPVBlock)(void);
 - (void)setState:(NSUInteger)state withObject:(id)object;
 
 - (void)performBlockWithNotification:(BPVBlock)block;
-- (void)performBlockWithoutNotification:(BPVBlock)block;
 
 // these methods are called in subclasses
 // you should never call this methods directly from outside subclasses 

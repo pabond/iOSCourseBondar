@@ -43,6 +43,7 @@
 		2D4828761D63485900AF3617 /* BPVOneIndexArrayChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828751D63485900AF3617 /* BPVOneIndexArrayChange.m */; };
 		2D4828791D63488B00AF3617 /* BPVTwoIndexArrayChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828781D63488B00AF3617 /* BPVTwoIndexArrayChange.m */; };
 		2D48287C1D63519400AF3617 /* BPVArrayChange+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48287B1D63519400AF3617 /* BPVArrayChange+UITableView.m */; };
+		2D4828801D63619C00AF3617 /* BPVObservableObject+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48287F1D63619C00AF3617 /* BPVObservableObject+BPVExtensions.m */; };
 		2DA8E95D1D4C89AE0067032D /* BPVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */; };
 		2DA8E95E1D4C89AE0067032D /* BPVTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */; };
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
@@ -142,6 +143,8 @@
 		2D4828781D63488B00AF3617 /* BPVTwoIndexArrayChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPVTwoIndexArrayChange.m; path = "Sources/Category/BPVArrayChange+UITableView/BPVTwoIndexArrayChange.m"; sourceTree = SOURCE_ROOT; };
 		2D48287A1D63519400AF3617 /* BPVArrayChange+UITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVArrayChange+UITableView.h"; sourceTree = "<group>"; };
 		2D48287B1D63519400AF3617 /* BPVArrayChange+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVArrayChange+UITableView.m"; sourceTree = "<group>"; };
+		2D48287E1D63619C00AF3617 /* BPVObservableObject+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVObservableObject+BPVExtensions.h"; sourceTree = "<group>"; };
+		2D48287F1D63619C00AF3617 /* BPVObservableObject+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVObservableObject+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DA8E95A1D4C89AE0067032D /* BPVTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewController.h; sourceTree = "<group>"; };
 		2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewController.m; sourceTree = "<group>"; };
 		2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVTableViewController.xib; sourceTree = "<group>"; };
@@ -495,6 +498,16 @@
 			path = "BPVArrayChange+UITableView";
 			sourceTree = "<group>";
 		};
+		2D48287D1D63617400AF3617 /* BPVObservableObject+BPVExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				2D48287E1D63619C00AF3617 /* BPVObservableObject+BPVExtensions.h */,
+				2D48287F1D63619C00AF3617 /* BPVObservableObject+BPVExtensions.m */,
+			);
+			name = "BPVObservableObject+BPVExtensions";
+			path = "Sources/Category/BPVObservableObject+BPVExtensions";
+			sourceTree = SOURCE_ROOT;
+		};
 		2DA8E95F1D4C89DC0067032D /* BPVObservableObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +547,7 @@
 		2DA8E97F1D4CE9C30067032D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				2D48287D1D63617400AF3617 /* BPVObservableObject+BPVExtensions */,
 				2D4828611D6342D100AF3617 /* BPVArrayChange+UITableView */,
 				2D328D431D5C9A3D0064C76D /* NSArray+BPVExtensions */,
 				2D402BB01D61B65200A41D1A /* UIViewController+BPVExtensions */,
@@ -788,6 +802,7 @@
 				2D4828791D63488B00AF3617 /* BPVTwoIndexArrayChange.m in Sources */,
 				2D328D571D5C9A3D0064C76D /* NSString+BPVExtensions.m in Sources */,
 				2D328D5B1D5C9A3D0064C76D /* UINib+BPVExtensions.m in Sources */,
+				2D4828801D63619C00AF3617 /* BPVObservableObject+BPVExtensions.m in Sources */,
 				2D48286A1D6342D100AF3617 /* BPVAddingObject+UITableView.m in Sources */,
 				2D3F424C1D4C021500A38A7B /* BPVSquareViewController.m in Sources */,
 				2D328D8A1D60F7870064C76D /* BPVAddingObject.m in Sources */,
