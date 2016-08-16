@@ -35,17 +35,14 @@ uint32_t BPVRandomWithCount(uint32_t count) {
 #pragma mark Accessors
 
 - (void)setAnimating:(BOOL)animating {
-    if (_animating != animating) {
-        _animating = animating;
-        if (_animating) {
-            _shouldStop = !animating;
-        }
-        
-        if (animating) {
-            [self startAutoAnimation];
-        }
-        
-        
+    if (_animating && !animating) {
+        _shouldStop = YES;
+    } else if (_animating && animating) {
+        _shouldStop = NO;
+    }
+    
+    if (animating && !_shouldStop) {
+        [self startAutoAnimation];
     }
 }
 
@@ -65,7 +62,7 @@ uint32_t BPVRandomWithCount(uint32_t count) {
             strongSelf.animating = NO;
             strongSelf.shouldStop = NO;
         } else {
-         [strongSelf startAutoAnimation];
+            [strongSelf startAutoAnimation];
         }
     }];
 }
