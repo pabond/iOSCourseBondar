@@ -27,7 +27,7 @@
     UIWindow *window = [UIWindow window];
     self.window = window;
     
-    window.rootViewController = [BPVTableViewController controller];
+    window.rootViewController = [BPVTableViewController viewController];
     
     [window makeKeyAndVisible];
     

@@ -10,6 +10,8 @@
 
 @interface UITableView (BPVExtensions)
 
++ (NSIndexPath *)indexPathForRow:(NSUInteger)index;
+
 - (id)cellWithClass:(Class)cls;
 
 @end

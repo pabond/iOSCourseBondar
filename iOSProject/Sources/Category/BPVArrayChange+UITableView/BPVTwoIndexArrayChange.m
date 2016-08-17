@@ -8,6 +8,8 @@
 
 #import "BPVTwoIndexArrayChange.h"
 
+#import "UITableView+BPVExtensions.h"
+
 @implementation BPVTwoIndexArrayChange
 
 @dynamic fromIndexPath;
@@ -29,7 +31,7 @@
 #pragma mark Accessors
 
 - (NSIndexPath *)fromIndexPath {
-    return [NSIndexPath indexPathForRow:self.fromIndex inSection:0];
+    return [UITableView indexPathForRow:self.fromIndex];
 }
 
 @end

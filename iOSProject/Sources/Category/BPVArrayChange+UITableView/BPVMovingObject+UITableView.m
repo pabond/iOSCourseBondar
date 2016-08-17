@@ -16,4 +16,8 @@
     [tableView moveRowAtIndexPath:self.fromIndexPath toIndexPath:self.indexPath];
 }
 
+- (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation {
+    [self applyToTableView:tableView];
+}
+
 @end

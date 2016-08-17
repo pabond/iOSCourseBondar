@@ -31,3 +31,18 @@
     BPVBaseViewGetterSyntesize(propertyName, baseViewClass)\
     \
     @end
+
+
+#define BPVPerformBlock(block) \
+    if (block) { \
+        block(); \
+    }
+
+
+#define BPVTableViewUpdates(updatesBlock, tableView) \
+    [tableView beginUpdates]; \
+    updatesBlock(); \
+    [tableView endUpdates];
+
+
+

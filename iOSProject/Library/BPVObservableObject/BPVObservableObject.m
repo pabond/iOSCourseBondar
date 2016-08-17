@@ -12,6 +12,7 @@
 @property (nonatomic, retain) NSHashTable     *observersTable;
 
 - (SEL)selectorForState:(NSUInteger)state;
+- (void)notifyOfStateWithSelector:(SEL)selector object:(id)object;
 
 @end
 
@@ -121,7 +122,7 @@
     NSHashTable *observers = self.observersTable;
     for (id observer in observers) {
         if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:object withObject:self];
+            [observer performSelector:selector withObject:self withObject:object];
         }
     }
 }

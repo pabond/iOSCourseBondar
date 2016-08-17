@@ -124,7 +124,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark BPVCollectionObserver
 
-- (void)collectionUpdatedWithArrayChangeModel:(BPVArrayChange *)changeModel {
+- (void)collection:(id)collection updatedWithArrayChangeModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
 }
 

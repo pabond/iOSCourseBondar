@@ -105,7 +105,7 @@
 #pragma mark Redefinition of parent methods
 
 - (SEL)selectorForState:(NSUInteger)state {
-    return @selector(collectionUpdatedWithArrayChangeModel:);
+    return @selector(collection:updatedWithArrayChangeModel:);
 }
 
 #pragma mark -

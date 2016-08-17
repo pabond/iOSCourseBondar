@@ -8,6 +8,8 @@
 
 #import "BPVOneIndexArrayChange.h"
 
+#import "UITableView+BPVExtensions.h"
+
 @implementation BPVOneIndexArrayChange
 
 @dynamic indexPath;
@@ -28,10 +30,7 @@
 #pragma mark Accessors
 
 - (NSIndexPath *)indexPath {
-    return [NSIndexPath indexPathForRow:self.index inSection:0];
+    return [UITableView indexPathForRow:self.index];
 }
-
-#pragma mark -
-#pragma mark Public implementations
 
 @end

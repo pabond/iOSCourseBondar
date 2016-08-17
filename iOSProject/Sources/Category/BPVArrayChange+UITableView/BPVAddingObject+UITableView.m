@@ -10,8 +10,8 @@
 
 @implementation BPVAddingObject (UITableView)
 
-- (void)applyToTableView:(UITableView *)tableView {
-    [tableView insertRowsAtIndexPaths:@[self.indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+- (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation {
+    [tableView insertRowsAtIndexPaths:@[self.indexPath] withRowAnimation:animation];
 }
 
 @end

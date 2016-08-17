@@ -11,6 +11,10 @@
 @implementation BPVArrayChange (UITableView)
 
 - (void)applyToTableView:(UITableView *)tableView {
+    [self applyToTableView:tableView withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation {
     
 }
 
