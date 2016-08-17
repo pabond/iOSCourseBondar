@@ -8,6 +8,8 @@
 
 #import "BPVImage.h"
 
+#import "BPVImageModelDispatcher.h"
+
 @interface BPVImage ()
 @property (nonatomic, strong) UIImage       *image;
 @property (nonatomic, strong) NSURL         *url;
@@ -16,6 +18,7 @@
 @property (nonatomic, assign, getter=isLoaded) BOOL loaded;
 
 - (instancetype)initWithUrl:(NSURL *)url;
+- (NSOperation *)imageLoadingOperaton;
 
 @end
 
@@ -58,6 +61,11 @@
         [_operation cancel];
         
         _operation = operation;
+        
+        if (operation) {
+            BPVImageModelDispatcher *dispatcher = [BPVImageModelDispatcher shareDespatcher];
+            [dispatcher.queue addOperation:operation];
+        }
     }
 }
 
@@ -77,20 +85,26 @@
         self.state = BPVImageLoading;
     }
     
-    static NSOperationQueue *queue = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        queue = [NSOperationQueue new];
-        queue.maxConcurrentOperationCount = 2;
-    });
-    
+    self.operation = [self imageLoadingOperaton];
+}
+
+- (void)dump {
+    self.operation = nil;
+    self.image = nil;
+    self.state = BPVImageUnloaded;
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (NSOperation *)imageLoadingOperaton {
     __weak BPVImage *weakSelf = self;
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         __strong BPVImage *strongSelf = weakSelf;
         if (!strongSelf) {
             return;
         }
-    
+        
         strongSelf.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
     }];
     
@@ -100,18 +114,11 @@
             return;
         }
         
-        self.state = self.image ? BPVImageLoaded : BPVImageLoadingFailed;
+        strongSelf.state = strongSelf.image ? BPVImageLoaded : BPVImageLoadingFailed;
     };
-    
-    [queue addOperation:operation];
-    
-    self.operation = operation;
+
+    return operation;
 }
 
-- (void)dump {
-    self.operation = nil;
-    self.image = nil;
-    self.state = BPVImageUnloaded;
-}
 
 @end
