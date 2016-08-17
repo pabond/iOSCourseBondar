@@ -54,15 +54,15 @@ uint32_t BPVRandomWithCount(uint32_t count) {
 #pragma mark Public Implementations
 
 - (void)startAutoAnimation {
-    __weak BPVBackgroundView *weakSelf = self;
-    BPVSquarePositionType position = [weakSelf nextSquarePosition];
-    [weakSelf setSquarePosition:position animated:YES complitionHandler:^{
-        __strong BPVBackgroundView *strongSelf = weakSelf;
-        if (_shouldStop) {
-            strongSelf.animating = NO;
-            strongSelf.shouldStop = NO;
+    BPVWeakify(self);
+    BPVSquarePositionType position = [self nextSquarePosition];
+    [self setSquarePosition:position animated:YES complitionHandler:^{
+        BPVStrongify(self);
+        if (self.shouldStop) {
+            self.animating = NO;
+            self.shouldStop = NO;
         } else {
-            [strongSelf startAutoAnimation];
+            [self startAutoAnimation];
         }
     }];
 }

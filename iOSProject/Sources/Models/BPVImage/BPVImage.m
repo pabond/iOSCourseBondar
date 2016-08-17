@@ -10,6 +10,8 @@
 
 #import "BPVImageModelDispatcher.h"
 
+#import "BPVMacro.h"
+
 @interface BPVImage ()
 @property (nonatomic, strong) UIImage       *image;
 @property (nonatomic, strong) NSURL         *url;
@@ -98,23 +100,17 @@
 #pragma mark Private implementations
 
 - (NSOperation *)imageLoadingOperaton {
-    __weak BPVImage *weakSelf = self;
+    BPVWeakify(self);
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        __strong BPVImage *strongSelf = weakSelf;
-        if (!strongSelf) {
-            return;
-        }
+        BPVStrongifyIfNilReturn(self);
         
-        strongSelf.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
+        self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
     }];
     
     operation.completionBlock = ^{
-        __strong BPVImage *strongSelf = weakSelf;
-        if (!strongSelf) {
-            return;
-        }
+        BPVStrongifyIfNilReturn(self);
         
-        strongSelf.state = strongSelf.image ? BPVImageLoaded : BPVImageLoadingFailed;
+        self.state = self.image ? BPVImageLoaded : BPVImageLoadingFailed;
     };
 
     return operation;

@@ -45,4 +45,24 @@
     [tableView endUpdates];
 
 
+#define BPVWeakify(variable) \
+    __weak __typeof(variable) __BPVWeakified_##variable = variable;
 
+//should be called only after BPVWeakify call
+#define BPVStrongify(variable) \
+    __strong __typeof(variable) variable = __BPVWeakified_##variable;
+
+
+#define BPVEmptyResult
+
+#define BPVStrongifyIfNilReturn(variable) \
+    BPVStrongifyIfNilReturnResult(variable, BPVEmptyResult)
+
+#define BPVStrongifyIfNilReturnNil(variable) \
+    BPVStrongifyIfNilReturnResult(variable, nil)
+
+#define BPVStrongifyIfNilReturnResult(variable, result) \
+    BPVStrongify(variable); \
+    if (!variable) { \
+        return result; \
+    }
