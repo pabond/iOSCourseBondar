@@ -8,8 +8,11 @@
 
 #import "BPVObservableObject.h"
 
+#import "BPVMacro.h"
+
 @interface BPVObservableObject ()
-@property (nonatomic, retain) NSHashTable     *observersTable;
+@property (nonatomic, retain) NSHashTable   *observersTable;
+@property (nonatomic, assign) BOOL          notify;
 
 - (SEL)selectorForState:(NSUInteger)state;
 - (void)notifyOfStateWithSelector:(SEL)selector object:(id)object;
@@ -103,9 +106,26 @@
 }
 
 - (void)performBlockWithNotification:(BPVBlock)block {
-    if (block) {
-        block();
+    @synchronized (self) {
+        BOOL notify = self.notify;
+        self.notify = YES;
+        
+        BPVPerformBlock(block);
+        
+        self.notify = notify;
     }
+}
+
+- (void)performBlockWithoutNotification:(BPVBlock)block {
+    @synchronized (self) {
+        BOOL notify = self.notify;
+        self.notify = NO;
+        
+        BPVPerformBlock(block);
+        
+        self.notify = notify;
+    }
+
 }
 
 #pragma clang diagnostic push
