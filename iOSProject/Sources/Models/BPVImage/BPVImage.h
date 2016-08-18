@@ -34,6 +34,4 @@ typedef enum {
 - (void)load;
 - (void)dump;
 
-NSCoding
-
 @end

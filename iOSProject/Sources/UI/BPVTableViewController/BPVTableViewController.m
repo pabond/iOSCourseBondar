@@ -51,6 +51,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.users addModels:[self.users load]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,8 +74,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (IBAction)onDone:(id)sender {
-    self.doneButton.hidden = YES;
     self.editButton.hidden = NO;
+    self.doneButton.hidden = YES;
     
     self.usersView.usersTableView.editing = NO;
 }

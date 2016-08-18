@@ -10,6 +10,7 @@
 
 #import "BPVSquareViewController.h"
 #import "BPVTableViewController.h"
+#import "BPVUsers.h"
 
 #import "BPVUser.h"
 
@@ -17,11 +18,11 @@
 #import "UIWindow+BPVExtensions.h"
 
 @interface BPVAppDelegate ()
+@property (nonatomic, readonly) BPVUsers *users;
 
 @end
 
 @implementation BPVAppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIWindow *window = [UIWindow window];
@@ -39,7 +40,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
+    [self.users save];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -47,11 +48,11 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    
+    [self.users load];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    
+    [self.users save];
 }
 
 @end

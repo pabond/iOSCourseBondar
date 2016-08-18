@@ -14,7 +14,7 @@ typedef enum {
     BPVChangingTypeMove
 } BPVChangingType;
 
-@protocol BPVCollectionObserver <NSObject>
+@protocol BPVCollectionObserver <NSObject, NSCoding>
 
 - (void)collection:(id)collection updatedWithArrayChangeModel:(id)changeModel;
 
@@ -27,6 +27,8 @@ typedef enum {
 - (void)addModel:(id)user;
 - (void)removeModel:(id)user;
 
+- (void)addModels:(NSArray *)models;
+
 - (id)modelAtIndex:(NSUInteger)index;
 
 - (void)insertModel:(id)user atIndex:(NSUInteger)index notify:(BOOL)notify;
@@ -35,5 +37,8 @@ typedef enum {
 // you should never call this method  directly from outside
 // use instead two previous methos with notify value "YES"
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+
+- (void)save;
+- (id)load;
 
 @end

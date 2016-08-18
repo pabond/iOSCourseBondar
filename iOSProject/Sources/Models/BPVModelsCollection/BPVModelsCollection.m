@@ -12,6 +12,8 @@
 
 #import "BPVUserData.h"
 
+#define kBPVCollection @"users"
+
 @interface BPVModelsCollection ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
@@ -58,6 +60,14 @@
 - (void)removeModel:(id)user {
     if (user) {
         [self.mutableModels removeObject:user];
+    }
+}
+
+- (void)addModels:(NSArray *)models {
+    if (models) {
+        for (id model in models) {
+            [self addModel:model];
+        }
     }
 }
 
@@ -109,11 +119,38 @@
 }
 
 #pragma mark -
+#pragma mark saving and restoring of state
+
+- (void)save {
+    [[NSUserDefaults standardUserDefaults] setObject:self.mutableModels forKey:kBPVCollection];
+}
+
+- (id)load {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kBPVCollection];
+}
+
+#pragma mark -
 #pragma mark Private methods
 
 - (void)setStateWithDataUsingIndex:(NSUInteger)index {
     id data = [BPVUserData userDataWithUserIndex:index];
     [self setState:self.count withObject:data];
+}
+
+#pragma mark -
+#pragma mark NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.modelsArray forKey:kBPVCollection];
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.mutableModels = [NSMutableArray arrayWithArray:[aDecoder decodeObjectForKey:kBPVCollection]];
+    }
+    
+    return self;
 }
 
 @end
