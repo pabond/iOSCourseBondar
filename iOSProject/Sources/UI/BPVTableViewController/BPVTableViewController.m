@@ -123,10 +123,12 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark Private implementations
 
 - (void)editingMode {
-    self.editButton.hidden = !self.editButton.hidden;
-    self.doneButton.hidden = !self.doneButton.hidden;
+    BOOL editing = self.usersView.usersTableView.editing;
     
-    self.usersView.usersTableView.editing = !self.usersView.usersTableView.editing;
+    self.editButton.hidden = !editing;
+    self.doneButton.hidden = editing;
+    
+    self.usersView.usersTableView.editing = !editing;
 }
 
 #pragma mark -
