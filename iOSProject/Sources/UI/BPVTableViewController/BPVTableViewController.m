@@ -30,6 +30,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 @interface BPVTableViewController ()
 @property (nonatomic, strong) BPVUsers *users;
 
+- (void)editingMode;
+
 @end
 
 @implementation BPVTableViewController
@@ -63,10 +65,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma Interface Handling
 
 - (IBAction)onEdit:(id)sender {
-    self.editButton.hidden = YES;
-    self.doneButton.hidden = NO;
-    
-    self.usersView.usersTableView.editing = YES;
+    [self editingMode];
 }
 
 - (IBAction)onAdd:(id)sender {
@@ -74,10 +73,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (IBAction)onDone:(id)sender {
-    self.editButton.hidden = NO;
-    self.doneButton.hidden = YES;
-    
-    self.usersView.usersTableView.editing = NO;
+    [self editingMode];
 }
 
 #pragma mark -
@@ -121,6 +117,16 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath {
     [self.users moveModelFromIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (void)editingMode {
+    self.editButton.hidden = !self.editButton.hidden;
+    self.doneButton.hidden = !self.doneButton.hidden;
+    
+    self.usersView.usersTableView.editing = !self.usersView.usersTableView.editing;
 }
 
 #pragma mark -
