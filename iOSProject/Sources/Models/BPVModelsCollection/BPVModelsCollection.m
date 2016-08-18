@@ -13,6 +13,7 @@
 #import "BPVUserData.h"
 
 #define kBPVCollection @"users"
+#define kBPVDataFileName @"data.plist"
 
 @interface BPVModelsCollection ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
@@ -122,11 +123,11 @@
 #pragma mark saving and restoring of state
 
 - (void)save {
-    [[NSUserDefaults standardUserDefaults] setObject:self.mutableModels forKey:kBPVCollection];
+    [self.mutableModels writeToFile:kBPVDataFileName atomically:YES];
 }
 
 - (id)load {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kBPVCollection];
+    return [NSArray arrayWithContentsOfFile:kBPVDataFileName];
 }
 
 #pragma mark -
