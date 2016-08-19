@@ -19,12 +19,12 @@
     }
 
 #define BPVViewControllerBaseViewPropertyWithGetter(viewControllerClass, propertyName, baseViewClass) \
-    @interface viewControllerClass (__BPVPrivatBaseView) \
+    @interface viewControllerClass (__BPVPrivatBaseView_##viewControllerClass) \
     BPVDefineBaseViewProrety(propertyName, baseViewClass)\
     \
     @end \
     \
-    @implementation viewControllerClass (__BPVPrivatBaseView) \
+    @implementation viewControllerClass (__BPVPrivatBaseView_##viewControllerClass) \
     \
     @dynamic propertyName; \
     \
