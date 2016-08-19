@@ -29,6 +29,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.notify = YES;
         self.observersTable = [NSHashTable weakObjectsHashTable];
     }
     
@@ -106,26 +107,22 @@
 }
 
 - (void)performBlockWithNotification:(BPVBlock)block {
-    @synchronized (self) {
-        BOOL notify = self.notify;
-        self.notify = YES;
-        
-        BPVPerformBlock(block);
-        
-        self.notify = notify;
-    }
+    [self performBlock:block notify:YES];
 }
 
 - (void)performBlockWithoutNotification:(BPVBlock)block {
+    [self performBlock:block notify:NO];
+}
+
+- (void)performBlock:(BPVBlock)block notify:(BOOL)notify {
     @synchronized (self) {
         BOOL notify = self.notify;
-        self.notify = NO;
+        self.notify = notify;
         
         BPVPerformBlock(block);
         
         self.notify = notify;
     }
-
 }
 
 #pragma clang diagnostic push
@@ -139,10 +136,12 @@
 }
 
 - (void)notifyOfStateWithSelector:(SEL)selector object:(id)object {
-    NSHashTable *observers = self.observersTable;
-    for (id observer in observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self withObject:object];
+    if (self.notify) {
+        NSHashTable *observers = self.observersTable;
+        for (id observer in observers) {
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:self withObject:object];
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  BPVModelsCollection.h
+//  BPVArrayModelsCollection.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/12/16.
@@ -16,11 +16,11 @@ typedef enum {
 
 @protocol BPVCollectionObserver <NSObject, NSCoding>
 
-- (void)collection:(id)collection updatedWithArrayChangeModel:(id)changeModel;
+- (void)collection:(id)collection didUpdateWithArrayChangeModel:(id)changeModel;
 
 @end
 
-@interface BPVModelsCollection : BPVObservableObject
+@interface BPVArrayModelsCollection : BPVObservableObject
 @property (nonatomic, readonly) NSArray     *modelsArray;
 @property (nonatomic, readonly) NSUInteger  count;
 

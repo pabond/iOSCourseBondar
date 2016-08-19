@@ -8,7 +8,7 @@
 
 #import "BPVTwoIndexArrayChange.h"
 
-#import "UITableView+BPVExtensions.h"
+#import "NSIndexPath+BPVExtensions.h"
 
 @implementation BPVTwoIndexArrayChange
 
@@ -31,7 +31,7 @@
 #pragma mark Accessors
 
 - (NSIndexPath *)fromIndexPath {
-    return [UITableView indexPathForRow:self.fromIndex];
+    return [NSIndexPath indexPathForRow:self.fromIndex];
 }
 
 @end

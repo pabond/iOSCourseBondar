@@ -10,4 +10,16 @@
 
 @implementation BPVUsersView
 
+#pragma mark -
+#pragma mark Public implemntations
+
+- (void)editingMode {
+    BOOL editing = self.usersTableView.editing;
+    
+    self.editButton.hidden = !editing;
+    self.doneButton.hidden = editing;
+    
+    self.usersTableView.editing = !editing;
+}
+
 @end

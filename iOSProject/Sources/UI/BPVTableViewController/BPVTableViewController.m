@@ -30,8 +30,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 @interface BPVTableViewController ()
 @property (nonatomic, strong) BPVUsers *users;
 
-- (void)editingMode;
-
 @end
 
 @implementation BPVTableViewController
@@ -65,7 +63,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma Interface Handling
 
 - (IBAction)onEdit:(id)sender {
-    [self editingMode];
+    [self.usersView editingMode];
 }
 
 - (IBAction)onAdd:(id)sender {
@@ -73,7 +71,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (IBAction)onDone:(id)sender {
-    [self editingMode];
+    [self.usersView editingMode];
 }
 
 #pragma mark -
@@ -120,21 +118,9 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 #pragma mark -
-#pragma mark Private implementations
-
-- (void)editingMode {
-    BOOL editing = self.usersView.usersTableView.editing;
-    
-    self.editButton.hidden = !editing;
-    self.doneButton.hidden = editing;
-    
-    self.usersView.usersTableView.editing = !editing;
-}
-
-#pragma mark -
 #pragma mark BPVCollectionObserver
 
-- (void)collection:(id)collection updatedWithArrayChangeModel:(BPVArrayChange *)changeModel {
+- (void)collection:(id)collection didUpdateWithArrayChangeModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
 }
 

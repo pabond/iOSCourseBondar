@@ -1,12 +1,12 @@
 //
-//  BPVModelsCollection.m
+//  BPVArrayModelsCollection.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/12/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVModelsCollection.h"
+#import "BPVArrayModelsCollection.h"
 
 #import "BPVArrayChange.h"
 
@@ -15,12 +15,12 @@
 #define kBPVCollection @"users"
 #define kBPVDataFileName @"data.plist"
 
-@interface BPVModelsCollection ()
+@interface BPVArrayModelsCollection ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
 @end
 
-@implementation BPVModelsCollection
+@implementation BPVArrayModelsCollection
 
 @dynamic modelsArray;
 @dynamic count;
@@ -116,7 +116,7 @@
 #pragma mark Redefinition of parent methods
 
 - (SEL)selectorForState:(NSUInteger)state {
-    return @selector(collection:updatedWithArrayChangeModel:);
+    return @selector(collection:didUpdateWithArrayChangeModel:);
 }
 
 #pragma mark -

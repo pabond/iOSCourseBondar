@@ -8,7 +8,7 @@
 
 #import "BPVOneIndexArrayChange.h"
 
-#import "UITableView+BPVExtensions.h"
+#import "NSIndexPath+BPVExtensions.h"
 
 @implementation BPVOneIndexArrayChange
 
@@ -30,7 +30,7 @@
 #pragma mark Accessors
 
 - (NSIndexPath *)indexPath {
-    return [UITableView indexPathForRow:self.index];
+    return [NSIndexPath indexPathForRow:self.index];
 }
 
 @end
