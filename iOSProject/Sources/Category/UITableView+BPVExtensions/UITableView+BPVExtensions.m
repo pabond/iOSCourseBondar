@@ -10,6 +10,8 @@
 
 #import "UINib+BPVExtensions.h"
 
+#import "BPVMacro.h"
+
 @implementation UITableView (BPVExtensions)
 
 - (id)cellWithClass:(Class)class {
@@ -19,6 +21,12 @@
     }
     
     return cell;
+}
+
+- (void)updateTableView:(UITableView *)tableView withUpdatesBlock:(BPVUpdatesBlock)block {
+    [tableView beginUpdates];
+    BPVPerformBlock(block);
+    [tableView endUpdates];
 }
 
 @end

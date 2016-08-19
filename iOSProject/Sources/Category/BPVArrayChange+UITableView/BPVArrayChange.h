@@ -10,6 +10,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    BPVChangingTypeAdd,
+    BPVChangingTypeRemove,
+    BPVChangingTypeMove
+} BPVChangingType;
+
 @interface BPVArrayChange : NSObject
 
 + (instancetype)removingObjectWithIndex:(NSUInteger)index;

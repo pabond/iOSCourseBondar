@@ -10,8 +10,6 @@
 
 @interface UIViewController (BPVExtensions)
 
-+ (instancetype)viewControllerWithNibName:(NSString *)name;
-+ (instancetype)viewControllerWithNibClass:(Class)cls;
 + (instancetype)viewController;
 
 @end

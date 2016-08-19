@@ -39,12 +39,6 @@
     }
 
 
-#define BPVTableViewUpdates(updatesBlock, tableView) \
-    [tableView beginUpdates]; \
-    updatesBlock(); \
-    [tableView endUpdates];
-
-
 #define BPVWeakify(variable) \
     __weak __typeof(variable) __BPVWeakified_##variable = variable;
 

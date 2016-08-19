@@ -10,10 +10,8 @@
 
 #import "BPVArrayChange.h"
 
-#import "BPVUserData.h"
-
 #define kBPVCollection @"users"
-#define kBPVDataFileName @"data.plist"
+#define kBPVDataFilePath @"/Users/bondarpavel/Documents/MyGitProjects/iOSCourse/iOSProject/Sources/DataSaving/data.plist"
 
 @interface BPVArrayModelsCollection ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
@@ -22,7 +20,7 @@
 
 @implementation BPVArrayModelsCollection
 
-@dynamic modelsArray;
+@dynamic models;
 @dynamic count;
 
 #pragma mark -
@@ -116,33 +114,52 @@
 #pragma mark Redefinition of parent methods
 
 - (SEL)selectorForState:(NSUInteger)state {
-    return @selector(collection:didUpdateWithArrayChangeModel:);
+    switch (state) {
+        case BPVChangingTypeAdd:
+        case BPVChangingTypeMove:
+        case BPVChangingTypeRemove:
+            return @selector(collection:didUpdateWithArrayChangeModel:);
+            
+        default:
+            return [super selectorForState:state];
+    }
 }
 
 #pragma mark -
 #pragma mark saving and restoring of state
 
 - (void)save {
-    [self.mutableModels writeToFile:kBPVDataFileName atomically:YES];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.models];
+    
+    if ([data writeToFile:kBPVDataFilePath atomically:NO]) {
+        NSLog(@"Saving operation succeeds");
+    } else {
+        NSLog(@"Data not saved");
+    }
 }
 
-- (id)load {
-    return [NSArray arrayWithContentsOfFile:kBPVDataFileName];
+- (void)load {
+    NSData *data = [NSData dataWithContentsOfFile:kBPVDataFilePath];
+    if (data) {
+        [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
 }
 
 #pragma mark -
-#pragma mark Private methods
+#pragma mark NSFastEnumeration
 
-- (void)setStateWithDataUsingIndex:(NSUInteger)index {
-    id data = [BPVUserData userDataWithUserIndex:index];
-    [self setState:self.count withObject:data];
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id __unsafe_unretained [])buffer
+                                    count:(NSUInteger)length
+{
+    return [self.mutableModels countByEnumeratingWithState:state objects:buffer count:length];
 }
 
 #pragma mark -
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.modelsArray forKey:kBPVCollection];
+    [aCoder encodeObject:self forKey:kBPVCollection];
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {

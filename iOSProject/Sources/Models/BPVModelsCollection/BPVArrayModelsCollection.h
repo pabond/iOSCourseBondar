@@ -8,20 +8,14 @@
 
 #import "BPVObservableObject.h"
 
-typedef enum {
-    BPVChangingTypeAdd,
-    BPVChangingTypeRemove,
-    BPVChangingTypeMove
-} BPVChangingType;
-
-@protocol BPVCollectionObserver <NSObject, NSCoding>
+@protocol BPVCollectionObserver <NSObject, NSCoding, NSFastEnumeration>
 
 - (void)collection:(id)collection didUpdateWithArrayChangeModel:(id)changeModel;
 
 @end
 
 @interface BPVArrayModelsCollection : BPVObservableObject
-@property (nonatomic, readonly) NSArray     *modelsArray;
+@property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;
 
 - (void)addModel:(id)user;
@@ -39,6 +33,6 @@ typedef enum {
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 - (void)save;
-- (id)load;
+- (void)load;
 
 @end

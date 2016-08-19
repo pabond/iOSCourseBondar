@@ -14,7 +14,7 @@
 #import "BPVArrayChange.h"
 
 #import "BPVUser.h"
-#import "BPVUserData.h"
+#import "BPVUsers.h"
 
 #import "BPVObservableObject.h"
 
@@ -52,7 +52,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.users addModels:[self.users load]];
+    [self.users load];
 }
 
 - (void)didReceiveMemoryWarning {

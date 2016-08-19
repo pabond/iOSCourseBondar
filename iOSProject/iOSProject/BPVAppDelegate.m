@@ -10,7 +10,7 @@
 
 #import "BPVSquareViewController.h"
 #import "BPVTableViewController.h"
-#import "BPVUsers.h"
+#import "BPVArrayModelsCollection.h"
 
 #import "BPVUser.h"
 
@@ -18,7 +18,8 @@
 #import "UIWindow+BPVExtensions.h"
 
 @interface BPVAppDelegate ()
-@property (nonatomic, readonly) BPVUsers *users;
+
+- (void)saveData;
 
 @end
 
@@ -35,12 +36,17 @@
     return YES;
 }
 
+- (void)saveData {
+    BPVTableViewController *viewController = self.window.rootViewController;
+    [viewController.users save];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
 
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [self.users save];
+    [self saveData];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -48,11 +54,11 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [self.users load];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [self.users save];
+    [self saveData];
 }
 
 @end

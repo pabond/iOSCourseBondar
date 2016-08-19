@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPVUser : NSObject
+@interface BPVUser : NSObject <NSCoding>
 @property (nonatomic, copy)     NSString *name;
 @property (nonatomic, copy)     NSString *surname;
 @property (nonatomic, readonly) NSString *fullName;

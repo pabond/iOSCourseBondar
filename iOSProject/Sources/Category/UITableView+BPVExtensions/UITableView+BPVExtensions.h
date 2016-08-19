@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^BPVUpdatesBlock)(void);
+
 @interface UITableView (BPVExtensions)
 
 - (id)cellWithClass:(Class)cls;
+
+- (void)updateTableView:(UITableView *)tableView withUpdatesBlock:(BPVUpdatesBlock)block;
 
 @end

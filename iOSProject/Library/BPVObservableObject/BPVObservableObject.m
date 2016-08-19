@@ -14,7 +14,6 @@
 @property (nonatomic, retain) NSHashTable   *observersTable;
 @property (nonatomic, assign) BOOL          notify;
 
-- (SEL)selectorForState:(NSUInteger)state;
 - (void)notifyOfStateWithSelector:(SEL)selector object:(id)object;
 
 @end

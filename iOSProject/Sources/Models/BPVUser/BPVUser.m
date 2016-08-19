@@ -10,6 +10,9 @@
 
 #import "NSString+BPVRandomName.h"
 
+#define kBPVUserName @"userName"
+#define kBPVUserSurname @"userSurname"
+
 @implementation BPVUser
 
 @dynamic fullName;
@@ -39,6 +42,24 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"BPVUserLogo" ofType:@"png"];
     
     return [UIImage imageWithContentsOfFile:path];
+}
+
+#pragma mark -
+#pragma mark NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:kBPVUserName];
+    [aCoder encodeObject:self.surname forKey:kBPVUserSurname];
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.name = [aDecoder decodeObjectForKey:kBPVUserName];
+        self.surname = [aDecoder decodeObjectForKey:kBPVUserSurname];
+    }
+    
+    return self;
 }
 
 @end
