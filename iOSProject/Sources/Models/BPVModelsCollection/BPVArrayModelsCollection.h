@@ -8,13 +8,13 @@
 
 #import "BPVObservableObject.h"
 
-@protocol BPVCollectionObserver <NSObject, NSCoding, NSFastEnumeration>
+@protocol BPVCollectionObserver <NSObject, NSCoding>
 
 - (void)collection:(id)collection didUpdateWithArrayChangeModel:(id)changeModel;
 
 @end
 
-@interface BPVArrayModelsCollection : BPVObservableObject
+@interface BPVArrayModelsCollection : BPVObservableObject <NSFastEnumeration>
 @property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;
 

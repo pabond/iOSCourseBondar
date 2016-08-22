@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^BPVBlock)(void);
+typedef void(^BPVBlock)();
 
 @interface BPVObservableObject : NSObject
 @property (nonatomic, assign)   NSUInteger  state;

@@ -14,7 +14,6 @@
 #import "BPVArrayChange.h"
 
 #import "BPVUser.h"
-#import "BPVUsers.h"
 
 #import "BPVObservableObject.h"
 
@@ -47,6 +46,10 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     [self.users load];
 }

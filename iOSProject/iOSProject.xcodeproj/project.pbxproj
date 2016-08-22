@@ -44,6 +44,8 @@
 		2D48287C1D63519400AF3617 /* BPVArrayChange+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48287B1D63519400AF3617 /* BPVArrayChange+UITableView.m */; };
 		2D4828871D64793100AF3617 /* BPVImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828861D64793100AF3617 /* BPVImageModelDispatcher.m */; };
 		2D48288E1D66FA3600AF3617 /* NSIndexPath+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D48288D1D66FA3600AF3617 /* NSIndexPath+BPVExtensions.m */; };
+		2D4828951D6AE42E00AF3617 /* NSFileManager+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828941D6AE42E00AF3617 /* NSFileManager+BPVExtensions.m */; };
+		2D4828991D6AEADC00AF3617 /* BPVGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828981D6AEADC00AF3617 /* BPVGCD.m */; };
 		2DA8E95D1D4C89AE0067032D /* BPVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */; };
 		2DA8E95E1D4C89AE0067032D /* BPVTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */; };
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
@@ -145,6 +147,10 @@
 		2D4828861D64793100AF3617 /* BPVImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImageModelDispatcher.m; sourceTree = "<group>"; };
 		2D48288C1D66FA3600AF3617 /* NSIndexPath+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+BPVExtensions.h"; sourceTree = "<group>"; };
 		2D48288D1D66FA3600AF3617 /* NSIndexPath+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+BPVExtensions.m"; sourceTree = "<group>"; };
+		2D4828931D6AE42E00AF3617 /* NSFileManager+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+BPVExtensions.h"; sourceTree = "<group>"; };
+		2D4828941D6AE42E00AF3617 /* NSFileManager+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+BPVExtensions.m"; sourceTree = "<group>"; };
+		2D4828971D6AEADC00AF3617 /* BPVGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVGCD.h; sourceTree = "<group>"; };
+		2D4828981D6AEADC00AF3617 /* BPVGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVGCD.m; sourceTree = "<group>"; };
 		2DA8E95A1D4C89AE0067032D /* BPVTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewController.h; sourceTree = "<group>"; };
 		2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewController.m; sourceTree = "<group>"; };
 		2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVTableViewController.xib; sourceTree = "<group>"; };
@@ -412,6 +418,7 @@
 		2D3F42101D40C2C500A38A7B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				2D4828961D6AEADC00AF3617 /* GCD */,
 				2DA8E9631D4CDE610067032D /* Classes */,
 				2DA8E95F1D4C89DC0067032D /* BPVObservableObject */,
 				2D3F42111D40C2EB00A38A7B /* BPVMacro.h */,
@@ -523,6 +530,24 @@
 			path = DataSaving;
 			sourceTree = "<group>";
 		};
+		2D4828921D6AE3F200AF3617 /* NSFileManager+BPVExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				2D4828931D6AE42E00AF3617 /* NSFileManager+BPVExtensions.h */,
+				2D4828941D6AE42E00AF3617 /* NSFileManager+BPVExtensions.m */,
+			);
+			path = "NSFileManager+BPVExtensions";
+			sourceTree = "<group>";
+		};
+		2D4828961D6AEADC00AF3617 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				2D4828971D6AEADC00AF3617 /* BPVGCD.h */,
+				2D4828981D6AEADC00AF3617 /* BPVGCD.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
 		2DA8E95F1D4C89DC0067032D /* BPVObservableObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +588,7 @@
 			isa = PBXGroup;
 			children = (
 				2D48288B1D66FA1400AF3617 /* NSIndexPath+BPVExtensions */,
+				2D4828921D6AE3F200AF3617 /* NSFileManager+BPVExtensions */,
 				2D4828611D6342D100AF3617 /* BPVArrayChange+UITableView */,
 				2D328D431D5C9A3D0064C76D /* NSArray+BPVExtensions */,
 				2D402BB01D61B65200A41D1A /* UIViewController+BPVExtensions */,
@@ -799,6 +825,7 @@
 				2D328D911D60FAB60064C76D /* BPVMovingObject.m in Sources */,
 				2D48286B1D6342D100AF3617 /* BPVMovingObject+UITableView.m in Sources */,
 				2D328D5F1D5C9F410064C76D /* UITableView+BPVExtensions.m in Sources */,
+				2D4828991D6AEADC00AF3617 /* BPVGCD.m in Sources */,
 				2D328D8B1D60F7870064C76D /* BPVRemovingObject.m in Sources */,
 				2D3F41FF1D3FA29800A38A7B /* main.m in Sources */,
 				2D4828601D61BCF300AF3617 /* UIWindow+BPVExtensions.m in Sources */,
@@ -810,6 +837,7 @@
 				2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */,
 				2D3F42131D40C5D600A38A7B /* BPVMacro.m in Sources */,
 				2D48288E1D66FA3600AF3617 /* NSIndexPath+BPVExtensions.m in Sources */,
+				2D4828951D6AE42E00AF3617 /* NSFileManager+BPVExtensions.m in Sources */,
 				2DA8E96C1D4CE33A0067032D /* BPVUserCell.m in Sources */,
 				2D402BB31D61B67100A41D1A /* UIViewController+BPVExtensions.m in Sources */,
 				2D3F41FD1D3FA29800A38A7B /* BPVAppDelegate.m in Sources */,

@@ -10,6 +10,11 @@
 
 #import "BPVArrayChange.h"
 
+#import "BPVGCD.h"
+#import "BPVMacro.h"
+
+#import "NSFileManager+BPVExtensions.h"
+
 static NSString * const kBPVDataFolderName = @"DataSaving/";
 static NSString * const kBPVDataFileName = @"data.plist";
 static NSString * const kBPVCollection = @"users";
@@ -129,23 +134,10 @@ static NSString * const kBPVCollection = @"users";
 #pragma mark -
 #pragma mark saving and restoring of state
 
-- (NSString *)dataSavingFilePath {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *dataPath = [documentsPath stringByAppendingPathComponent:@"DataSaving"];
-    NSError *error;
-    if (![fileManager fileExistsAtPath:dataPath]) {
-        [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
-    }
-    
-    return [dataPath stringByAppendingString:@"/data.plist"];
-}
-
 - (void)save {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.models];
-    NSString *path = [self dataSavingFilePath];
     
-    if ([data writeToFile:path atomically:NO]) {
+    if ([data writeToFile:[NSFileManager dataPath] atomically:NO]) {
         NSLog(@"Saving operation succeeds");
     } else {
         NSLog(@"Data not saved");
@@ -153,12 +145,17 @@ static NSString * const kBPVCollection = @"users";
 }
 
 - (void)load {
-    NSData *data = [NSData dataWithContentsOfFile:[self dataSavingFilePath]];
-    if (data) {
-        [self addModels:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
-        if (self.count) {
-            NSLog(@"Collection loaded");
+    BPVWeakify(self)
+    BPVPerformAsyncBlockOnMainQueue(^{
+        BPVStrongify(self)
+        NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
+        if (data) {
+            [self addModels:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
         }
+    });
+    
+    if (self.count) {
+        NSLog(@"Collection did load");
     }
 }
 

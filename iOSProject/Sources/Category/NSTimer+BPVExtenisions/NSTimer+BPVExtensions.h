@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^BPVBlock)();
+typedef void(^BPVBlock)();
 
 @interface NSTimer (BPVExtensions)
 
