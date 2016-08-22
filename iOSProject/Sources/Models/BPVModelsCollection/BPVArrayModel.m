@@ -19,6 +19,7 @@ BPVStringConstant(kBPVCollection, @"users");
 
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
+@property (nonatomic, assign)   NSInteger       laodedCount;
 
 @end
 
@@ -143,12 +144,15 @@ BPVStringConstant(kBPVCollection, @"users");
 }
 
 - (void)load {
+    NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
+    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    self.laodedCount = array.count;
+    
     BPVWeakify(self)
     BPVPerformAsyncBlockOnMainQueue(^{
         BPVStrongify(self)
-        NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
         if (data) {
-            [self addModels:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+            [self addModels:array];
         }
     });
     

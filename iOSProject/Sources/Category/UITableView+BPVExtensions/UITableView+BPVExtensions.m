@@ -14,6 +14,10 @@
 
 @implementation UITableView (BPVExtensions)
 
+- (id)cellWithClass:(Class)class forRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
 - (id)cellWithClass:(Class)class {
     id cell = [self dequeueReusableCellWithIdentifier:NSStringFromClass(class)];
     if (!cell) {

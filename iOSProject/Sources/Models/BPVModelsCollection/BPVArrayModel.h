@@ -18,6 +18,8 @@
 @property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;
 
+@property (nonatomic, readonly) NSInteger   laodedCount;
+
 - (void)addModel:(id)user;
 - (void)removeModel:(id)user;
 

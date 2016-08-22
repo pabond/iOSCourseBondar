@@ -10,6 +10,7 @@
 
 #import "BPVUsersView.h"
 #import "BPVUserCell.h"
+#import "BPVLoadingView.h"
 
 #import "BPVArrayChange.h"
 
@@ -25,6 +26,7 @@
 BPVStringConstant(kBPVTableTitle, @"USERS LIST");
 
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
+BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, loadingView, BPVLoadingView)
 
 @interface BPVTableViewController ()
 @property (nonatomic, strong) BPVUsers *users;

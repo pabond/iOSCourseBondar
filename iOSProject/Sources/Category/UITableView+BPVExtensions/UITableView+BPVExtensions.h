@@ -12,6 +12,8 @@ typedef void(^BPVUpdatesBlock)(void);
 
 @interface UITableView (BPVExtensions)
 
+- (id)cellWithClass:(Class)cls forRowAtIndexPath:(NSIndexPath *)indexPath;
+
 - (id)cellWithClass:(Class)cls;
 
 - (void)updateTableViewWithUpdatesBlock:(BPVUpdatesBlock)block;
