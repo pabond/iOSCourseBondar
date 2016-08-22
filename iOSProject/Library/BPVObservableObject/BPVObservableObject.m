@@ -12,7 +12,7 @@
 
 @interface BPVObservableObject ()
 @property (nonatomic, retain) NSHashTable   *observersTable;
-@property (nonatomic, assign) BOOL          notify;
+@property (nonatomic, assign) BOOL          shouldNotify;
 
 - (void)notifyOfStateWithSelector:(SEL)selector object:(id)object;
 
@@ -28,7 +28,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.notify = YES;
+        self.shouldNotify = YES;
         self.observersTable = [NSHashTable weakObjectsHashTable];
     }
     
@@ -115,12 +115,12 @@
 
 - (void)performBlock:(BPVBlock)block notify:(BOOL)notify {
     @synchronized (self) {
-        BOOL notify = self.notify;
-        self.notify = notify;
+        BOOL notify = self.shouldNotify;
+        self.shouldNotify = notify;
         
         BPVPerformBlock(block);
         
-        self.notify = notify;
+        self.shouldNotify = notify;
     }
 }
 
@@ -135,7 +135,7 @@
 }
 
 - (void)notifyOfStateWithSelector:(SEL)selector object:(id)object {
-    if (self.notify) {
+    if (self.shouldNotify) {
         NSHashTable *observers = self.observersTable;
         for (id observer in observers) {
             if ([observer respondsToSelector:selector]) {

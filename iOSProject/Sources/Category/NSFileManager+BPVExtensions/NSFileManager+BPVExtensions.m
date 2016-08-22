@@ -8,18 +8,23 @@
 
 #import "NSFileManager+BPVExtensions.h"
 
+#import "BPVMacro.h"
+
+BPVStringConstant(kBPVDataFolderName, @"DataSaving/");
+BPVStringConstant(kBPVDataFileName, @"data.plist");
+
 @implementation NSFileManager (BPVExtensions)
 
 + (NSString *)dataPath {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *dataPath = [documentsPath stringByAppendingPathComponent:@"DataSaving/"];
+    NSString *dataPath = [documentsPath stringByAppendingPathComponent:kBPVDataFolderName];
     NSError *error;
     if (![fileManager fileExistsAtPath:dataPath]) {
         [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
     }
     
-    return [dataPath stringByAppendingString:@"data.plist"];
+    return [dataPath stringByAppendingString:kBPVDataFileName];
 }
 
 @end

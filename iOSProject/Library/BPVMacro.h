@@ -19,12 +19,12 @@
     }
 
 #define BPVViewControllerBaseViewPropertyWithGetter(viewControllerClass, propertyName, baseViewClass) \
-    @interface viewControllerClass (__BPVPrivatBaseView_##viewControllerClass) \
+    @interface viewControllerClass (__BPVPrivateBaseView_##viewControllerClass_##propertyName) \
     BPVDefineBaseViewProrety(propertyName, baseViewClass)\
     \
     @end \
     \
-    @implementation viewControllerClass (__BPVPrivatBaseView_##viewControllerClass) \
+    @implementation viewControllerClass (__BPVPrivateBaseView_##viewControllerClass_##propertyName) \
     \
     @dynamic propertyName; \
     \
@@ -60,3 +60,11 @@
     if (!variable) { \
         return result; \
     }
+
+
+#define BPVConstant(type, name, value) \
+    static const type name = value;
+
+
+#define BPVStringConstant(name, value) \
+    static NSString * const name = value

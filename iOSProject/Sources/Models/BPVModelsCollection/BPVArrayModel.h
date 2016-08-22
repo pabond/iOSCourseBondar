@@ -1,5 +1,5 @@
 //
-//  BPVArrayModelsCollection.h
+//  BPVArrayModel.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/12/16.
@@ -14,7 +14,7 @@
 
 @end
 
-@interface BPVArrayModelsCollection : BPVObservableObject <NSFastEnumeration>
+@interface BPVArrayModel : BPVObservableObject <NSFastEnumeration>
 @property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;
 

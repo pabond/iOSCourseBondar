@@ -6,8 +6,8 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVArrayModelsCollection.h"
+#import "BPVArrayModel.h"
 
-@interface BPVUsers : BPVArrayModelsCollection
+@interface BPVUsers : BPVArrayModel
 
 @end

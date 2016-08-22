@@ -26,6 +26,7 @@ typedef void(^BPVBlock)();
 
 - (void)performBlockWithNotification:(BPVBlock)block;
 
+// don't call this method directly, sould be lounched only from subclasses
 - (SEL)selectorForState:(NSUInteger)state;
 
 // these methods are called in subclasses

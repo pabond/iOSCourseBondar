@@ -1,12 +1,12 @@
 //
-//  BPVArrayModelsCollection.m
+//  BPVArrayModel.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/12/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVArrayModelsCollection.h"
+#import "BPVArrayModel.h"
 
 #import "BPVArrayChange.h"
 
@@ -15,16 +15,14 @@
 
 #import "NSFileManager+BPVExtensions.h"
 
-static NSString * const kBPVDataFolderName = @"DataSaving/";
-static NSString * const kBPVDataFileName = @"data.plist";
-static NSString * const kBPVCollection = @"users";
+BPVStringConstant(kBPVCollection, @"users");
 
-@interface BPVArrayModelsCollection ()
+@interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
 @end
 
-@implementation BPVArrayModelsCollection
+@implementation BPVArrayModel
 
 @dynamic models;
 @dynamic count;

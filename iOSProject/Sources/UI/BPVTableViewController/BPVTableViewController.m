@@ -22,7 +22,7 @@
 
 #import "BPVMacro.h"
 
-static NSString * const kBPVTableTitle = @"USERS LIST";
+BPVStringConstant(kBPVTableTitle, @"USERS LIST");
 
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 

@@ -82,7 +82,7 @@ uint32_t BPVRandomWithCount(uint32_t count) {
 }
 
 #pragma mark -
-#pragma mark Privat Implementations
+#pragma mark Private Implementations
 
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated {
     [self setSquarePosition:squarePosition animated:animated complitionHandler:nil];

@@ -23,10 +23,10 @@
     return cell;
 }
 
-- (void)updateTableView:(UITableView *)tableView withUpdatesBlock:(BPVUpdatesBlock)block {
-    [tableView beginUpdates];
+- (void)updateTableViewWithUpdatesBlock:(BPVUpdatesBlock)block {
+    [self beginUpdates];
     BPVPerformBlock(block);
-    [tableView endUpdates];
+    [self endUpdates];
 }
 
 @end

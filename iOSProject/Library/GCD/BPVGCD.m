@@ -9,7 +9,7 @@
 #import "BPVGCD.h"
 
 #pragma mark -
-#pragma mark Privat declarations
+#pragma mark Private declarations
 
 void BPVPerformBlockOnMainQueueWithTypeAndBlock(BPVBlockExecutionType type, BPVGCDBlock block);
 
@@ -55,7 +55,7 @@ dispatch_queue_t BPVDisptchQueueWithPriorityType(BPVDispatchQueuePriorityType ty
 }
 
 #pragma mark -
-#pragma mark Privat implementations
+#pragma mark Private implementations
 
 void BPVPerformBlockOnMainQueueWithTypeAndBlock(BPVBlockExecutionType type, BPVGCDBlock block) {
      BPVPefromBlockWithQueueAndType(type, dispatch_get_main_queue(), block);

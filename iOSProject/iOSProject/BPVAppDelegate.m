@@ -10,7 +10,7 @@
 
 #import "BPVSquareViewController.h"
 #import "BPVTableViewController.h"
-#import "BPVArrayModelsCollection.h"
+#import "BPVArrayModel.h"
 
 #import "BPVUser.h"
 #import "BPVUsers.h"
