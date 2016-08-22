@@ -8,17 +8,26 @@
 
 #import "BPVObservableObject.h"
 
-@protocol BPVCollectionObserver <NSObject, NSCoding>
+typedef NS_ENUM(NSUInteger, BPVCollectionState) {
+    BPVCollectionDidChange,
+    BPVCollectionDidLoad
+};
+
+@protocol BPVCollectionObserver <NSObject>
 
 - (void)collection:(id)collection didUpdateWithArrayChangeModel:(id)changeModel;
 
 @end
 
-@interface BPVArrayModel : BPVObservableObject <NSFastEnumeration>
+@protocol BPVCollectionLoading <NSObject>
+
+- (void)collectionDidLoad:(id)collection;
+
+@end
+
+@interface BPVArrayModel : BPVObservableObject <NSFastEnumeration, NSCoding>
 @property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;
-
-@property (nonatomic, readonly) NSInteger   laodedCount;
 
 - (void)addModel:(id)user;
 - (void)removeModel:(id)user;

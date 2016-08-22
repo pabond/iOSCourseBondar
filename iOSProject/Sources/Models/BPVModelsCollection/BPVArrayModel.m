@@ -19,7 +19,6 @@ BPVStringConstant(kBPVCollection, @"users");
 
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
-@property (nonatomic, assign)   NSInteger       laodedCount;
 
 @end
 
@@ -57,7 +56,7 @@ BPVStringConstant(kBPVCollection, @"users");
 - (void)addModel:(id)model {
     if (model) {
         [self.mutableModels addObject:model];
-        [self notifyOfState:BPVChangingTypeAdd withObject:[BPVArrayChange addingObjectWithIndex:[self indexOfModel:model]]];
+        [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingObjectWithIndex:[self indexOfModel:model]]];
     }
 }
 
@@ -70,8 +69,10 @@ BPVStringConstant(kBPVCollection, @"users");
 - (void)addModels:(NSArray *)models {
     if (models) {
         for (id model in models) {
-            [self addModel:model];
+            [self.mutableModels addObject:model];
         }
+        
+        self.state = BPVCollectionDidLoad;
     }
 }
 
@@ -90,7 +91,7 @@ BPVStringConstant(kBPVCollection, @"users");
     BOOL notify = NO;
     [self removeModelAtIndex:fromIndex notify:notify];
     [self insertModel:model atIndex:toIndex notify:notify];
-    [self notifyOfState:BPVChangingTypeMove
+    [self notifyOfState:BPVCollectionDidChange
              withObject:[BPVArrayChange movingObjectwithIndex:toIndex
                                                                   fromIndex:fromIndex]];
 }
@@ -99,7 +100,7 @@ BPVStringConstant(kBPVCollection, @"users");
     if (user) {
         [self.mutableModels insertObject:user atIndex:index];
         if (notify) {
-            [self notifyOfState:BPVChangingTypeAdd withObject:[BPVArrayChange addingObjectWithIndex:index]];
+            [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingObjectWithIndex:index]];
         }
     }
 }
@@ -107,7 +108,7 @@ BPVStringConstant(kBPVCollection, @"users");
 - (void)removeModelAtIndex:(NSUInteger)index notify:(BOOL)notify {
     [self.mutableModels removeObjectAtIndex:index];
     if (notify) {
-        [self notifyOfState:BPVChangingTypeRemove withObject:[BPVArrayChange removingObjectWithIndex:index]];
+        [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange removingObjectWithIndex:index]];
     }
 }
 
@@ -120,10 +121,11 @@ BPVStringConstant(kBPVCollection, @"users");
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case BPVChangingTypeAdd:
-        case BPVChangingTypeMove:
-        case BPVChangingTypeRemove:
+        case BPVCollectionDidChange:
             return @selector(collection:didUpdateWithArrayChangeModel:);
+            
+        case BPVCollectionDidLoad:
+            return @selector(collectionDidLoad:);
             
         default:
             return [super selectorForState:state];
@@ -146,7 +148,6 @@ BPVStringConstant(kBPVCollection, @"users");
 - (void)load {
     NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
     NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    self.laodedCount = array.count;
     
     BPVWeakify(self)
     BPVPerformAsyncBlockOnMainQueue(^{

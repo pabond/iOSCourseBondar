@@ -8,9 +8,24 @@
 
 #import "BPVUsersView.h"
 
+#import "BPVLoadingView.h"
+
 @implementation BPVUsersView
 
 @dynamic editing;
+@dynamic loading;
+
+#pragma mark -
+#pragma mark Initialastions and deallocations
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+    
+    }
+    
+    return self;
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -24,6 +39,14 @@
     
     self.editButton.hidden = editing;
     self.doneButton.hidden = !editing;
+}
+
+- (void)setLoading:(BOOL)loading {
+    self.loadingView.loading = loading;
+}
+
+- (BOOL)loading {
+    return self.loadingView.loading;
 }
 
 @end

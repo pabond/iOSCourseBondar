@@ -14,16 +14,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1p6-JR-xW5">
-                    <rect key="frame" x="8" y="50" width="304" height="510"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <inset key="scrollIndicatorInsets" minX="0.0" minY="40" maxX="0.0" maxY="30"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="foY-SQ-Owh"/>
-                        <outlet property="delegate" destination="-1" id="qLC-3h-n4Y"/>
-                    </connections>
-                </tableView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ebX-kf-Zll">
                     <rect key="frame" x="266" y="18" width="46" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -48,6 +38,16 @@
                         <action selector="onEdit:" destination="-1" eventType="touchUpInside" id="yXI-CQ-PXj"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1p6-JR-xW5">
+                    <rect key="frame" x="8" y="50" width="304" height="510"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="scrollIndicatorInsets" minX="0.0" minY="40" maxX="0.0" maxY="30"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="foY-SQ-Owh"/>
+                        <outlet property="delegate" destination="-1" id="qLC-3h-n4Y"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>

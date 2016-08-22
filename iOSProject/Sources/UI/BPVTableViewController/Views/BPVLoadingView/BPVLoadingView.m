@@ -8,22 +8,28 @@
 
 #import "BPVLoadingView.h"
 
+#import "BPVMacro.h"
+
+BPVConstant(CGFloat, kBPVAnimationDuration, 0.5f);
+BPVConstant(CGFloat, kBPVUpperAlfa, 0.5f);
+BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
+
 @implementation BPVLoadingView
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.frame = self.window.frame;
-    }
-    return self;
-}
+#pragma mark -
+#pragma mark Accessors
 
 - (void)setLoading:(BOOL)loading {
     if (_loading != loading) {
         _loading = loading;
         
-        self.loadingView.hidden = !loading;
+        self.hidden = !loading;
+        
+        BPVWeakify(self);
+        [UIView animateWithDuration:kBPVAnimationDuration animations:^{
+            BPVStrongify(self);
+            self.alpha = loading ? kBPVUpperAlfa : kBPVLowerAlfa;
+        }];
     }
 }
 

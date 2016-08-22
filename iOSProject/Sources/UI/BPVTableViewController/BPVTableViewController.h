@@ -10,7 +10,10 @@
 
 #import "BPVUsers.h"
 
-@interface BPVTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, BPVCollectionObserver>
+@interface BPVTableViewController : UIViewController    <UITableViewDataSource,
+                                                        UITableViewDelegate,
+                                                        BPVCollectionObserver,
+                                                        BPVCollectionLoading>
 
 - (IBAction)onDone:(id)sender;
 - (IBAction)onEdit:(id)sender;

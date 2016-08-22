@@ -26,7 +26,6 @@
 BPVStringConstant(kBPVTableTitle, @"USERS LIST");
 
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
-BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, loadingView, BPVLoadingView)
 
 @interface BPVTableViewController ()
 @property (nonatomic, strong) BPVUsers *users;
@@ -48,10 +47,15 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, loadingView,
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.usersView.loadingView = [[BPVLoadingView alloc] initWithFrame:self.view.frame];
+    [self.usersView addSubview:self.usersView.loadingView];
+    
+    self.usersView.loading = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    [super viewDidAppear:YES];
     
     [self.users load];
 }
@@ -130,6 +134,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, loadingView,
 
 - (void)collection:(id)collection didUpdateWithArrayChangeModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
+}
+
+#pragma mark -
+#pragma mark BPVCollectionLoading
+
+- (void)collectionDidLoad:(id)collection {
+    self.usersView.loading = NO;
 }
 
 @end
