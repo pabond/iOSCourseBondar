@@ -13,13 +13,13 @@
 #import "BPVArrayModelsCollection.h"
 
 #import "BPVUser.h"
+#import "BPVUsers.h"
 
 #import "UIViewController+BPVExtensions.h"
 #import "UIWindow+BPVExtensions.h"
 
 @interface BPVAppDelegate ()
-
-- (void)saveData;
+@property (nonatomic, strong) BPVUsers *users;
 
 @end
 
@@ -29,16 +29,18 @@
     UIWindow *window = [UIWindow window];
     self.window = window;
     
-    window.rootViewController = [BPVTableViewController viewController];
+    BPVTableViewController *controller = [BPVTableViewController viewController];
+    
+    BPVUsers *users = [[BPVUsers alloc] init];
+    [users addObserver:controller];
+    [controller addModel:users];
+    self.users = users;
+    
+    window.rootViewController = controller;
     
     [window makeKeyAndVisible];
     
     return YES;
-}
-
-- (void)saveData {
-    BPVTableViewController *viewController = self.window.rootViewController;
-    [viewController.users save];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -46,7 +48,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [self saveData];
+    [self.users save];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -58,7 +60,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [self saveData];
+    [self.users save];
 }
 
 @end

@@ -43,10 +43,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)loadView {
     [super loadView];
-    
-    BPVUsers *users = [[BPVUsers alloc] init];
-    [users addObserver:self];
-    self.users = users;
 }
 
 - (void)viewDidLoad {
@@ -60,10 +56,17 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 #pragma mark -
+#pragma Public implementations
+
+- (void)addModel:(id)model {
+    self.users = model;
+}
+
+#pragma mark -
 #pragma Interface Handling
 
 - (IBAction)onEdit:(id)sender {
-    [self.usersView editingMode];
+    self.usersView.editing = YES;
 }
 
 - (IBAction)onAdd:(id)sender {
@@ -71,7 +74,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (IBAction)onDone:(id)sender {
-    [self.usersView editingMode];
+    self.usersView.editing = NO;
 }
 
 #pragma mark -

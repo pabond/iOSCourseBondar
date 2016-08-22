@@ -11,10 +11,11 @@
 #import "BPVUsers.h"
 
 @interface BPVTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, BPVCollectionObserver>
-@property (nonatomic, readonly) BPVUsers *users;
 
 - (IBAction)onDone:(id)sender;
 - (IBAction)onEdit:(id)sender;
 - (IBAction)onAdd:(id)sender;
+
+- (void)addModel:(id)model;
 
 @end

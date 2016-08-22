@@ -10,16 +10,20 @@
 
 @implementation BPVUsersView
 
-#pragma mark -
-#pragma mark Public implemntations
+@dynamic editing;
 
-- (void)editingMode {
-    BOOL editing = self.usersTableView.editing;
+#pragma mark -
+#pragma mark Accessors
+
+- (BOOL)editing {
+    return self.usersTableView.editing;
+}
+
+- (void)setEditing:(BOOL)editing {
+    self.usersTableView.editing = editing;
     
-    self.editButton.hidden = !editing;
-    self.doneButton.hidden = editing;
-    
-    self.usersTableView.editing = !editing;
+    self.editButton.hidden = editing;
+    self.doneButton.hidden = !editing;
 }
 
 @end
