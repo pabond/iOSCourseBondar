@@ -8,8 +8,6 @@
 
 #import "BPVAddingObject.h"
 
-#import "BPVAddingObject+UITableView.h"
-
 @implementation BPVAddingObject
 
 @end

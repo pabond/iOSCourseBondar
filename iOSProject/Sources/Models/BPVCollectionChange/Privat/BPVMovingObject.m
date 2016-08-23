@@ -8,8 +8,6 @@
 
 #import "BPVMovingObject.h"
 
-#import "BPVMovingObject+UITableView.h"
-
 @implementation BPVMovingObject
 
 @end

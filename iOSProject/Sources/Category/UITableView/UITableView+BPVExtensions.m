@@ -28,6 +28,10 @@
 }
 
 - (void)updateTableViewWithUpdatesBlock:(BPVUpdatesBlock)block {
+    if (!block) {
+        return;
+    }
+    
     [self beginUpdates];
     BPVPerformBlock(block);
     [self endUpdates];

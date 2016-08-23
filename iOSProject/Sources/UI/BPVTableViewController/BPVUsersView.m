@@ -10,6 +10,11 @@
 
 #import "BPVLoadingView.h"
 
+#import "BPVMacro.h"
+
+BPVStringConstant(kBPVEditButton, @"Edit");
+BPVStringConstant(kBPVDoneButton, @"Done");
+
 @implementation BPVUsersView
 
 @dynamic editing;
@@ -36,9 +41,7 @@
 
 - (void)setEditing:(BOOL)editing {
     self.usersTableView.editing = editing;
-    
-    self.editButton.hidden = editing;
-    self.doneButton.hidden = !editing;
+    [self.editDoneButton setTitle:(editing ? kBPVDoneButton : kBPVEditButton) forState:UIControlStateNormal];
 }
 
 - (void)setLoading:(BOOL)loading {

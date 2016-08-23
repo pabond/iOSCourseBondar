@@ -11,6 +11,7 @@
 #import "BPVRemovingObject.h"
 #import "BPVAddingObject.h"
 #import "BPVMovingObject.h"
+#import "BPVBigChangeObject.h"
 
 @implementation BPVArrayChange
 
@@ -27,6 +28,10 @@
 
 + (instancetype)movingObjectwithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
     return [[BPVMovingObject alloc] initWithIndex:index fromIndex:fromIndex];
+}
+
++ (instancetype)bigChangeObject {
+    return [BPVBigChangeObject new];
 }
 
 @end

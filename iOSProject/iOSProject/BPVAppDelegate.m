@@ -44,22 +44,24 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
+    NSLog(@"applicationWillResignActive");
     [self.users save];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    NSLog(@"applicationDidEnterBackground");
+}
 
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    NSLog(@"applicationWillEnterForeground");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    
+    NSLog(@"applicationDidBecomeActive");
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    NSLog(@"applicationWillTerminate");
     [self.users save];
 }
 

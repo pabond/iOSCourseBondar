@@ -8,6 +8,8 @@
 
 #import "BPVArrayModel.h"
 
+#import "BPVUser.h"
+
 #import "BPVArrayChange.h"
 
 #import "BPVGCD.h"
@@ -16,9 +18,12 @@
 #import "NSFileManager+BPVExtensions.h"
 
 BPVStringConstant(kBPVCollection, @"users");
+BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
 
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
+
+- (NSArray *)addModelsWithCount:(NSUInteger)count;
 
 @end
 
@@ -54,22 +59,27 @@ BPVStringConstant(kBPVCollection, @"users");
 #pragma mark Public implementations
 
 - (void)addModel:(id)model {
-    if (model) {
-        [self.mutableModels addObject:model];
-        [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingObjectWithIndex:[self indexOfModel:model]]];
+    @synchronized (self) {
+        if (model) {
+            [self.mutableModels addObject:model];
+            [self notifyOfState:BPVCollectionDidChange
+                     withObject:[BPVArrayChange addingObjectWithIndex:[self indexOfModel:model]]];
+        }
     }
 }
 
-- (void)removeModel:(id)user {
-    if (user) {
-        [self.mutableModels removeObject:user];
+- (void)removeModel:(id)model {
+    @synchronized (self) {
+        if (model) {
+            [self.mutableModels removeObject:model];
+        }
     }
 }
 
 - (void)addModels:(NSArray *)models {
     if (models) {
         for (id model in models) {
-            [self.mutableModels addObject:model];
+            [self addModel:model];
         }
         
         self.state = BPVCollectionDidLoad;
@@ -96,9 +106,9 @@ BPVStringConstant(kBPVCollection, @"users");
                                                                   fromIndex:fromIndex]];
 }
 
-- (void)insertModel:(id)user atIndex:(NSUInteger)index notify:(BOOL)notify {
-    if (user) {
-        [self.mutableModels insertObject:user atIndex:index];
+- (void)insertModel:(id)model atIndex:(NSUInteger)index notify:(BOOL)notify {
+    if (model) {
+        [self.mutableModels insertObject:model atIndex:index];
         if (notify) {
             [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingObjectWithIndex:index]];
         }
@@ -122,7 +132,7 @@ BPVStringConstant(kBPVCollection, @"users");
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case BPVCollectionDidChange:
-            return @selector(collection:didUpdateWithArrayChangeModel:);
+            return @selector(collection:didChangeWithModel:);
             
         case BPVCollectionDidLoad:
             return @selector(collectionDidLoad:);
@@ -138,7 +148,7 @@ BPVStringConstant(kBPVCollection, @"users");
 - (void)save {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.models];
     
-    if ([data writeToFile:[NSFileManager dataPath] atomically:NO]) {
+    if ([data writeToFile:[NSFileManager dataPath] atomically:YES]) {
         NSLog(@"Saving operation succeeds");
     } else {
         NSLog(@"Data not saved");
@@ -147,7 +157,10 @@ BPVStringConstant(kBPVCollection, @"users");
 
 - (void)load {
     NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
-    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (!array.count) {
+        array = [self addModelsWithCount:kBPVDefoultUsersCount];
+    }
     
     BPVWeakify(self)
     BPVPerformAsyncBlockOnMainQueue(^{
@@ -156,10 +169,18 @@ BPVStringConstant(kBPVCollection, @"users");
             [self addModels:array];
         }
     });
-    
-    if (self.count) {
-        NSLog(@"Collection did load");
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (NSArray *)addModelsWithCount:(NSUInteger)count {
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSUInteger itertionCount = 0; itertionCount < count; itertionCount++) {
+        [array addObject:[BPVUser new]];
     }
+    
+    return array;
 }
 
 #pragma mark -
@@ -170,22 +191,6 @@ BPVStringConstant(kBPVCollection, @"users");
                                     count:(NSUInteger)length
 {
     return [self.mutableModels countByEnumeratingWithState:state objects:buffer count:length];
-}
-
-#pragma mark -
-#pragma mark NSCoding
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self forKey:kBPVCollection];
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
-    if (self) {
-        self.mutableModels = [NSMutableArray arrayWithArray:[aDecoder decodeObjectForKey:kBPVCollection]];
-    }
-    
-    return self;
 }
 
 @end

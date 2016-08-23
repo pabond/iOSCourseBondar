@@ -15,8 +15,7 @@
                                                         BPVCollectionObserver,
                                                         BPVCollectionLoading>
 
-- (IBAction)onDone:(id)sender;
-- (IBAction)onEdit:(id)sender;
+- (IBAction)onEditDone:(id)sender;
 - (IBAction)onAdd:(id)sender;
 
 - (void)addModel:(id)model;

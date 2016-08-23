@@ -15,5 +15,6 @@
 + (instancetype)removingObjectWithIndex:(NSUInteger)index;
 + (instancetype)addingObjectWithIndex:(NSUInteger)index;
 + (instancetype)movingObjectwithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
++ (instancetype)bigChangeObject;
 
 @end

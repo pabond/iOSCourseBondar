@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
 
 @protocol BPVCollectionObserver <NSObject>
 
-- (void)collection:(id)collection didUpdateWithArrayChangeModel:(id)changeModel;
+- (void)collection:(id)collection didChangeWithModel:(id)changeModel;
 
 @end
 
@@ -25,18 +25,18 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
 
 @end
 
-@interface BPVArrayModel : BPVObservableObject <NSFastEnumeration, NSCoding>
+@interface BPVArrayModel : BPVObservableObject <NSFastEnumeration>
 @property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;
 
-- (void)addModel:(id)user;
-- (void)removeModel:(id)user;
+- (void)addModel:(id)model;
+- (void)removeModel:(id)model;
 
 - (void)addModels:(NSArray *)models;
 
 - (id)modelAtIndex:(NSUInteger)index;
 
-- (void)insertModel:(id)user atIndex:(NSUInteger)index notify:(BOOL)notify;
+- (void)insertModel:(id)model atIndex:(NSUInteger)index notify:(BOOL)notify;
 - (void)removeModelAtIndex:(NSUInteger)index notify:(BOOL)notify;
 
 // you should never call this method  directly from outside

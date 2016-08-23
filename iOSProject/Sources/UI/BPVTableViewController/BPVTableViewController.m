@@ -74,16 +74,12 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma Interface Handling
 
-- (IBAction)onEdit:(id)sender {
-    self.usersView.editing = YES;
-}
-
 - (IBAction)onAdd:(id)sender {
     [self.users addModel:[BPVUser new]];
 }
 
-- (IBAction)onDone:(id)sender {
-    self.usersView.editing = NO;
+- (IBAction)onEditDone:(id)sender {
+    self.usersView.editing = !self.usersView.editing;
 }
 
 #pragma mark -
@@ -132,7 +128,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark BPVCollectionObserver
 
-- (void)collection:(id)collection didUpdateWithArrayChangeModel:(BPVArrayChange *)changeModel {
+- (void)collection:(id)collection didChangeWithModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
 }
 

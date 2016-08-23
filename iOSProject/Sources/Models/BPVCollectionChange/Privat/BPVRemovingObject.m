@@ -8,8 +8,6 @@
 
 #import "BPVRemovingObject.h"
 
-#import "BPVRemovingObject+UITableView.h"
-
 @implementation BPVRemovingObject
 
 @end

@@ -14,14 +14,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ebX-kf-Zll">
-                    <rect key="frame" x="266" y="18" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Done"/>
-                    <connections>
-                        <action selector="onDone:" destination="-1" eventType="touchUpInside" id="Z4a-J0-oDE"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4k8-0R-7GP">
                     <rect key="frame" x="16" y="18" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -31,11 +23,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8Sg-oI-Nlw">
-                    <rect key="frame" x="282" y="18" width="30" height="30"/>
+                    <rect key="frame" x="269" y="18" width="43" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Edit"/>
                     <connections>
-                        <action selector="onEdit:" destination="-1" eventType="touchUpInside" id="yXI-CQ-PXj"/>
+                        <action selector="onEditDone:" destination="-1" eventType="touchUpInside" id="KuC-gj-zL2"/>
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1p6-JR-xW5">
@@ -51,9 +43,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="addButton" destination="4k8-0R-7GP" id="oq9-sn-OW3"/>
-                <outlet property="doneButton" destination="ebX-kf-Zll" id="YMz-VL-gHb"/>
-                <outlet property="editButton" destination="8Sg-oI-Nlw" id="ouk-hb-REZ"/>
+                <outlet property="editDoneButton" destination="8Sg-oI-Nlw" id="tEC-bG-1gh"/>
                 <outlet property="usersTableView" destination="1p6-JR-xW5" id="OfH-fn-81I"/>
             </connections>
             <point key="canvasLocation" x="374" y="371"/>
