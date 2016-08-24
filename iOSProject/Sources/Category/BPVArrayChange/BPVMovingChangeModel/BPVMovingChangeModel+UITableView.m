@@ -1,5 +1,5 @@
 //
-//  BPVMovingObject+UITableView.m
+//  BPVMovingChangeModel+UITableView.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/15/16.
@@ -8,9 +8,9 @@
 
 #import "UIKit/UIKit.h"
 
-#import "BPVMovingObject+UITableView.h"
+#import "BPVMovingChangeModel+UITableView.h"
 
-@implementation BPVMovingObject (UITableView)
+@implementation BPVMovingChangeModel (UITableView)
 
 - (void)applyToTableView:(UITableView *)tableView {
     [tableView moveRowAtIndexPath:self.fromIndexPath toIndexPath:self.indexPath];

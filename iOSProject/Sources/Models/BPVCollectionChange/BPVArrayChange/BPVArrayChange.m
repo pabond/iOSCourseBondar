@@ -8,30 +8,25 @@
 
 #import "BPVArrayChange.h"
 
-#import "BPVRemovingObject.h"
-#import "BPVAddingObject.h"
-#import "BPVMovingObject.h"
-#import "BPVBigChangeObject.h"
+#import "BPVRemovingChangeModel.h"
+#import "BPVAddingChangeModel.h"
+#import "BPVMovingChangeModel.h"
 
 @implementation BPVArrayChange
 
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)removingObjectWithIndex:(NSUInteger)index {
-    return [[BPVRemovingObject alloc] initWithIndex:index];
++ (instancetype)removingChangeModelWithIndex:(NSUInteger)index {
+    return [[BPVRemovingChangeModel alloc] initWithIndex:index];
 }
 
-+ (instancetype)addingObjectWithIndex:(NSUInteger)index{
-    return [[BPVAddingObject alloc] initWithIndex:index];
++ (instancetype)addingChangeModelWithIndex:(NSUInteger)index{
+    return [[BPVAddingChangeModel alloc] initWithIndex:index];
 }
 
-+ (instancetype)movingObjectwithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
-    return [[BPVMovingObject alloc] initWithIndex:index fromIndex:fromIndex];
-}
-
-+ (instancetype)bigChangeObject {
-    return [BPVBigChangeObject new];
++ (instancetype)movingChangeModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
+    return [[BPVMovingChangeModel alloc] initWithIndex:index fromIndex:fromIndex];
 }
 
 @end

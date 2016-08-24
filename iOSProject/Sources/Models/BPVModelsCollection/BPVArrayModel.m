@@ -63,7 +63,7 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
         if (model) {
             [self.mutableModels addObject:model];
             [self notifyOfState:BPVCollectionDidChange
-                     withObject:[BPVArrayChange addingObjectWithIndex:[self indexOfModel:model]]];
+                     withObject:[BPVArrayChange addingChangeModelWithIndex:[self indexOfModel:model]]];
         }
     }
 }
@@ -102,7 +102,7 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
     [self removeModelAtIndex:fromIndex notify:notify];
     [self insertModel:model atIndex:toIndex notify:notify];
     [self notifyOfState:BPVCollectionDidChange
-             withObject:[BPVArrayChange movingObjectwithIndex:toIndex
+             withObject:[BPVArrayChange movingChangeModelWithIndex:toIndex
                                                                   fromIndex:fromIndex]];
 }
 
@@ -110,7 +110,7 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
     if (model) {
         [self.mutableModels insertObject:model atIndex:index];
         if (notify) {
-            [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingObjectWithIndex:index]];
+            [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingChangeModelWithIndex:index]];
         }
     }
 }
@@ -118,7 +118,7 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
 - (void)removeModelAtIndex:(NSUInteger)index notify:(BOOL)notify {
     [self.mutableModels removeObjectAtIndex:index];
     if (notify) {
-        [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange removingObjectWithIndex:index]];
+        [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange removingChangeModelWithIndex:index]];
     }
 }
 
