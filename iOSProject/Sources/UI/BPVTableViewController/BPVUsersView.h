@@ -14,7 +14,7 @@
 @property (nonatomic, strong) IBOutlet UITableView  *usersTableView;
 
 @property (nonatomic, strong) IBOutlet UIButton     *addButton;
-@property (nonatomic, strong) IBOutlet UIButton     *editDoneButton;
+@property (nonatomic, strong) IBOutlet UIButton     *editingButton;
 
 @property (nonatomic, assign) BOOL  loading;
 @property (nonatomic, assign) BOOL  editing;

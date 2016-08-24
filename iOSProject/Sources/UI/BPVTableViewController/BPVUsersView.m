@@ -12,7 +12,7 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVEditButton, @"Edit");
+BPVStringConstant(kBPVEditingButton, @"Edit");
 BPVStringConstant(kBPVDoneButton, @"Done");
 
 @implementation BPVUsersView
@@ -41,7 +41,7 @@ BPVStringConstant(kBPVDoneButton, @"Done");
 
 - (void)setEditing:(BOOL)editing {
     self.usersTableView.editing = editing;
-    [self.editDoneButton setTitle:(editing ? kBPVDoneButton : kBPVEditButton) forState:UIControlStateNormal];
+    [self.editingButton setTitle:(editing ? kBPVDoneButton : kBPVEditingButton) forState:UIControlStateNormal];
 }
 
 - (void)setLoading:(BOOL)loading {

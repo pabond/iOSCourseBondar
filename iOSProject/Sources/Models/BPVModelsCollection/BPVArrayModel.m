@@ -16,9 +16,10 @@
 #import "BPVMacro.h"
 
 #import "NSFileManager+BPVExtensions.h"
+#import "NSArray+BPVExtensions.h"
 
 BPVStringConstant(kBPVCollection, @"users");
-BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
+BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
@@ -178,7 +179,7 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
     NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
     NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if (!array.count) {
-        array = [self addModelsWithCount:kBPVDefoultUsersCount];
+        array = [self addModelsWithCount:kBPVDefaultUsersCount];
     }
     
     BPVWeakify(self)
@@ -194,12 +195,7 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
 #pragma mark Private implementations
 
 - (NSArray *)addModelsWithCount:(NSUInteger)count {
-    NSMutableArray *array = [NSMutableArray array];
-    for (NSUInteger itertionCount = 0; itertionCount < count; itertionCount++) {
-        [array addObject:[BPVUser new]];
-    }
-    
-    return array;
+    return [NSArray arrayWithObjectsFactoryWithCount:count block:^id{ return [BPVUser new]; }];
 }
 
 #pragma mark -

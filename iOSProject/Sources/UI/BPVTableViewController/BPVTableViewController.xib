@@ -27,7 +27,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Edit"/>
                     <connections>
-                        <action selector="onEditDone:" destination="-1" eventType="touchUpInside" id="KuC-gj-zL2"/>
+                        <action selector="onEditing:" destination="-1" eventType="touchUpInside" id="mta-qs-hdY"/>
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1p6-JR-xW5">
@@ -43,7 +43,8 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="editDoneButton" destination="8Sg-oI-Nlw" id="tEC-bG-1gh"/>
+                <outlet property="addButton" destination="4k8-0R-7GP" id="rsQ-Tn-7JM"/>
+                <outlet property="editingButton" destination="8Sg-oI-Nlw" id="fZd-pv-3fK"/>
                 <outlet property="usersTableView" destination="1p6-JR-xW5" id="OfH-fn-81I"/>
             </connections>
             <point key="canvasLocation" x="374" y="371"/>
