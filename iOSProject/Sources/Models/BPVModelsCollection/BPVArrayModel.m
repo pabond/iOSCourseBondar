@@ -25,6 +25,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
 - (NSArray *)addModelsWithCount:(NSUInteger)count;
+- (void)notifyOfArrayChangeWithObject:(id)object;
 
 @end
 
@@ -63,8 +64,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     @synchronized (self) {
         if (model) {
             [self.mutableModels addObject:model];
-            [self notifyOfState:BPVCollectionDidChange
-                     withObject:[BPVArrayChange addingChangeModelWithIndex:[self indexOfModel:model]]];
+            [self notifyOfArrayChangeWithObject:[BPVArrayChange addingChangeModelWithIndex:[self indexOfModel:model]]];
         }
     }
 }
@@ -115,8 +115,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     NSLog(@"[AFTER MOVING] object at index:%@", self[toIndex]);
     NSLog(@"[AFTER MOVING] moved object index:%lu", (unsigned long)[self indexOfModel:model]);
     
-    [self notifyOfState:BPVCollectionDidChange
-             withObject:[BPVArrayChange movingChangeModelWithIndex:toIndex fromIndex:fromIndex]];
+    [self notifyOfArrayChangeWithObject:[BPVArrayChange movingChangeModelWithIndex:toIndex fromIndex:fromIndex]];
 }
 
 - (void)insertModel:(id)model atIndex:(NSUInteger)index {
@@ -126,15 +125,14 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     
     @synchronized (self) {
         [self.mutableModels insertObject:model atIndex:index];
-        [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingChangeModelWithIndex:index]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange addingChangeModelWithIndex:index]];
     }
 }
 
 - (void)removeModelAtIndex:(NSUInteger)index {
     @synchronized (self) {
         [self.mutableModels removeObjectAtIndex:index];
-        [self notifyOfState:BPVCollectionDidChange
-                 withObject:[BPVArrayChange removingChangeModelWithIndex:index]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange removingChangeModelWithIndex:index]];
     }
 }
 
@@ -196,6 +194,10 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 - (NSArray *)addModelsWithCount:(NSUInteger)count {
     return [NSArray arrayWithObjectsFactoryWithCount:count block:^id{ return [BPVUser new]; }];
+}
+
+- (void)notifyOfArrayChangeWithObject:(id)object {
+    [self notifyOfState:BPVCollectionDidChange withObject:object];
 }
 
 #pragma mark -

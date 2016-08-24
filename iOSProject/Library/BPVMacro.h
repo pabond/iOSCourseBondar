@@ -71,4 +71,4 @@
 
 
 #define BPVPrintCurrentSelector \
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSLog(@"[INFO] %@", NSStringFromSelector(_cmd));

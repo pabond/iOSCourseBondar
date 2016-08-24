@@ -21,7 +21,7 @@ BPVStringConstant(kBPVDataFileName, @"/data.plist");
 - (NSString *)path {
     NSString *dataPath = [self documentsPath];
     
-    NSError *error;
+    NSError *error = nil;
     if (![self fileExistsAtPath:dataPath]) {
         [self createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
     }
