@@ -36,8 +36,8 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
 
 - (id)modelAtIndex:(NSUInteger)index;
 
-- (void)insertModel:(id)model atIndex:(NSUInteger)index notify:(BOOL)notify;
-- (void)removeModelAtIndex:(NSUInteger)index notify:(BOOL)notify;
+- (void)insertModel:(id)model atIndex:(NSUInteger)index;
+- (void)removeModelAtIndex:(NSUInteger)index;
 
 // you should never call this method  directly from outside
 // use instead two previous methos with notify value "YES"

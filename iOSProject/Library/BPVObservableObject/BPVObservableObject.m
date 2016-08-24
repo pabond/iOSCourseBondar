@@ -114,13 +114,17 @@
 }
 
 - (void)performBlock:(BPVBlock)block notify:(BOOL)notify {
+    if (!block) {
+        return;
+    }
+    
     @synchronized (self) {
-        BOOL notify = self.shouldNotify;
+        BOOL shouldNotify = self.shouldNotify;
         self.shouldNotify = notify;
         
-        BPVPerformBlock(block);
+        block();
         
-        self.shouldNotify = notify;
+        self.shouldNotify = shouldNotify;
     }
 }
 

@@ -102,13 +102,13 @@
 - (NSOperation *)imageLoadingOperaton {
     BPVWeakify(self);
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        BPVStrongifyIfNilReturn(self);
+        BPVStrongifyAndReturnIfNil(self);
         
         self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
     }];
     
     operation.completionBlock = ^{
-        BPVStrongifyIfNilReturn(self);
+        BPVStrongifyAndReturnIfNil(self);
         
         self.state = self.image ? BPVImageLoaded : BPVImageLoadingFailed;
     };

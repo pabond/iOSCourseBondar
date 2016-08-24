@@ -15,6 +15,8 @@
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
+#import "BPVMacro.h"
+
 #import "UIViewController+BPVExtensions.h"
 #import "UIWindow+BPVExtensions.h"
 
@@ -44,24 +46,24 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    NSLog(@"applicationWillResignActive");
+    BPVPrintCurrentSelector
     [self.users save];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    NSLog(@"applicationDidEnterBackground");
+    BPVPrintCurrentSelector
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    NSLog(@"applicationWillEnterForeground");
+    BPVPrintCurrentSelector
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    NSLog(@"applicationDidBecomeActive");
+    BPVPrintCurrentSelector
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    NSLog(@"applicationWillTerminate");
+    BPVPrintCurrentSelector
     [self.users save];
 }
 

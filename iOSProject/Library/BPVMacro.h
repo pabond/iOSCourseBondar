@@ -49,13 +49,13 @@
 
 #define BPVEmptyResult
 
-#define BPVStrongifyIfNilReturn(variable) \
-    BPVStrongifyIfNilReturnResult(variable, BPVEmptyResult)
+#define BPVStrongifyAndReturnIfNil(variable) \
+    BPVStrongifyAndReturnResultIfNil(variable, BPVEmptyResult)
 
-#define BPVStrongifyIfNilReturnNil(variable) \
-    BPVStrongifyIfNilReturnResult(variable, nil)
+#define BPVStrongifyAndReturnNilIfNil(variable) \
+    BPVStrongifyAndReturnResultIfNil(variable, nil)
 
-#define BPVStrongifyIfNilReturnResult(variable, result) \
+#define BPVStrongifyAndReturnResultIfNil(variable, result) \
     BPVStrongify(variable); \
     if (!variable) { \
         return result; \
@@ -68,3 +68,7 @@
 
 #define BPVStringConstant(name, value) \
     static NSString * const name = value
+
+
+#define BPVPrintCurrentSelector \
+    NSLog(@"%@", NSStringFromSelector(_cmd));

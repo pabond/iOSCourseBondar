@@ -97,28 +97,45 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
 }
 
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
+    if (fromIndex == toIndex) {
+        return;
+    }
+    
     id model = [self modelAtIndex:fromIndex];
-    BOOL notify = NO;
-    [self removeModelAtIndex:fromIndex notify:notify];
-    [self insertModel:model atIndex:toIndex notify:notify];
+    
+    NSLog(@"[BEFORE MOVING] object at index:%@", model);
+    NSLog(@"[MOVING] %@ fromIntdex:%lu toIndex:%lu", model, (unsigned long)fromIndex, (unsigned long)toIndex);
+    
+    [self performBlockWithoutNotification:^{
+        @synchronized (self) {
+            [self removeModelAtIndex:fromIndex];
+            [self insertModel:model atIndex:toIndex];
+        }
+    }];
+    
+    NSLog(@"[AFTER MOVING] object at index:%@", [self modelAtIndex:toIndex]);
+    NSLog(@"[AFTER MOVING] moved object index:%lu", (unsigned long)[self indexOfModel:model]);
+    
     [self notifyOfState:BPVCollectionDidChange
-             withObject:[BPVArrayChange movingChangeModelWithIndex:toIndex
-                                                                  fromIndex:fromIndex]];
+             withObject:[BPVArrayChange movingChangeModelWithIndex:toIndex fromIndex:fromIndex]];
 }
 
-- (void)insertModel:(id)model atIndex:(NSUInteger)index notify:(BOOL)notify {
-    if (model) {
+- (void)insertModel:(id)model atIndex:(NSUInteger)index {
+    if (!model) {
+        return;
+    }
+    
+    @synchronized (self) {
         [self.mutableModels insertObject:model atIndex:index];
-        if (notify) {
-            [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingChangeModelWithIndex:index]];
-        }
+        [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange addingChangeModelWithIndex:index]];
     }
 }
 
-- (void)removeModelAtIndex:(NSUInteger)index notify:(BOOL)notify {
-    [self.mutableModels removeObjectAtIndex:index];
-    if (notify) {
-        [self notifyOfState:BPVCollectionDidChange withObject:[BPVArrayChange removingChangeModelWithIndex:index]];
+- (void)removeModelAtIndex:(NSUInteger)index {
+    @synchronized (self) {
+        [self.mutableModels removeObjectAtIndex:index];
+        [self notifyOfState:BPVCollectionDidChange
+                 withObject:[BPVArrayChange removingChangeModelWithIndex:index]];
     }
 }
 

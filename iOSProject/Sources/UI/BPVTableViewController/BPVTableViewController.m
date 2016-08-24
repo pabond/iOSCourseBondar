@@ -97,7 +97,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.users removeModelAtIndex:indexPath.row notify:YES];
+        [self.users removeModelAtIndex:indexPath.row];
     }
 }
 
