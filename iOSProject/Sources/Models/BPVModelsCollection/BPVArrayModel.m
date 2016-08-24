@@ -164,13 +164,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark saving and restoring of state
 
 - (void)save {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.models];
     
-    if ([data writeToFile:[NSFileManager dataPath] atomically:YES]) {
-        NSLog(@"Saving operation succeeds");
-    } else {
-        NSLog(@"Data not saved");
-    }
 }
 
 - (void)load {

@@ -8,6 +8,12 @@
 
 #import "BPVUsers.h"
 
+#import "NSKeyedArchiver+BPVExtensions.h"
+
 @implementation BPVUsers
+
+- (void)save {
+    [NSKeyedArchiver archiveObject:self.models];
+}
 
 @end

@@ -1,5 +1,5 @@
 //
-//  NSKeyedArchiver+NSData.h
+//  NSKeyedArchiver+BPVExtensions.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/23/16.
@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSKeyedArchiver (NSData)
+@interface NSKeyedArchiver (BPVExtensions)
 
-+ (NSData *)archivateObject:(id)object;
++ (void)archiveObject:(id)object;
 
 @end
