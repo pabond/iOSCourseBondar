@@ -111,7 +111,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BPVUserCell *cell = [tableView cellWithClass:[BPVUserCell class]];
-    cell.user = [self.users modelAtIndex:indexPath.row];
+    cell.user = self.users[indexPath.row];
     
     return cell;
 }

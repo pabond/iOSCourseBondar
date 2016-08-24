@@ -87,10 +87,8 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
 }
 
 - (id)modelAtIndex:(NSUInteger)index {
-    NSMutableArray *models = self.mutableModels;
-    
-    if (index < models.count) {
-        return [models objectAtIndex:index];
+    if (index < self.count) {
+        return self.mutableModels[index];
     }
     
     return nil;
@@ -101,7 +99,7 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
         return;
     }
     
-    id model = [self modelAtIndex:fromIndex];
+    id model = self[fromIndex];
     
     NSLog(@"[BEFORE MOVING] object at index:%@", model);
     NSLog(@"[MOVING] %@ fromIntdex:%lu toIndex:%lu", model, (unsigned long)fromIndex, (unsigned long)toIndex);
@@ -113,7 +111,7 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
         }
     }];
     
-    NSLog(@"[AFTER MOVING] object at index:%@", [self modelAtIndex:toIndex]);
+    NSLog(@"[AFTER MOVING] object at index:%@", self[toIndex]);
     NSLog(@"[AFTER MOVING] moved object index:%lu", (unsigned long)[self indexOfModel:model]);
     
     [self notifyOfState:BPVCollectionDidChange
@@ -141,6 +139,10 @@ BPVConstant(NSUInteger, kBPVDefoultUsersCount, 10);
 
 - (NSUInteger)indexOfModel:(id)model {
     return [self.mutableModels indexOfObject:model];
+}
+
+- (id)objectAtIndexedSubscript:(NSUInteger)index {
+    return [self modelAtIndex:index];
 }
 
 #pragma mark -

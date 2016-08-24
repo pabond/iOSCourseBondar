@@ -43,6 +43,8 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
 // use instead two previous methos with notify value "YES"
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
+- (id)objectAtIndexedSubscript:(NSUInteger)index;
+
 - (void)save;
 - (void)load;
 
