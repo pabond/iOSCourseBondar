@@ -9,8 +9,10 @@
 #import "BPVObservableObject.h"
 
 typedef NS_ENUM(NSUInteger, BPVCollectionState) {
-    BPVCollectionDidChange,
-    BPVCollectionDidLoad
+    BPVModelsArrayNotLoad,
+    BPVModelsArrayLoading,
+    BPVModelsArrayDidLoad,
+    BPVModelsArrayDidChange
 };
 
 @protocol BPVCollectionObserver <NSObject>

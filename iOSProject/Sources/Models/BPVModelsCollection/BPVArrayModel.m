@@ -8,23 +8,16 @@
 
 #import "BPVArrayModel.h"
 
-#import "BPVUser.h"
-
 #import "BPVArrayChange.h"
 
 #import "BPVGCD.h"
 #import "BPVMacro.h"
 
-#import "NSFileManager+BPVExtensions.h"
-#import "NSArray+BPVExtensions.h"
-
 BPVStringConstant(kBPVCollection, @"users");
-BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
-- (NSArray *)addModelsWithCount:(NSUInteger)count;
 - (void)notifyOfArrayChangeWithObject:(id)object;
 
 @end
@@ -83,7 +76,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
             [self addModel:model];
         }
         
-        self.state = BPVCollectionDidLoad;
+        self.state = BPVModelsArrayDidLoad;
     }
 }
 
@@ -149,10 +142,10 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case BPVCollectionDidChange:
+        case BPVModelsArrayDidChange:
             return @selector(collection:didChangeWithModel:);
             
-        case BPVCollectionDidLoad:
+        case BPVModelsArrayDidLoad:
             return @selector(collectionDidLoad:);
             
         default:
@@ -164,34 +157,20 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark saving and restoring of state
 
 - (void)save {
-    
+
 }
 
 - (void)load {
-    NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    if (!array.count) {
-        array = [self addModelsWithCount:kBPVDefaultUsersCount];
+    if (self.state != BPVModelsArrayNotLoad) {
+        return;
     }
-    
-    BPVWeakify(self)
-    BPVPerformAsyncBlockOnMainQueue(^{
-        BPVStrongify(self)
-        if (data) {
-            [self addModels:array];
-        }
-    });
 }
 
 #pragma mark -
 #pragma mark Private implementations
 
-- (NSArray *)addModelsWithCount:(NSUInteger)count {
-    return [NSArray arrayWithObjectsFactoryWithCount:count block:^id{ return [BPVUser new]; }];
-}
-
 - (void)notifyOfArrayChangeWithObject:(id)object {
-    [self notifyOfState:BPVCollectionDidChange withObject:object];
+    [self notifyOfState:BPVModelsArrayDidChange withObject:object];
 }
 
 #pragma mark -

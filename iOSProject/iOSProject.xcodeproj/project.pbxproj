@@ -56,6 +56,7 @@
 		2DE9D2E41D6DA1B000371F7B /* BPVArrayChange+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2DC1D6DA1B000371F7B /* BPVArrayChange+UITableView.m */; };
 		2DE9D2E51D6DA1B000371F7B /* BPVMovingChangeModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2DF1D6DA1B000371F7B /* BPVMovingChangeModel+UITableView.m */; };
 		2DE9D2E61D6DA1B000371F7B /* BPVRemovingChangeModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2E21D6DA1B000371F7B /* BPVRemovingChangeModel+UITableView.m */; };
+		2DE9D2EA1D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2E91D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -170,6 +171,8 @@
 		2DE9D2DF1D6DA1B000371F7B /* BPVMovingChangeModel+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVMovingChangeModel+UITableView.m"; sourceTree = "<group>"; };
 		2DE9D2E11D6DA1B000371F7B /* BPVRemovingChangeModel+UITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVRemovingChangeModel+UITableView.h"; sourceTree = "<group>"; };
 		2DE9D2E21D6DA1B000371F7B /* BPVRemovingChangeModel+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVRemovingChangeModel+UITableView.m"; sourceTree = "<group>"; };
+		2DE9D2E81D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSKeyedUnarchiver+BPVExtensions.h"; sourceTree = "<group>"; };
+		2DE9D2E91D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedUnarchiver+BPVExtensions.m"; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -206,8 +209,8 @@
 				2D328D641D5CADF70064C76D /* BPVImage */,
 				2D328D771D5E1AF30064C76D /* BPVCollectionChange */,
 				2D328D671D5CADF70064C76D /* BPVUser */,
-				2D328D6C1D5CADF70064C76D /* BPVUsers collection */,
 				2D328D731D5E052D0064C76D /* BPVModelsCollection */,
+				2D328D6C1D5CADF70064C76D /* BPVUsers collection */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -453,8 +456,9 @@
 		2D4828BD1D6C905000AF3617 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				2DE9D2D61D6DA1B000371F7B /* BPVArrayChange */,
 				2D4829101D6C9FA900AF3617 /* NSKeyedArchiver */,
+				2DE9D2E71D6E265D00371F7B /* NSKeyedUnarchiver */,
+				2DE9D2D61D6DA1B000371F7B /* BPVArrayChange */,
 				2D4828CE1D6C905000AF3617 /* NSArray */,
 				2D4828D11D6C905000AF3617 /* NSFileManager */,
 				2D4828D41D6C905000AF3617 /* NSIndexPath */,
@@ -697,6 +701,15 @@
 			path = BPVRemovingChangeModel;
 			sourceTree = "<group>";
 		};
+		2DE9D2E71D6E265D00371F7B /* NSKeyedUnarchiver */ = {
+			isa = PBXGroup;
+			children = (
+				2DE9D2E81D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.h */,
+				2DE9D2E91D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m */,
+			);
+			path = NSKeyedUnarchiver;
+			sourceTree = "<group>";
+		};
 		901516722A207463FCC40A7F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,6 +917,7 @@
 				2D328D701D5CADF70064C76D /* BPVUser.m in Sources */,
 				2D4828F51D6C905000AF3617 /* NSArray+BPVExtensions.m in Sources */,
 				2D4829131D6CA00900AF3617 /* NSKeyedArchiver+BPVExtensions.m in Sources */,
+				2DE9D2EA1D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m in Sources */,
 				2D328D381D5358870064C76D /* BPVUsersView.m in Sources */,
 				2D328D761D5E05480064C76D /* BPVArrayModel.m in Sources */,
 				2D4828F61D6C905000AF3617 /* NSFileManager+BPVExtensions.m in Sources */,

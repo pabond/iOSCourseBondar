@@ -14,9 +14,9 @@
 
 + (void)archiveObject:(id)object {
     if ([NSKeyedArchiver archiveRootObject:object toFile:[NSFileManager dataPath]]) {
-        NSLog(@"Saving operation succeeds");
+        NSLog(@"[SAVE] Saving operation succeeds");
     } else {
-        NSLog(@"Data not saved");
+        NSLog(@"[FAIL] Data not saved");
     }
 }
 
