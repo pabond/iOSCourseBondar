@@ -11,7 +11,7 @@
 @implementation UINib (BPVExtensions)
 
 + (id)objectWithClass:(Class)class {
-    UINib *nib = [UINib nibWithClass:class];
+    UINib *nib = [self nibWithClass:class];
     
     return [nib objectWithClass:class];
 }
@@ -21,7 +21,7 @@
 }
 
 + (instancetype)nibWithClass:(Class)class bundle:(NSBundle *)bundle {
-    return [UINib nibWithNibName:NSStringFromClass(class) bundle:bundle];
+    return [self nibWithNibName:NSStringFromClass(class) bundle:bundle];
 }
 
 - (id)objectWithClass:(Class)class {

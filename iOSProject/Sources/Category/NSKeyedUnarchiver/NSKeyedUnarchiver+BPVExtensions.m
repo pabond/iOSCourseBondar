@@ -14,7 +14,7 @@
 
 + (id)unarchiveObject {
     NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSArray *array = [self unarchiveObjectWithData:data];
     if (array.count) {
         NSLog(@"[LOADING] Array loaded from file");
     }

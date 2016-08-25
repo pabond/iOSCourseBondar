@@ -27,6 +27,15 @@
     return cell;
 }
 
+- (id)cellWithClass:(Class)class withNibClass:(Class)nibClass {
+    id cell = [self dequeueReusableCellWithIdentifier:NSStringFromClass(class)];
+    if (!cell) {
+        cell = [UINib objectWithClass:nibClass];
+    }
+    
+    return cell;
+}
+
 - (void)updateTableViewWithUpdatesBlock:(BPVUpdatesBlock)block {
     if (!block) {
         return;

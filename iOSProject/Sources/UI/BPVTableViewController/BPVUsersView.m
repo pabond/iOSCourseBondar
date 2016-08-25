@@ -9,6 +9,7 @@
 #import "BPVUsersView.h"
 
 #import "BPVLoadingView.h"
+#import "NSBundle+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
@@ -23,13 +24,24 @@ BPVStringConstant(kBPVDoneButton, @"Done");
 #pragma mark -
 #pragma mark Initialastions and deallocations
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
-    
+        BPVLoadingView *loadingView = [[BPVLoadingView alloc] initWithFrame:self.bounds];
+        self.loadingView = loadingView;
+        [self addSubview:loadingView];
     }
     
     return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    BPVLoadingView *view = [NSBundle objectWithClass:[BPVLoadingView class]];
+    self.loadingView = view;
+    [self addSubview:view];
+    [self bringSubviewToFront:view];
 }
 
 #pragma mark -
@@ -45,7 +57,11 @@ BPVStringConstant(kBPVDoneButton, @"Done");
 }
 
 - (void)setLoading:(BOOL)loading {
-    self.loadingView.loading = loading;
+    BPVLoadingView *loadingView = self.loadingView;
+    loadingView.stopLoading = !loading;
+    if (loading) {
+        [loadingView showLoadingView];
+    }
 }
 
 - (BOOL)loading {

@@ -48,9 +48,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.usersView.loadingView = [[BPVLoadingView alloc] initWithFrame:self.view.frame];
-    [self.usersView addSubview:self.usersView.loadingView];
-    
     self.usersView.loading = YES;
 }
 

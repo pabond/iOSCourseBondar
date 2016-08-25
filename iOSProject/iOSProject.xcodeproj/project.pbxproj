@@ -57,6 +57,7 @@
 		2DE9D2E51D6DA1B000371F7B /* BPVMovingChangeModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2DF1D6DA1B000371F7B /* BPVMovingChangeModel+UITableView.m */; };
 		2DE9D2E61D6DA1B000371F7B /* BPVRemovingChangeModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2E21D6DA1B000371F7B /* BPVRemovingChangeModel+UITableView.m */; };
 		2DE9D2EA1D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2E91D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m */; };
+		2DE9D2EE1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +174,8 @@
 		2DE9D2E21D6DA1B000371F7B /* BPVRemovingChangeModel+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVRemovingChangeModel+UITableView.m"; sourceTree = "<group>"; };
 		2DE9D2E81D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSKeyedUnarchiver+BPVExtensions.h"; sourceTree = "<group>"; };
 		2DE9D2E91D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedUnarchiver+BPVExtensions.m"; sourceTree = "<group>"; };
+		2DE9D2EC1D6F3B4F00371F7B /* NSBundle+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BPVExtensions.h"; sourceTree = "<group>"; };
+		2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BPVExtensions.m"; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -456,6 +459,7 @@
 		2D4828BD1D6C905000AF3617 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				2DE9D2EB1D6F3B2E00371F7B /* NSBundle */,
 				2D4829101D6C9FA900AF3617 /* NSKeyedArchiver */,
 				2DE9D2E71D6E265D00371F7B /* NSKeyedUnarchiver */,
 				2DE9D2D61D6DA1B000371F7B /* BPVArrayChange */,
@@ -710,6 +714,15 @@
 			path = NSKeyedUnarchiver;
 			sourceTree = "<group>";
 		};
+		2DE9D2EB1D6F3B2E00371F7B /* NSBundle */ = {
+			isa = PBXGroup;
+			children = (
+				2DE9D2EC1D6F3B4F00371F7B /* NSBundle+BPVExtensions.h */,
+				2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */,
+			);
+			path = NSBundle;
+			sourceTree = "<group>";
+		};
 		901516722A207463FCC40A7F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,6 +947,7 @@
 				2D328D8B1D60F7870064C76D /* BPVRemovingChangeModel.m in Sources */,
 				2DE9D2E61D6DA1B000371F7B /* BPVRemovingChangeModel+UITableView.m in Sources */,
 				2D3F41FF1D3FA29800A38A7B /* main.m in Sources */,
+				2DE9D2EE1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m in Sources */,
 				2D4828FB1D6C905000AF3617 /* BPVSupportEntity.m in Sources */,
 				2D48290A1D6C908500AF3617 /* BPVOneIndexArrayChange.m in Sources */,
 				2DE9D2E51D6DA1B000371F7B /* BPVMovingChangeModel+UITableView.m in Sources */,

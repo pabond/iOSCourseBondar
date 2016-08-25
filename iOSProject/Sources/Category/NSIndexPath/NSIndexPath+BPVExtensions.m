@@ -13,7 +13,7 @@
 @implementation NSIndexPath (BPVExtensions)
 
 + (NSIndexPath *)indexPathForRow:(NSUInteger)index {
-    return [NSIndexPath indexPathForRow:index inSection:0];
+    return [self indexPathForRow:index inSection:0];
 }
 
 @end

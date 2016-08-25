@@ -13,7 +13,7 @@
 @implementation NSKeyedArchiver (BPVExtensions)
 
 + (void)archiveObject:(id)object {
-    if ([NSKeyedArchiver archiveRootObject:object toFile:[NSFileManager dataPath]]) {
+    if ([self archiveRootObject:object toFile:[NSFileManager dataPath]]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");

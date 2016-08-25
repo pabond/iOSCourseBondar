@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^BPVHandler)(void);
+
 @interface BPVLoadingView : UIView
 @property (nonatomic, assign) BOOL  loading;
+@property (nonatomic, assign) BOOL  stopLoading;
+
+- (void)showLoadingView;
 
 @end

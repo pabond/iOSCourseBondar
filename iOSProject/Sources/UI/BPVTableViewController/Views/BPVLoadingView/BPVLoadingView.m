@@ -16,21 +16,54 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 
 @implementation BPVLoadingView
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setLoading:(BOOL)loading {
+    [self setLoading:loading animated:NO];
+}
+
+- (void)setLoading:(BOOL)loading animated:(BOOL)animated {
+    [self setLoading:loading animated:animated complitionHandler:nil];
+}
+
+- (void)setLoading:(BOOL)loading animated:(BOOL)animated complitionHandler:(BPVHandler)complition {
     if (_loading != loading) {
         _loading = loading;
         
-        self.hidden = !loading;
-        
         BPVWeakify(self);
-        [UIView animateWithDuration:kBPVAnimationDuration animations:^{
-            BPVStrongify(self);
-            self.alpha = loading ? kBPVUpperAlfa : kBPVLowerAlfa;
+        [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
+                         animations:^{
+                             BPVStrongify(self);
+                             self.alpha = loading ? kBPVUpperAlfa : kBPVLowerAlfa;
+                             
+                             if (complition) {
+                                 complition();
+                             }
         }];
     }
+}
+
+#pragma mark -
+#pragma mark Public implementations
+
+- (void)showLoadingView {
+    BPVWeakify(self);
+    [self setLoading:YES animated:YES complitionHandler:^{
+        BPVStrongify(self);
+        if (self.stopLoading == YES) {
+            return;
+        }
+    }];
 }
 
 @end
