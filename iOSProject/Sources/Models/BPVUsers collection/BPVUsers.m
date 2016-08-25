@@ -19,7 +19,16 @@
 
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
+@interface BPVUsers ()
+
+- (void)loadUsersArray:(NSArray *)array;
+
+@end
+
 @implementation BPVUsers
+
+#pragma mark -
+#pragma mark Public implementations
 
 - (void)save {
     [NSKeyedArchiver archiveObject:self.models];
@@ -35,6 +44,9 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     
     [self loadUsersArray:array];
 }
+
+#pragma mark -
+#pragma mark Private implementations
 
 - (void)loadUsersArray:(NSArray *)array {
     BPVWeakify(self)
