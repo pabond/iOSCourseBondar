@@ -8,19 +8,26 @@
 
 #import "BPVArrayModel.h"
 
+#import "BPVUser.h"
+
 #import "BPVArrayChange.h"
 
 #import "BPVGCD.h"
 
 #import "NSMutableArray+BPVExtensions.h"
+#import "NSFileManager+BPVExtensions.h"
+#import "NSKeyedUnarchiver+BPVExtensions.h"
+#import "NSArray+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
 BPVStringConstant(kBPVCollection, @"users");
+BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
+- (void)loadModelsInBackground:(NSArray *)array;
 - (void)notifyOfArrayChangeWithObject:(id)object;
 
 @end
@@ -80,8 +87,6 @@ BPVStringConstant(kBPVCollection, @"users");
             for (id model in models) {
                 [self addModel:model];
             }
-            
-            self.state = BPVModelsArrayDidLoad;
         }
     }
 }
@@ -145,6 +150,15 @@ BPVStringConstant(kBPVCollection, @"users");
         case BPVModelsArrayDidLoad:
             return @selector(collectionDidLoad:);
             
+        case BPVModelsArrayFailLoading:
+            return @selector(collectionFailLoading:);
+            
+        case BPVModelsArrayWillLoad:
+            return @selector(collectionWillLoad:);
+            
+        case BPVModelsArrayNotLoad:
+            return @selector(collectionNotLoad:);
+            
         default:
             return [super selectorForState:state];
     }
@@ -154,17 +168,45 @@ BPVStringConstant(kBPVCollection, @"users");
 #pragma mark saving and restoring of state
 
 - (void)save {
-
+    if ([NSKeyedArchiver archiveRootObject:self.models toFile:[NSFileManager applicationDataPathWithDafaultFileName]]) {
+        NSLog(@"[SAVE] Saving operation succeeds");
+    } else {
+        NSLog(@"[FAIL] Data not saved");
+    }
 }
 
 - (void)load {
-    if (self.state != BPVModelsArrayNotLoad) {
-        return;
+    NSArray *array = [NSKeyedUnarchiver unarchiveObject];
+    if (!array) {
+        array = [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id{ return [BPVUser new]; }];
     }
+    
+    [self loadModelsInBackground:array];
 }
 
 #pragma mark -
 #pragma mark Private implementations
+
+- (void)loadModelsInBackground:(NSArray *)array {
+    @synchronized (self) {
+        self.state = BPVModelsArrayWillLoad;
+        BPVWeakify(self)
+        BPVPerformAsyncBlockOnBackgroundQueue(^{
+            BPVStrongifyAndReturnIfNil(self)
+            if (array) {
+                self.mutableModels = [array mutableCopy];
+            }
+
+            BPVPerformAsyncBlockOnMainQueue(^{
+                if (self.count) {
+                    self.state = BPVModelsArrayDidLoad;
+                } else {
+                    self.state = BPVModelsArrayFailLoading;
+                }
+            });
+        });
+    }
+}
 
 - (void)notifyOfArrayChangeWithObject:(id)object {
     [self notifyOfState:BPVModelsArrayDidChange withObject:object];

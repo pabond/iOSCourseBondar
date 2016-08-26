@@ -12,7 +12,7 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
     BPVModelsArrayNotLoad,
     BPVModelsArrayWillLoad,
     BPVModelsArrayDidLoad,
-    BPVModelsArrayFailLoad,
+    BPVModelsArrayFailLoading,
     BPVModelsArrayDidChange
 };
 
@@ -20,6 +20,11 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
 
 - (void)collection:(id)collection didChangeWithModel:(id)changeModel;
 - (void)collectionDidLoad:(id)collection;
+- (void)collectionFailLoading:(id)collection;
+
+@optional
+- (void)collectionWillLoad:(id)collection;
+- (void)collectionNotLoad:(id)collection;
 
 @end
 

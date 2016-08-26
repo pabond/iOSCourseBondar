@@ -28,23 +28,23 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setLoading:(BOOL)loading {
-    [self setLoading:loading animated:NO];
+- (void)setVisible:(BOOL)visible {
+    [self setVisible:visible animated:NO];
 }
 
-- (void)setLoading:(BOOL)loading animated:(BOOL)animated {
-    [self setLoading:loading animated:animated complitionHandler:nil];
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated {
+    [self setVisible:visible animated:animated complitionHandler:nil];
 }
 
-- (void)setLoading:(BOOL)loading animated:(BOOL)animated complitionHandler:(BPVHandler)complition {
-    if (_loading != loading) {
-        _loading = loading;
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated complitionHandler:(BPVHandler)complition {
+    if (_visible != visible) {
+        _visible = visible;
         
         BPVWeakify(self);
         [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
                          animations:^{
                              BPVStrongify(self);
-                             self.alpha = loading ? kBPVUpperAlfa : kBPVLowerAlfa;
+                             self.alpha = visible ? kBPVUpperAlfa : kBPVLowerAlfa;
                              
                              if (complition) {
                                  complition();
@@ -58,7 +58,7 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 
 - (void)showLoadingView {
     BPVWeakify(self);
-    [self setLoading:YES animated:YES complitionHandler:^{
+    [self setVisible:YES animated:YES complitionHandler:^{
         BPVStrongify(self);
         if (self.stopLoading == YES) {
             return;

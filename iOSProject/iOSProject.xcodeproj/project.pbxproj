@@ -46,7 +46,6 @@
 		2D4829091D6C908500AF3617 /* BPVArrayChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4829021D6C908500AF3617 /* BPVArrayChange.m */; };
 		2D48290A1D6C908500AF3617 /* BPVOneIndexArrayChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4829051D6C908500AF3617 /* BPVOneIndexArrayChange.m */; };
 		2D48290B1D6C908500AF3617 /* BPVTwoIndexArrayChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4829081D6C908500AF3617 /* BPVTwoIndexArrayChange.m */; };
-		2D4829131D6CA00900AF3617 /* NSKeyedArchiver+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4829121D6CA00900AF3617 /* NSKeyedArchiver+BPVExtensions.m */; };
 		2DA8E95D1D4C89AE0067032D /* BPVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */; };
 		2DA8E95E1D4C89AE0067032D /* BPVTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */; };
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
@@ -155,8 +154,6 @@
 		2D4829051D6C908500AF3617 /* BPVOneIndexArrayChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVOneIndexArrayChange.m; sourceTree = "<group>"; };
 		2D4829071D6C908500AF3617 /* BPVTwoIndexArrayChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTwoIndexArrayChange.h; sourceTree = "<group>"; };
 		2D4829081D6C908500AF3617 /* BPVTwoIndexArrayChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTwoIndexArrayChange.m; sourceTree = "<group>"; };
-		2D4829111D6CA00900AF3617 /* NSKeyedArchiver+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSKeyedArchiver+BPVExtensions.h"; sourceTree = "<group>"; };
-		2D4829121D6CA00900AF3617 /* NSKeyedArchiver+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedArchiver+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DA8E95A1D4C89AE0067032D /* BPVTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewController.h; sourceTree = "<group>"; };
 		2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewController.m; sourceTree = "<group>"; };
 		2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVTableViewController.xib; sourceTree = "<group>"; };
@@ -465,7 +462,6 @@
 				2DE9D2F31D70331400371F7B /* BPVArrayChange */,
 				2DE9D2EF1D702B6900371F7B /* NSMutableArray */,
 				2DE9D2EB1D6F3B2E00371F7B /* NSBundle */,
-				2D4829101D6C9FA900AF3617 /* NSKeyedArchiver */,
 				2DE9D2E71D6E265D00371F7B /* NSKeyedUnarchiver */,
 				2D4828CE1D6C905000AF3617 /* NSArray */,
 				2D4828D11D6C905000AF3617 /* NSFileManager */,
@@ -618,15 +614,6 @@
 			name = BPVTwoIndexArrayChange;
 			path = Sources/Models/BPVCollectionChange/BPVTwoIndexArrayChange;
 			sourceTree = SOURCE_ROOT;
-		};
-		2D4829101D6C9FA900AF3617 /* NSKeyedArchiver */ = {
-			isa = PBXGroup;
-			children = (
-				2D4829111D6CA00900AF3617 /* NSKeyedArchiver+BPVExtensions.h */,
-				2D4829121D6CA00900AF3617 /* NSKeyedArchiver+BPVExtensions.m */,
-			);
-			path = NSKeyedArchiver;
-			sourceTree = "<group>";
 		};
 		2DA8E95F1D4C89DC0067032D /* BPVObservableObject */ = {
 			isa = PBXGroup;
@@ -943,7 +930,6 @@
 				2D328D701D5CADF70064C76D /* BPVUser.m in Sources */,
 				2D4828F51D6C905000AF3617 /* NSArray+BPVExtensions.m in Sources */,
 				2DE9D2F21D702B8500371F7B /* NSMutableArray+BPVExtensions.m in Sources */,
-				2D4829131D6CA00900AF3617 /* NSKeyedArchiver+BPVExtensions.m in Sources */,
 				2DE9D2EA1D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m in Sources */,
 				2D328D381D5358870064C76D /* BPVUsersView.m in Sources */,
 				2D328D761D5E05480064C76D /* BPVArrayModel.m in Sources */,

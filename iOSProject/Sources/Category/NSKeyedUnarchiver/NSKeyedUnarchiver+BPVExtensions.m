@@ -13,7 +13,7 @@
 @implementation NSKeyedUnarchiver (BPVExtensions)
 
 + (id)unarchiveObject {
-    NSData *data = [NSData dataWithContentsOfFile:[NSFileManager dataPath]];
+    NSData *data = [NSData dataWithContentsOfFile:[NSFileManager applicationDataPathWithDafaultFileName]];
     NSArray *array = [self unarchiveObjectWithData:data];
     if (array.count) {
         NSLog(@"[LOADING] Array loaded from file");

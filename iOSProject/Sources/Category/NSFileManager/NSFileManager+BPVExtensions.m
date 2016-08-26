@@ -14,7 +14,7 @@ BPVStringConstant(kBPVDefaultApplictionFileName, @"/data.plist");
 
 @implementation NSFileManager (BPVExtensions)
 
-+ (NSString *)applicationDataPath {
++ (NSString *)applicationDataPathWithDafaultFileName {
     return [self applicationDataPathWithFileName:kBPVDefaultApplictionFileName];
 }
 
