@@ -11,5 +11,7 @@
 @interface UIViewController (BPVExtensions)
 
 + (instancetype)viewController;
++ (instancetype)viewControllerWithNibClass:(Class)cls;
++ (instancetype)viewControllerWithNibClass:(Class)cls bundale:(NSBundle *)nibBundle;
 
 @end

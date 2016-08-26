@@ -11,7 +11,15 @@
 @implementation UIViewController (BPVExtensions)
 
 + (instancetype)viewController {
-    return [[self alloc] initWithNibName:NSStringFromClass([self class]) bundle:nil];
+    return [self viewControllerWithNibClass:[self class]];
+}
+
++ (instancetype)viewControllerWithNibClass:(Class)class {
+    return [self viewControllerWithNibClass:class bundale:nil];
+}
+
++ (instancetype)viewControllerWithNibClass:(Class)class bundale:(NSBundle *)nibBundle {
+    return [[self alloc] initWithNibName:NSStringFromClass([self class]) bundle:nibBundle];
 }
 
 @end
