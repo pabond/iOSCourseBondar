@@ -15,10 +15,12 @@ BPVStringConstant(kBPVDefaultApplictionFileName, /data.plist);
 @implementation NSFileManager (BPVExtensions)
 
 + (NSString *)applicationDataPathWithDafaultFileName {
-    return [self applicationDataPathWithFileName:kBPVDefaultApplictionFileName];
+    NSString *dataPath = [[self applicationDataPath] stringByAppendingString:kBPVDefaultApplictionFileName];
+    
+    return dataPath;
 }
 
-+ (NSString *)applicationDataPathWithFileName:(NSString *)fileName {
++ (NSString *)applicationDataPath {
     static dispatch_once_t onceToken;
     static NSString *dataPath = nil;
     dispatch_once(&onceToken, ^{
@@ -27,10 +29,7 @@ BPVStringConstant(kBPVDefaultApplictionFileName, /data.plist);
         if (![fileManager fileExistsAtPath:dataPath]) {
             [fileManager createDirectoryWithPath:dataPath];
         }
-
     });
-    
-    dataPath = [dataPath stringByAppendingString:fileName];
     
     return dataPath;
 }

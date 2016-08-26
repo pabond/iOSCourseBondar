@@ -28,7 +28,6 @@ BPVStringConstant(kBPVDoneButton, Done);
     [super awakeFromNib];
     
     BPVLoadingView *loadingView = [NSBundle objectWithClass:[BPVLoadingView class]];
-    loadingView.frame = self.window.frame;
     self.loadingView = loadingView;
     [self addSubview:loadingView];
     [self bringSubviewToFront:loadingView];

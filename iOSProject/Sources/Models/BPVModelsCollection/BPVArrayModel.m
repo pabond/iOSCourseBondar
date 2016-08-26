@@ -168,7 +168,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark saving and restoring of state
 
 - (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self.models toFile:[NSFileManager applicationDataPathWithDafaultFileName]]) {
+    if ([NSKeyedArchiver archiveRootObject:self.mutableModels toFile:[NSFileManager applicationDataPathWithDafaultFileName]]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");
