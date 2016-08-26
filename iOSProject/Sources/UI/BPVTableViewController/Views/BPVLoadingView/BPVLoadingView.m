@@ -34,12 +34,17 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
     if (_visible != visible) {
         _visible = visible;
         
+        UIActivityIndicatorView *spinner = self.spinner;
+        [spinner startAnimating];
+        
         BPVWeakify(self);
         [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
                          animations:^{
                              BPVStrongify(self);
                              self.alpha = visible ? kBPVUpperAlfa : kBPVLowerAlfa;
                              self.hidden = visible;
+                             
+                             [spinner stopAnimating];
                              
                              if (complition) {
                                  complition();
