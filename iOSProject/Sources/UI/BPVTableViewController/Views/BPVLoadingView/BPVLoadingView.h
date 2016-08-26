@@ -11,8 +11,14 @@
 typedef void(^BPVHandler)(void);
 
 @interface BPVLoadingView : UIView
+@property (strong, nonatomic) IBOutlet UILabel *loadingLabel;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, assign) BOOL  visible;
-@property (nonatomic, assign) BOOL  stopLoading;
+
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated;
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated complitionHandler:(BPVHandler)complition;
+
+- (void)loadingViewInSuperView:(UIView *)superView;
 
 - (void)showLoadingView;
 - (void)hideLoadingView;

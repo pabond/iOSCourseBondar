@@ -23,7 +23,7 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVTableTitle, @"USERS LIST");
+BPVStringConstant(kBPVTableTitle, USERS LIST);
 
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
@@ -41,24 +41,11 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     [self.users removeObserver:self];
 }
 
-- (void)loadView {
-    [super loadView];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     
     self.usersView.loading = YES;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    
     [self.users load];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark -

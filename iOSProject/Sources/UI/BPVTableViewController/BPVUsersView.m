@@ -13,8 +13,8 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVEditingButton, @"Edit");
-BPVStringConstant(kBPVDoneButton, @"Done");
+BPVStringConstant(kBPVEditingButton, Edit);
+BPVStringConstant(kBPVDoneButton, Done);
 
 @implementation BPVUsersView
 
@@ -24,24 +24,14 @@ BPVStringConstant(kBPVDoneButton, @"Done");
 #pragma mark -
 #pragma mark Initialastions and deallocations
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        BPVLoadingView *loadingView = [[BPVLoadingView alloc] initWithFrame:self.bounds];
-        self.loadingView = loadingView;
-        [self addSubview:loadingView];
-    }
-    
-    return self;
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    BPVLoadingView *view = [NSBundle objectWithClass:[BPVLoadingView class]];
-    self.loadingView = view;
-    [self addSubview:view];
-    [self bringSubviewToFront:view];
+    BPVLoadingView *loadingView = [NSBundle objectWithClass:[BPVLoadingView class]];
+    loadingView.frame = self.window.frame;
+    self.loadingView = loadingView;
+    [self addSubview:loadingView];
+    [self bringSubviewToFront:loadingView];
 }
 
 #pragma mark -
@@ -57,15 +47,18 @@ BPVStringConstant(kBPVDoneButton, @"Done");
 }
 
 - (void)setLoading:(BOOL)loading {
-    BPVLoadingView *loadingView = self.loadingView;
-    loadingView.stopLoading = !loading;
-    if (loading) {
-        [loadingView showLoadingView];
+    if (self.loading != loading) {
+        BPVLoadingView *loadingView = self.loadingView;
+        if (loading) {
+            [loadingView showLoadingView];
+        } else {
+            [loadingView hideLoadingView];
+        }
     }
 }
 
 - (BOOL)loading {
-    return self.loadingView.loading;
+    return self.loadingView.visible;
 }
 
 @end

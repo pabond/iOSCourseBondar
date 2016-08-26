@@ -23,6 +23,10 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="loadingLabel" destination="ftp-ko-16O" id="pk5-t9-N4o"/>
+                <outlet property="spinner" destination="hbZ-LV-KwY" id="ORd-Fv-4Lk"/>
+            </connections>
             <point key="canvasLocation" x="348" y="360"/>
         </view>
     </objects>

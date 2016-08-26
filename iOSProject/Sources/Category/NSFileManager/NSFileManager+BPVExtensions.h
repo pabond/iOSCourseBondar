@@ -13,7 +13,7 @@
 + (NSString *)applicationDataPathWithDafaultFileName;
 + (NSString *)applicationDataPathWithFileName:(NSString *)fileName;
 
-- (void)createDirectoryAtPath:(NSString *)path;
+- (void)createDirectoryWithPath:(NSString *)path;
 
 - (NSString *)documentDirectoryPath;
 - (NSString *)libraryDirectoryPath;

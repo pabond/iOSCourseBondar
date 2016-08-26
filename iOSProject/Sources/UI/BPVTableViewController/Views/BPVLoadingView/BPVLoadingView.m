@@ -16,21 +16,15 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 
 @implementation BPVLoadingView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        
-    }
-    
-    return self;
-}
-
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setVisible:(BOOL)visible {
     [self setVisible:visible animated:NO];
 }
+
+#pragma mark -
+#pragma mark Public implementations
 
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated {
     [self setVisible:visible animated:animated complitionHandler:nil];
@@ -45,25 +39,25 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
                          animations:^{
                              BPVStrongify(self);
                              self.alpha = visible ? kBPVUpperAlfa : kBPVLowerAlfa;
+                             self.hidden = visible;
                              
                              if (complition) {
                                  complition();
                              }
-        }];
+                         }];
     }
 }
 
-#pragma mark -
-#pragma mark Public implementations
+- (void)loadingViewInSuperView:(UIView *)superView {
+    
+}
 
 - (void)showLoadingView {
-    BPVWeakify(self);
-    [self setVisible:YES animated:YES complitionHandler:^{
-        BPVStrongify(self);
-        if (self.stopLoading == YES) {
-            return;
-        }
-    }];
+    [self setVisible:YES animated:YES];
+}
+
+- (void)hideLoadingView {
+    [self setVisible:NO animated:YES];
 }
 
 @end

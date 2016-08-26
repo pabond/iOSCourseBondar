@@ -67,7 +67,11 @@
 
 
 #define BPVStringConstant(name, value) \
-    static NSString * const name = value
+    static NSString * const name = @#value
+
+
+#define BPVStringConstantWithConstantName(name) \
+    static NSString * const name = @#name
 
 
 #define BPVPrintCurrentSelector \

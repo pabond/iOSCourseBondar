@@ -21,7 +21,7 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVCollection, @"users");
+BPVStringConstant(kBPVCollection, users);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVArrayModel ()
@@ -181,7 +181,9 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
         array = [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id{ return [BPVUser new]; }];
     }
     
-    [self loadModelsInBackground:array];
+    BPVPerformAsyncBlockOnBackgroundQueue(^{
+        [self loadModelsInBackground:array];
+    });
 }
 
 #pragma mark -
@@ -191,19 +193,17 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     @synchronized (self) {
         self.state = BPVModelsArrayWillLoad;
         BPVWeakify(self)
-        BPVPerformAsyncBlockOnBackgroundQueue(^{
-            BPVStrongifyAndReturnIfNil(self)
-            if (array) {
-                self.mutableModels = [array mutableCopy];
-            }
+        BPVStrongifyAndReturnIfNil(self)
+        if (array) {
+            self.mutableModels = [array mutableCopy];
+        }
 
-            BPVPerformAsyncBlockOnMainQueue(^{
-                if (self.count) {
-                    self.state = BPVModelsArrayDidLoad;
-                } else {
-                    self.state = BPVModelsArrayFailLoading;
-                }
-            });
+        BPVPerformAsyncBlockOnMainQueue(^{
+            if (self.count) {
+                self.state = BPVModelsArrayDidLoad;
+            } else {
+                self.state = BPVModelsArrayFailLoading;
+            }
         });
     }
 }

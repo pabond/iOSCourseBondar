@@ -10,7 +10,7 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVDefaultApplictionFileName, @"/data.plist");
+BPVStringConstant(kBPVDefaultApplictionFileName, /data.plist);
 
 @implementation NSFileManager (BPVExtensions)
 
@@ -25,7 +25,7 @@ BPVStringConstant(kBPVDefaultApplictionFileName, @"/data.plist");
         NSFileManager *fileManager = [NSFileManager defaultManager];
         dataPath = [fileManager documentDirectoryPath];
         if (![fileManager fileExistsAtPath:dataPath]) {
-            [fileManager createDirectoryAtPath:dataPath];
+            [fileManager createDirectoryWithPath:dataPath];
         }
 
     });
@@ -35,7 +35,7 @@ BPVStringConstant(kBPVDefaultApplictionFileName, @"/data.plist");
     return dataPath;
 }
 
-- (void)createDirectoryAtPath:(NSString *)path {
+- (void)createDirectoryWithPath:(NSString *)path {
     NSError *error = nil;
     [self createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
 }
