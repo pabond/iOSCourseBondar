@@ -12,8 +12,8 @@
 
 @interface BPVArrayChange : NSObject
 
-+ (instancetype)removingChangeModelWithIndex:(NSUInteger)index;
-+ (instancetype)addingChangeModelWithIndex:(NSUInteger)index;
-+ (instancetype)movingChangeModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
++ (instancetype)removeModelWithIndex:(NSUInteger)index;
++ (instancetype)addModelWithIndex:(NSUInteger)index;
++ (instancetype)moveModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
 
 @end

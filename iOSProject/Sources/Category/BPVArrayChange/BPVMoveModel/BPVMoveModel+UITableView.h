@@ -1,13 +1,13 @@
 //
-//  BPVRemovingChangeModel+BPVExtensions.h
+//  BPVMoveModel+BPVExtensions.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/15/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVRemovingChangeModel.h"
+#import "BPVMoveModel.h"
 
-@interface BPVRemovingChangeModel (UITableView)
+@interface BPVMoveModel (UITableView)
 
 @end

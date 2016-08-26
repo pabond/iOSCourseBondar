@@ -1,5 +1,5 @@
 //
-//  BPVAddingChangeModel.h
+//  BPVAddModel.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/12/16.
@@ -8,6 +8,6 @@
 
 #import "BPVOneIndexArrayChange.h"
 
-@interface BPVAddingChangeModel : BPVOneIndexArrayChange
+@interface BPVAddModel : BPVOneIndexArrayChange
 
 @end

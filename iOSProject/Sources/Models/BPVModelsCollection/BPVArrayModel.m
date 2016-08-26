@@ -11,6 +11,9 @@
 #import "BPVArrayChange.h"
 
 #import "BPVGCD.h"
+
+#import "NSMutableArray+BPVExtensions.h"
+
 #import "BPVMacro.h"
 
 BPVStringConstant(kBPVCollection, @"users");
@@ -57,7 +60,7 @@ BPVStringConstant(kBPVCollection, @"users");
     @synchronized (self) {
         if (model) {
             [self.mutableModels addObject:model];
-            [self notifyOfArrayChangeWithObject:[BPVArrayChange addingChangeModelWithIndex:[self indexOfModel:model]]];
+            [self notifyOfArrayChangeWithObject:[BPVArrayChange addModelWithIndex:[self indexOfModel:model]]];
         }
     }
 }
@@ -66,17 +69,20 @@ BPVStringConstant(kBPVCollection, @"users");
     @synchronized (self) {
         if (model) {
             [self.mutableModels removeObject:model];
+            [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:[self indexOfModel:model]]];
         }
     }
 }
 
 - (void)addModels:(NSArray *)models {
-    if (models) {
-        for (id model in models) {
-            [self addModel:model];
+    @synchronized (self) {
+        if (models) {
+            for (id model in models) {
+                [self addModel:model];
+            }
+            
+            self.state = BPVModelsArrayDidLoad;
         }
-        
-        self.state = BPVModelsArrayDidLoad;
     }
 }
 
@@ -93,22 +99,13 @@ BPVStringConstant(kBPVCollection, @"users");
         return;
     }
     
-    id model = self[fromIndex];
-    
-    NSLog(@"[BEFORE MOVING] object at index:%@", model);
-    NSLog(@"[MOVING] %@ fromIntdex:%lu toIndex:%lu", model, (unsigned long)fromIndex, (unsigned long)toIndex);
-    
-    [self performBlockWithoutNotification:^{
-        @synchronized (self) {
-            [self removeModelAtIndex:fromIndex];
-            [self insertModel:model atIndex:toIndex];
-        }
-    }];
-    
-    NSLog(@"[AFTER MOVING] object at index:%@", self[toIndex]);
-    NSLog(@"[AFTER MOVING] moved object index:%lu", (unsigned long)[self indexOfModel:model]);
-    
-    [self notifyOfArrayChangeWithObject:[BPVArrayChange movingChangeModelWithIndex:toIndex fromIndex:fromIndex]];
+    @synchronized (self) {
+        [self performBlockWithoutNotification:^{
+            [self.mutableModels moveObjectFromIndex:fromIndex toIndex:toIndex];
+        }];
+            
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange moveModelWithIndex:toIndex fromIndex:fromIndex]];
+    }
 }
 
 - (void)insertModel:(id)model atIndex:(NSUInteger)index {
@@ -118,14 +115,14 @@ BPVStringConstant(kBPVCollection, @"users");
     
     @synchronized (self) {
         [self.mutableModels insertObject:model atIndex:index];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange addingChangeModelWithIndex:index]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange addModelWithIndex:index]];
     }
 }
 
 - (void)removeModelAtIndex:(NSUInteger)index {
     @synchronized (self) {
         [self.mutableModels removeObjectAtIndex:index];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange removingChangeModelWithIndex:index]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:index]];
     }
 }
 

@@ -13,6 +13,14 @@
 @implementation NSBundle (BPVExtensions)
 
 + (id)objectWithClass:(Class)class {
+    return [self objectWithClass:class owner:nil];
+}
+
++ (id)objectWithClass:(Class)class owner:(id)owner {
+    return [self objectWithClass:class owner:owner options:nil];
+}
+
++ (id)objectWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
     for (id object in [self loadNibWithClass:class]) {
         if ([object isMemberOfClass:class]) {
             return object;

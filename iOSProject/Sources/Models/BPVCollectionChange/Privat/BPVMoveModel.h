@@ -1,5 +1,5 @@
 //
-//  BPVMovingChangeModel.h
+//  BPVMoveModel.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/14/16.
@@ -8,6 +8,6 @@
 
 #import "BPVTwoIndexArrayChange.h"
 
-@interface BPVMovingChangeModel : BPVTwoIndexArrayChange
+@interface BPVMoveModel : BPVTwoIndexArrayChange
 
 @end

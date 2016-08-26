@@ -11,11 +11,12 @@
 #import "BPVUser.h"
 
 #import "BPVGCD.h"
-#import "BPVMacro.h"
 
 #import "NSKeyedArchiver+BPVExtensions.h"
 #import "NSKeyedUnarchiver+BPVExtensions.h"
 #import "NSArray+BPVExtensions.h"
+
+#import "BPVMacro.h"
 
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 

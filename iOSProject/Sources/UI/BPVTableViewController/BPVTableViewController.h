@@ -12,8 +12,7 @@
 
 @interface BPVTableViewController : UIViewController    <UITableViewDataSource,
                                                         UITableViewDelegate,
-                                                        BPVCollectionObserver,
-                                                        BPVCollectionLoading>
+                                                        BPVArrayModelObserver>
 
 - (IBAction)onEditing:(id)sender;
 - (IBAction)onAdd:(id)sender;

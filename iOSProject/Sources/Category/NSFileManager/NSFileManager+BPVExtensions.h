@@ -10,19 +10,15 @@
 
 @interface NSFileManager (BPVExtensions)
 
-+ (NSString *)dataPath;
-+ (NSString *)dataPathWithFileName:(NSString *)fileName;
++ (NSString *)applicationDataPath;
++ (NSString *)applicationDataPathWithFileName:(NSString *)fileName;
 
-- (NSString *)pathInFileManager;
+- (void)createDirectoryAtPath:(NSString *)path;
 
-- (NSString *)documentsPath;
-- (NSString *)documentsPathWithDomainMask:(NSSearchPathDomainMask)domainMask;
+- (NSString *)documentDirectoryPath;
+- (NSString *)libraryDirectoryPath;
 
-- (NSString *)libraryPath;
-- (NSString *)libraryPathWithDomainMask:(NSSearchPathDomainMask)domainMask;
-
-- (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory domainMask:(NSSearchPathDomainMask)domainMask;
-
-- (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory domainMask:(NSSearchPathDomainMask)domainMask;
+- (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory;
+- (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory;
 
 @end

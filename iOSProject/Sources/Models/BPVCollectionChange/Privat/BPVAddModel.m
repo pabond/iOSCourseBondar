@@ -1,13 +1,13 @@
 //
-//  BPVRemovingChangeModel.m
+//  BPVAddModel.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/12/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVRemovingChangeModel.h"
+#import "BPVAddModel.h"
 
-@implementation BPVRemovingChangeModel
+@implementation BPVAddModel
 
 @end

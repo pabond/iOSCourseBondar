@@ -15,10 +15,10 @@
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
-#import "BPVMacro.h"
-
 #import "UIViewController+BPVExtensions.h"
 #import "UIWindow+BPVExtensions.h"
+
+#import "BPVMacro.h"
 
 @interface BPVAppDelegate ()
 @property (nonatomic, strong) BPVUsers *users;
@@ -46,24 +46,24 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    BPVPrintCurrentSelector
+    BPVPrintCurrentSelector;
     [self.users save];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    BPVPrintCurrentSelector
+    BPVPrintCurrentSelector;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    BPVPrintCurrentSelector
+    BPVPrintCurrentSelector;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    BPVPrintCurrentSelector
+    BPVPrintCurrentSelector;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    BPVPrintCurrentSelector
+    BPVPrintCurrentSelector;
     [self.users save];
 }
 
