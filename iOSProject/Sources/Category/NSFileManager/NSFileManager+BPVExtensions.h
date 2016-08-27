@@ -10,7 +10,7 @@
 
 @interface NSFileManager (BPVExtensions)
 
-+ (NSString *)applicationDataPathWithDafaultFileName;
++ (NSString *)applicationDataPathWithFileName:(NSString *)fileName;
 + (NSString *)applicationDataPath;
 
 - (void)createDirectoryWithPath:(NSString *)path;

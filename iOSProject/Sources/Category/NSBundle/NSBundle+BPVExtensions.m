@@ -21,25 +21,13 @@
 }
 
 + (id)objectWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
-    for (id object in [self loadNibWithClass:class]) {
+    for (id object in [[self mainBundle] loadNibNamed:NSStringFromClass(class) owner:owner options:options]) {
         if ([object isMemberOfClass:class]) {
             return object;
         }
     }
     
     return nil;
-}
-
-+ (NSArray *)loadNibWithClass:(Class)class {
-    return [self loadNibWithClass:class owner:nil];
-}
-
-+ (NSArray *)loadNibWithClass:(Class)class owner:(id)owner {
-    return [self loadNibWithClass:class owner:owner options:nil];
-}
-
-+ (NSArray *)loadNibWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
-    return [[self mainBundle] loadNibNamed:NSStringFromClass(class) owner:owner options:options];
 }
 
 @end

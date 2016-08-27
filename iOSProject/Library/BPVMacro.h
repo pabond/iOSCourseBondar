@@ -66,11 +66,11 @@
     static const type name = value;
 
 
-#define BPVStringConstant(name, value) \
+#define BPVStringConstantWithValue(name, value) \
     static NSString * const name = @#value
 
 
-#define BPVStringConstantWithConstantName(name) \
+#define BPVStringConstant(name) \
     static NSString * const name = @#name
 
 

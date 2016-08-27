@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="hbZ-LV-KwY">
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" id="hbZ-LV-KwY">
                     <rect key="frame" x="150" y="274" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
@@ -24,7 +24,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="loadingLabel" destination="ftp-ko-16O" id="pk5-t9-N4o"/>
+                <outlet property="label" destination="ftp-ko-16O" id="xWC-aB-yln"/>
                 <outlet property="spinner" destination="hbZ-LV-KwY" id="ORd-Fv-4Lk"/>
             </connections>
             <point key="canvasLocation" x="348" y="360"/>

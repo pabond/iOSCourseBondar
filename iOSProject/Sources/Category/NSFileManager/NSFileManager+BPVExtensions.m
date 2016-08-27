@@ -10,12 +10,10 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVDefaultApplictionFileName, /data.plist);
-
 @implementation NSFileManager (BPVExtensions)
 
-+ (NSString *)applicationDataPathWithDafaultFileName {
-    NSString *dataPath = [[self applicationDataPath] stringByAppendingString:kBPVDefaultApplictionFileName];
++ (NSString *)applicationDataPathWithFileName:(NSString *)fileName {
+    NSString *dataPath = [[self applicationDataPath] stringByAppendingString:fileName];
     
     return dataPath;
 }
@@ -48,11 +46,23 @@ BPVStringConstant(kBPVDefaultApplictionFileName, /data.plist);
 }
 
 - (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory {
-    return [[self pathsWithDirectory:directory] firstObject];
+    static dispatch_once_t onceToken;
+    static NSString *path = nil;
+    dispatch_once(&onceToken, ^{
+        path = [[self pathsWithDirectory:directory] firstObject];
+    });
+    
+    return path;
 }
 
 - (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory {
-    return NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES);
+    static dispatch_once_t onceToken;
+    static NSArray *paths = nil;
+    dispatch_once(&onceToken, ^{
+        paths = NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES);
+    });
+    
+    return paths;
 }
 
 @end

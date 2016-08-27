@@ -16,12 +16,12 @@
 
 #import "NSMutableArray+BPVExtensions.h"
 #import "NSFileManager+BPVExtensions.h"
-#import "NSKeyedUnarchiver+BPVExtensions.h"
 #import "NSArray+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVCollection, users);
+BPVStringConstantWithValue(kBPVCollection, users);
+BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVArrayModel ()
@@ -144,20 +144,20 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case BPVModelsArrayDidChange:
-            return @selector(collection:didChangeWithModel:);
+        case BPVArrayModelDidChange:
+            return @selector(arrayModel:didChangeWithModel:);
             
-        case BPVModelsArrayDidLoad:
-            return @selector(collectionDidLoad:);
+        case BPVArrayModelDidLoad:
+            return @selector(arrayModelDidLoad:);
             
-        case BPVModelsArrayFailLoading:
-            return @selector(collectionFailLoading:);
+        case BPVArrayModelFailLoading:
+            return @selector(arrayModelFailLoading:);
             
-        case BPVModelsArrayWillLoad:
-            return @selector(collectionWillLoad:);
+        case BPVArrayModelWillLoad:
+            return @selector(arrayModelWillLoad:);
             
-        case BPVModelsArrayNotLoad:
-            return @selector(collectionNotLoad:);
+        case BPVArrayModelUnload:
+            return @selector(arrayModelUnload:);
             
         default:
             return [super selectorForState:state];
@@ -168,7 +168,8 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark saving and restoring of state
 
 - (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self.mutableModels toFile:[NSFileManager applicationDataPathWithDafaultFileName]]) {
+    if ([NSKeyedArchiver archiveRootObject:self.mutableModels
+                                    toFile:[NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");
@@ -176,9 +177,15 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (void)load {
-    NSArray *array = [NSKeyedUnarchiver unarchiveObject];
+    NSData *data = [NSData dataWithContentsOfFile:[NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]];
+    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (array.count) {
+        NSLog(@"[LOADING] Array load from file");
+    }
+
     if (!array) {
         array = [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id{ return [BPVUser new]; }];
+        NSLog(@"[LOADING] Default array count load");
     }
     
     BPVPerformAsyncBlockOnBackgroundQueue(^{
@@ -191,7 +198,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 - (void)loadModelsInBackground:(NSArray *)array {
     @synchronized (self) {
-        self.state = BPVModelsArrayWillLoad;
+        self.state = BPVArrayModelWillLoad;
         BPVWeakify(self)
         BPVStrongifyAndReturnIfNil(self)
         if (array) {
@@ -200,16 +207,16 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
         BPVPerformAsyncBlockOnMainQueue(^{
             if (self.count) {
-                self.state = BPVModelsArrayDidLoad;
+                self.state = BPVArrayModelDidLoad;
             } else {
-                self.state = BPVModelsArrayFailLoading;
+                self.state = BPVArrayModelFailLoading;
             }
         });
     }
 }
 
 - (void)notifyOfArrayChangeWithObject:(id)object {
-    [self notifyOfState:BPVModelsArrayDidChange withObject:object];
+    [self notifyOfState:BPVArrayModelDidChange withObject:object];
 }
 
 #pragma mark -

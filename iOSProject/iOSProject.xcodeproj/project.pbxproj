@@ -51,7 +51,6 @@
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
 		2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */; };
 		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
-		2DE9D2EA1D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2E91D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m */; };
 		2DE9D2EE1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */; };
 		2DE9D2F21D702B8500371F7B /* NSMutableArray+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2F11D702B8500371F7B /* NSMutableArray+BPVExtensions.m */; };
 		2DE9D3001D70331400371F7B /* BPVAddModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2F61D70331400371F7B /* BPVAddModel+UITableView.m */; };
@@ -162,8 +161,6 @@
 		2DA8E9651D4CDE880067032D /* BPVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewCell.h; sourceTree = "<group>"; };
 		2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewCell.m; sourceTree = "<group>"; };
 		2DA8E99D1D51DF010067032D /* BPVUserLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BPVUserLogo.png; sourceTree = "<group>"; };
-		2DE9D2E81D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSKeyedUnarchiver+BPVExtensions.h"; sourceTree = "<group>"; };
-		2DE9D2E91D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSKeyedUnarchiver+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DE9D2EC1D6F3B4F00371F7B /* NSBundle+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BPVExtensions.h"; sourceTree = "<group>"; };
 		2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DE9D2F01D702B8500371F7B /* NSMutableArray+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BPVExtensions.h"; sourceTree = "<group>"; };
@@ -462,7 +459,6 @@
 				2DE9D2F31D70331400371F7B /* BPVArrayChange */,
 				2DE9D2EF1D702B6900371F7B /* NSMutableArray */,
 				2DE9D2EB1D6F3B2E00371F7B /* NSBundle */,
-				2DE9D2E71D6E265D00371F7B /* NSKeyedUnarchiver */,
 				2D4828CE1D6C905000AF3617 /* NSArray */,
 				2D4828D11D6C905000AF3617 /* NSFileManager */,
 				2D4828D41D6C905000AF3617 /* NSIndexPath */,
@@ -647,15 +643,6 @@
 				2DA8E99D1D51DF010067032D /* BPVUserLogo.png */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		2DE9D2E71D6E265D00371F7B /* NSKeyedUnarchiver */ = {
-			isa = PBXGroup;
-			children = (
-				2DE9D2E81D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.h */,
-				2DE9D2E91D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m */,
-			);
-			path = NSKeyedUnarchiver;
 			sourceTree = "<group>";
 		};
 		2DE9D2EB1D6F3B2E00371F7B /* NSBundle */ = {
@@ -930,7 +917,6 @@
 				2D328D701D5CADF70064C76D /* BPVUser.m in Sources */,
 				2D4828F51D6C905000AF3617 /* NSArray+BPVExtensions.m in Sources */,
 				2DE9D2F21D702B8500371F7B /* NSMutableArray+BPVExtensions.m in Sources */,
-				2DE9D2EA1D6E268600371F7B /* NSKeyedUnarchiver+BPVExtensions.m in Sources */,
 				2D328D381D5358870064C76D /* BPVUsersView.m in Sources */,
 				2D328D761D5E05480064C76D /* BPVArrayModel.m in Sources */,
 				2D4828F61D6C905000AF3617 /* NSFileManager+BPVExtensions.m in Sources */,

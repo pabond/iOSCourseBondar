@@ -14,8 +14,4 @@
 + (id)objectWithClass:(Class)cls owner:(id)owner;
 + (id)objectWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options;
 
-+ (NSArray *)loadNibWithClass:(Class)cls;
-+ (NSArray *)loadNibWithClass:(Class)cls owner:(id)owner;
-+ (NSArray *)loadNibWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options;
-
 @end

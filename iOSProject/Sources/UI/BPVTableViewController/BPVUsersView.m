@@ -13,8 +13,8 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVEditingButton, Edit);
-BPVStringConstant(kBPVDoneButton, Done);
+BPVStringConstantWithValue(kBPVEditingButton, Edit);
+BPVStringConstantWithValue(kBPVDoneButton, Done);
 
 @implementation BPVUsersView
 
@@ -27,17 +27,19 @@ BPVStringConstant(kBPVDoneButton, Done);
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    CGRect bounds = self.bounds;
-    
-    BPVLoadingView *loadingView = [NSBundle objectWithClass:[BPVLoadingView class]];
-    loadingView.frame = bounds;
-    self.loadingView = loadingView;
-    [self addSubview:loadingView];
-    [self bringSubviewToFront:loadingView];
+    self.loadingView = [BPVLoadingView loadingViewInSuperView:self];
 }
 
 #pragma mark -
 #pragma mark Accessors
+
+- (void)setLoadingView:(BPVLoadingView *)loadingView {
+    if (!_loadingView && _loadingView != loadingView) {
+        _loadingView = loadingView;
+        
+        [self bringSubviewToFront:loadingView];
+    }
+}
 
 - (BOOL)editing {
     return self.usersTableView.editing;
@@ -45,18 +47,13 @@ BPVStringConstant(kBPVDoneButton, Done);
 
 - (void)setEditing:(BOOL)editing {
     self.usersTableView.editing = editing;
-    [self.editingButton setTitle:(editing ? kBPVDoneButton : kBPVEditingButton) forState:UIControlStateNormal];
+    
+    [self.editingButton setTitle:(editing ? kBPVDoneButton : kBPVEditingButton)
+                        forState:UIControlStateNormal];
 }
 
 - (void)setLoading:(BOOL)loading {
-    if (self.loading != loading) {
-        BPVLoadingView *loadingView = self.loadingView;
-        if (loading) {
-            [loadingView showLoadingView];
-        } else {
-            [loadingView hideLoadingView];
-        }
-    }
+    [self.loadingView setVisible:loading animated:YES];
 }
 
 - (BOOL)loading {

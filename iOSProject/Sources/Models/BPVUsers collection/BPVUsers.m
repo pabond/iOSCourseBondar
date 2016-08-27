@@ -14,7 +14,7 @@
 #pragma mark Public implementations
 
 - (void)load {
-    if (self.state != BPVModelsArrayNotLoad) {
+    if (self.state != BPVArrayModelUnload) {
         return;
     }
     

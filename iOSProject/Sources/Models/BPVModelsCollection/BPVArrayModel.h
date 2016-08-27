@@ -9,22 +9,22 @@
 #import "BPVObservableObject.h"
 
 typedef NS_ENUM(NSUInteger, BPVCollectionState) {
-    BPVModelsArrayNotLoad,
-    BPVModelsArrayWillLoad,
-    BPVModelsArrayDidLoad,
-    BPVModelsArrayFailLoading,
-    BPVModelsArrayDidChange
+    BPVArrayModelUnload,
+    BPVArrayModelWillLoad,
+    BPVArrayModelDidLoad,
+    BPVArrayModelFailLoading,
+    BPVArrayModelDidChange
 };
 
 @protocol BPVArrayModelObserver <NSObject>
 
-- (void)collection:(id)collection didChangeWithModel:(id)changeModel;
-- (void)collectionDidLoad:(id)collection;
-- (void)collectionFailLoading:(id)collection;
-
 @optional
-- (void)collectionWillLoad:(id)collection;
-- (void)collectionNotLoad:(id)collection;
+- (void)arrayModel:(id)arrayModel didChangeWithModel:(id)changeModel;
+- (void)arrayModelDidLoad:(id)arrayModel;
+- (void)arrayModelFailLoading:(id)arrayModel;
+
+- (void)arrayModelWillLoad:(id)arrayModel;
+- (void)arrayModelUnload:(id)arrayModel;
 
 @end
 

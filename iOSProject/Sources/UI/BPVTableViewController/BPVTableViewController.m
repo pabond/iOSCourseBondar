@@ -23,7 +23,7 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstant(kBPVTableTitle, USERS LIST);
+BPVStringConstantWithValue(kBPVTableTitle, USERS LIST);
 
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
@@ -42,9 +42,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    
-    self.usersView.loading = YES;
+    [super viewWillAppear:animated];
+
     [self.users load];
 }
 
@@ -104,24 +103,29 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-      toIndexPath:(NSIndexPath *)destinationIndexPath {
+- (void)    tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+          toIndexPath:(NSIndexPath *)destinationIndexPath
+{
     [self.users moveModelFromIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
 }
 
 #pragma mark -
 #pragma mark BPVArrayModelObserver
 
-- (void)collection:(id)collection didChangeWithModel:(BPVArrayChange *)changeModel {
+- (void)arrayModelWillLoad:(id)arrayModel {
+    self.usersView.loading = YES;
+}
+
+- (void)arrayModel:(id)collection didChangeWithModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
 }
 
-- (void)collectionDidLoad:(id)collection {
+- (void)arrayModelDidLoad:(id)arrayModel {
     [self.usersView.usersTableView reloadData];
-    [self collectionFailLoading:collection];
+    self.usersView.loading = NO;;
 }
 
-- (void)collectionFailLoading:(id)collection {
+- (void)arrayModelFailLoading:(id)arrayModel {
     self.usersView.loading = NO;
 }
 
