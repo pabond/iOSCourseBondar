@@ -215,7 +215,8 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     @synchronized (self) {
         NSArray *array = [self arrayModel];
         NSUInteger state = NSUIntegerMax;
-    
+        
+        sleep(5);
         if (!array) {
             state = BPVArrayModelFailLoading;
         } else {

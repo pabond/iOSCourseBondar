@@ -119,7 +119,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)arrayModelDidLoad:(id)arrayModel {
     [self.usersView.usersTableView reloadData];
-    self.usersView.loading = NO;;
+    self.usersView.loading = NO;
 }
 
 - (void)arrayModelFailLoading:(id)arrayModel {
