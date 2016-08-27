@@ -42,13 +42,16 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
 - (void)insertModel:(id)model atIndex:(NSUInteger)index;
 - (void)removeModelAtIndex:(NSUInteger)index;
 
-// you should never call this method  directly from outside
-// use instead two previous methos with notify value "YES"
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 
 - (void)save;
 - (void)load;
+
+// these methods should be overwriten on child classes
+- (NSString *)applicationFilePath;
+- (NSUInteger)defaultModelsCount;
+- (id)newModel;
 
 @end

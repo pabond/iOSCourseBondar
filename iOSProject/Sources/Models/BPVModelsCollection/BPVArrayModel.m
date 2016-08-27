@@ -22,13 +22,15 @@
 
 BPVStringConstantWithValue(kBPVCollection, users);
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
-BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
-- (void)loadModelsInBackground:(NSArray *)array;
+- (void)fillArrayModel;
 - (void)notifyOfArrayChangeWithObject:(id)object;
+
+- (NSArray *)defaultArrayModel;
+- (NSArray *)arrayModel;
 
 @end
 
@@ -139,6 +141,18 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     return [self modelAtIndex:index];
 }
 
+- (NSString *)applicationFilePath {
+    return nil;
+}
+
+- (NSUInteger)defaultModelsCount {
+    return 0;
+}
+
+- (id)newModel {
+    return nil;
+}
+
 #pragma mark -
 #pragma mark Redefinition of parent methods
 
@@ -168,8 +182,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark saving and restoring of state
 
 - (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self.mutableModels
-                                    toFile:[NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]]) {
+    if ([NSKeyedArchiver archiveRootObject:self.models toFile:[self applicationFilePath]]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");
@@ -177,46 +190,75 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (void)load {
-    NSData *data = [NSData dataWithContentsOfFile:[NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]];
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    if (array.count) {
-        NSLog(@"[LOADING] Array load from file");
+    @synchronized (self) {
+        NSUInteger state = self.state;
+        if (BPVArrayModelWillLoad == state || BPVArrayModelDidLoad == state) {
+            [self notifyOfState:state];
+            
+            return;
+        }
+        
+        self.state = BPVArrayModelWillLoad;
+        
+        BPVWeakify(self)
+        BPVPerformAsyncBlockOnBackgroundQueue(^{
+            BPVStrongifyAndReturnIfNil(self)
+            [self fillArrayModel];
+        });
     }
-
-    if (!array) {
-        array = [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id{ return [BPVUser new]; }];
-        NSLog(@"[LOADING] Default array count load");
-    }
-    
-    BPVPerformAsyncBlockOnBackgroundQueue(^{
-        [self loadModelsInBackground:array];
-    });
 }
 
 #pragma mark -
 #pragma mark Private implementations
 
-- (void)loadModelsInBackground:(NSArray *)array {
+- (void)fillArrayModel {
     @synchronized (self) {
-        self.state = BPVArrayModelWillLoad;
-        BPVWeakify(self)
-        BPVStrongifyAndReturnIfNil(self)
-        if (array) {
+        NSArray *array = [self arrayModel];
+        NSUInteger state = NSUIntegerMax;
+    
+        if (!array) {
+            state = BPVArrayModelFailLoading;
+        } else {
             self.mutableModels = [array mutableCopy];
+            state = BPVArrayModelDidLoad;
         }
-
+        
+        BPVWeakify(self)
         BPVPerformAsyncBlockOnMainQueue(^{
-            if (self.count) {
-                self.state = BPVArrayModelDidLoad;
-            } else {
-                self.state = BPVArrayModelFailLoading;
-            }
+            BPVStrongifyAndReturnIfNil(self)
+                self.state = state;
         });
     }
 }
 
 - (void)notifyOfArrayChangeWithObject:(id)object {
     [self notifyOfState:BPVArrayModelDidChange withObject:object];
+}
+
+- (NSArray *)defaultArrayModel {
+    BPVWeakify(self)
+    NSArray *array = [NSArray arrayWithObjectsFactoryWithCount:[self defaultModelsCount]
+                                                         block:^id
+                                                                    {
+                                                                        BPVStrongifyAndReturnNilIfNil(self)
+                                                             
+                                                                        return [self newModel];
+                                                                    }];
+    
+    return array;
+}
+
+- (NSArray *)arrayModel {
+    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:[self applicationFilePath]]];
+    
+    if (array) {
+        NSLog(@"[LOADING] Array will load from file");
+    } else {
+        array = [self defaultArrayModel];
+        NSLog(@"[LOADING] Default array count will load");
+    }
+    
+    return array;
 }
 
 #pragma mark -

@@ -8,17 +8,31 @@
 
 #import "BPVUsers.h"
 
+#import "BPVUser.h"
+
+#import "NSArray+BPVExtensions.h"
+#import "NSFileManager+BPVExtensions.h"
+
+#import "BPVMacro.h"
+
+BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
+BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
+
 @implementation BPVUsers
 
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)load {
-    if (self.state != BPVArrayModelUnload) {
-        return;
-    }
-    
-    [super load];
+- (NSString *)applicationFilePath {
+    return [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName];
+}
+
+- (NSUInteger)defaultModelsCount {
+    return kBPVDefaultUsersCount;
+}
+
+- (id)newModel {
+    return [BPVUser new];
 }
 
 @end

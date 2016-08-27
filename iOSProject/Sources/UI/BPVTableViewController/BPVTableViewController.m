@@ -43,7 +43,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
+    self.usersView.loading = YES;
     [self.users load];
 }
 
@@ -111,10 +112,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 #pragma mark -
 #pragma mark BPVArrayModelObserver
-
-- (void)arrayModelWillLoad:(id)arrayModel {
-    self.usersView.loading = YES;
-}
 
 - (void)arrayModel:(id)collection didChangeWithModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
