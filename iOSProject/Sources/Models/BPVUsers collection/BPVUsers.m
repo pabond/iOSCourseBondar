@@ -10,7 +10,6 @@
 
 #import "BPVUser.h"
 
-#import "NSArray+BPVExtensions.h"
 #import "NSFileManager+BPVExtensions.h"
 
 #import "BPVMacro.h"

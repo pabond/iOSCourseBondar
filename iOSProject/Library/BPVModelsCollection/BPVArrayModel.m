@@ -8,8 +8,6 @@
 
 #import "BPVArrayModel.h"
 
-#import "BPVUser.h"
-
 #import "BPVArrayChange.h"
 
 #import "BPVGCD.h"
@@ -215,8 +213,7 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     @synchronized (self) {
         NSArray *array = [self arrayModel];
         NSUInteger state = NSUIntegerMax;
-        
-        sleep(5);
+
         if (!array) {
             state = BPVArrayModelFailLoading;
         } else {
