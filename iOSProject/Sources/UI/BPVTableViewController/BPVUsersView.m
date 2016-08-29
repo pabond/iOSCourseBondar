@@ -9,7 +9,6 @@
 #import "BPVUsersView.h"
 
 #import "BPVLoadingView.h"
-#import "NSBundle+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
@@ -37,7 +36,7 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
     if (!_loadingView && _loadingView != loadingView) {
         _loadingView = loadingView;
         
-        [self bringSubviewToFront:loadingView];
+        [self addSubview:loadingView];
     }
 }
 

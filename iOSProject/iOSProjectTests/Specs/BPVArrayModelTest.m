@@ -33,7 +33,7 @@ describe(@"BPVArrayModel move", ^{
         });
         
         it([NSString stringWithFormat:@"contain %lu strings", (unsigned long)kBPVObjectsCount], ^{
-            [[theValue([objects count]) should] equal:theValue(kBPVObjectsCount)];
+            [[[objects should] have:kBPVObjectsCount] items];
         });
         
         __block id object = nil;
@@ -46,7 +46,7 @@ describe(@"BPVArrayModel move", ^{
         
         it(@"object after move should be equal to object at destinations index", ^{
             [objects moveObjectFromIndex:5 toIndex:0];
-            [[[objects objectAtIndex:0] should] equal:object];
+            [[[objects firstObject] should] equal:object];
         });
         
         it(@"object after move should be equal to object at destinations index", ^{

@@ -23,7 +23,13 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark Public implementations
 
 - (NSString *)applicationFilePath {
-    return [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName];
+    static dispatch_once_t onceToken;
+    static NSString *path = nil;
+    dispatch_once(&onceToken, ^{
+        path = [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName];
+    });
+    
+    return path;
 }
 
 - (NSUInteger)defaultModelsCount {
