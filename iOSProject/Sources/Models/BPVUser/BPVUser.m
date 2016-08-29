@@ -12,6 +12,8 @@
 
 #import "NSString+BPVRandomName.h"
 
+#import "BPVMacro.h"
+
 #define kBPVUserName @"userName"
 #define kBPVUserSurname @"userSurname"
 
@@ -45,7 +47,9 @@
     static NSString *path = nil;
     static UIImage *image = nil;
     
+    BPVWeakify(self)
     BPVPerformAsyncBlockOnBackgroundQueue(^{
+        BPVStrongifyAndReturnNilIfNil(self)
         dispatch_once(&onceToken, ^{
             path = [[NSBundle mainBundle] pathForResource:@"BPVUserLogo" ofType:@"png"];
             image = [UIImage imageWithContentsOfFile:path];

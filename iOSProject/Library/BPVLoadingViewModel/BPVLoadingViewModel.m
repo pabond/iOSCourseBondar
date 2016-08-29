@@ -8,7 +8,11 @@
 
 #import "BPVLoadingViewModel.h"
 
+#import "BPVGCD.h"
+
 #import "NSBundle+BPVExtensions.h"
+
+#import "BPVMacro.h"
 
 @implementation BPVLoadingViewModel
 
@@ -28,13 +32,18 @@
 #pragma mark Accessors
 
 - (void)setVisible:(BOOL)visible {
-    [self setVisible:visible animated:NO];
+    BPVWeakify(self)
+    BPVPerformAsyncBlockOnBackgroundQueue(^{
+        BPVStrongifyAndReturnIfNil(self)
+        [self setVisible:visible animated:NO];
+    });
 }
 
 #pragma mark -
 #pragma mark Public implementations
 
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated {
+    
     [self setVisible:visible animated:animated complitionHandler:nil];
 }
 
