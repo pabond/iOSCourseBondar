@@ -44,6 +44,7 @@
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
 		2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */; };
 		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
+		2DBE77B31D72BF2B0057DDC0 /* BPVArrayModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */; };
 		2DE9D2EE1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */; };
 		2DE9D2F21D702B8500371F7B /* NSMutableArray+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2F11D702B8500371F7B /* NSMutableArray+BPVExtensions.m */; };
 		2DE9D3001D70331400371F7B /* BPVAddModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2F61D70331400371F7B /* BPVAddModel+UITableView.m */; };
@@ -147,6 +148,7 @@
 		2DA8E9651D4CDE880067032D /* BPVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewCell.h; sourceTree = "<group>"; };
 		2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewCell.m; sourceTree = "<group>"; };
 		2DA8E99D1D51DF010067032D /* BPVUserLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BPVUserLogo.png; sourceTree = "<group>"; };
+		2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVArrayModelTest.m; sourceTree = "<group>"; };
 		2DE9D2EC1D6F3B4F00371F7B /* NSBundle+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BPVExtensions.h"; sourceTree = "<group>"; };
 		2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DE9D2F01D702B8500371F7B /* NSMutableArray+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BPVExtensions.h"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		2D3F41F71D3F7E6300A38A7B /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -956,6 +959,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DBE77B31D72BF2B0057DDC0 /* BPVArrayModelTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
