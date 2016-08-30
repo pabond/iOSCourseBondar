@@ -31,7 +31,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark Public implementations
 
 - (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self.models toFile:[self applicationFilePath]]) {
+    if ([self.models writeToFile:[self applicationFilePath] atomically:YES]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");
@@ -39,7 +39,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (NSArray *)arrayModel {
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:[self applicationFilePath]]];
+    NSArray *array = [NSArray arrayWithContentsOfFile:[self applicationFilePath]];
     
     if (array) {
         NSLog(@"[LOADING] Array will load from file");
