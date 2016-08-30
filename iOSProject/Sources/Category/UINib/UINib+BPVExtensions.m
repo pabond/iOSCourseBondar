@@ -8,6 +8,8 @@
 
 #import "UINib+BPVExtensions.h"
 
+#import "NSArray+BPVExtensions.h"
+
 @implementation UINib (BPVExtensions)
 
 + (id)objectWithClass:(Class)class {
@@ -29,14 +31,7 @@
 }
 
 - (id)objectWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
-    NSArray *objects = [self instantiateWithOwner:owner options:options];
-    for (id object in objects) {
-        if ([object isMemberOfClass:class]) {
-            return object;
-        }
-    }
-    
-    return nil;
+    return [[self instantiateWithOwner:owner options:options] memberOfClass:class];
 }
 
 @end

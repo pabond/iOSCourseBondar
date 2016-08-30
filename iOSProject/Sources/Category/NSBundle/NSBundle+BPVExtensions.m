@@ -8,6 +8,8 @@
 
 #import "NSBundle+BPVExtensions.h"
 
+#import "NSArray+BPVExtensions.h"
+
 #import <UIKit/UINibLoading.h>
 
 @implementation NSBundle (BPVExtensions)
@@ -21,13 +23,7 @@
 }
 
 + (id)objectWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
-    for (id object in [[self mainBundle] loadNibNamed:NSStringFromClass(class) owner:owner options:options]) {
-        if ([object isMemberOfClass:class]) {
-            return object;
-        }
-    }
-    
-    return nil;
+    return [[[self mainBundle] loadNibNamed:NSStringFromClass(class) owner:owner options:options] memberOfClass:class];
 }
 
 @end

@@ -36,4 +36,14 @@
     return [self filteredArrayUsingPredicate:predicate];
 }
 
+- (id)memberOfClass:(Class)class {
+    for (id object in self) {
+        if ([object isMemberOfClass:class]) {
+            return object;
+        }
+    }
+    
+    return nil;
+}
+
 @end
