@@ -43,17 +43,12 @@
 }
 
 - (UIImage *)image {
-    static dispatch_once_t onceToken;
     static NSString *path = nil;
     static UIImage *image = nil;
     
-    BPVWeakify(self)
     BPVPerformAsyncBlockOnBackgroundQueue(^{
-        BPVStrongifyAndReturnNilIfNil(self)
-        dispatch_once(&onceToken, ^{
-            path = [[NSBundle mainBundle] pathForResource:@"BPVUserLogo" ofType:@"png"];
-            image = [UIImage imageWithContentsOfFile:path];
-        });
+        path = [[NSBundle mainBundle] pathForResource:@"BPVUserLogo" ofType:@"png"];
+        image = [UIImage imageWithContentsOfFile:path];
     });
     
     return image;

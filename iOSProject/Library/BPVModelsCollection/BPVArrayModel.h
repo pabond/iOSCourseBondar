@@ -49,9 +49,6 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
 - (void)save;
 - (void)load;
 
-// these methods should be overwriten on child classes
-- (NSString *)applicationFilePath;
-- (NSUInteger)defaultModelsCount;
-- (id)newModel;
+- (NSArray *)arrayModel;
 
 @end

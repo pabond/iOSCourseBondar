@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^BPVHandler)(void);
+typedef void(^BPVCompletionBlock)(void);
 
 @interface BPVLoadingViewModel : UIView
-
 @property (nonatomic, assign)   BOOL    visible;
 
-+ (id)loadingViewInSuperView:(UIView *)superView;
+@property (nonatomic, strong) IBOutlet UILabel                  *label;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView  *spinner;
+
++ (id)loadingViewInSuperview:(UIView *)superview;
 
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated;
-- (void)setVisible:(BOOL)visible animated:(BOOL)animated complitionHandler:(BPVHandler)complition;
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated completionBlock:(BPVCompletionBlock)completionBlock;
 
 @end

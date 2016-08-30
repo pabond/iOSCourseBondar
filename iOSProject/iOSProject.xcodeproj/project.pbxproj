@@ -44,8 +44,8 @@
 		2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */; };
 		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
 		2DBE77B31D72BF2B0057DDC0 /* BPVArrayModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */; };
-		2DBE77B71D7481480057DDC0 /* BPVLoadingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE77B61D7481480057DDC0 /* BPVLoadingViewModel.m */; };
 		2DE8739F1D748F2A00A3550A /* BPVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8739E1D748F2A00A3550A /* BPVLoadingView.m */; };
+		2DE873A01D759B0000A3550A /* BPVLoadingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE77B61D7481480057DDC0 /* BPVLoadingViewModel.m */; };
 		2DE9D2EE1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */; };
 		2DE9D2F21D702B8500371F7B /* NSMutableArray+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2F11D702B8500371F7B /* NSMutableArray+BPVExtensions.m */; };
 		2DE9D3001D70331400371F7B /* BPVAddModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2F61D70331400371F7B /* BPVAddModel+UITableView.m */; };
@@ -949,6 +949,7 @@
 				2D3F41FF1D3FA29800A38A7B /* main.m in Sources */,
 				2DE9D2EE1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m in Sources */,
 				2D4828FB1D6C905000AF3617 /* BPVSupportEntity.m in Sources */,
+				2DE873A01D759B0000A3550A /* BPVLoadingViewModel.m in Sources */,
 				2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */,
 				2D4828871D64793100AF3617 /* BPVImageModelDispatcher.m in Sources */,
 				2DE9D31A1D71F3D400371F7B /* BPVTwoIndexArrayChange.m in Sources */,
@@ -972,7 +973,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DBE77B71D7481480057DDC0 /* BPVLoadingViewModel.m in Sources */,
 				2DBE77B31D72BF2B0057DDC0 /* BPVArrayModelTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

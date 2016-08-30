@@ -14,12 +14,16 @@
 
 #import "BPVMacro.h"
 
+BPVConstant(CGFloat, kBPVAnimationDuration, 0.5f);
+BPVConstant(CGFloat, kBPVUpperAlfa, 0.5f);
+BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
+
 @implementation BPVLoadingViewModel
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (id)loadingViewInSuperView:(UIView *)superView {
++ (id)loadingViewInSuperview:(UIView *)superView {
     BPVLoadingViewModel *loadingView = [NSBundle objectWithClass:[self class]];
     loadingView.frame = superView.bounds;
     loadingView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
@@ -32,23 +36,34 @@
 #pragma mark Accessors
 
 - (void)setVisible:(BOOL)visible {
-    BPVWeakify(self)
-    BPVPerformAsyncBlockOnBackgroundQueue(^{
-        BPVStrongifyAndReturnIfNil(self)
-        [self setVisible:visible animated:NO];
-    });
+    [self setVisible:visible animated:NO];
 }
 
 #pragma mark -
 #pragma mark Public implementations
 
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated {
-    
-    [self setVisible:visible animated:animated complitionHandler:nil];
+    [self setVisible:visible animated:animated completionBlock:nil];
 }
 
-- (void)setVisible:(BOOL)visible animated:(BOOL)animated complitionHandler:(BPVHandler)complition {
-
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated completionBlock:(BPVCompletionBlock)completionBlock {
+    if (_visible != visible) {
+        
+        BPVWeakify(self);
+        [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
+                         animations:^{
+                             BPVStrongify(self);
+                             self.alpha = visible ? kBPVUpperAlfa : kBPVLowerAlfa;
+                         }
+         
+                         completion:^(BOOL finished) {
+                             _visible = visible;
+                             
+                             if (completionBlock) {
+                                 completionBlock();
+                             }
+                         }];
+    }
 }
 
 @end

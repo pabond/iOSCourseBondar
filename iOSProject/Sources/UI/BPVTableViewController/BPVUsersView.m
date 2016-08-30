@@ -26,7 +26,7 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.loadingView = [BPVLoadingView loadingViewInSuperView:self];
+    self.loadingView = [BPVLoadingView loadingViewInSuperview:self];
 }
 
 #pragma mark -

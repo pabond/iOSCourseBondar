@@ -18,7 +18,7 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstantWithValue(kBPVCollection, users);
+BPVConstant(NSUInteger, kBPVSleepTime, 2);
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 
 @interface BPVArrayModel ()
@@ -27,7 +27,6 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 - (void)fillArrayModel;
 - (void)notifyOfArrayChangeWithObject:(id)object;
 
-- (NSArray *)defaultArrayModel;
 - (NSArray *)arrayModel;
 
 @end
@@ -139,18 +138,6 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     return [self modelAtIndex:index];
 }
 
-- (NSString *)applicationFilePath {
-    return nil;
-}
-
-- (NSUInteger)defaultModelsCount {
-    return 0;
-}
-
-- (id)newModel {
-    return nil;
-}
-
 #pragma mark -
 #pragma mark Redefinition of parent methods
 
@@ -176,15 +163,15 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     }
 }
 
+- (NSArray *)arrayModel {
+    return nil;
+}
+
 #pragma mark -
 #pragma mark saving and restoring of state
 
 - (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self.models toFile:[self applicationFilePath]]) {
-        NSLog(@"[SAVE] Saving operation succeeds");
-    } else {
-        NSLog(@"[FAIL] Data not saved");
-    }
+
 }
 
 - (void)load {
@@ -212,51 +199,21 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 - (void)fillArrayModel {
     @synchronized (self) {
         NSArray *array = [self arrayModel];
-        NSUInteger state = NSUIntegerMax;
-
-        if (!array) {
-            state = BPVArrayModelFailLoading;
-        } else {
-            self.mutableModels = [array mutableCopy];
-            state = BPVArrayModelDidLoad;
+        if (array) {
+            [self.mutableModels addObjectsFromArray:array];
         }
         
+        sleep(kBPVSleepTime);
         BPVWeakify(self)
         BPVPerformAsyncBlockOnMainQueue(^{
             BPVStrongifyAndReturnIfNil(self)
-                self.state = state;
+            self.state = array ? BPVArrayModelDidLoad : BPVArrayModelFailLoading;
         });
     }
 }
 
 - (void)notifyOfArrayChangeWithObject:(id)object {
     [self notifyOfState:BPVArrayModelDidChange withObject:object];
-}
-
-- (NSArray *)defaultArrayModel {
-    BPVWeakify(self)
-    NSArray *array = [NSArray arrayWithObjectsFactoryWithCount:[self defaultModelsCount]
-                                                         block:^id
-                                                                    {
-                                                                        BPVStrongifyAndReturnNilIfNil(self)
-                                                             
-                                                                        return [self newModel];
-                                                                    }];
-    
-    return array;
-}
-
-- (NSArray *)arrayModel {
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:[self applicationFilePath]]];
-    
-    if (array) {
-        NSLog(@"[LOADING] Array will load from file");
-    } else {
-        array = [self defaultArrayModel];
-        NSLog(@"[LOADING] Default array count will load");
-    }
-    
-    return array;
 }
 
 #pragma mark -

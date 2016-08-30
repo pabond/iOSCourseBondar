@@ -9,7 +9,5 @@
 #import "BPVLoadingViewModel.h"
 
 @interface BPVLoadingView : BPVLoadingViewModel
-@property (nonatomic, strong) IBOutlet UILabel                  *label;
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView  *spinner;
 
 @end
