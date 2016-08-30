@@ -76,3 +76,18 @@
 
 #define BPVPrintCurrentSelector \
     NSLog(@"[INFO] %@", NSStringFromSelector(_cmd))
+
+
+#define BPVOnce(type, variable, block)  \
+    do {\
+        static dispatch_once_t onceToken; \
+        static type *variable = nil; \
+        dispatch_once(&onceToken, ^{ \
+        if (block) { \
+            variable = block(); \
+        } \
+        }); \
+        \
+        return variable; \
+        \
+    } while (0)

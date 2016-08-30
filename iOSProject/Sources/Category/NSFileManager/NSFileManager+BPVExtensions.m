@@ -19,17 +19,15 @@
 }
 
 + (NSString *)applicationDataPath {
-    static dispatch_once_t onceToken;
-    static NSString *dataPath = nil;
-    dispatch_once(&onceToken, ^{
+    BPVOnce(NSString, dataPath, ^{
         NSFileManager *fileManager = [NSFileManager defaultManager];
         dataPath = [fileManager documentDirectoryPath];
         if (![fileManager fileExistsAtPath:dataPath]) {
             [fileManager createDirectoryWithPath:dataPath];
         }
+
+        return dataPath;
     });
-    
-    return dataPath;
 }
 
 - (void)createDirectoryWithPath:(NSString *)path {
@@ -46,23 +44,11 @@
 }
 
 - (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory {
-    static dispatch_once_t onceToken;
-    static NSString *path = nil;
-    dispatch_once(&onceToken, ^{
-        path = [[self pathsWithDirectory:directory] firstObject];
-    });
-    
-    return path;
+    BPVOnce(NSString, path, ^{ return [[self pathsWithDirectory:directory] firstObject]; });
 }
 
 - (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory {
-    static dispatch_once_t onceToken;
-    static NSArray *paths = nil;
-    dispatch_once(&onceToken, ^{
-        paths = NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES);
-    });
-    
-    return paths;
+    BPVOnce(NSArray, paths, ^{ return NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES); });
 }
 
 @end
