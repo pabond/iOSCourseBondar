@@ -1,12 +1,12 @@
 //
-//  BPVLoadingViewModel.m
+//  BPVLoadingView.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/29/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVLoadingViewModel.h"
+#import "BPVLoadingView.h"
 
 #import "BPVGCD.h"
 
@@ -18,13 +18,13 @@ BPVConstant(CGFloat, kBPVAnimationDuration, 0.5f);
 BPVConstant(CGFloat, kBPVUpperAlfa, 0.5f);
 BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 
-@implementation BPVLoadingViewModel
+@implementation BPVLoadingView
 
 #pragma mark -
 #pragma mark Class Methods
 
 + (id)loadingViewInSuperview:(UIView *)superView {
-    BPVLoadingViewModel *loadingView = [NSBundle objectWithClass:[self class]];
+    BPVLoadingView *loadingView = [NSBundle objectWithClass:[self class]];
     loadingView.frame = superView.bounds;
     loadingView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
                                     | UIViewAutoresizingFlexibleHeight;

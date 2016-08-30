@@ -8,7 +8,7 @@
 
 #import "BPVUsersView.h"
 
-#import "BPVLoadingView.h"
+#import "BPVUsersLoadingView.h"
 
 #import "BPVMacro.h"
 
@@ -26,13 +26,13 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.loadingView = [BPVLoadingView loadingViewInSuperview:self];
+    self.loadingView = [BPVUsersLoadingView loadingViewInSuperview:self];
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setLoadingView:(BPVLoadingView *)loadingView {
+- (void)setLoadingView:(BPVUsersLoadingView *)loadingView {
     if (!_loadingView && _loadingView != loadingView) {
         _loadingView = loadingView;
         

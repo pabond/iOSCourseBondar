@@ -6,11 +6,11 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BPVView.h"
 
-@class BPVLoadingView;
+@class BPVUsersLoadingView;
 
-@interface BPVUsersView : UIView
+@interface BPVUsersView : BPVView
 @property (nonatomic, strong) IBOutlet UITableView  *usersTableView;
 
 @property (nonatomic, strong) IBOutlet UIButton     *addButton;
@@ -19,7 +19,7 @@
 @property (nonatomic, assign) BOOL  loading;
 @property (nonatomic, assign) BOOL  editing;
 
-@property (nonatomic, strong) BPVLoadingView    *loadingView;
+@property (nonatomic, strong) BPVUsersLoadingView   *loadingView;
 
 
 @end

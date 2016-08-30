@@ -1,16 +1,16 @@
 //
-//  BPVLoadingViewModel.h
+//  BPVLoadingView.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/29/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BPVView.h"
 
 typedef void(^BPVCompletionBlock)(void);
 
-@interface BPVLoadingViewModel : UIView
+@interface BPVLoadingView : BPVView
 @property (nonatomic, assign)   BOOL    visible;
 
 @property (nonatomic, strong) IBOutlet UILabel                  *label;

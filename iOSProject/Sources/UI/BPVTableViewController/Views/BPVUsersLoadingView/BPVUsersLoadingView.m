@@ -1,14 +1,14 @@
 //
-//  BPVLoadingView.m
+//  BPVUsersLoadingView.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/29/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVLoadingView.h"
+#import "BPVUsersLoadingView.h"
 
-@implementation BPVLoadingView
+@implementation BPVUsersLoadingView
 
 #pragma mark -
 #pragma mark Public implementations
