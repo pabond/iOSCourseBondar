@@ -12,7 +12,6 @@
 #import "BPVUsersViewController.h"
 #import "BPVArrayModel.h"
 
-#import "BPVUser.h"
 #import "BPVUsers.h"
 
 #import "UIViewController+BPVExtensions.h"

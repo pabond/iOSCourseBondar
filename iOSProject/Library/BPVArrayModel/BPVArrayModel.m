@@ -157,7 +157,7 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
             return @selector(arrayModelWillLoad:);
             
         case BPVArrayModelDidUnload:
-            return @selector(arrayModelUnload:);
+            return @selector(arrayModelDidUnload:);
             
         default:
             return [super selectorForState:state];

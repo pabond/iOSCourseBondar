@@ -9,6 +9,7 @@
 #import "BPVUserCell.h"
 
 #import "BPVUser.h"
+#import "BPVLoadingView.h"
 
 @implementation BPVUserCell
 
@@ -28,7 +29,18 @@
 
 - (void)fillWithModel:(BPVUser *)user {
     self.userNameLabel.text = self.user.fullName;
+    self.userImageView.image = [BPVLoadingView loadingViewInSuperview:self];
+}
+
+#pragma mark -
+#pragma mark BPVModelObserver
+
+- (void)modelImageDidLoad:(BPVUser *)user {
     self.userImageView.image = user.image;
+}
+
+- (void)modelImageFailLoading:(id)user {
+    //show default?
 }
 
 @end

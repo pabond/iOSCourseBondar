@@ -6,11 +6,29 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BPVObservableObject.h"
 
 #import <UIKit/UIKit.h>
 
-@interface BPVUser : NSObject <NSCoding>
+typedef NS_ENUM(NSUInteger, BPVModelImageState) {
+    BPVModelImageDidUnloaded,
+    BPVModelImageWillLoad,
+    BPVModelImageDidLoad,
+    BPVModelImageFailLoading
+};
+
+@protocol BPVModelObserver <NSObject>
+
+@optional
+- (void)modelImageDidUnload:(id)user;
+- (void)modelImageWillLoad:(id)user;
+
+- (void)modelImageDidLoad:(id)user;
+- (void)modelImageFailLoading:(id)user;
+
+@end
+
+@interface BPVUser : BPVObservableObject <NSCoding>
 @property (nonatomic, copy)     NSString *name;
 @property (nonatomic, copy)     NSString *surname;
 @property (nonatomic, readonly) NSString *fullName;

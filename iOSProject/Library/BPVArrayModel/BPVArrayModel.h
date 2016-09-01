@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, BPVArrayModelState) {
 - (void)arrayModelFailLoading:(id)arrayModel;
 
 - (void)arrayModelWillLoad:(id)arrayModel;
-- (void)arrayModelUnload:(id)arrayModel;
+- (void)arrayModelDidUnload:(id)arrayModel;
 
 @end
 

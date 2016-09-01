@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class BPVUser;
+#import "BPVUser.h"
 
-@interface BPVUserCell : UITableViewCell
+@interface BPVUserCell : UITableViewCell <BPVModelObserver>
 @property (nonatomic, strong) IBOutlet UILabel      *userNameLabel;
 @property (nonatomic, strong) IBOutlet UIImageView  *userImageView;
 
