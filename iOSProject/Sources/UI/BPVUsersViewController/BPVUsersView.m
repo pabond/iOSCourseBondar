@@ -26,17 +26,23 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.loadingView = [BPVUsersLoadingView loadingViewInSuperview:self];
+    if (!self.loadingView) {
+        self.loadingView = [BPVUsersLoadingView loadingViewInSuperview:self];
+    }
 }
 
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setLoadingView:(BPVUsersLoadingView *)loadingView {
-    if (!_loadingView && _loadingView != loadingView) {
+    if (_loadingView != loadingView) {
+        [_loadingView removeFromSuperview];
+        
         _loadingView = loadingView;
         
-        [self addSubview:loadingView];
+        if (loadingView) {
+            [self addSubview:loadingView];
+        }
     }
 }
 

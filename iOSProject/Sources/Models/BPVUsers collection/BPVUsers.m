@@ -43,17 +43,6 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     }
 }
 
-#pragma mark -
-#pragma mark Private implementations
-
-- (NSArray *)defaultArrayModel {
-    return [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id { return [BPVUser new]; }];
-}
-
-- (NSString *)applicationFilePath {
-    BPVReturnOnce(NSString, path, ^{ return [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]; });
-}
-
 - (void)performLoading {
     @synchronized (self) {
         NSArray *array = [self arrayModel];
@@ -65,12 +54,22 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
         }];
         
         sleep(kBPVSleepTime);
-            
         BPVPerformAsyncBlockOnMainQueue(^{
             BPVStrongifyAndReturnIfNil(self)
             self.state = array ? BPVArrayModelDidLoad : BPVArrayModelFailLoading;
         });
     }
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (NSArray *)defaultArrayModel {
+    return [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id { return [BPVUser new]; }];
+}
+
+- (NSString *)applicationFilePath {
+    BPVReturnOnce(NSString, path, ^{ return [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]; });
 }
 
 - (NSArray *)arrayModel {

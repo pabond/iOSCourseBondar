@@ -10,7 +10,4 @@
 
 @implementation BPVUsersLoadingView
 
-#pragma mark -
-#pragma mark Public implementations
-
 @end

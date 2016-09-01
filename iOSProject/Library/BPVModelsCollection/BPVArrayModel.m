@@ -156,7 +156,7 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
         case BPVArrayModelWillLoad:
             return @selector(arrayModelWillLoad:);
             
-        case BPVArrayModelUnload:
+        case BPVArrayModelDidUnload:
             return @selector(arrayModelUnload:);
             
         default:
@@ -172,9 +172,9 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 }
 
 - (void)load {
+    NSUInteger state = self.state;
     @synchronized (self) {
-        NSUInteger state = self.state;
-        if (BPVArrayModelWillLoad == state || BPVArrayModelDidLoad == state) {
+        if (BPVArrayModelDidUnload != state) {
             [self notifyOfState:state];
             
             return;

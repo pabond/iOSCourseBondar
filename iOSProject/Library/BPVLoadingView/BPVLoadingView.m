@@ -23,9 +23,9 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 #pragma mark -
 #pragma mark Class Methods
 
-+ (id)loadingViewInSuperview:(UIView *)superView {
++ (id)loadingViewInSuperview:(UIView *)superview {
     BPVLoadingView *loadingView = [NSBundle objectWithClass:[self class]];
-    loadingView.frame = superView.bounds;
+    loadingView.frame = superview.bounds;
     loadingView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
                                     | UIViewAutoresizingFlexibleHeight;
     
@@ -49,13 +49,11 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
         BPVWeakify(self);
         [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
                          animations:^{
-                             BPVStrongify(self);
+                             BPVStrongifyAndReturnIfNil(self);
                              self.alpha = visible ? kBPVUpperAlfa : kBPVLowerAlfa;
-                         }
-         
-                         completion:^(BOOL finished) {
-                             _visible = visible;
                              
+                             _visible = visible;
+
                              if (completionBlock) {
                                  completionBlock();
                              }

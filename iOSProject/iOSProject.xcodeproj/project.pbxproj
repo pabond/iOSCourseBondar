@@ -555,11 +555,11 @@
 		2DD7636E1D782A0800CEB5EA /* BPVUsersViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2DD7636F1D782A0800CEB5EA /* BPVUsersView.h */,
-				2DD763701D782A0800CEB5EA /* BPVUsersView.m */,
 				2DD763711D782A0800CEB5EA /* BPVUsersViewController.h */,
 				2DD763721D782A0800CEB5EA /* BPVUsersViewController.m */,
 				2DD763731D782A0800CEB5EA /* BPVUsersViewController.xib */,
+				2DD7636F1D782A0800CEB5EA /* BPVUsersView.h */,
+				2DD763701D782A0800CEB5EA /* BPVUsersView.m */,
 				2DD763741D782A0800CEB5EA /* Views */,
 			);
 			path = BPVUsersViewController;

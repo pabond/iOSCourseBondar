@@ -19,33 +19,24 @@
 }
 
 + (NSString *)applicationDataPath {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *dataPath = [fileManager documentDirectoryPath];
-    if (![fileManager fileExistsAtPath:dataPath]) {
-        [fileManager createDirectoryWithPath:dataPath];
-    }
+    NSString *dataPath = [self documentDirectoryPath];
 
     return dataPath;
 }
 
-- (void)createDirectoryWithPath:(NSString *)path {
-    NSError *error = nil;
-    [self createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
-}
-
-- (NSString *)documentDirectoryPath {
++ (NSString *)documentDirectoryPath {
     BPVReturnOnce(NSString, documentDirectory, ^{ return [self pathWithDirectory:NSDocumentDirectory]; });
 }
 
-- (NSString *)libraryDirectoryPath {
++ (NSString *)libraryDirectoryPath {
     BPVReturnOnce(NSString, libraryDirectory, ^{ return [self pathWithDirectory:NSLibraryDirectory]; });
 }
 
-- (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory {
++ (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory {
     return [[self pathsWithDirectory:directory] firstObject];
 }
 
-- (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory {
++ (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory {
     return NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES);
 }
 

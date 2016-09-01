@@ -13,12 +13,10 @@
 + (NSString *)applicationDataPathWithFileName:(NSString *)fileName;
 + (NSString *)applicationDataPath;
 
-- (void)createDirectoryWithPath:(NSString *)path;
++ (NSString *)documentDirectoryPath;
++ (NSString *)libraryDirectoryPath;
 
-- (NSString *)documentDirectoryPath;
-- (NSString *)libraryDirectoryPath;
-
-- (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory;
-- (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory;
++ (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory;
++ (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory;
 
 @end

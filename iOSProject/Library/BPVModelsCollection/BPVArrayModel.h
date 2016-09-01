@@ -9,7 +9,7 @@
 #import "BPVObservableObject.h"
 
 typedef NS_ENUM(NSUInteger, BPVArrayModelState) {
-    BPVArrayModelUnload,
+    BPVArrayModelDidUnload,
     BPVArrayModelWillLoad,
     BPVArrayModelDidLoad,
     BPVArrayModelFailLoading,
