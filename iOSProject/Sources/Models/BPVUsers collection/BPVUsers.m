@@ -10,18 +10,23 @@
 
 #import "BPVUser.h"
 
+#import "BPVGCD.h"
+
 #import "NSFileManager+BPVExtensions.h"
 #import "NSArray+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
+BPVConstant(NSUInteger, kBPVSleepTime, 2);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVUsers ()
 
 - (NSArray *)defaultArrayModel;
 - (NSString *)applicationFilePath;
+- (NSArray *)arrayModel;
+- (void)performLoading;
 
 @end
 
@@ -38,6 +43,36 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     }
 }
 
+#pragma mark -
+#pragma mark Private implementations
+
+- (NSArray *)defaultArrayModel {
+    return [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id { return [BPVUser new]; }];
+}
+
+- (NSString *)applicationFilePath {
+    BPVReturnOnce(NSString, path, ^{ return [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]; });
+}
+
+- (void)performLoading {
+    @synchronized (self) {
+        NSArray *array = [self arrayModel];
+        
+        BPVWeakify(self)
+        [self performBlockWithoutNotification:^{
+            BPVStrongifyAndReturnIfNil(self)
+            [self addModels:array];
+        }];
+        
+        sleep(kBPVSleepTime);
+            
+        BPVPerformAsyncBlockOnMainQueue(^{
+            BPVStrongifyAndReturnIfNil(self)
+            self.state = array ? BPVArrayModelDidLoad : BPVArrayModelFailLoading;
+        });
+    }
+}
+
 - (NSArray *)arrayModel {
     NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:[self applicationFilePath]]];
     
@@ -51,15 +86,5 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     return array;
 }
 
-#pragma mark -
-#pragma mark Private implementations
-
-- (NSArray *)defaultArrayModel {
-    return [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id { return [BPVUser new]; }];
-}
-
-- (NSString *)applicationFilePath {
-    BPVOnce(NSString, path, ^{ return [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]; });
-}
 
 @end

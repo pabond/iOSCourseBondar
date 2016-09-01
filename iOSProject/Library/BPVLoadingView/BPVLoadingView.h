@@ -6,11 +6,11 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVView.h"
+#import <UIKit/UIKit.h>
 
 typedef void(^BPVCompletionBlock)(void);
 
-@interface BPVLoadingView : BPVView
+@interface BPVLoadingView : UIView
 @property (nonatomic, assign)   BOOL    visible;
 
 @property (nonatomic, strong) IBOutlet UILabel                  *label;

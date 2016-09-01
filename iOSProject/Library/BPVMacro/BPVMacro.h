@@ -78,7 +78,7 @@
     NSLog(@"[INFO] %@", NSStringFromSelector(_cmd))
 
 
-#define BPVOnce(type, variable, block)  \
+#define BPVReturnOnce(type, variable, block)  \
     do {\
         static dispatch_once_t onceToken; \
         static type *variable = nil; \

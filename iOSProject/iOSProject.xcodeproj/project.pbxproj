@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D328D381D5358870064C76D /* BPVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D371D5358870064C76D /* BPVUsersView.m */; };
 		2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D661D5CADF70064C76D /* BPVImage.m */; };
 		2D328D701D5CADF70064C76D /* BPVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D691D5CADF70064C76D /* BPVUser.m */; };
 		2D328D721D5CADF70064C76D /* BPVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D6E1D5CADF70064C76D /* BPVUsers.m */; };
@@ -23,8 +22,6 @@
 		2D3F424D1D4C021500A38A7B /* BPVSquareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D3F42491D4C021500A38A7B /* BPVSquareViewController.xib */; };
 		2D4828871D64793100AF3617 /* BPVImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828861D64793100AF3617 /* BPVImageModelDispatcher.m */; };
 		2D4828991D6AEADC00AF3617 /* BPVGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828981D6AEADC00AF3617 /* BPVGCD.m */; };
-		2D4828A41D6B111B00AF3617 /* BPVUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828A21D6B111B00AF3617 /* BPVUserCell.m */; };
-		2D4828A51D6B111B00AF3617 /* BPVUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D4828A31D6B111B00AF3617 /* BPVUserCell.xib */; };
 		2D4828F51D6C905000AF3617 /* NSArray+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828D01D6C905000AF3617 /* NSArray+BPVExtensions.m */; };
 		2D4828F61D6C905000AF3617 /* NSFileManager+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828D31D6C905000AF3617 /* NSFileManager+BPVExtensions.m */; };
 		2D4828F71D6C905000AF3617 /* NSIndexPath+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828D61D6C905000AF3617 /* NSIndexPath+BPVExtensions.m */; };
@@ -36,17 +33,21 @@
 		2D4828FD1D6C905000AF3617 /* UITableView+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828E91D6C905000AF3617 /* UITableView+BPVExtensions.m */; };
 		2D4828FE1D6C905000AF3617 /* UIViewController+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828EC1D6C905000AF3617 /* UIViewController+BPVExtensions.m */; };
 		2D4828FF1D6C905000AF3617 /* UIWindow+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828EF1D6C905000AF3617 /* UIWindow+BPVExtensions.m */; };
-		2DA8E95D1D4C89AE0067032D /* BPVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */; };
-		2DA8E95E1D4C89AE0067032D /* BPVTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */; };
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
 		2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */; };
 		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
 		2DBE77B31D72BF2B0057DDC0 /* BPVArrayModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */; };
+		2DD7637D1D782A0800CEB5EA /* BPVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763701D782A0800CEB5EA /* BPVUsersView.m */; };
+		2DD7637E1D782A0800CEB5EA /* BPVUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763721D782A0800CEB5EA /* BPVUsersViewController.m */; };
+		2DD7637F1D782A0800CEB5EA /* BPVUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD763731D782A0800CEB5EA /* BPVUsersViewController.xib */; };
+		2DD763801D782A0800CEB5EA /* BPVUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763771D782A0800CEB5EA /* BPVUserCell.m */; };
+		2DD763811D782A0800CEB5EA /* BPVUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD763781D782A0800CEB5EA /* BPVUserCell.xib */; };
+		2DD763821D782A0800CEB5EA /* BPVUsersLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7637B1D782A0800CEB5EA /* BPVUsersLoadingView.m */; };
+		2DD763831D782A0800CEB5EA /* BPVUsersLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7637C1D782A0800CEB5EA /* BPVUsersLoadingView.xib */; };
+		2DD763871D782A3000CEB5EA /* BPVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763861D782A3000CEB5EA /* BPVTableViewController.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
 		2DE873A81D75C28900A3550A /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A71D75C28900A3550A /* BPVView.m */; };
 		2DE873AC1D75C36900A3550A /* BPVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873AB1D75C36900A3550A /* BPVLoadingView.m */; };
-		2DE873B11D75C3EB00A3550A /* BPVUsersLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DE873AE1D75C3EB00A3550A /* BPVUsersLoadingView.xib */; };
-		2DE873B21D75C3EB00A3550A /* BPVUsersLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873B01D75C3EB00A3550A /* BPVUsersLoadingView.m */; };
 		2DE9D2EE1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */; };
 		2DE9D2F21D702B8500371F7B /* NSMutableArray+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2F11D702B8500371F7B /* NSMutableArray+BPVExtensions.m */; };
 		2DE9D3001D70331400371F7B /* BPVAddModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9D2F61D70331400371F7B /* BPVAddModel+UITableView.m */; };
@@ -82,8 +83,6 @@
 
 /* Begin PBXFileReference section */
 		2809F6776B7F87F0D9655301 /* Pods-iOSProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2D328D361D5358870064C76D /* BPVUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersView.h; sourceTree = "<group>"; };
-		2D328D371D5358870064C76D /* BPVUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersView.m; sourceTree = "<group>"; };
 		2D328D651D5CADF70064C76D /* BPVImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImage.h; sourceTree = "<group>"; };
 		2D328D661D5CADF70064C76D /* BPVImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImage.m; sourceTree = "<group>"; };
 		2D328D681D5CADF70064C76D /* BPVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUser.h; sourceTree = "<group>"; };
@@ -112,9 +111,6 @@
 		2D4828861D64793100AF3617 /* BPVImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImageModelDispatcher.m; sourceTree = "<group>"; };
 		2D4828971D6AEADC00AF3617 /* BPVGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVGCD.h; sourceTree = "<group>"; };
 		2D4828981D6AEADC00AF3617 /* BPVGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVGCD.m; sourceTree = "<group>"; };
-		2D4828A11D6B111B00AF3617 /* BPVUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUserCell.h; sourceTree = "<group>"; };
-		2D4828A21D6B111B00AF3617 /* BPVUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUserCell.m; sourceTree = "<group>"; };
-		2D4828A31D6B111B00AF3617 /* BPVUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUserCell.xib; sourceTree = "<group>"; };
 		2D4828CF1D6C905000AF3617 /* NSArray+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BPVExtensions.h"; sourceTree = "<group>"; };
 		2D4828D01D6C905000AF3617 /* NSArray+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BPVExtensions.m"; sourceTree = "<group>"; };
 		2D4828D21D6C905000AF3617 /* NSFileManager+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+BPVExtensions.h"; sourceTree = "<group>"; };
@@ -137,24 +133,31 @@
 		2D4828EC1D6C905000AF3617 /* UIViewController+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BPVExtensions.m"; sourceTree = "<group>"; };
 		2D4828EE1D6C905000AF3617 /* UIWindow+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+BPVExtensions.h"; sourceTree = "<group>"; };
 		2D4828EF1D6C905000AF3617 /* UIWindow+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+BPVExtensions.m"; sourceTree = "<group>"; };
-		2DA8E95A1D4C89AE0067032D /* BPVTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewController.h; sourceTree = "<group>"; };
-		2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewController.m; sourceTree = "<group>"; };
-		2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVTableViewController.xib; sourceTree = "<group>"; };
 		2DA8E9601D4C89DC0067032D /* BPVObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVObservableObject.h; sourceTree = "<group>"; };
 		2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVObservableObject.m; sourceTree = "<group>"; };
 		2DA8E9651D4CDE880067032D /* BPVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewCell.h; sourceTree = "<group>"; };
 		2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewCell.m; sourceTree = "<group>"; };
 		2DA8E99D1D51DF010067032D /* BPVUserLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BPVUserLogo.png; sourceTree = "<group>"; };
 		2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVArrayModelTest.m; sourceTree = "<group>"; };
+		2DD7636F1D782A0800CEB5EA /* BPVUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersView.h; sourceTree = "<group>"; };
+		2DD763701D782A0800CEB5EA /* BPVUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersView.m; sourceTree = "<group>"; };
+		2DD763711D782A0800CEB5EA /* BPVUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersViewController.h; sourceTree = "<group>"; };
+		2DD763721D782A0800CEB5EA /* BPVUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersViewController.m; sourceTree = "<group>"; };
+		2DD763731D782A0800CEB5EA /* BPVUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUsersViewController.xib; sourceTree = "<group>"; };
+		2DD763761D782A0800CEB5EA /* BPVUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUserCell.h; sourceTree = "<group>"; };
+		2DD763771D782A0800CEB5EA /* BPVUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUserCell.m; sourceTree = "<group>"; };
+		2DD763781D782A0800CEB5EA /* BPVUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUserCell.xib; sourceTree = "<group>"; };
+		2DD7637A1D782A0800CEB5EA /* BPVUsersLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersLoadingView.h; sourceTree = "<group>"; };
+		2DD7637B1D782A0800CEB5EA /* BPVUsersLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersLoadingView.m; sourceTree = "<group>"; };
+		2DD7637C1D782A0800CEB5EA /* BPVUsersLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUsersLoadingView.xib; sourceTree = "<group>"; };
+		2DD763851D782A3000CEB5EA /* BPVTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewController.h; sourceTree = "<group>"; };
+		2DD763861D782A3000CEB5EA /* BPVTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewController.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
 		2DE873A31D75C24800A3550A /* BPVMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVMacro.m; sourceTree = "<group>"; };
 		2DE873A61D75C28900A3550A /* BPVView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVView.h; sourceTree = "<group>"; };
 		2DE873A71D75C28900A3550A /* BPVView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVView.m; sourceTree = "<group>"; };
 		2DE873AA1D75C36900A3550A /* BPVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLoadingView.h; sourceTree = "<group>"; };
 		2DE873AB1D75C36900A3550A /* BPVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLoadingView.m; sourceTree = "<group>"; };
-		2DE873AE1D75C3EB00A3550A /* BPVUsersLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUsersLoadingView.xib; sourceTree = "<group>"; };
-		2DE873AF1D75C3EB00A3550A /* BPVUsersLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersLoadingView.h; sourceTree = "<group>"; };
-		2DE873B01D75C3EB00A3550A /* BPVUsersLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersLoadingView.m; sourceTree = "<group>"; };
 		2DE9D2EC1D6F3B4F00371F7B /* NSBundle+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BPVExtensions.h"; sourceTree = "<group>"; };
 		2DE9D2ED1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DE9D2F01D702B8500371F7B /* NSMutableArray+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BPVExtensions.h"; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 		2D3F42101D40C2C500A38A7B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				2DD763841D782A3000CEB5EA /* BPVTableViewController */,
 				2DE873A91D75C36900A3550A /* BPVLoadingView */,
 				2DE873A51D75C25700A3550A /* BPVView */,
 				2DE873A11D75C24800A3550A /* BPVMacro */,
@@ -350,8 +354,8 @@
 		2D3F42431D4C021500A38A7B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2DD7636E1D782A0800CEB5EA /* BPVUsersViewController */,
 				2D3F42441D4C021500A38A7B /* BPVSquareViewController */,
-				2D3F424A1D4C021500A38A7B /* BPVTableViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -366,19 +370,6 @@
 				2D3F42461D4C021500A38A7B /* BPVBackgroundView.m */,
 			);
 			path = BPVSquareViewController;
-			sourceTree = "<group>";
-		};
-		2D3F424A1D4C021500A38A7B /* BPVTableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				2D48289E1D6B111B00AF3617 /* Views */,
-				2DA8E95A1D4C89AE0067032D /* BPVTableViewController.h */,
-				2DA8E95B1D4C89AE0067032D /* BPVTableViewController.m */,
-				2DA8E95C1D4C89AE0067032D /* BPVTableViewController.xib */,
-				2D328D361D5358870064C76D /* BPVUsersView.h */,
-				2D328D371D5358870064C76D /* BPVUsersView.m */,
-			);
-			path = BPVTableViewController;
 			sourceTree = "<group>";
 		};
 		2D4828841D6478ED00AF3617 /* Privat */ = {
@@ -397,25 +388,6 @@
 				2D4828981D6AEADC00AF3617 /* BPVGCD.m */,
 			);
 			path = GCD;
-			sourceTree = "<group>";
-		};
-		2D48289E1D6B111B00AF3617 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2DE873AD1D75C3EB00A3550A /* BPVUsersLoadingView */,
-				2D4828A01D6B111B00AF3617 /* BPVUserCell */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		2D4828A01D6B111B00AF3617 /* BPVUserCell */ = {
-			isa = PBXGroup;
-			children = (
-				2D4828A11D6B111B00AF3617 /* BPVUserCell.h */,
-				2D4828A21D6B111B00AF3617 /* BPVUserCell.m */,
-				2D4828A31D6B111B00AF3617 /* BPVUserCell.xib */,
-			);
-			path = BPVUserCell;
 			sourceTree = "<group>";
 		};
 		2D4828BD1D6C905000AF3617 /* Category */ = {
@@ -580,6 +552,57 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		2DD7636E1D782A0800CEB5EA /* BPVUsersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2DD7636F1D782A0800CEB5EA /* BPVUsersView.h */,
+				2DD763701D782A0800CEB5EA /* BPVUsersView.m */,
+				2DD763711D782A0800CEB5EA /* BPVUsersViewController.h */,
+				2DD763721D782A0800CEB5EA /* BPVUsersViewController.m */,
+				2DD763731D782A0800CEB5EA /* BPVUsersViewController.xib */,
+				2DD763741D782A0800CEB5EA /* Views */,
+			);
+			path = BPVUsersViewController;
+			sourceTree = "<group>";
+		};
+		2DD763741D782A0800CEB5EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2DD763751D782A0800CEB5EA /* BPVUserCell */,
+				2DD763791D782A0800CEB5EA /* BPVUsersLoadingView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2DD763751D782A0800CEB5EA /* BPVUserCell */ = {
+			isa = PBXGroup;
+			children = (
+				2DD763761D782A0800CEB5EA /* BPVUserCell.h */,
+				2DD763771D782A0800CEB5EA /* BPVUserCell.m */,
+				2DD763781D782A0800CEB5EA /* BPVUserCell.xib */,
+			);
+			path = BPVUserCell;
+			sourceTree = "<group>";
+		};
+		2DD763791D782A0800CEB5EA /* BPVUsersLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				2DD7637A1D782A0800CEB5EA /* BPVUsersLoadingView.h */,
+				2DD7637B1D782A0800CEB5EA /* BPVUsersLoadingView.m */,
+				2DD7637C1D782A0800CEB5EA /* BPVUsersLoadingView.xib */,
+			);
+			path = BPVUsersLoadingView;
+			sourceTree = "<group>";
+		};
+		2DD763841D782A3000CEB5EA /* BPVTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2DD763851D782A3000CEB5EA /* BPVTableViewController.h */,
+				2DD763861D782A3000CEB5EA /* BPVTableViewController.m */,
+			);
+			path = BPVTableViewController;
+			sourceTree = "<group>";
+		};
 		2DE873A11D75C24800A3550A /* BPVMacro */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,16 +628,6 @@
 				2DE873AB1D75C36900A3550A /* BPVLoadingView.m */,
 			);
 			path = BPVLoadingView;
-			sourceTree = "<group>";
-		};
-		2DE873AD1D75C3EB00A3550A /* BPVUsersLoadingView */ = {
-			isa = PBXGroup;
-			children = (
-				2DE873AF1D75C3EB00A3550A /* BPVUsersLoadingView.h */,
-				2DE873B01D75C3EB00A3550A /* BPVUsersLoadingView.m */,
-				2DE873AE1D75C3EB00A3550A /* BPVUsersLoadingView.xib */,
-			);
-			path = BPVUsersLoadingView;
 			sourceTree = "<group>";
 		};
 		2DE9D2EB1D6F3B2E00371F7B /* NSBundle */ = {
@@ -867,11 +880,11 @@
 			files = (
 				2D3F41EF1D3F6EB600A38A7B /* LaunchScreen.storyboard in Resources */,
 				2D3F41F41D3F6EC500A38A7B /* Assets.xcassets in Resources */,
-				2DE873B11D75C3EB00A3550A /* BPVUsersLoadingView.xib in Resources */,
+				2DD7637F1D782A0800CEB5EA /* BPVUsersViewController.xib in Resources */,
+				2DD763831D782A0800CEB5EA /* BPVUsersLoadingView.xib in Resources */,
+				2DD763811D782A0800CEB5EA /* BPVUserCell.xib in Resources */,
 				2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */,
-				2D4828A51D6B111B00AF3617 /* BPVUserCell.xib in Resources */,
 				2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */,
-				2DA8E95E1D4C89AE0067032D /* BPVTableViewController.xib in Resources */,
 				2D3F424D1D4C021500A38A7B /* BPVSquareViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -950,14 +963,15 @@
 				2DE873AC1D75C36900A3550A /* BPVLoadingView.m in Sources */,
 				2DE9D31C1D71F3D400371F7B /* BPVMoveModel.m in Sources */,
 				2DE9D31E1D71F3D400371F7B /* BPVArrayModel.m in Sources */,
+				2DD7637E1D782A0800CEB5EA /* BPVUsersViewController.m in Sources */,
 				2DE9D31B1D71F3D400371F7B /* BPVAddModel.m in Sources */,
 				2D4828F51D6C905000AF3617 /* NSArray+BPVExtensions.m in Sources */,
-				2DE873B21D75C3EB00A3550A /* BPVUsersLoadingView.m in Sources */,
 				2DE9D2F21D702B8500371F7B /* NSMutableArray+BPVExtensions.m in Sources */,
 				2DE9D31D1D71F3D400371F7B /* BPVRemoveModel.m in Sources */,
-				2D328D381D5358870064C76D /* BPVUsersView.m in Sources */,
 				2D4828F61D6C905000AF3617 /* NSFileManager+BPVExtensions.m in Sources */,
 				2DE9D3011D70331400371F7B /* BPVArrayChange+UITableView.m in Sources */,
+				2DD763871D782A3000CEB5EA /* BPVTableViewController.m in Sources */,
+				2DD7637D1D782A0800CEB5EA /* BPVUsersView.m in Sources */,
 				2DE9D3021D70331400371F7B /* BPVMoveModel+UITableView.m in Sources */,
 				2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */,
 				2DE9D3001D70331400371F7B /* BPVAddModel+UITableView.m in Sources */,
@@ -974,16 +988,16 @@
 				2D4828FB1D6C905000AF3617 /* BPVSupportEntity.m in Sources */,
 				2DE873A81D75C28900A3550A /* BPVView.m in Sources */,
 				2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */,
+				2DD763801D782A0800CEB5EA /* BPVUserCell.m in Sources */,
 				2D4828871D64793100AF3617 /* BPVImageModelDispatcher.m in Sources */,
 				2DE9D31A1D71F3D400371F7B /* BPVTwoIndexArrayChange.m in Sources */,
 				2DE9D3031D70331400371F7B /* BPVRemoveModel+UITableView.m in Sources */,
 				2D3F424B1D4C021500A38A7B /* BPVBackgroundView.m in Sources */,
-				2DA8E95D1D4C89AE0067032D /* BPVTableViewController.m in Sources */,
 				2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */,
 				2D4828F81D6C905000AF3617 /* NSString+BPVExtensions.m in Sources */,
+				2DD763821D782A0800CEB5EA /* BPVUsersLoadingView.m in Sources */,
 				2D4828FF1D6C905000AF3617 /* UIWindow+BPVExtensions.m in Sources */,
 				2D3F41FD1D3FA29800A38A7B /* BPVAppDelegate.m in Sources */,
-				2D4828A41D6B111B00AF3617 /* BPVUserCell.m in Sources */,
 				2D4828F91D6C905000AF3617 /* NSString+BPVRandomName.m in Sources */,
 				2D3F424C1D4C021500A38A7B /* BPVSquareViewController.m in Sources */,
 				2D328D721D5CADF70064C76D /* BPVUsers.m in Sources */,

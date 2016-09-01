@@ -39,9 +39,6 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
     [self setVisible:visible animated:NO];
 }
 
-#pragma mark -
-#pragma mark Public implementations
-
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated {
     [self setVisible:visible animated:animated completionBlock:nil];
 }

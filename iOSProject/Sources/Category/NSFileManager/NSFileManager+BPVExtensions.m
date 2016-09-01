@@ -19,15 +19,13 @@
 }
 
 + (NSString *)applicationDataPath {
-    BPVOnce(NSString, dataPath, ^{
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        dataPath = [fileManager documentDirectoryPath];
-        if (![fileManager fileExistsAtPath:dataPath]) {
-            [fileManager createDirectoryWithPath:dataPath];
-        }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *dataPath = [fileManager documentDirectoryPath];
+    if (![fileManager fileExistsAtPath:dataPath]) {
+        [fileManager createDirectoryWithPath:dataPath];
+    }
 
-        return dataPath;
-    });
+    return dataPath;
 }
 
 - (void)createDirectoryWithPath:(NSString *)path {
@@ -36,19 +34,19 @@
 }
 
 - (NSString *)documentDirectoryPath {
-    return [self pathWithDirectory:NSDocumentDirectory];
+    BPVReturnOnce(NSString, documentDirectory, ^{ return [self pathWithDirectory:NSDocumentDirectory]; });
 }
 
 - (NSString *)libraryDirectoryPath {
-    return [self pathWithDirectory:NSLibraryDirectory];
+    BPVReturnOnce(NSString, libraryDirectory, ^{ return [self pathWithDirectory:NSLibraryDirectory]; });
 }
 
 - (NSString *)pathWithDirectory:(NSSearchPathDirectory)directory {
-    BPVOnce(NSString, path, ^{ return [[self pathsWithDirectory:directory] firstObject]; });
+    return [[self pathsWithDirectory:directory] firstObject];
 }
 
 - (NSArray *)pathsWithDirectory:(NSSearchPathDirectory)directory {
-    BPVOnce(NSArray, paths, ^{ return NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES); });
+    return NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES);
 }
 
 @end

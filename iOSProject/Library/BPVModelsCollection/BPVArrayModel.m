@@ -18,16 +18,12 @@
 
 #import "BPVMacro.h"
 
-BPVConstant(NSUInteger, kBPVSleepTime, 2);
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
-- (void)fillArrayModel;
 - (void)notifyOfArrayChangeWithObject:(id)object;
-
-- (NSArray *)arrayModel;
 
 @end
 
@@ -52,7 +48,12 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 #pragma mark Accessors
 
 - (NSArray *)models {
-    return [self.mutableModels copy];
+    NSMutableArray *array = nil;
+    @synchronized (self) {
+        array = [self.mutableModels copy];
+    }
+    
+    return array;
 }
 
 - (NSUInteger)count {
@@ -163,10 +164,6 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     }
 }
 
-- (NSArray *)arrayModel {
-    return nil;
-}
-
 #pragma mark -
 #pragma mark saving and restoring of state
 
@@ -188,29 +185,17 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
         BPVWeakify(self)
         BPVPerformAsyncBlockOnBackgroundQueue(^{
             BPVStrongifyAndReturnIfNil(self)
-            [self fillArrayModel];
+            [self performLoading];
         });
     }
+}
+
+- (void)performLoading {
+
 }
 
 #pragma mark -
 #pragma mark Private implementations
-
-- (void)fillArrayModel {
-    @synchronized (self) {
-        NSArray *array = [self arrayModel];
-        if (array) {
-            [self.mutableModels addObjectsFromArray:array];
-        }
-        
-        sleep(kBPVSleepTime);
-        BPVWeakify(self)
-        BPVPerformAsyncBlockOnMainQueue(^{
-            BPVStrongifyAndReturnIfNil(self)
-            self.state = array ? BPVArrayModelDidLoad : BPVArrayModelFailLoading;
-        });
-    }
-}
 
 - (void)notifyOfArrayChangeWithObject:(id)object {
     [self notifyOfState:BPVArrayModelDidChange withObject:object];

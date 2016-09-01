@@ -8,7 +8,7 @@
 
 #import "BPVObservableObject.h"
 
-typedef NS_ENUM(NSUInteger, BPVCollectionState) {
+typedef NS_ENUM(NSUInteger, BPVArrayModelState) {
     BPVArrayModelUnload,
     BPVArrayModelWillLoad,
     BPVArrayModelDidLoad,
@@ -49,6 +49,7 @@ typedef NS_ENUM(NSUInteger, BPVCollectionState) {
 - (void)save;
 - (void)load;
 
-- (NSArray *)arrayModel;
+//this class sould be implemented in subclasses
+- (void)performLoading;
 
 @end

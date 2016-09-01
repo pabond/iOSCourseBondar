@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import "BPVUsers.h"
+#import "BPVArrayModel.h"
 
 @interface BPVTableViewController : UIViewController    <UITableViewDataSource,
                                                         UITableViewDelegate,
                                                         BPVArrayModelObserver>
+@property(nonatomic, strong) BPVArrayModel *model;
 
-- (IBAction)onEditing:(id)sender;
-- (IBAction)onAdd:(id)sender;
-
-- (void)addModel:(id)model;
+// this method should be implemented in subclasses
+- (UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

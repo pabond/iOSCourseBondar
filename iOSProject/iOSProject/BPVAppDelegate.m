@@ -9,7 +9,7 @@
 #import "BPVAppDelegate.h"
 
 #import "BPVSquareViewController.h"
-#import "BPVTableViewController.h"
+#import "BPVUsersViewController.h"
 #import "BPVArrayModel.h"
 
 #import "BPVUser.h"
@@ -31,11 +31,10 @@
     UIWindow *window = [UIWindow window];
     self.window = window;
     
-    BPVTableViewController *controller = [BPVTableViewController viewController];
+    BPVTableViewController *controller = [BPVUsersViewController viewController];
     
     BPVUsers *users = [[BPVUsers alloc] init];
-    [users addObserver:controller];
-    [controller addModel:users];
+    controller.model = users;
     self.users = users;
     
     window.rootViewController = controller;
