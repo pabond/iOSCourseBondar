@@ -8,7 +8,66 @@
 
 #import "BPVView.h"
 
+#import "BPVLoadingView.h"
+
+@interface BPVView ()
+
+- (BPVLoadingView *)defaultLoadingView;
+
+@end
+
 @implementation BPVView
 
+@dynamic loading;
+
+#pragma mark -
+#pragma mark Initialastions and deallocations
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.loadingView = [self defaultLoadingView];
+    }
+    
+    return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    if (!self.loadingView) {
+        self.loadingView = [BPVLoadingView loadingViewInSuperview:self];
+    }
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setLoadingView:(BPVLoadingView *)loadingView {
+    if (_loadingView != loadingView) {
+        [_loadingView removeFromSuperview];
+        
+        _loadingView = loadingView;
+        
+        if (loadingView) {
+            [self addSubview:loadingView];
+        }
+    }
+}
+
+- (void)setLoading:(BOOL)loading {
+    [self.loadingView setVisible:loading animated:YES];
+}
+
+- (BOOL)loading {
+    return self.loadingView.visible;
+}
+
+#pragma mark -
+#pragma mark Public implementations
+
+- (BPVLoadingView *)defaultLoadingView {
+    return [BPVLoadingView loadingViewInSuperview:self];
+}
 
 @end

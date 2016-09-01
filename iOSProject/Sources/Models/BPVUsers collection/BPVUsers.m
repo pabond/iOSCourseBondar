@@ -73,7 +73,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (NSArray *)arrayModel {
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:[self applicationFilePath]]];
+    NSArray *array = [NSArray arrayFromFileWithFilePath:[self applicationFilePath]];
     
     if (array) {
         NSLog(@"[LOADING] Array will load from file");

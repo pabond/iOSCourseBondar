@@ -23,7 +23,7 @@
 }
 
 + (id)objectWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
-    return [[[self mainBundle] loadNibNamed:NSStringFromClass(class) owner:owner options:options] memberOfClass:class];
+    return [[[self mainBundle] loadNibNamed:NSStringFromClass(class) owner:owner options:options] objectWithClass:class];
 }
 
 @end

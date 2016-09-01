@@ -174,7 +174,7 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 - (void)load {
     NSUInteger state = self.state;
     @synchronized (self) {
-        if (BPVArrayModelDidUnload != state) {
+        if (BPVArrayModelDidLoad == state || BPVArrayModelWillLoad == state) {
             [self notifyOfState:state];
             
             return;

@@ -31,7 +31,7 @@
 }
 
 - (id)objectWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
-    return [[self instantiateWithOwner:owner options:options] memberOfClass:class];
+    return [[self instantiateWithOwner:owner options:options] objectWithClass:class];
 }
 
 @end

@@ -43,7 +43,7 @@
 		2DD763801D782A0800CEB5EA /* BPVUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763771D782A0800CEB5EA /* BPVUserCell.m */; };
 		2DD763811D782A0800CEB5EA /* BPVUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD763781D782A0800CEB5EA /* BPVUserCell.xib */; };
 		2DD763821D782A0800CEB5EA /* BPVUsersLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7637B1D782A0800CEB5EA /* BPVUsersLoadingView.m */; };
-		2DD763831D782A0800CEB5EA /* BPVUsersLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7637C1D782A0800CEB5EA /* BPVUsersLoadingView.xib */; };
+		2DD763831D782A0800CEB5EA /* BPVLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7637C1D782A0800CEB5EA /* BPVLoadingView.xib */; };
 		2DD763871D782A3000CEB5EA /* BPVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763861D782A3000CEB5EA /* BPVTableViewController.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
 		2DE873A81D75C28900A3550A /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A71D75C28900A3550A /* BPVView.m */; };
@@ -149,7 +149,7 @@
 		2DD763781D782A0800CEB5EA /* BPVUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUserCell.xib; sourceTree = "<group>"; };
 		2DD7637A1D782A0800CEB5EA /* BPVUsersLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersLoadingView.h; sourceTree = "<group>"; };
 		2DD7637B1D782A0800CEB5EA /* BPVUsersLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersLoadingView.m; sourceTree = "<group>"; };
-		2DD7637C1D782A0800CEB5EA /* BPVUsersLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUsersLoadingView.xib; sourceTree = "<group>"; };
+		2DD7637C1D782A0800CEB5EA /* BPVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BPVLoadingView.xib; path = ../../Sources/UI/BPVUsersViewController/Views/BPVUsersLoadingView/BPVLoadingView.xib; sourceTree = "<group>"; };
 		2DD763851D782A3000CEB5EA /* BPVTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewController.h; sourceTree = "<group>"; };
 		2DD763861D782A3000CEB5EA /* BPVTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewController.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
@@ -589,7 +589,6 @@
 			children = (
 				2DD7637A1D782A0800CEB5EA /* BPVUsersLoadingView.h */,
 				2DD7637B1D782A0800CEB5EA /* BPVUsersLoadingView.m */,
-				2DD7637C1D782A0800CEB5EA /* BPVUsersLoadingView.xib */,
 			);
 			path = BPVUsersLoadingView;
 			sourceTree = "<group>";
@@ -626,6 +625,7 @@
 			children = (
 				2DE873AA1D75C36900A3550A /* BPVLoadingView.h */,
 				2DE873AB1D75C36900A3550A /* BPVLoadingView.m */,
+				2DD7637C1D782A0800CEB5EA /* BPVLoadingView.xib */,
 			);
 			path = BPVLoadingView;
 			sourceTree = "<group>";
@@ -881,7 +881,7 @@
 				2D3F41EF1D3F6EB600A38A7B /* LaunchScreen.storyboard in Resources */,
 				2D3F41F41D3F6EC500A38A7B /* Assets.xcassets in Resources */,
 				2DD7637F1D782A0800CEB5EA /* BPVUsersViewController.xib in Resources */,
-				2DD763831D782A0800CEB5EA /* BPVUsersLoadingView.xib in Resources */,
+				2DD763831D782A0800CEB5EA /* BPVLoadingView.xib in Resources */,
 				2DD763811D782A0800CEB5EA /* BPVUserCell.xib in Resources */,
 				2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */,
 				2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */,

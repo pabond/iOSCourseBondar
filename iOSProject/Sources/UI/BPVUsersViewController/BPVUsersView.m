@@ -18,33 +18,7 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
 @implementation BPVUsersView
 
 @dynamic editing;
-@dynamic loading;
 
-#pragma mark -
-#pragma mark Initialastions and deallocations
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    if (!self.loadingView) {
-        self.loadingView = [BPVUsersLoadingView loadingViewInSuperview:self];
-    }
-}
-
-#pragma mark -
-#pragma mark Accessors
-
-- (void)setLoadingView:(BPVUsersLoadingView *)loadingView {
-    if (_loadingView != loadingView) {
-        [_loadingView removeFromSuperview];
-        
-        _loadingView = loadingView;
-        
-        if (loadingView) {
-            [self addSubview:loadingView];
-        }
-    }
-}
 
 - (BOOL)editing {
     return self.usersTableView.editing;
@@ -55,14 +29,6 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
     
     [self.editingButton setTitle:(editing ? kBPVDoneButton : kBPVEditingButton)
                         forState:UIControlStateNormal];
-}
-
-- (void)setLoading:(BOOL)loading {
-    [self.loadingView setVisible:loading animated:YES];
-}
-
-- (BOOL)loading {
-    return self.loadingView.visible;
 }
 
 @end

@@ -24,6 +24,12 @@
     return [self arrayWithArray:array];
 }
 
++ (NSArray *)arrayFromFileWithFilePath:(NSString *)filePath {
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
 - (NSArray *)filteredUsingBlock:(BPVArrayFiltredUsingBlock)block {
     if (!block) {
         return nil;
@@ -36,7 +42,7 @@
     return [self filteredArrayUsingPredicate:predicate];
 }
 
-- (id)memberOfClass:(Class)class {
+- (id)objectWithClass:(Class)class {
     for (id object in self) {
         if ([object isMemberOfClass:class]) {
             return object;
