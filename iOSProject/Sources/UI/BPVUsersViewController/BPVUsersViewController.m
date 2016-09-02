@@ -35,7 +35,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (IBAction)onEditing:(id)sender {
-    self.usersView.editing = !self.usersView.editing;
+    BPVUsersView *usersView = self.usersView;
+    usersView.editing = !usersView.editing;
 }
 
 #pragma mark -

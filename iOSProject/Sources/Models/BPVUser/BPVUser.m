@@ -18,11 +18,11 @@ BPVStringConstantWithValue(kBPVUserName, userName);
 BPVStringConstantWithValue(kBPVUserSurname, userSurname);
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
+BPVConstant(NSUInteger, kBPVSleepTime, 2);
 
 @implementation BPVUser
 
 @dynamic fullName;
-@dynamic image;
 
 #pragma mark -
 #pragma mark Initializations and deallocations
@@ -44,16 +44,32 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
     return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
 }
 
-- (UIImage *)image {
-    static NSString *path = nil;
-    static UIImage *image = nil;
-    
-    BPVPerformAsyncBlockOnBackgroundQueue(^{
-        path = [[NSBundle mainBundle] pathForResource:kBPVUserImageName ofType:kBPVUserImageFormat];
-        image = [UIImage imageWithContentsOfFile:path];
-    });
-    
-    return image;
+#pragma mark -
+#pragma mark Public implementations
+
+//- (UIImage *)image {
+//    static NSString *path = nil;
+//    static UIImage *image = nil;
+//    
+//    BPVPerformAsyncBlockOnBackgroundQueue(^{
+//
+//        image =
+//    });
+//    
+//    return image;
+
+- (void)performLoading {
+    @synchronized (self) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:kBPVUserImageName ofType:kBPVUserImageFormat];
+        self.image = [UIImage imageWithContentsOfFile:path];
+        
+        sleep(kBPVSleepTime);
+        BPVWeakify(self)
+        BPVPerformAsyncBlockOnMainQueue(^{
+            BPVStrongifyAndReturnIfNil(self)
+            self.state = BPVModelDidLoad;
+        });
+    }
 }
 
 #pragma mark -

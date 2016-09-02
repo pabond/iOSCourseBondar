@@ -23,9 +23,9 @@ BPVConstant(NSUInteger, kBPVSleepTime, 2);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVUsers ()
+@property (nonatomic, copy) NSString *applicationFilePath;
 
 - (NSArray *)defaultArrayModel;
-- (NSString *)applicationFilePath;
 - (NSArray *)arrayModel;
 - (void)performLoading;
 
@@ -34,10 +34,22 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 @implementation BPVUsers
 
 #pragma mark -
+#pragma mark Initializationa and deallocations
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.applicationFilePath = [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName];
+    }
+    
+    return self;
+}
+
+#pragma mark -
 #pragma mark Public implementations
 
 - (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self.models toFile:[self applicationFilePath]]) {
+    if ([NSKeyedArchiver archiveRootObject:self.models toFile:self.applicationFilePath]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");
@@ -69,12 +81,8 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     return [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id { return [BPVUser new]; }];
 }
 
-- (NSString *)applicationFilePath {
-    BPVReturnOnce(NSString, path, ^{ return [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName]; });
-}
-
 - (NSArray *)arrayModel {
-    NSArray *array = [NSKeyedUnarchiver objectFromFileWithFilePath:[self applicationFilePath]];
+    NSArray *array = [NSKeyedUnarchiver objectFromFileWithFilePath:self.applicationFilePath];
     
     if (array) {
         NSLog(@"[LOADING] Array will load from file");

@@ -17,7 +17,6 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
 
 @dynamic editing;
 
-
 - (BOOL)editing {
     return self.usersTableView.editing;
 }

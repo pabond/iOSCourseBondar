@@ -12,11 +12,6 @@
 
 @implementation BPVUserCell
 
-#pragma mark -
-#pragma mark Initialisation and deallocations
-
-
-
 #pragma mark - 
 #pragma mark Accessors
 
@@ -24,7 +19,7 @@
     if (_user != user) {
         [_user removeObserver:self];
         _user = user;
-        
+
         [_user addObserver:self];
         [self fillWithModel:user];
     }
@@ -34,6 +29,7 @@
 #pragma mark Public Implementations
 
 - (void)fillWithModel:(BPVUser *)user {
+    [self.user load];
     self.userNameLabel.text = self.user.fullName;
     self.userImageView.image = user.image;
 }
@@ -45,7 +41,7 @@
     self.contentLoadingView.loading = YES;
 }
 
-- (void)modelDidLoad:(id)model {
+- (void)modelDidLoad:(BPVUser *)model {
     self.contentLoadingView.loading = NO;
 }
 

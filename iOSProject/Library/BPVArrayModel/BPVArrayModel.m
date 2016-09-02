@@ -48,36 +48,39 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 #pragma mark Accessors
 
 - (NSArray *)models {
-    NSMutableArray *array = nil;
     @synchronized (self) {
-        array = [self.mutableModels copy];
+        return [self.mutableModels copy];
     }
-    
-    return array;
 }
 
 - (NSUInteger)count {
-    return [self.mutableModels count];
+    @synchronized (self) {
+        return [self.mutableModels count];
+    }
 }
 
 #pragma mark -
 #pragma mark Public implementations
 
 - (void)addModel:(id)model {
+    if (!model) {
+        return;
+    }
+    
     @synchronized (self) {
-        if (model) {
-            [self.mutableModels addObject:model];
-            [self notifyOfArrayChangeWithObject:[BPVArrayChange addModelWithIndex:[self indexOfModel:model]]];
-        }
+        [self.mutableModels addObject:model];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange addModelWithIndex:[self indexOfModel:model]]];
     }
 }
 
 - (void)removeModel:(id)model {
+    if (!model) {
+        return;
+    }
+    
     @synchronized (self) {
-        if (model) {
-            [self.mutableModels removeObject:model];
-            [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:[self indexOfModel:model]]];
-        }
+        [self.mutableModels removeObject:model];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:[self indexOfModel:model]]];
     }
 }
 
@@ -92,11 +95,13 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 }
 
 - (id)modelAtIndex:(NSUInteger)index {
-    if (index < self.count) {
-        return self.mutableModels[index];
+    if (!(index < self.count)) {
+        return nil;
     }
     
-    return nil;
+    @synchronized (self) {
+        return self.mutableModels[index];
+    }
 }
 
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
@@ -105,10 +110,7 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     }
     
     @synchronized (self) {
-        [self performBlockWithoutNotification:^{
-            [self.mutableModels moveObjectFromIndex:fromIndex toIndex:toIndex];
-        }];
-            
+        [self.mutableModels moveObjectFromIndex:fromIndex toIndex:toIndex];
         [self notifyOfArrayChangeWithObject:[BPVArrayChange moveModelWithIndex:toIndex fromIndex:fromIndex]];
     }
 }
@@ -132,7 +134,9 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 }
 
 - (NSUInteger)indexOfModel:(id)model {
-    return [self.mutableModels indexOfObject:model];
+    @synchronized (self) {
+        return [self.mutableModels indexOfObject:model];
+    }
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
