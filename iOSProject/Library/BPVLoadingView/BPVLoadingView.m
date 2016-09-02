@@ -14,7 +14,7 @@
 
 #import "BPVMacro.h"
 
-BPVConstant(CGFloat, kBPVAnimationDuration, 0.5f);
+BPVConstant(CGFloat, kBPVAnimationDuration, 0.8f);
 BPVConstant(CGFloat, kBPVUpperAlfa, 1.f);
 BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 
@@ -45,6 +45,9 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated completionBlock:(BPVCompletionBlock)completionBlock {
     if (_visible != visible) {
+        if (visible) {
+            _visible = visible;
+        }
         
         [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
                          animations:^{

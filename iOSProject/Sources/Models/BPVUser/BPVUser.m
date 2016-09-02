@@ -18,7 +18,7 @@ BPVStringConstantWithValue(kBPVUserName, userName);
 BPVStringConstantWithValue(kBPVUserSurname, userSurname);
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
-BPVConstant(NSUInteger, kBPVSleepTime, 2);
+BPVConstant(NSUInteger, kBPVSleepTime, 3);
 
 @implementation BPVUser
 
