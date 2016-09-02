@@ -8,9 +8,14 @@
 
 #import "BPVUserCell.h"
 
-#import "BPVLoadingView.h"
+#import "BPVView.h"
 
 @implementation BPVUserCell
+
+#pragma mark -
+#pragma mark Initialisation and deallocations
+
+
 
 #pragma mark - 
 #pragma mark Accessors
@@ -25,10 +30,6 @@
     }
 }
 
-- (void)setLoading:(BOOL)loading {
-    [self.loadingView setVisible:loading animated:YES];
-}
-
 #pragma mark -
 #pragma mark Public Implementations
 
@@ -37,19 +38,18 @@
     self.userImageView.image = user.image;
 }
 
-
 #pragma mark -
 #pragma mark BPVModelObserver
 
-- (void)modelWillLoad:(id)arrayModel {
-    self.loading = YES;
+- (void)modelWillLoad:(id)model {
+    self.contentLoadingView.loading = YES;
 }
 
-- (void)modelDidLoad:(id)arrayModel {
-    self.loading = NO;
+- (void)modelDidLoad:(id)model {
+    self.contentLoadingView.loading = NO;
 }
 
-- (void)modelFailLoading:(id)arrayModel {
+- (void)modelFailLoading:(BPVUser *)model {
     [self.user load];
 }
 

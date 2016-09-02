@@ -58,20 +58,20 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark BPVModelObserver
 
-- (void)model:(id)collection didChangeWithModel:(BPVArrayChange *)changeModel {
+- (void)model:(id)model didChangeWithModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
 }
 
-- (void)modelWillLoad:(id)arrayModel {
+- (void)modelWillLoad:(id)model {
     self.usersView.loading = YES;
 }
 
-- (void)modelDidLoad:(id)arrayModel {
+- (void)modelDidLoad:(id)model {
     [self.usersView.usersTableView reloadData];
     self.usersView.loading = NO;
 }
 
-- (void)modelFailLoading:(id)arrayModel {
+- (void)modelFailLoading:(id)model {
     self.usersView.loading = NO;
 }
 

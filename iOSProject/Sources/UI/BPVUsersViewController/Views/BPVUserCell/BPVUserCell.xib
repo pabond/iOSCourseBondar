@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSK-lr-gm6" customClass="BPVLoadingView">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSK-lr-gm6" customClass="BPVView">
                         <rect key="frame" x="0.0" y="-0.5" width="320" height="43.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFG-MO-Iz2">
@@ -31,10 +31,11 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="loadingView" destination="jSK-lr-gm6" id="5jo-3W-TaI"/>
+                <outlet property="contentLoadingView" destination="jSK-lr-gm6" id="Ki8-zS-HbC"/>
                 <outlet property="userImageView" destination="DI4-qf-pmn" id="XGT-kg-1UG"/>
                 <outlet property="userNameLabel" destination="QFG-MO-Iz2" id="fa5-zW-8xu"/>
             </connections>
+            <point key="canvasLocation" x="89" y="156"/>
         </tableViewCell>
     </objects>
 </document>
