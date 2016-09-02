@@ -24,12 +24,6 @@
     return [self arrayWithArray:array];
 }
 
-+ (NSArray *)arrayFromFileWithFilePath:(NSString *)filePath {
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
-}
-
 - (NSArray *)filteredUsingBlock:(BPVArrayFiltredUsingBlock)block {
     if (!block) {
         return nil;

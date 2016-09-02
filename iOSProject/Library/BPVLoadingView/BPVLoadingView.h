@@ -11,8 +11,7 @@
 typedef void(^BPVCompletionBlock)(void);
 
 @interface BPVLoadingView : UIView
-@property (nonatomic, assign)   BOOL    visible;
-
+@property (nonatomic, assign) BOOL                              visible;
 @property (nonatomic, strong) IBOutlet UILabel                  *label;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView  *spinner;
 

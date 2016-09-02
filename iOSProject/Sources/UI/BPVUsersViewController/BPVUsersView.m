@@ -8,8 +8,6 @@
 
 #import "BPVUsersView.h"
 
-#import "BPVUsersLoadingView.h"
-
 #import "BPVMacro.h"
 
 BPVStringConstantWithValue(kBPVEditingButton, Edit);

@@ -21,9 +21,9 @@
 #pragma mark -
 #pragma mark Initalizations and deallocations
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
     [self.model load];
 }
 
@@ -37,13 +37,6 @@
         [model addObserver:self];
         _model = model;
     }
-}
-
-#pragma mark -
-#pragma mark Public implementations
-
-- (UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
 }
 
 #pragma mark -
@@ -69,10 +62,8 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
-    
-    return cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
+    return nil;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {

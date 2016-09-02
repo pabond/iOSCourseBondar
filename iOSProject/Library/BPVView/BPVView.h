@@ -11,7 +11,7 @@
 @class BPVLoadingView;
 
 @interface BPVView : UIView
-@property (nonatomic, strong) BPVLoadingView   *loadingView;
-@property (nonatomic, assign) BOOL  loading;
+@property (nonatomic, strong) IBOutlet BPVLoadingView   *loadingView;
+@property (nonatomic, assign) BOOL                      loading;
 
 @end

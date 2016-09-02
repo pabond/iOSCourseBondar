@@ -8,7 +8,6 @@
 
 #import "BPVUserCell.h"
 
-#import "BPVUser.h"
 #import "BPVLoadingView.h"
 
 @implementation BPVUserCell
@@ -18,10 +17,16 @@
 
 - (void)setUser:(BPVUser *)user {
     if (_user != user) {
+        [_user removeObserver:self];
         _user = user;
         
+        [_user addObserver:self];
         [self fillWithModel:user];
     }
+}
+
+- (void)setLoading:(BOOL)loading {
+    [self.loadingView setVisible:loading animated:YES];
 }
 
 #pragma mark -
@@ -29,18 +34,23 @@
 
 - (void)fillWithModel:(BPVUser *)user {
     self.userNameLabel.text = self.user.fullName;
-    self.userImageView.image = [BPVLoadingView loadingViewInSuperview:self];
+    self.userImageView.image = user.image;
 }
+
 
 #pragma mark -
 #pragma mark BPVModelObserver
 
-- (void)modelImageDidLoad:(BPVUser *)user {
-    self.userImageView.image = user.image;
+- (void)modelWillLoad:(id)arrayModel {
+    self.loading = YES;
 }
 
-- (void)modelImageFailLoading:(id)user {
-    //show default?
+- (void)modelDidLoad:(id)arrayModel {
+    self.loading = NO;
+}
+
+- (void)modelFailLoading:(id)arrayModel {
+    [self.user load];
 }
 
 @end

@@ -140,65 +140,10 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
 }
 
 #pragma mark -
-#pragma mark Redefinition of parent methods
-
-- (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case BPVArrayModelDidChange:
-            return @selector(arrayModel:didChangeWithModel:);
-            
-        case BPVArrayModelDidLoad:
-            return @selector(arrayModelDidLoad:);
-            
-        case BPVArrayModelFailLoading:
-            return @selector(arrayModelFailLoading:);
-            
-        case BPVArrayModelWillLoad:
-            return @selector(arrayModelWillLoad:);
-            
-        case BPVArrayModelDidUnload:
-            return @selector(arrayModelDidUnload:);
-            
-        default:
-            return [super selectorForState:state];
-    }
-}
-
-#pragma mark -
-#pragma mark saving and restoring of state
-
-- (void)save {
-
-}
-
-- (void)load {
-    NSUInteger state = self.state;
-    @synchronized (self) {
-        if (BPVArrayModelDidLoad == state || BPVArrayModelWillLoad == state) {
-            [self notifyOfState:state];
-            
-            return;
-        }
-        
-        self.state = BPVArrayModelWillLoad;
-        
-        BPVWeakify(self)
-        BPVPerformAsyncBlockOnBackgroundQueue(^{
-            BPVStrongifyAndReturnIfNil(self)
-            [self performLoading];
-        });
-    }
-}
-
-- (void)performLoading {
-
-}
-
-#pragma mark -
 #pragma mark Private implementations
 
 - (void)notifyOfArrayChangeWithObject:(id)object {
-    [self notifyOfState:BPVArrayModelDidChange withObject:object];
+    [self notifyOfState:BPVModelDidChange withObject:object];
 }
 
 #pragma mark -

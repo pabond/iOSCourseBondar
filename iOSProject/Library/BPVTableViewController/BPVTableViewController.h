@@ -10,12 +10,11 @@
 
 #import "BPVArrayModel.h"
 
-@interface BPVTableViewController : UIViewController    <UITableViewDataSource,
-                                                        UITableViewDelegate,
-                                                        BPVArrayModelObserver>
+@interface BPVTableViewController : UIViewController    <
+    UITableViewDataSource,
+    UITableViewDelegate,
+    BPVModelObserver
+>
 @property(nonatomic, strong) BPVArrayModel *model;
-
-// this method should be implemented in subclasses
-- (UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

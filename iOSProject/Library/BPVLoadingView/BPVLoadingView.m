@@ -15,7 +15,7 @@
 #import "BPVMacro.h"
 
 BPVConstant(CGFloat, kBPVAnimationDuration, 0.5f);
-BPVConstant(CGFloat, kBPVUpperAlfa, 0.5f);
+BPVConstant(CGFloat, kBPVUpperAlfa, 1.f);
 BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 
 @implementation BPVLoadingView
@@ -46,14 +46,14 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated completionBlock:(BPVCompletionBlock)completionBlock {
     if (_visible != visible) {
         
-        BPVWeakify(self);
         [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
                          animations:^{
-                             BPVStrongifyAndReturnIfNil(self);
                              self.alpha = visible ? kBPVUpperAlfa : kBPVLowerAlfa;
-                             
+                         }
+         
+                         completion:^(BOOL finished) {
                              _visible = visible;
-
+                             
                              if (completionBlock) {
                                  completionBlock();
                              }

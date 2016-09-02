@@ -13,6 +13,7 @@
 #import "BPVGCD.h"
 
 #import "NSFileManager+BPVExtensions.h"
+#import "NSKeyedUnarchiver+BPVExtensions.h"
 #import "NSArray+BPVExtensions.h"
 
 #import "BPVMacro.h"
@@ -56,7 +57,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
         sleep(kBPVSleepTime);
         BPVPerformAsyncBlockOnMainQueue(^{
             BPVStrongifyAndReturnIfNil(self)
-            self.state = array ? BPVArrayModelDidLoad : BPVArrayModelFailLoading;
+            self.state = BPVModelDidLoad;
         });
     }
 }
@@ -73,7 +74,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (NSArray *)arrayModel {
-    NSArray *array = [NSArray arrayFromFileWithFilePath:[self applicationFilePath]];
+    NSArray *array = [NSKeyedUnarchiver objectFromFileWithFilePath:[self applicationFilePath]];
     
     if (array) {
         NSLog(@"[LOADING] Array will load from file");

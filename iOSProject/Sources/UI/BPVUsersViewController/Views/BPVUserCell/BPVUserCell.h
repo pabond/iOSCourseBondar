@@ -10,9 +10,13 @@
 
 #import "BPVUser.h"
 
+@class BPVLoadingView;
+
 @interface BPVUserCell : UITableViewCell <BPVModelObserver>
-@property (nonatomic, strong) IBOutlet UILabel      *userNameLabel;
-@property (nonatomic, strong) IBOutlet UIImageView  *userImageView;
+@property (nonatomic, strong) IBOutlet UILabel          *userNameLabel;
+@property (nonatomic, strong) IBOutlet UIImageView      *userImageView;
+@property (nonatomic, strong) IBOutlet BPVLoadingView   *loadingView;
+@property (nonatomic, assign) BOOL                      loading;
 
 @property (nonatomic, strong) BPVUser *user;
 

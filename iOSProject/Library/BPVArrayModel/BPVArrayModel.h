@@ -6,29 +6,9 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVObservableObject.h"
+#import "BPVModel.h"
 
-typedef NS_ENUM(NSUInteger, BPVArrayModelState) {
-    BPVArrayModelDidUnload,
-    BPVArrayModelWillLoad,
-    BPVArrayModelDidLoad,
-    BPVArrayModelFailLoading,
-    BPVArrayModelDidChange
-};
-
-@protocol BPVArrayModelObserver <NSObject>
-
-@optional
-- (void)arrayModel:(id)arrayModel didChangeWithModel:(id)changeModel;
-- (void)arrayModelDidLoad:(id)arrayModel;
-- (void)arrayModelFailLoading:(id)arrayModel;
-
-- (void)arrayModelWillLoad:(id)arrayModel;
-- (void)arrayModelDidUnload:(id)arrayModel;
-
-@end
-
-@interface BPVArrayModel : BPVObservableObject <NSFastEnumeration>
+@interface BPVArrayModel : BPVModel <NSFastEnumeration>
 @property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;
 
@@ -45,11 +25,5 @@ typedef NS_ENUM(NSUInteger, BPVArrayModelState) {
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
-
-- (void)save;
-- (void)load;
-
-//this class sould be implemented in subclasses
-- (void)performLoading;
 
 @end
