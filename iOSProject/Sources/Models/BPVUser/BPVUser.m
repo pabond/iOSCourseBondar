@@ -47,17 +47,6 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
 #pragma mark -
 #pragma mark Public implementations
 
-//- (UIImage *)image {
-//    static NSString *path = nil;
-//    static UIImage *image = nil;
-//    
-//    BPVPerformAsyncBlockOnBackgroundQueue(^{
-//
-//        image =
-//    });
-//    
-//    return image;
-
 - (void)performLoading {
     @synchronized (self) {
         NSString *path = [[NSBundle mainBundle] pathForResource:kBPVUserImageName ofType:kBPVUserImageFormat];

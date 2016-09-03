@@ -21,6 +21,7 @@
         _user = user;
 
         [_user addObserver:self];
+        [self.user load];
         [self fillWithModel:user];
     }
 }
@@ -29,7 +30,6 @@
 #pragma mark Public Implementations
 
 - (void)fillWithModel:(BPVUser *)user {
-    [self.user load];
     self.userNameLabel.text = self.user.fullName;
     self.userImageView.image = user.image;
 }

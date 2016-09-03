@@ -33,6 +33,15 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 }
 
 #pragma mark -
+#pragma mark Initializations / deallocations
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    super.alpha = kBPVLowerAlfa;
+}
+
+#pragma mark -
 #pragma mark Accessors
 
 - (void)setVisible:(BOOL)visible {
