@@ -67,10 +67,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
         }];
         
         sleep(kBPVSleepTime);
-        BPVPerformAsyncBlockOnMainQueue(^{
-            BPVStrongifyAndReturnIfNil(self)
-            self.state = BPVModelDidLoad;
-        });
+        self.state = BPVModelDidLoad;
     }
 }
 
@@ -82,7 +79,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (NSArray *)arrayModel {
-    NSArray *array = [NSKeyedUnarchiver objectFromFileWithFilePath:self.applicationFilePath];
+    NSArray *array = [NSKeyedUnarchiver objectFromFileWithPath:self.applicationFilePath];
     
     if (array) {
         NSLog(@"[LOADING] Array will load from file");

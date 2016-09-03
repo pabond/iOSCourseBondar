@@ -10,7 +10,7 @@
 
 @implementation NSKeyedUnarchiver (BPVExtensions)
 
-+ (NSArray *)objectFromFileWithFilePath:(NSString *)filePath {
++ (NSArray *)objectFromFileWithPath:(NSString *)filePath {
     return [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:filePath]];
 }
 

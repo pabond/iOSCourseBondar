@@ -10,6 +10,6 @@
 
 @interface NSKeyedUnarchiver (BPVExtensions)
 
-+ (id)objectFromFileWithFilePath:(NSString *)filePath;
++ (id)objectFromFileWithPath:(NSString *)filePath;
 
 @end
