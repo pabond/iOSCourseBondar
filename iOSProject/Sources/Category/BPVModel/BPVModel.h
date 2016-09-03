@@ -13,13 +13,12 @@ typedef NS_ENUM(NSUInteger, BPVModelState) {
     BPVModelWillLoad,
     BPVModelDidLoad,
     BPVModelFailLoading,
-    BPVModelDidChange
+    BPVCount
 };
 
 @protocol BPVModelObserver <NSObject>
 
 @optional
-- (void)model:(id)model didChangeWithModel:(id)changeModel;
 - (void)modelDidLoad:(id)model;
 - (void)modelFailLoading:(id)model;
 

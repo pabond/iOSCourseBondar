@@ -160,4 +160,15 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     return [self.mutableModels countByEnumeratingWithState:state objects:buffer count:length];
 }
 
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case BPVModelDidChange:
+            return @selector(model:didChangeWithModel:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
+
 @end

@@ -24,18 +24,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.model load];
+    BPVArrayModel *model = self.model;
+    if (!model)
+    [model load];
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setModel:(id)model {
+- (void)setModel:(BPVArrayModel *)model {
     if (_model != model) {
         [_model removeObserver:self];
         
-        [model addObserver:self];
         _model = model;
+        [_model addObserver:self];
+        
+        if (self.isViewLoaded) {
+            [_model load];
+        }
     }
 }
 

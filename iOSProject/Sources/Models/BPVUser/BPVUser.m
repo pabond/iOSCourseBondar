@@ -53,11 +53,7 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
         self.image = [UIImage imageWithContentsOfFile:path];
         
         sleep(kBPVSleepTime);
-        BPVWeakify(self)
-        BPVPerformAsyncBlockOnMainQueue(^{
-            BPVStrongifyAndReturnIfNil(self)
-            self.state = BPVModelDidLoad;
-        });
+        self.state = BPVModelDidLoad;
     }
 }
 

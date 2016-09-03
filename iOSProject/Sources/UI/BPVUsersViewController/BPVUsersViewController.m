@@ -9,6 +9,7 @@
 #import "BPVUsersViewController.h"
 
 #import "BPVUsersView.h"
+#import "BPVUsers.h"
 #import "BPVUser.h"
 
 #import "BPVUserCell.h"
@@ -57,11 +58,14 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 #pragma mark -
-#pragma mark BPVModelObserver
+#pragma mark BPVArrayModelChangeObserver
 
 - (void)model:(id)model didChangeWithModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
 }
+
+#pragma mark -
+#pragma mark BPVModelObserver
 
 - (void)modelWillLoad:(id)model {
     self.usersView.loading = YES;

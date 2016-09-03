@@ -18,11 +18,11 @@
 - (void)setUser:(BPVUser *)user {
     if (_user != user) {
         [_user removeObserver:self];
+        
         _user = user;
-
         [_user addObserver:self];
+        
         [self.user load];
-        [self fillWithModel:user];
     }
 }
 
@@ -31,6 +31,7 @@
 
 - (void)fillWithModel:(BPVUser *)user {
     self.userNameLabel.text = self.user.fullName;
+    self.userImageView.image = user.image;
 }
 
 #pragma mark -
@@ -41,9 +42,9 @@
 }
 
 - (void)modelDidLoad:(BPVUser *)model {
-    self.contentLoadingView.loading = NO;
+    [self fillWithModel:model];
     
-    self.userImageView.image = model.image;
+    self.contentLoadingView.loading = NO;
 }
 
 - (void)modelFailLoading:(BPVUser *)model {

@@ -8,6 +8,17 @@
 
 #import "BPVModel.h"
 
+typedef NS_ENUM(NSUInteger, BPVModelChangeState) {
+    BPVModelDidChange = BPVCount
+};
+
+@protocol BPVArrayModelChangeObserver <NSObject>
+
+@optional
+- (void)model:(id)model didChangeWithModel:(id)changeModel;
+
+@end
+
 @interface BPVArrayModel : BPVModel <NSFastEnumeration>
 @property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;

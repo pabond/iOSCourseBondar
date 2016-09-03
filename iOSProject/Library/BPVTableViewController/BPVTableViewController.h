@@ -13,7 +13,8 @@
 @interface BPVTableViewController : UIViewController    <
     UITableViewDataSource,
     UITableViewDelegate,
-    BPVModelObserver
+    BPVModelObserver,
+    BPVArrayModelChangeObserver
 >
 @property(nonatomic, strong) BPVArrayModel *model;
 

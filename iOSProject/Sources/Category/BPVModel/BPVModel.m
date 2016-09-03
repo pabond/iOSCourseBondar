@@ -52,10 +52,7 @@
 #pragma mark Redefinition of parent methods
 
 - (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case BPVModelDidChange:
-            return @selector(model:didChangeWithModel:);
-            
+    switch (state) {            
         case BPVModelDidLoad:
             return @selector(modelDidLoad:);
             
