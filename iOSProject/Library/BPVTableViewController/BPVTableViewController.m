@@ -19,17 +19,6 @@
 @implementation BPVTableViewController
 
 #pragma mark -
-#pragma mark Initalizations and deallocations
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    BPVArrayModel *model = self.model;
-    if (!model)
-    [model load];
-}
-
-#pragma mark -
 #pragma mark Accessors
 
 - (void)setModel:(BPVArrayModel *)model {
@@ -39,7 +28,7 @@
         _model = model;
         [_model addObserver:self];
         
-        if (self.isViewLoaded) {
+        if (!self.isViewLoaded) {
             [_model load];
         }
     }

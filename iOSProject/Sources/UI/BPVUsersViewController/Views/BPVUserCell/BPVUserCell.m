@@ -9,6 +9,9 @@
 #import "BPVUserCell.h"
 
 #import "BPVView.h"
+#import "BPVGCD.h"
+
+#import "BPVMacro.h"
 
 @implementation BPVUserCell
 

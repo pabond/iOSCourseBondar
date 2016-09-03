@@ -22,11 +22,19 @@
 BPVStringConstantWithValue(kBPVTableTitle, USERS LIST);
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
-@interface BPVUsersViewController ()
-
-@end
-
 @implementation BPVUsersViewController
+
+#pragma mark -
+#pragma mark Initalizations and deallocations
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    BPVModel *model = self.model;
+    if (model.state != BPVModelDidUnload) {
+         [model load];
+    }
+}
 
 #pragma mark -
 #pragma Interface Handling
