@@ -31,7 +31,6 @@
 
 - (void)fillWithModel:(BPVUser *)user {
     self.userNameLabel.text = self.user.fullName;
-    self.userImageView.image = user.image;
 }
 
 #pragma mark -
@@ -43,6 +42,8 @@
 
 - (void)modelDidLoad:(BPVUser *)model {
     self.contentLoadingView.loading = NO;
+    
+    self.userImageView.image = model.image;
 }
 
 - (void)modelFailLoading:(BPVUser *)model {

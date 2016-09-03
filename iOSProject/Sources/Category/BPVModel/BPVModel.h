@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, BPVModelState) {
 - (void)save;
 - (void)load;
 
-//this class sould be implemented in subclasses
+//this method sould be implemented in subclasses
 - (void)performLoading;
 
 @end
