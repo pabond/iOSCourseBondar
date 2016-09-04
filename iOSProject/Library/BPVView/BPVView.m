@@ -10,10 +10,6 @@
 
 #import "BPVLoadingView.h"
 
-#import "BPVGCD.h"
-
-#import "BPVMacro.h"
-
 @interface BPVView ()
 
 - (BPVLoadingView *)defaultLoadingView;
@@ -60,16 +56,8 @@
 }
 
 - (void)setLoading:(BOOL)loading {
-    if ([NSThread isMainThread]) {
-        [self.loadingView setVisible:loading animated:YES];
-    } else {
-        BPVWeakify(self)
-        BPVPerformAsyncBlockOnMainQueue(^{
-            BPVStrongifyAndReturnIfNil(self)
-            [self.loadingView setVisible:loading animated:YES];
-        });
-
-    }
+    
+    [self.loadingView setVisible:loading animated:YES];
 }
 
 - (BOOL)loading {

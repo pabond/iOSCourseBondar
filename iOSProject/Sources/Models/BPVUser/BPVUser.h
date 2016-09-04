@@ -10,10 +10,12 @@
 
 #import "BPVModel.h"
 
+@class BPVImage;
+
 @interface BPVUser : BPVModel <NSCoding>
 @property (nonatomic, copy)     NSString *name;
 @property (nonatomic, copy)     NSString *surname;
 @property (nonatomic, readonly) NSString *fullName;
-@property (nonatomic, strong)   UIImage  *image;
+@property (nonatomic, readonly) BPVImage  *image;
 
 @end

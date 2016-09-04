@@ -67,7 +67,10 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
         }];
         
         sleep(kBPVSleepTime);
-        self.state = BPVModelDidLoad;
+        BPVPerformAsyncBlockOnMainQueue(^{
+            BPVStrongifyAndReturnIfNil(self)
+            self.state = BPVModelDidLoad;
+        });
     }
 }
 

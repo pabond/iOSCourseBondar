@@ -8,6 +8,7 @@
 
 #import "BPVUser.h"
 
+#import "BPVImage.h"
 #import "BPVGCD.h"
 
 #import "NSString+BPVRandomName.h"
@@ -20,7 +21,14 @@ BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 BPVConstant(NSUInteger, kBPVSleepTime, 3);
 
+@interface BPVUser ()
+@property (nonatomic, strong) BPVImage  *userImage;
+
+@end
+
 @implementation BPVUser
+
+@dynamic image;
 
 @dynamic fullName;
 
@@ -44,16 +52,33 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
     return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
 }
 
+- (BPVImage *)image {
+    return self.userImage;
+}
+
+- (void)setUserImage:(BPVImage *)userImage {
+    if (_userImage != userImage) {
+        [_userImage removeObserver:self];
+        
+        _userImage = userImage;
+        [_userImage addObserver:self];
+    }
+}
+
 #pragma mark -
 #pragma mark Public implementations
 
 - (void)performLoading {
     @synchronized (self) {
         NSString *path = [[NSBundle mainBundle] pathForResource:kBPVUserImageName ofType:kBPVUserImageFormat];
-        self.image = [UIImage imageWithContentsOfFile:path];
+        self.userImage = [BPVImage imageFromUrl:[NSURL URLWithString:path]];
         
         sleep(kBPVSleepTime);
-        self.state = BPVModelDidLoad;
+        BPVWeakify(self)
+        BPVPerformAsyncBlockOnMainQueue(^{
+            BPVStrongifyAndReturnIfNil(self)
+            self.state = BPVModelDidLoad;
+        });
     }
 }
 
