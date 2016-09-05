@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BPVImageModelDispatcher : NSObject
-@property (nonatomic, readonly) NSOperationQueue *queue;
+@class BPVImage;
+@class BPVModel;
 
-+ (instancetype)shareDespatcher;
+@interface BPVImageModelDispatcher : NSObject
+@property (nonatomic, readonly) NSArray *images;
+
+- (BPVImage *)imageForModel:(BPVModel *)model;
 
 @end

@@ -19,10 +19,9 @@ BPVStringConstantWithValue(kBPVUserName, userName);
 BPVStringConstantWithValue(kBPVUserSurname, userSurname);
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
-BPVConstant(NSUInteger, kBPVSleepTime, 3);
 
 @interface BPVUser ()
-@property (nonatomic, strong) BPVImage  *userImage;
+@property (nonatomic, strong) BPVImage                  *userImage;
 
 @end
 
@@ -52,8 +51,8 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
     return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
 }
 
-- (BPVImage *)image {
-    return self.userImage;
+- (UIImage *)image {
+    return self.userImage.image;
 }
 
 - (void)setUserImage:(BPVImage *)userImage {
@@ -72,15 +71,24 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
     @synchronized (self) {
         NSString *path = [[NSBundle mainBundle] pathForResource:kBPVUserImageName ofType:kBPVUserImageFormat];
         self.userImage = [BPVImage imageFromUrl:[NSURL URLWithString:path]];
-        
-        sleep(kBPVSleepTime);
-        BPVWeakify(self)
-        BPVPerformAsyncBlockOnMainQueue(^{
-            BPVStrongifyAndReturnIfNil(self)
-            self.state = BPVModelDidLoad;
-        });
     }
 }
+
+#pragma mark -
+#pragma mark BPVModelObserver
+
+- (void)modelDidLoad:(BPVImage *)model {
+    BPVWeakify(self)
+    BPVPerformAsyncBlockOnMainQueue(^{
+        BPVStrongifyAndReturnIfNil(self)
+        self.state = BPVModelDidLoad;
+    });
+}
+
+- (void)modelFailLoading:(id)model {
+    [self performLoading];
+}
+
 
 #pragma mark -
 #pragma mark NSCoding

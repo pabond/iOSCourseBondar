@@ -9,8 +9,11 @@
 #import "BPVImage.h"
 
 #import "BPVImageModelDispatcher.h"
+#import "BPVGCD.h"
 
 #import "BPVMacro.h"
+
+BPVConstant(NSUInteger, kBPVSleepTime, 3);
 
 @interface BPVImage ()
 @property (nonatomic, strong) UIImage   *image;
@@ -36,6 +39,7 @@
     self = [super init];
     if (self) {
         self.url = url;
+        [self load];
     }
     
     return self;
@@ -50,11 +54,12 @@
 #pragma mark Public implementations
 
 - (void)performLoading {
-    self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
-    self.state = self.image ? BPVModelDidLoad : BPVModelFailLoading;
+    @synchronized (self) {
+        self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
+        
+        sleep(kBPVSleepTime);
+        self.state =  self.image ? BPVModelDidLoad : BPVModelFailLoading;
+    }
 }
-
-#pragma mark -
-#pragma mark Private implementations
 
 @end
