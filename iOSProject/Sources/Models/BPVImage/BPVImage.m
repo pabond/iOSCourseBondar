@@ -10,14 +10,16 @@
 
 #import "BPVImageModelDispatcher.h"
 #import "BPVGCD.h"
+#import "BPVQueue.h"
 
 #import "BPVMacro.h"
 
 BPVConstant(NSUInteger, kBPVSleepTime, 3);
 
 @interface BPVImage ()
-@property (nonatomic, strong) UIImage   *image;
-@property (nonatomic, strong) NSURL     *url;
+@property (nonatomic, strong) UIImage                   *image;
+@property (nonatomic, strong) NSURL                     *url;
+@property (nonatomic, strong) BPVImageModelDispatcher   *imageDispatcher;
 
 - (instancetype)initWithUrl:(NSURL *)url;
 
@@ -39,7 +41,9 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
     self = [super init];
     if (self) {
         self.url = url;
-        [self load];
+        BPVImageModelDispatcher *imageDispatcher = [BPVImageModelDispatcher shareDespatcher];
+        self.imageDispatcher = imageDispatcher;
+        [imageDispatcher loadImage:self];
     }
     
     return self;
@@ -48,7 +52,14 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
 #pragma mark -
 #pragma mark Accessors
 
-
+- (void)setImageDispatcher:(BPVImageModelDispatcher *)imageDispatcher {
+    if (_imageDispatcher != imageDispatcher) {
+        [self removeObserver:_imageDispatcher];
+        
+        _imageDispatcher = imageDispatcher;
+        [self addObserver:_imageDispatcher];
+    }
+}
 
 #pragma mark -
 #pragma mark Public implementations
@@ -59,6 +70,11 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
         
         sleep(kBPVSleepTime);
         self.state =  self.image ? BPVModelDidLoad : BPVModelFailLoading;
+        
+        BPVImageModelDispatcher *imageDispatcher = self.imageDispatcher;
+        if (imageDispatcher.queue.count) {
+            [imageDispatcher loadImage:[imageDispatcher.queue dequeueObject]];
+        }
     }
 }
 

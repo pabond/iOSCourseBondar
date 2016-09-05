@@ -53,6 +53,7 @@
 		2DD763AA1D7970D300CEB5EA /* NSKeyedUnarchiver+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763A91D7970D300CEB5EA /* NSKeyedUnarchiver+BPVExtensions.m */; };
 		2DD763AE1D798AC300CEB5EA /* BPVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763AD1D798AC300CEB5EA /* BPVModel.m */; };
 		2DD763B01D79A2FD00CEB5EA /* BPVLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD763AF1D79A2FD00CEB5EA /* BPVLoadingView.xib */; };
+		2DD763B41D7D8BA500CEB5EA /* BPVQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763B31D7D8BA500CEB5EA /* BPVQueue.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
 		2DE873A81D75C28900A3550A /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A71D75C28900A3550A /* BPVView.m */; };
 		2DE873AC1D75C36900A3550A /* BPVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873AB1D75C36900A3550A /* BPVLoadingView.m */; };
@@ -169,6 +170,8 @@
 		2DD763AC1D798AC300CEB5EA /* BPVModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVModel.h; sourceTree = "<group>"; };
 		2DD763AD1D798AC300CEB5EA /* BPVModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVModel.m; sourceTree = "<group>"; };
 		2DD763AF1D79A2FD00CEB5EA /* BPVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVLoadingView.xib; sourceTree = "<group>"; };
+		2DD763B21D7D8BA500CEB5EA /* BPVQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVQueue.h; sourceTree = "<group>"; };
+		2DD763B31D7D8BA500CEB5EA /* BPVQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVQueue.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
 		2DE873A31D75C24800A3550A /* BPVMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVMacro.m; sourceTree = "<group>"; };
 		2DE873A61D75C28900A3550A /* BPVView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVView.h; sourceTree = "<group>"; };
@@ -331,6 +334,7 @@
 		2D3F42101D40C2C500A38A7B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				2DD763B11D7D8BA500CEB5EA /* Queue */,
 				2DD763AB1D79763D00CEB5EA /* BPVModel */,
 				2DD763A31D786A3900CEB5EA /* BPVArrayModel */,
 				2DD7638C1D786A2600CEB5EA /* BPVArrayChange */,
@@ -676,6 +680,15 @@
 			path = Sources/Category/BPVModel;
 			sourceTree = SOURCE_ROOT;
 		};
+		2DD763B11D7D8BA500CEB5EA /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				2DD763B21D7D8BA500CEB5EA /* BPVQueue.h */,
+				2DD763B31D7D8BA500CEB5EA /* BPVQueue.m */,
+			);
+			path = Queue;
+			sourceTree = "<group>";
+		};
 		2DE873A11D75C24800A3550A /* BPVMacro */ = {
 			isa = PBXGroup;
 			children = (
@@ -1015,6 +1028,7 @@
 				2D3F41FD1D3FA29800A38A7B /* BPVAppDelegate.m in Sources */,
 				2D4828F91D6C905000AF3617 /* NSString+BPVRandomName.m in Sources */,
 				2D3F424C1D4C021500A38A7B /* BPVSquareViewController.m in Sources */,
+				2DD763B41D7D8BA500CEB5EA /* BPVQueue.m in Sources */,
 				2D328D721D5CADF70064C76D /* BPVUsers.m in Sources */,
 				2D4828F71D6C905000AF3617 /* NSIndexPath+BPVExtensions.m in Sources */,
 			);

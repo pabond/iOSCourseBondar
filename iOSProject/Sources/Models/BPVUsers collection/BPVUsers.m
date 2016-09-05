@@ -19,7 +19,7 @@
 #import "BPVMacro.h"
 
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
-BPVConstant(NSUInteger, kBPVSleepTime, 2);
+BPVConstant(NSUInteger, kBPVSleepTime, 5);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVUsers ()
