@@ -18,4 +18,6 @@
 @property (nonatomic, readonly) NSString    *fullName;
 @property (nonatomic, readonly) UIImage    *image;
 
+- (void)cancelImageLoading;
+
 @end

@@ -14,8 +14,9 @@
 #import "BPVMacro.h"
 
 @interface  BPVImageModelDispatcher ()
-@property (nonatomic, strong) BPVQueue      *queue;
-@property (nonatomic, assign) NSUInteger    operationsCount;
+@property (nonatomic, strong) BPVQueue              *queue;
+@property (nonatomic, assign) NSUInteger            operationsCount;
+@property (nonatomic, strong) NSMutableDictionary   *images;
 
 @end
 

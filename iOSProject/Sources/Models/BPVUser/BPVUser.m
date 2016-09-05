@@ -57,6 +57,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 - (void)setUserImage:(BPVImage *)userImage {
     if (_userImage != userImage) {
+        [_userImage dump];
         [_userImage removeObserver:self];
         
         _userImage = userImage;
@@ -69,9 +70,19 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 - (void)performLoading {
     @synchronized (self) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:kBPVUserImageName ofType:kBPVUserImageFormat];
-        self.userImage = [BPVImage imageFromUrl:[NSURL URLWithString:path]];
+        self.userImage = [BPVImage imageFromUrl:[NSURL URLWithString:[self imagePath]]];
     }
+}
+
+- (void)cancelImageLoading {
+    self.userImage = nil;
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (NSString *)imagePath {
+    return [[NSBundle mainBundle] pathForResource:kBPVUserImageName ofType:kBPVUserImageFormat];
 }
 
 #pragma mark -
@@ -88,7 +99,6 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 - (void)modelFailLoading:(id)model {
     [self performLoading];
 }
-
 
 #pragma mark -
 #pragma mark NSCoding
