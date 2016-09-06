@@ -58,19 +58,15 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 - (void)performLoading {
     @synchronized (self) {
-        NSArray *array = [self arrayModel];
+        sleep(kBPVSleepTime);
         
         BPVWeakify(self)
         [self performBlockWithoutNotification:^{
             BPVStrongifyAndReturnIfNil(self)
-            [self addModels:array];
+            [self addModels:[self arrayModel]];
         }];
         
-        sleep(kBPVSleepTime);
-        BPVPerformAsyncBlockOnMainQueue(^{
-            BPVStrongifyAndReturnIfNil(self)
-            self.state = BPVModelDidLoad;
-        });
+        self.state = BPVModelDidLoad;
     }
 }
 

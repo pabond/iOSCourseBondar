@@ -12,7 +12,7 @@ typedef NS_ENUM(NSUInteger, BPVModelChangeState) {
     BPVModelDidChange = BPVCount
 };
 
-@protocol BPVArrayModelChangeObserver <NSObject>
+@protocol BPVArrayModelObserver <NSObject, BPVModelObserver>
 
 @optional
 - (void)model:(id)model didChangeWithModel:(id)changeModel;

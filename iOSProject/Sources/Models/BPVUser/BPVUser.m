@@ -57,7 +57,6 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 - (void)setUserImage:(BPVImage *)userImage {
     if (_userImage != userImage) {
-        [_userImage dump];
         [_userImage removeObserver:self];
         
         _userImage = userImage;

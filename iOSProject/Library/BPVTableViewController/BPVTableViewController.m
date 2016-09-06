@@ -28,10 +28,16 @@
         _model = model;
         [_model addObserver:self];
         
-        if (!self.isViewLoaded) {
+        if ([self isViewLoaded]) {
             [_model load];
         }
     }
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.model load];
 }
 
 #pragma mark -

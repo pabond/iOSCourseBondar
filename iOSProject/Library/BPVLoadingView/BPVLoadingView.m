@@ -38,7 +38,7 @@ BPVConstant(CGFloat, kBPVLowerAlfa, 0.f);
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    super.alpha = kBPVLowerAlfa;
+    [super setAlpha:kBPVLowerAlfa];
 }
 
 #pragma mark -

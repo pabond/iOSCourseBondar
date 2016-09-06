@@ -16,6 +16,4 @@
 
 + (instancetype)imageFromUrl:(NSURL *)url;
 
-- (void)dump;
-
 @end

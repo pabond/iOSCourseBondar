@@ -14,7 +14,7 @@
     UITableViewDataSource,
     UITableViewDelegate,
     BPVModelObserver,
-    BPVArrayModelChangeObserver
+    BPVArrayModelObserver
 >
 @property(nonatomic, strong) BPVArrayModel *model;
 

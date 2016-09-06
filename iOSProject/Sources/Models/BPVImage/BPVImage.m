@@ -78,9 +78,4 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
     }
 }
 
-- (void)dump {
-    self.image = nil;
-    self.state = BPVModelDidUnload;
-}
-
 @end
