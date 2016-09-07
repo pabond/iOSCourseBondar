@@ -16,6 +16,7 @@
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, copy)     NSString    *surname;
 @property (nonatomic, readonly) NSString    *fullName;
-@property (nonatomic, readonly) UIImage    *image;
+@property (nonatomic, readonly) BPVImage    *image;
+@property (nonatomic, readonly) NSURL       *url;
 
 @end

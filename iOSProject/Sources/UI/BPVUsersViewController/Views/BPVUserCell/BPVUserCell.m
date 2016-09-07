@@ -9,6 +9,7 @@
 #import "BPVUserCell.h"
 
 #import "BPVView.h"
+#import "BPVImage.h"
 #import "BPVGCD.h"
 
 #import "BPVMacro.h"
@@ -25,7 +26,7 @@
         _user = user;
         [_user addObserver:self];
         
-        [self.user load];
+        [self fillWithModel:_user];
     }
 }
 
@@ -44,14 +45,14 @@
     self.contentLoadingView.loading = YES;
 }
 
-- (void)modelDidLoad:(BPVUser *)model {
-    [self fillWithModel:model];
+- (void)modelDidLoad:(BPVImage *)model {
+    self.userImageView.image = model.image;
     
     self.contentLoadingView.loading = NO;
 }
 
-- (void)modelFailLoading:(BPVUser *)model {
-    [self.user load];
+- (void)modelFailLoading:(BPVImage *)model {
+    [model load];
 }
 
 @end

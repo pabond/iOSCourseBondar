@@ -66,16 +66,30 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
 
 - (void)performLoading {
     @synchronized (self) {
-        self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
+        NSString *path = [self isImageAtFileManager] ? [self imagePathInFileManager] : [self.url absoluteString];
+        self.image = [UIImage imageWithContentsOfFile:path];
         
         sleep(kBPVSleepTime);
-        self.state =  self.image ? BPVModelDidLoad : BPVModelFailLoading;
+        self.state = self.image ? BPVModelDidLoad : BPVModelFailLoading;
         
         BPVImageModelDispatcher *imageDispatcher = self.imageDispatcher;
         if (imageDispatcher.queue.count) {
             [imageDispatcher loadImage:[imageDispatcher.queue dequeueObject]];
         }
     }
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (BOOL)isImageAtFileManager {
+    return [UIImage imageWithContentsOfFile:[self imagePathInFileManager]];
+}
+
+- (NSString *)imagePathInFileManager {
+    NSString *path = [NSString stringWithContentsOfURL:self.url encoding:NSUTF8StringEncoding error:nil];
+    
+    return path;
 }
 
 @end

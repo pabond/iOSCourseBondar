@@ -19,9 +19,10 @@ BPVStringConstantWithValue(kBPVUserName, userName);
 BPVStringConstantWithValue(kBPVUserSurname, userSurname);
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
+static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/2015/12/ziemelbriedis.png";
 
 @interface BPVUser ()
-@property (nonatomic, strong) BPVImage                  *userImage;
+@property (nonatomic, strong) NSURL *url;
 
 @end
 
@@ -34,13 +35,13 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 #pragma mark -
 #pragma mark Initializations and deallocations
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self) {
-        self.name = [NSString randomName];
-        self.surname = [NSString randomName];
-    }
+    
+    self.name = [NSString randomName];
+    self.surname = [NSString randomName];
+    self.url = [NSURL URLWithString:kBPVImageURL];
+    
     return self;
 }
 
@@ -51,31 +52,18 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
     return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
 }
 
-- (UIImage *)image {
-    return self.userImage.image;
-}
-
-- (void)setUserImage:(BPVImage *)userImage {
-    if (_userImage != userImage) {
-        [_userImage removeObserver:self];
-        
-        _userImage = userImage;
-        [_userImage addObserver:self];
-    }
+- (BPVImage *)image {
+    return [BPVImage imageFromUrl:self.url];
 }
 
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)performLoading {
-    @synchronized (self) {
-        self.userImage = [BPVImage imageFromUrl:[NSURL URLWithString:[self imagePath]]];
-    }
-}
-
-- (void)cancelImageLoading {
-    self.userImage = nil;
-}
+//- (void)performLoading {
+//    @synchronized (self) {
+//        self.userImage = [BPVImage imageFromUrl:[NSURL URLWithString:[self imagePath]]];
+//    }
+//}
 
 #pragma mark -
 #pragma mark Private implementations
