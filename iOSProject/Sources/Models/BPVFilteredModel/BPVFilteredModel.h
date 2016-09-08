@@ -6,8 +6,8 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVObservableObject.h"
+#import "BPVModel.h"
 
-@interface BPVFilteredModel : BPVObservableObject
+@interface BPVFilteredModel : BPVModel
 
 @end

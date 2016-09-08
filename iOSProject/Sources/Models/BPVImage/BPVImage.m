@@ -8,18 +8,19 @@
 
 #import "BPVImage.h"
 
-#import "BPVImageModelDispatcher.h"
 #import "BPVGCD.h"
 #import "BPVQueue.h"
+
+#import "NSFileManager+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
 BPVConstant(NSUInteger, kBPVSleepTime, 3);
 
 @interface BPVImage ()
-@property (nonatomic, strong) UIImage                   *image;
-@property (nonatomic, strong) NSURL                     *url;
-@property (nonatomic, strong) BPVImageModelDispatcher   *imageDispatcher;
+@property (nonatomic, strong) UIImage       *image;
+@property (nonatomic, strong) NSURL         *url;
+//@property (nonatomic, strong) NSMapTable    *images;
 
 - (instancetype)initWithUrl:(NSURL *)url;
 
@@ -41,53 +42,41 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
     self = [super init];
     if (self) {
         self.url = url;
-        BPVImageModelDispatcher *imageDispatcher = [BPVImageModelDispatcher shareDespatcher];
-        self.imageDispatcher = imageDispatcher;
-        [imageDispatcher loadImage:self];
     }
     
     return self;
 }
 
 #pragma mark -
-#pragma mark Accessors
-
-- (void)setImageDispatcher:(BPVImageModelDispatcher *)imageDispatcher {
-    if (_imageDispatcher != imageDispatcher) {
-        [self removeObserver:_imageDispatcher];
-        
-        _imageDispatcher = imageDispatcher;
-        [self addObserver:_imageDispatcher];
-    }
-}
-
-#pragma mark -
 #pragma mark Public implementations
 
 - (void)performLoading {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *filePath = [self imagePathInFileSystem];
+    UIImage *image = nil;
+    
     @synchronized (self) {
-        NSString *path = [self isImageAtFileManager] ? [self imagePathInFileManager] : [self.url absoluteString];
-        self.image = [UIImage imageWithContentsOfFile:path];
+        if (![fileManager fileExistsAtPath:filePath]) {
+            image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:self.url]];
+            NSData * imageData = UIImagePNGRepresentation(image);
+            [imageData writeToFile:filePath atomically:YES];
+        } else {
+            image = [UIImage imageWithContentsOfFile:[self imagePathInFileSystem]];
+        }
+        
+        self.image = image;
         
         sleep(kBPVSleepTime);
         self.state = self.image ? BPVModelDidLoad : BPVModelFailLoading;
-        
-        BPVImageModelDispatcher *imageDispatcher = self.imageDispatcher;
-        if (imageDispatcher.queue.count) {
-            [imageDispatcher loadImage:[imageDispatcher.queue dequeueObject]];
-        }
     }
 }
 
 #pragma mark -
 #pragma mark Private implementations
 
-- (BOOL)isImageAtFileManager {
-    return [UIImage imageWithContentsOfFile:[self imagePathInFileManager]];
-}
-
-- (NSString *)imagePathInFileManager {
-    NSString *path = [NSString stringWithContentsOfURL:self.url encoding:NSUTF8StringEncoding error:nil];
+- (NSString *)imagePathInFileSystem {
+    NSString *path = [[NSFileManager applicationDataPath] stringByAppendingPathComponent:self.url.path];
+    NSLog(@"path = %@", path);
     
     return path;
 }

@@ -57,37 +57,6 @@ static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/20
 }
 
 #pragma mark -
-#pragma mark Public implementations
-
-//- (void)performLoading {
-//    @synchronized (self) {
-//        self.userImage = [BPVImage imageFromUrl:[NSURL URLWithString:[self imagePath]]];
-//    }
-//}
-
-#pragma mark -
-#pragma mark Private implementations
-
-- (NSString *)imagePath {
-    return [[NSBundle mainBundle] pathForResource:kBPVUserImageName ofType:kBPVUserImageFormat];
-}
-
-#pragma mark -
-#pragma mark BPVModelObserver
-
-- (void)modelDidLoad:(BPVImage *)model {
-    BPVWeakify(self)
-    BPVPerformAsyncBlockOnMainQueue(^{
-        BPVStrongifyAndReturnIfNil(self)
-        self.state = BPVModelDidLoad;
-    });
-}
-
-- (void)modelFailLoading:(id)model {
-    [self performLoading];
-}
-
-#pragma mark -
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {

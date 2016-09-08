@@ -53,7 +53,6 @@
 		2DD763AE1D798AC300CEB5EA /* BPVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763AD1D798AC300CEB5EA /* BPVModel.m */; };
 		2DD763B01D79A2FD00CEB5EA /* BPVLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD763AF1D79A2FD00CEB5EA /* BPVLoadingView.xib */; };
 		2DD763B41D7D8BA500CEB5EA /* BPVQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763B31D7D8BA500CEB5EA /* BPVQueue.m */; };
-		2DD763B81D7EBEC100CEB5EA /* BPVImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763B71D7EBEC100CEB5EA /* BPVImageModelDispatcher.m */; };
 		2DD763C01D7EC0C800CEB5EA /* BPVFilteredModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763BF1D7EC0C800CEB5EA /* BPVFilteredModel.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
 		2DE873A81D75C28900A3550A /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A71D75C28900A3550A /* BPVView.m */; };
@@ -171,8 +170,6 @@
 		2DD763AF1D79A2FD00CEB5EA /* BPVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVLoadingView.xib; sourceTree = "<group>"; };
 		2DD763B21D7D8BA500CEB5EA /* BPVQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVQueue.h; sourceTree = "<group>"; };
 		2DD763B31D7D8BA500CEB5EA /* BPVQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVQueue.m; sourceTree = "<group>"; };
-		2DD763B61D7EBEC100CEB5EA /* BPVImageModelDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImageModelDispatcher.h; sourceTree = "<group>"; };
-		2DD763B71D7EBEC100CEB5EA /* BPVImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImageModelDispatcher.m; sourceTree = "<group>"; };
 		2DD763BE1D7EC0C800CEB5EA /* BPVFilteredModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVFilteredModel.h; sourceTree = "<group>"; };
 		2DD763BF1D7EC0C800CEB5EA /* BPVFilteredModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVFilteredModel.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
@@ -687,8 +684,6 @@
 		2DD763B51D7EBEC100CEB5EA /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				2DD763B61D7EBEC100CEB5EA /* BPVImageModelDispatcher.h */,
-				2DD763B71D7EBEC100CEB5EA /* BPVImageModelDispatcher.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -1021,7 +1016,6 @@
 				2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */,
 				2D4828FE1D6C905000AF3617 /* UIViewController+BPVExtensions.m in Sources */,
 				2D4828FD1D6C905000AF3617 /* UITableView+BPVExtensions.m in Sources */,
-				2DD763B81D7EBEC100CEB5EA /* BPVImageModelDispatcher.m in Sources */,
 				2D4828FA1D6C905000AF3617 /* NSTimer+BPVExtensions.m in Sources */,
 				2D4828991D6AEADC00AF3617 /* BPVGCD.m in Sources */,
 				2D3F41FF1D3FA29800A38A7B /* main.m in Sources */,

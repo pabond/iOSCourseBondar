@@ -9,7 +9,6 @@
 #import "BPVUsers.h"
 
 #import "BPVUser.h"
-
 #import "BPVGCD.h"
 
 #import "NSFileManager+BPVExtensions.h"
@@ -60,11 +59,8 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     @synchronized (self) {
         sleep(kBPVSleepTime);
         
-        BPVWeakify(self)
-        [self performBlockWithoutNotification:^{
-            BPVStrongifyAndReturnIfNil(self)
-            [self addModels:[self arrayModel]];
-        }];
+
+        [self addModels:[self arrayModel]];
         
         self.state = BPVModelDidLoad;
     }

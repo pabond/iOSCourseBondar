@@ -20,11 +20,8 @@
 #pragma mark Accessors
 
 - (void)setUser:(BPVUser *)user {
-    if (_user != user) {
-        [_user removeObserver:self];
-        
+    if (_user != user) {        
         _user = user;
-        [_user addObserver:self];
         
         [self fillWithModel:_user];
     }
@@ -35,13 +32,16 @@
 
 - (void)fillWithModel:(BPVUser *)user {
     self.userNameLabel.text = self.user.fullName;
-    self.userImageView.image = user.image;
+    
+    BPVImage *image = user.image;
+    [image addObserver:self];
+    [image load];
 }
 
 #pragma mark -
 #pragma mark BPVModelObserver
 
-- (void)modelWillLoad:(id)model {
+- (void)modelWillLoad:(BPVImage *)model {
     self.contentLoadingView.loading = YES;
 }
 
@@ -52,7 +52,7 @@
 }
 
 - (void)modelFailLoading:(BPVImage *)model {
-    [model load];
+    [model performLoading];
 }
 
 @end
