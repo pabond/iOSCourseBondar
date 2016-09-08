@@ -12,5 +12,6 @@
 
 - (IBAction)onEditing:(id)sender;
 - (IBAction)onAdd:(id)sender;
+- (IBAction)onSearchFieldEdit:(id)sender;
 
 @end

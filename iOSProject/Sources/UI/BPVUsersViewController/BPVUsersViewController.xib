@@ -30,8 +30,18 @@
                         <action selector="onEditing:" destination="-1" eventType="touchUpInside" id="mta-qs-hdY"/>
                     </connections>
                 </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="GDM-pf-swn">
+                    <rect key="frame" x="8" y="40" width="304" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="onSearchFieldEdit:" destination="-1" eventType="editingChanged" id="gf7-od-P5o"/>
+                    </connections>
+                </textField>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1p6-JR-xW5">
-                    <rect key="frame" x="8" y="50" width="304" height="510"/>
+                    <rect key="frame" x="8" y="78" width="304" height="482"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="scrollIndicatorInsets" minX="0.0" minY="40" maxX="0.0" maxY="30"/>
@@ -45,6 +55,7 @@
             <connections>
                 <outlet property="addButton" destination="4k8-0R-7GP" id="rsQ-Tn-7JM"/>
                 <outlet property="editingButton" destination="8Sg-oI-Nlw" id="fZd-pv-3fK"/>
+                <outlet property="searchField" destination="GDM-pf-swn" id="z5b-oc-aKg"/>
                 <outlet property="usersTableView" destination="1p6-JR-xW5" id="OfH-fn-81I"/>
             </connections>
             <point key="canvasLocation" x="374" y="371"/>

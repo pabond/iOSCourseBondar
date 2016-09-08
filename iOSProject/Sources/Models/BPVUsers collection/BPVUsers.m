@@ -14,11 +14,12 @@
 #import "NSFileManager+BPVExtensions.h"
 #import "NSKeyedUnarchiver+BPVExtensions.h"
 #import "NSArray+BPVExtensions.h"
+#import "BPVFilteredModel.h"
 
 #import "BPVMacro.h"
 
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
-BPVConstant(NSUInteger, kBPVSleepTime, 5);
+//BPVConstant(NSUInteger, kBPVSleepTime, 5);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVUsers ()
@@ -57,10 +58,9 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 - (void)performLoading {
     @synchronized (self) {
-        sleep(kBPVSleepTime);
-        
-
-        [self addModels:[self arrayModel]];
+        NSArray *array = [self arrayModel];
+        [self addModels:array];
+        [BPVFilteredModel filteredModelWithArray:array];
         
         self.state = BPVModelDidLoad;
     }
@@ -75,8 +75,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 - (NSArray *)arrayModel {
     NSArray *array = [NSKeyedUnarchiver objectFromFileWithPath:self.applicationFilePath];
-    
-    if (array) {
+    if (array && array.count) {
         NSLog(@"[LOADING] Array will load from file");
     } else {
         array = [self defaultArrayModel];

@@ -19,7 +19,7 @@
 }
 
 + (NSString *)applicationDataPath {
-    NSString *dataPath = [self documentDirectoryPath];
+    NSString *dataPath = [self libraryDirectoryPath];
 
     return dataPath;
 }

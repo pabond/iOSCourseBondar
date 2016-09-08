@@ -31,6 +31,10 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     [self.model addModel:[BPVUser new]];
 }
 
+- (IBAction)onSearchFieldEdit:(id)sender {
+    
+}
+
 - (IBAction)onEditing:(id)sender {
     BPVUsersView *usersView = self.usersView;
     usersView.editing = !usersView.editing;

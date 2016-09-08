@@ -6,8 +6,21 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVModel.h"
+#import "BPVArrayModel.h"
 
-@interface BPVFilteredModel : BPVModel
+typedef NS_ENUM(NSUInteger, BPVFilteredModelState) {
+    BPVModelDidFilter
+};
+
+@protocol BPVFilteredModelObserver <NSObject>
+- (void)modelDidFilter;
+
+@end
+
+@interface BPVFilteredModel : BPVArrayModel <BPVModelObserver>
+
++ (instancetype)filteredModelWithArray:(NSArray *)array;
+
+- (void)filterArrayWithSting:(NSString *)text;
 
 @end
