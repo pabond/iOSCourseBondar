@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BPVArrayModel.h"
+@class BPVFilteredModel;
 
 @interface BPVTableViewController : UIViewController    <
     UITableViewDataSource,

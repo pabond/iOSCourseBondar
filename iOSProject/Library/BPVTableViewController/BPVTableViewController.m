@@ -11,6 +11,7 @@
 #import "BPVLoadingView.h"
 
 #import "BPVArrayChange.h"
+#import "BPVFilteredModel.h"
 
 #import "BPVObservableObject.h"
 

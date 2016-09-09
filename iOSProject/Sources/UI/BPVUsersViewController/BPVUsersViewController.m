@@ -12,6 +12,8 @@
 #import "BPVUsers.h"
 #import "BPVUser.h"
 
+#import "BPVFilteredModel.h"
+
 #import "BPVUserCell.h"
 
 #import "UITableView+BPVExtensions.h"
@@ -22,17 +24,22 @@
 BPVStringConstantWithValue(kBPVTableTitle, USERS LIST);
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
+@interface BPVUsersViewController ()
+@property (nonatomic, strong) BPVFilteredModel *filteredModel;
+
+@end
+
 @implementation BPVUsersViewController
 
 #pragma mark -
-#pragma Interface Handling
+#pragma mark Interface Handling
 
 - (IBAction)onAdd:(id)sender {
     [self.model addModel:[BPVUser new]];
 }
 
-- (IBAction)onSearchFieldEdit:(id)sender {
-    
+- (IBAction)onSearchFieldEdit:(UITextField *)sender {
+    [self.filteredModel filterArrayWithSting:sender.text];
 }
 
 - (IBAction)onEditing:(id)sender {
@@ -53,6 +60,10 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark UITableViewDataSource
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.filteredModel.count;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return kBPVTableTitle;
 }
@@ -71,7 +82,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     self.usersView.loading = YES;
 }
 
-- (void)modelDidLoad:(id)model {
+- (void)modelDidLoad:(BPVUsers *)model {
+    self.filteredModel = [BPVFilteredModel filteredModelWithArray:model.models];
     [self.usersView.usersTableView reloadData];
     self.usersView.loading = NO;
 }
