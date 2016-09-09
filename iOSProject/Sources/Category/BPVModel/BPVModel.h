@@ -35,4 +35,7 @@ typedef NS_ENUM(NSUInteger, BPVModelState) {
 //this method sould be implemented in subclasses
 - (void)performLoading;
 
+//this method cen be implemented in subclasses if needed
+- (BOOL)shouldNotifyOfState:(NSUInteger)state;
+
 @end

@@ -18,7 +18,7 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
+BPVStringConstantWithValue(kBPVApplictionSaveFileName, data.plist);
 //BPVConstant(NSUInteger, kBPVSleepTime, 5);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
@@ -27,7 +27,6 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 - (NSArray *)defaultArrayModel;
 - (NSArray *)arrayModel;
-- (void)performLoading;
 
 @end
 
@@ -57,13 +56,13 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (void)performLoading {
-    @synchronized (self) {
-        NSArray *array = [self arrayModel];
-        [self addModels:array];
-        [BPVFilteredModel filteredModelWithArray:array];
+    BPVWeakify(self)
+    [self performBlockWithoutNotification:^{
+        BPVStrongifyAndReturnIfNil(self)
+        [self addModels:[self arrayModel]];
+    }];
         
-        self.state = BPVModelDidLoad;
-    }
+    self.state = BPVModelDidLoad;
 }
 
 #pragma mark -

@@ -21,6 +21,10 @@
     
 }
 
+- (BOOL)shouldNotifyOfState:(NSUInteger)state {
+    return BPVModelDidLoad == state || BPVModelWillLoad == state;
+}
+
 #pragma mark -
 #pragma mark saving and restoring of state
 
@@ -31,7 +35,7 @@
 - (void)load {
     NSUInteger state = self.state;
     @synchronized (self) {
-        if (BPVModelDidLoad == state || BPVModelWillLoad == state) {
+        if ([self shouldNotifyOfState:state]) {
             [self notifyOfState:state];
             
             return;

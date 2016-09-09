@@ -16,6 +16,7 @@
 #import "BPVMacro.h"
 
 BPVConstant(NSUInteger, kBPVSleepTime, 3);
+BPVStringConstant(BPVImages);
 
 @interface BPVImage ()
 @property (nonatomic, strong) UIImage       *image;
@@ -27,6 +28,9 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
 @end
 
 @implementation BPVImage
+
+@dynamic path;
+@dynamic fileName;
 
 #pragma mark -
 #pragma mark Class methods
@@ -48,37 +52,51 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (NSString *)path {
+    BPVWeakify(self)
+    BPVReturnOnce(NSString, path, ^{
+        BPVStrongify(self)
+        return [[NSFileManager applicationDataPathWithFolderName:BPVImages] stringByAppendingPathComponent:self.fileName];
+    });
+}
+
+- (NSString *)fileName {
+    BPVWeakify(self)
+    BPVReturnOnce(NSString, fileName, ^{
+        BPVStrongify(self)
+        return [[self.url absoluteString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+    });
+}
+
+#pragma mark -
 #pragma mark Public implementations
 
 - (void)performLoading {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *filePath = [self imagePathInFileSystem];
+    NSString *filePath = self.path;
     UIImage *image = nil;
     
-    @synchronized (self) {
-        if (![fileManager fileExistsAtPath:filePath]) {
-            image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:self.url]];
-            NSData * imageData = UIImagePNGRepresentation(image);
+    if (![fileManager fileExistsAtPath:filePath]) {
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.url];
+        BPVPerformAsyncBlockOnBackgroundQueue(^{
             [imageData writeToFile:filePath atomically:YES];
-        } else {
-            image = [UIImage imageWithContentsOfFile:[self imagePathInFileSystem]];
+        });
+        
+        image = [UIImage imageWithData:imageData];
+    } else {
+        image = [UIImage imageWithContentsOfFile:filePath];
+        if (!image) {
+            [fileManager removeItemAtPath:filePath error:nil];
+            [self performLoading];
         }
-        
-        self.image = image;
-        
-        sleep(kBPVSleepTime);
-        self.state = self.image ? BPVModelDidLoad : BPVModelFailLoading;
     }
-}
-
-#pragma mark -
-#pragma mark Private implementations
-
-- (NSString *)imagePathInFileSystem {
-    NSString *path = [[NSFileManager applicationDataPath] stringByAppendingPathComponent:self.url.path];
-    NSLog(@"path = %@", path);
-    
-    return path;
+        
+    self.image = image;
+        
+    sleep(kBPVSleepTime);
+    self.state = self.image ? BPVModelDidLoad : BPVModelFailLoading;
 }
 
 @end

@@ -14,7 +14,8 @@
 #import "BPVUser.h"
 
 @interface BPVFilteredModel ()
-@property (nonatomic, strong)   NSMutableArray  *model;
+@property (nonatomic, strong)   BPVUsers        *model;
+@property (nonatomic, strong)   NSMutableArray  *filteredModel;
 @property (nonatomic, copy)     NSString        *filterString;
 
 - (instancetype)initWithArray:(NSArray *)array;
@@ -35,9 +36,7 @@
 
 - (instancetype)initWithArray:(NSArray *)array {
     self = [super init];
-    if (self) {
-        _model = [NSMutableArray arrayWithArray:array];
-    }
+    self.filteredModel = [NSMutableArray arrayWithArray:array];
     
     return self;
 }
@@ -54,7 +53,7 @@
 #pragma mark Public implementations
 
 - (void)filterArrayWithSting:(NSString *)text {
-    self.model = [[self.model filteredUsingBlock:^BOOL(BPVUser *user) {
+    self.model = [[self.filteredModel filteredUsingBlock:^BOOL(BPVUser *user) {
         return [user.fullName containsString:text];
     }] mutableCopy];
     

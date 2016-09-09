@@ -11,8 +11,10 @@
 #import "UIKit/UIKit.h"
 
 @interface BPVImage : BPVModel
-@property (nonatomic, readonly) UIImage *image;
-@property (nonatomic, readonly) NSURL   *url;
+@property (nonatomic, readonly) UIImage     *image;
+@property (nonatomic, readonly) NSURL       *url;
+@property (nonatomic, readonly) NSString    *path;
+@property (nonatomic, readonly) NSString    *fileName;
 
 + (instancetype)imageFromUrl:(NSURL *)url;
 

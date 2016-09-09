@@ -14,10 +14,25 @@
 
 #import "BPVMacro.h"
 
+@interface BPVUserCell ()
+@property (nonatomic, strong) BPVImage *image;
+
+@end
+
 @implementation BPVUserCell
 
 #pragma mark - 
 #pragma mark Accessors
+
+- (void)setImage:(BPVImage *)image {
+    if (_image != image) {
+        [_image removeObserver:self];
+        
+        _image = image;
+        [_image addObserver:self];
+        [image load];
+    }
+}
 
 - (void)setUser:(BPVUser *)user {
     if (_user != user) {        
@@ -32,27 +47,32 @@
 
 - (void)fillWithModel:(BPVUser *)user {
     self.userNameLabel.text = self.user.fullName;
-    
-    BPVImage *image = user.image;
-    [image addObserver:self];
-    [image load];
+    self.image = user.image;
 }
 
 #pragma mark -
 #pragma mark BPVModelObserver
 
 - (void)modelWillLoad:(BPVImage *)model {
-    self.contentLoadingView.loading = YES;
+    BPVWeakify(self)
+    BPVPerformAsyncBlockOnMainQueue(^{
+        BPVStrongifyAndReturnIfNil(self)
+        self.contentLoadingView.loading = YES;
+    });
+   
 }
 
 - (void)modelDidLoad:(BPVImage *)model {
-    self.userImageView.image = model.image;
-    
-    self.contentLoadingView.loading = NO;
+    BPVWeakify(self)
+    BPVPerformAsyncBlockOnMainQueue(^{
+        BPVStrongifyAndReturnIfNil(self)
+        self.userImageView.image = self.image.image;
+        self.contentLoadingView.loading = NO;
+    });
 }
 
 - (void)modelFailLoading:(BPVImage *)model {
-    [model performLoading];
+    [model load];
 }
 
 @end

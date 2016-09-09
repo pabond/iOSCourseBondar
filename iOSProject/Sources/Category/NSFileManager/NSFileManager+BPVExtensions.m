@@ -13,13 +13,13 @@
 @implementation NSFileManager (BPVExtensions)
 
 + (NSString *)applicationDataPathWithFileName:(NSString *)fileName {
-    NSString *dataPath = [[self applicationDataPath] stringByAppendingString:fileName];
+    NSString *dataPath = [[self applicationDataPathWithFolderName:fileName] stringByAppendingPathComponent:fileName];
     
     return dataPath;
 }
 
-+ (NSString *)applicationDataPath {
-    NSString *dataPath = [self libraryDirectoryPath];
++ (NSString *)applicationDataPathWithFolderName:(NSString *)folderName {
+    NSString *dataPath = [[self libraryDirectoryPath] stringByAppendingPathComponent:folderName];
 
     return dataPath;
 }
