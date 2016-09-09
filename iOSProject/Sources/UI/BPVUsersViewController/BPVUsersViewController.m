@@ -12,8 +12,6 @@
 #import "BPVUsers.h"
 #import "BPVUser.h"
 
-#import "BPVFilteredModel.h"
-
 #import "BPVUserCell.h"
 
 #import "UITableView+BPVExtensions.h"
@@ -30,6 +28,18 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 @end
 
 @implementation BPVUsersViewController
+
+#pragma mark -
+#pragma mark Accessors 
+
+- (void)setFilteredModel:(BPVFilteredModel *)filteredModel {
+    if (_filteredModel != filteredModel) {
+        [_filteredModel removeObserver:self];
+        
+        _filteredModel = filteredModel;
+        [_filteredModel addObserver:self];
+    }
+}
 
 #pragma mark -
 #pragma mark Interface Handling
@@ -90,6 +100,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)modelFailLoading:(id)model {
     self.usersView.loading = NO;
+}
+
+#pragma mark -
+#pragma mark BPVFilteredModelObserver
+
+- (void)modelDidFilter {
+    [self.usersView.usersTableView reloadData];
 }
 
 @end

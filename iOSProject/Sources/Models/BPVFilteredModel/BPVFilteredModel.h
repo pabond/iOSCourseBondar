@@ -13,6 +13,8 @@ typedef NS_ENUM(NSUInteger, BPVFilteredModelState) {
 };
 
 @protocol BPVFilteredModelObserver <NSObject>
+
+@optional
 - (void)modelDidFilter;
 
 @end

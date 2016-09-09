@@ -8,7 +8,9 @@
 
 #import "BPVTableViewController.h"
 
-@interface BPVUsersViewController : BPVTableViewController
+#import "BPVFilteredModel.h"
+
+@interface BPVUsersViewController : BPVTableViewController <BPVFilteredModelObserver>
 
 - (IBAction)onEditing:(id)sender;
 - (IBAction)onAdd:(id)sender;
