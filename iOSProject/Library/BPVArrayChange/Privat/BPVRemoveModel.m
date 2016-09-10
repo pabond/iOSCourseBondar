@@ -8,6 +8,12 @@
 
 #import "BPVRemoveModel.h"
 
+#import "BPVFilteredModel.h"
+
 @implementation BPVRemoveModel
+
+- (void)applyToModel:(BPVFilteredModel *)model withObject:(id)object {
+    [model removeModel:object];
+}
 
 @end

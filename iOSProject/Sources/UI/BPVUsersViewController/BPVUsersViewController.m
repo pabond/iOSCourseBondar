@@ -22,24 +22,7 @@
 BPVStringConstantWithValue(kBPVTableTitle, USERS LIST);
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
-@interface BPVUsersViewController ()
-@property (nonatomic, strong) BPVFilteredModel *filteredModel;
-
-@end
-
 @implementation BPVUsersViewController
-
-#pragma mark -
-#pragma mark Accessors 
-
-- (void)setFilteredModel:(BPVFilteredModel *)filteredModel {
-    if (_filteredModel != filteredModel) {
-        [_filteredModel removeObserver:self];
-        
-        _filteredModel = filteredModel;
-        [_filteredModel addObserver:self];
-    }
-}
 
 #pragma mark -
 #pragma mark Interface Handling
@@ -62,7 +45,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BPVUserCell *cell = [tableView cellWithClass:[BPVUserCell class]];
-    cell.user = self.model[indexPath.row];
+    cell.user = self.filteredModel[indexPath.row];
     
     return cell;
 }
@@ -92,8 +75,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     self.usersView.loading = YES;
 }
 
-- (void)modelDidLoad:(BPVUsers *)model {
-    self.filteredModel = [BPVFilteredModel filteredModelWithArray:model.models];
+- (void)modelDidLoad:(BPVArrayModel *)model {
     [self.usersView.usersTableView reloadData];
     self.usersView.loading = NO;
 }
@@ -105,7 +87,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark BPVFilteredModelObserver
 
-- (void)modelDidFilter {
+- (void)modelDidFilter:(id)model {
     [self.usersView.usersTableView reloadData];
 }
 

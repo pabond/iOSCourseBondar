@@ -17,17 +17,31 @@
 
 #import "BPVMacro.h"
 
+@interface BPVTableViewController ()
+@property (nonatomic, strong) BPVFilteredModel *filteredModel;
+
+@end
+
 @implementation BPVTableViewController
 
 #pragma mark -
 #pragma mark Accessors
 
+- (void)setFilteredModel:(BPVFilteredModel *)filteredModel {
+    if (_filteredModel != filteredModel) {
+        [_filteredModel removeObserver:self];
+        
+        _filteredModel = filteredModel;
+        [_filteredModel addObserver:self];
+    }
+}
+
 - (void)setModel:(BPVArrayModel *)model {
     if (_model != model) {
-        [_model removeObserver:self];
+        [_model removeObserver:self.filteredModel];
         
         _model = model;
-        [_model addObserver:self];
+        [_model addObserver:self.filteredModel];
         
         if ([self isViewLoaded]) {
             [_model load];
@@ -69,7 +83,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    return (BOOL)self.filteredModel.filterString;
 }
 
 - (void)    tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath

@@ -11,9 +11,12 @@
 #import <Foundation/Foundation.h>
 
 @interface BPVArrayChange : NSObject
+@property (nonatomic, strong)   id  object;
 
-+ (instancetype)removeModelWithIndex:(NSUInteger)index;
-+ (instancetype)addModelWithIndex:(NSUInteger)index;
-+ (instancetype)moveModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
++ (instancetype)removeModelWithIndex:(NSUInteger)index object:(id)object;
++ (instancetype)addModelWithIndex:(NSUInteger)index object:(id)object;
++ (instancetype)moveModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex object:(id)object;
+
+- (void)applyToModel:(id)model withObject:(id)object;
 
 @end

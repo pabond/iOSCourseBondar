@@ -69,7 +69,7 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     
     @synchronized (self) {
         [self.mutableModels addObject:model];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange addModelWithIndex:[self indexOfModel:model]]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange addModelWithIndex:[self indexOfModel:model] object:model]];
     }
 }
 
@@ -80,7 +80,7 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     
     @synchronized (self) {
         [self.mutableModels removeObject:model];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:[self indexOfModel:model]]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:[self indexOfModel:model] object:model]];
     }
 }
 
@@ -92,6 +92,10 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
             }
         }
     }
+}
+
+- (void)removeAllObjects {
+    [self.mutableModels removeAllObjects];
 }
 
 - (id)modelAtIndex:(NSUInteger)index {
@@ -111,7 +115,9 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     
     @synchronized (self) {
         [self.mutableModels moveObjectFromIndex:fromIndex toIndex:toIndex];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange moveModelWithIndex:toIndex fromIndex:fromIndex]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange moveModelWithIndex:toIndex
+                                                                     fromIndex:fromIndex
+                                                                        object:[self modelAtIndex:fromIndex]]];
     }
 }
 
@@ -122,14 +128,14 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     
     @synchronized (self) {
         [self.mutableModels insertObject:model atIndex:index];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange addModelWithIndex:index]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange addModelWithIndex:index object:model]];
     }
 }
 
 - (void)removeModelAtIndex:(NSUInteger)index {
     @synchronized (self) {
         [self.mutableModels removeObjectAtIndex:index];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:index]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:index object:[self modelAtIndex:index]]];
     }
 }
 

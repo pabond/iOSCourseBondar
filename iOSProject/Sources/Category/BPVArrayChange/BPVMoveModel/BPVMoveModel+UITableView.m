@@ -10,6 +10,9 @@
 
 #import "BPVMoveModel+UITableView.h"
 
+
+#import "NSMutableArray+BPVExtensions.h"
+
 @implementation BPVMoveModel (UITableView)
 
 - (void)applyToTableView:(UITableView *)tableView {

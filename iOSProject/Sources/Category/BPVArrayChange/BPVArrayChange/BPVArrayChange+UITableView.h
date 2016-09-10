@@ -14,7 +14,6 @@
 
 //sholuld be launched from child classes
 - (void)applyToTableView:(UITableView *)tableView;
-
 - (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation;
 
 @end

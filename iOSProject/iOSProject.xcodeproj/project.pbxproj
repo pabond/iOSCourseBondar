@@ -55,7 +55,6 @@
 		2DD763B41D7D8BA500CEB5EA /* BPVQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763B31D7D8BA500CEB5EA /* BPVQueue.m */; };
 		2DD763C01D7EC0C800CEB5EA /* BPVFilteredModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763BF1D7EC0C800CEB5EA /* BPVFilteredModel.m */; };
 		2DD763C71D82DE3B00CEB5EA /* BPVImagesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763C61D82DE3B00CEB5EA /* BPVImagesCache.m */; };
-		2DD763D01D82ED2E00CEB5EA /* BPVImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763CF1D82ED2E00CEB5EA /* BPVImageModelDispatcher.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
 		2DE873A81D75C28900A3550A /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A71D75C28900A3550A /* BPVView.m */; };
 		2DE873AC1D75C36900A3550A /* BPVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873AB1D75C36900A3550A /* BPVLoadingView.m */; };
@@ -176,8 +175,6 @@
 		2DD763BF1D7EC0C800CEB5EA /* BPVFilteredModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVFilteredModel.m; sourceTree = "<group>"; };
 		2DD763C51D82DE3B00CEB5EA /* BPVImagesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImagesCache.h; sourceTree = "<group>"; };
 		2DD763C61D82DE3B00CEB5EA /* BPVImagesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImagesCache.m; sourceTree = "<group>"; };
-		2DD763CE1D82ED2E00CEB5EA /* BPVImageModelDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImageModelDispatcher.h; sourceTree = "<group>"; };
-		2DD763CF1D82ED2E00CEB5EA /* BPVImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImageModelDispatcher.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
 		2DE873A31D75C24800A3550A /* BPVMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVMacro.m; sourceTree = "<group>"; };
 		2DE873A61D75C28900A3550A /* BPVView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVView.h; sourceTree = "<group>"; };
@@ -690,8 +687,6 @@
 		2DD763B51D7EBEC100CEB5EA /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				2DD763CE1D82ED2E00CEB5EA /* BPVImageModelDispatcher.h */,
-				2DD763CF1D82ED2E00CEB5EA /* BPVImageModelDispatcher.m */,
 				2DD763C51D82DE3B00CEB5EA /* BPVImagesCache.h */,
 				2DD763C61D82DE3B00CEB5EA /* BPVImagesCache.m */,
 			);
@@ -1029,7 +1024,6 @@
 				2D4828FA1D6C905000AF3617 /* NSTimer+BPVExtensions.m in Sources */,
 				2D4828991D6AEADC00AF3617 /* BPVGCD.m in Sources */,
 				2D3F41FF1D3FA29800A38A7B /* main.m in Sources */,
-				2DD763D01D82ED2E00CEB5EA /* BPVImageModelDispatcher.m in Sources */,
 				2DE9D2EE1D6F3B4F00371F7B /* NSBundle+BPVExtensions.m in Sources */,
 				2DD763A11D786A2600CEB5EA /* BPVMoveModel.m in Sources */,
 				2D4828FB1D6C905000AF3617 /* BPVSupportEntity.m in Sources */,

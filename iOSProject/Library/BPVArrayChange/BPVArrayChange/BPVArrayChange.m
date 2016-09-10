@@ -17,16 +17,20 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)removeModelWithIndex:(NSUInteger)index {
-    return [[BPVRemoveModel alloc] initWithIndex:index];
++ (instancetype)removeModelWithIndex:(NSUInteger)index object:(id)object {
+    return [[BPVRemoveModel alloc] initWithIndex:index object:(id)object];
 }
 
-+ (instancetype)addModelWithIndex:(NSUInteger)index{
-    return [[BPVAddModel alloc] initWithIndex:index];
++ (instancetype)addModelWithIndex:(NSUInteger)index object:(id)object {
+    return [[BPVAddModel alloc] initWithIndex:index object:(id)object];
 }
 
-+ (instancetype)moveModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
-    return [[BPVMoveModel alloc] initWithIndex:index fromIndex:fromIndex];
++ (instancetype)moveModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex object:(id)object {
+    return [[BPVMoveModel alloc] initWithIndex:index fromIndex:fromIndex object:(id)object];
+}
+
+- (void)applyToModel:(id)model withObject:(id)object {
+    
 }
 
 @end

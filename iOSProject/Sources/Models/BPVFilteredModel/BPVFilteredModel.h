@@ -9,17 +9,18 @@
 #import "BPVArrayModel.h"
 
 typedef NS_ENUM(NSUInteger, BPVFilteredModelState) {
-    BPVModelDidFilter
+    BPVModelDidFilter = BPVArrayModelCount
 };
 
-@protocol BPVFilteredModelObserver <NSObject>
+@protocol BPVFilteredModelObserver <NSObject, BPVModelObserver>
 
 @optional
-- (void)modelDidFilter;
+- (void)modelDidFilter:(id)model;
 
 @end
 
-@interface BPVFilteredModel : BPVArrayModel <BPVModelObserver>
+@interface BPVFilteredModel : BPVArrayModel <BPVModelObserver, BPVArrayModelObserver>
+@property (nonatomic, readonly) NSString    *filterString;
 
 + (instancetype)filteredModelWithArray:(NSArray *)array;
 

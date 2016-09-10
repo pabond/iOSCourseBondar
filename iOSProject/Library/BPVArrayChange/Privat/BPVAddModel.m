@@ -8,6 +8,12 @@
 
 #import "BPVAddModel.h"
 
+#import "BPVFilteredModel.h"
+
 @implementation BPVAddModel
+
+- (void)applyToModel:(BPVFilteredModel *)model withObject:(id)object {
+    [model addModel:object];
+}
 
 @end

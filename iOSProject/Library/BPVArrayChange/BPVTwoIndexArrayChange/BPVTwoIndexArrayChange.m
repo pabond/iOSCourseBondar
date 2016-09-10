@@ -18,10 +18,11 @@
 #pragma mark Initializations and deallocations
 
 
-- (instancetype)initWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
-    self = [super initWithIndex:index];
+- (instancetype)initWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex object:(id)object {
+    self = [super initWithIndex:index object:object];
     if (self) {
         self.fromIndex = fromIndex;
+        self.object = object;
     }
     
     return self;

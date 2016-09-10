@@ -9,7 +9,8 @@
 #import "BPVModel.h"
 
 typedef NS_ENUM(NSUInteger, BPVModelChangeState) {
-    BPVModelDidChange = BPVCount
+    BPVModelDidChange = BPVCount,
+    BPVArrayModelCount
 };
 
 @protocol BPVArrayModelObserver <NSObject, BPVModelObserver>
@@ -27,6 +28,7 @@ typedef NS_ENUM(NSUInteger, BPVModelChangeState) {
 - (void)removeModel:(id)model;
 
 - (void)addModels:(NSArray *)models;
+- (void)removeAllObjects;
 
 - (id)modelAtIndex:(NSUInteger)index;
 

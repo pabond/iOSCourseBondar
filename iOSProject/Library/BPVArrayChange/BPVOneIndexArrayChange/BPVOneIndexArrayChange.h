@@ -13,7 +13,7 @@
 @property (nonatomic, assign)   NSUInteger  index;
 @property (nonatomic, readonly) NSIndexPath *indexPath;
 
-- (instancetype)initWithIndex:(NSUInteger)index;
+- (instancetype)initWithIndex:(NSUInteger)index object:(id)object;
 
 
 @end

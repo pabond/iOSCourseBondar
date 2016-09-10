@@ -9,10 +9,9 @@
 #import "BPVOneIndexArrayChange.h"
 
 @interface BPVTwoIndexArrayChange : BPVOneIndexArrayChange
-
 @property (nonatomic, assign)   NSUInteger      fromIndex;
 @property (nonatomic, readonly) NSIndexPath     *fromIndexPath;
 
-- (instancetype)initWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
+- (instancetype)initWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex object:(id)object;
 
 @end
