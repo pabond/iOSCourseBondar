@@ -38,6 +38,8 @@
 
 - (void)setModel:(BPVArrayModel *)model {
     if (_model != model) {
+        [self initFilteredModel];
+        
         [_model removeObserver:self.filteredModel];
         
         _model = model;
@@ -53,6 +55,12 @@
     [super viewDidLoad];
     
     [self.model load];
+}
+
+- (void)initFilteredModel {
+    if (!self.filteredModel) {
+        self.filteredModel = [BPVFilteredModel new];
+    }
 }
 
 #pragma mark -
@@ -83,7 +91,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return (BOOL)self.filteredModel.filterString;
+    return self.filteredModel.count == self.model.count;
 }
 
 - (void)    tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath

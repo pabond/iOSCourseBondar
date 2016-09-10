@@ -15,40 +15,18 @@
 
 #import "NSArray+BPVExtensions.h"
 
-@interface BPVFilteredModel ()
-@property (nonatomic, readonly)     BPVUsers        *rootModel;
-@property (nonatomic, copy)         NSString        *filterString;
+#import "BPVMacro.h"
 
-- (instancetype)initWithArray:(NSArray *)array;
+@interface BPVFilteredModel ()
+@property (nonatomic, readonly) BPVUsers    *rootModel;
+@property (nonatomic, copy)     NSString    *filterString;
+
+- (void)addModelsWiththoutNotification:(NSArray *)array;
+- (BOOL)shouldApplyWithObject:(BPVUser *)object;
 
 @end
 
 @implementation BPVFilteredModel
-
-#pragma mark -
-#pragma mark Class methods
-
-+ (instancetype)filteredModelWithArray:(NSArray *)array {
-    return [[self alloc] initWithArray:array];
-}
-
-#pragma mark -
-#pragma mark Initializations and dealloacations
-
-- (instancetype)initWithArray:(NSArray *)array {
-    self = [super init];
-    [self addModels:array];
-    
-    return self;
-}
-
-
-#pragma mark -
-#pragma mark Accessors
-
-- (void)setModel:(BPVUsers *)model {
-    
-}
 
 #pragma mark -
 #pragma mark Public implementations
@@ -83,6 +61,14 @@
 #pragma mark -
 #pragma mark Private implementations
 
+- (void)addModelsWiththoutNotification:(NSArray *)array {
+    BPVWeakify(self)
+    [self performBlockWithoutNotification:^{
+        BPVStrongifyAndReturnIfNil(self)
+        [self addModels:array];
+    }];
+}
+
 - (BOOL)shouldApplyWithObject:(BPVUser *)object {
     return [object.fullName containsString:self.filterString];
 }
@@ -91,6 +77,8 @@
 #pragma mark BPVModelObserver
 
 - (void)modelDidLoad:(BPVArrayModel *)model {
+    [self addModelsWiththoutNotification:model.models];
+    
     [self notifyOfState:model.state];
 }
 

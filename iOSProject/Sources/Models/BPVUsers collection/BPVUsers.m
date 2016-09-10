@@ -62,8 +62,6 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
         [self addModels:[self arrayModel]];
     }];
     
-    [BPVFilteredModel filteredModelWithArray:self.models];
-    
     self.state = BPVModelDidLoad;
 }
 

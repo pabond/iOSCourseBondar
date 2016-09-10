@@ -20,9 +20,6 @@ typedef NS_ENUM(NSUInteger, BPVFilteredModelState) {
 @end
 
 @interface BPVFilteredModel : BPVArrayModel <BPVModelObserver, BPVArrayModelObserver>
-@property (nonatomic, readonly) NSString    *filterString;
-
-+ (instancetype)filteredModelWithArray:(NSArray *)array;
 
 - (void)filterArrayWithSting:(NSString *)text;
 
