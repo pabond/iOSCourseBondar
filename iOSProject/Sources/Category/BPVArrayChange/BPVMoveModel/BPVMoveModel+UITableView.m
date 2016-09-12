@@ -10,10 +10,14 @@
 
 #import "BPVMoveModel+UITableView.h"
 
+#import "UITableView+BPVExtensions.h"
+
 @implementation BPVMoveModel (UITableView)
 
 - (void)applyToTableView:(UITableView *)tableView {
-    [tableView moveRowAtIndexPath:self.fromIndexPath toIndexPath:self.indexPath];
+    [tableView updateTableViewWithBlock:^{
+        [tableView moveRowAtIndexPath:self.fromIndexPath toIndexPath:self.indexPath];
+    }];
 }
 
 - (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation {

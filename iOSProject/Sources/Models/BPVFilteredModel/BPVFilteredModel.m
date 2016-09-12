@@ -18,7 +18,7 @@
 #import "BPVMacro.h"
 
 @interface BPVFilteredModel ()
-@property (nonatomic, readonly) BPVUsers    *rootModel;
+@property (nonatomic, strong)   BPVUsers    *rootModel;
 @property (nonatomic, copy)     NSString    *filterString;
 
 - (void)addModelsWiththoutNotification:(NSArray *)array;
@@ -27,6 +27,23 @@
 @end
 
 @implementation BPVFilteredModel
+
+#pragma mark -
+#pragma mark Class methods
+
++ (instancetype)filteredModelWithBaceObject:(id)object {
+    return [[self alloc] initWithBaceObject:object];
+}
+
+#pragma mark -
+#pragma mark Initializations and deallocations
+
+- (instancetype)initWithBaceObject:(id)obect {
+    self = [super init];
+    self.rootModel = obect;
+    
+    return self;
+}
 
 #pragma mark -
 #pragma mark Public implementations
@@ -39,11 +56,15 @@
     self.filterString = text;
     
     [self removeAllObjects];
-    NSArray *array = [[[self.rootModel copy] filteredUsingBlock:^BOOL(BPVUser *user) {
+    NSArray *array = [[self.rootModel.models filteredUsingBlock:^BOOL(BPVUser *user) {
         return [user.fullName containsString:text];
     }] mutableCopy];
     
-    [self addModels:array];
+    BPVWeakify(self)
+    [self performBlockWithoutNotification:^{
+        BPVStrongifyAndReturnIfNil(self)
+        [self addModels:array];
+    }];
     
     [self notifyOfState:BPVModelDidFilter];
 }
@@ -70,7 +91,12 @@
 }
 
 - (BOOL)shouldApplyWithObject:(BPVUser *)object {
-    return [object.fullName containsString:self.filterString];
+    NSString *string = self.filterString;
+    if (!string) {
+        return YES;
+    }
+    
+    return [object.fullName containsString:string];
 }
 
 #pragma mark -

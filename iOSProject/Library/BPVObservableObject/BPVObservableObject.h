@@ -10,7 +10,7 @@
 
 typedef void(^BPVBlock)();
 
-@interface BPVObservableObject : NSObject
+@interface BPVObservableObject : NSObject <NSCopying>
 @property (nonatomic, assign)   NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observersSet;
 

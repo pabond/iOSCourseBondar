@@ -16,6 +16,6 @@ typedef void(^BPVUpdatesBlock)(void);
 
 - (id)cellWithClass:(Class)cls;
 
-- (void)updateTableViewWithUpdatesBlock:(BPVUpdatesBlock)block;
+- (void)updateTableViewWithBlock:(BPVUpdatesBlock)block;
 
 @end

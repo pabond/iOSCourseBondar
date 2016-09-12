@@ -149,4 +149,14 @@
     }
 }
 
+#pragma mark -
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    BPVObservableObject *objectCopy = [[self class] new];
+    objectCopy.observersTable = [self.observersTable copyWithZone:zone];
+        
+    return objectCopy;
+}
+
 @end

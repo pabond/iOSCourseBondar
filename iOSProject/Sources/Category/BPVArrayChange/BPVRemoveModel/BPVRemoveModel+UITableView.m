@@ -7,11 +7,15 @@
 //
 
 #import "BPVRemoveModel+UITableView.h"
+#import "UITableView+BPVExtensions.h"
+#import "BPVMacro.h"
 
 @implementation BPVRemoveModel (UITableView)
 
 - (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation {
-    [tableView deleteRowsAtIndexPaths:@[self.indexPath] withRowAnimation:animation];
+    [tableView updateTableViewWithBlock:^{
+        [tableView deleteRowsAtIndexPaths:@[self.indexPath] withRowAnimation:animation];
+    }];
 }
 
 @end

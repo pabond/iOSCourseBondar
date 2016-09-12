@@ -38,11 +38,10 @@
 
 - (void)setModel:(BPVArrayModel *)model {
     if (_model != model) {
-        [self initFilteredModel];
-        
         [_model removeObserver:self.filteredModel];
         
         _model = model;
+        self.filteredModel = [BPVFilteredModel filteredModelWithBaceObject:_model];
         [_model addObserver:self.filteredModel];
         
         if ([self isViewLoaded]) {
@@ -55,12 +54,6 @@
     [super viewDidLoad];
     
     [self.model load];
-}
-
-- (void)initFilteredModel {
-    if (!self.filteredModel) {
-        self.filteredModel = [BPVFilteredModel new];
-    }
 }
 
 #pragma mark -

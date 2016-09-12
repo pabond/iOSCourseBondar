@@ -36,13 +36,13 @@
     return cell;
 }
 
-- (void)updateTableViewWithUpdatesBlock:(BPVUpdatesBlock)block {
+- (void)updateTableViewWithBlock:(BPVUpdatesBlock)block {
     if (!block) {
         return;
     }
     
     [self beginUpdates];
-    BPVPerformBlock(block);
+    block();
     [self endUpdates];
 }
 

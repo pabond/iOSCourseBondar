@@ -18,8 +18,6 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
-
 @interface BPVArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableModels;
 
@@ -176,5 +174,16 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, /data.plist);
     }
 }
 
+#pragma mark -
+#pragma mark NSCopying
+
+- (id)copyWithZone:(nullable NSZone *)zone {
+    BPVArrayModel *objectCopy = [super copyWithZone:zone];
+    if (objectCopy) {
+        objectCopy.mutableModels = [NSMutableArray arrayWithArray:[self.mutableModels copyWithZone:zone]];
+    }
+    
+    return objectCopy;
+}
 
 @end

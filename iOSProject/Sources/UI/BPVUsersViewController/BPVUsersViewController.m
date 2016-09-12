@@ -32,7 +32,12 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (IBAction)onSearchFieldEdit:(UITextField *)sender {
-    [self.filteredModel filterArrayWithSting:sender.text];
+    NSString *text = sender.text;
+    if ([text  isEqual: @""]) {
+        text = @" ";
+    }
+    
+    [self.filteredModel filterArrayWithSting:text];
 }
 
 - (IBAction)onEditing:(id)sender {
@@ -64,7 +69,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark BPVArrayModelChangeObserver
 
-- (void)model:(id)model didChangeWithModel:(BPVArrayChange *)changeModel {
+- (void)model:(BPVArrayModel *)model didChangeWithModel:(BPVArrayChange *)changeModel {
     [changeModel applyToTableView:self.usersView.usersTableView];
 }
 

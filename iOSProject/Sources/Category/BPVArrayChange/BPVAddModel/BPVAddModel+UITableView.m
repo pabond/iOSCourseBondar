@@ -8,10 +8,14 @@
 
 #import "BPVAddModel+UITableView.h"
 
+#import "UITableView+BPVExtensions.h"
+
 @implementation BPVAddModel (UITableView)
 
 - (void)applyToTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation {
-    [tableView insertRowsAtIndexPaths:@[self.indexPath] withRowAnimation:animation];
+    [tableView updateTableViewWithBlock:^{
+         [tableView insertRowsAtIndexPaths:@[self.indexPath] withRowAnimation:animation];
+    }];
 }
 
 @end
