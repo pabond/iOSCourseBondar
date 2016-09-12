@@ -8,7 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import "UIKit/UIKit.h"
+
 @interface BPVImagesCache : NSObject
-@property (nonatomic, readonly) NSMapTable *cache;
+
++ (instancetype)cache;
+
+- (void)addImage:(UIImage *)image withURL:(NSURL *)url;
+- (void)removeImageWithURL:(NSURL *)url;
+- (BOOL)containsImageWithURL:(NSURL *)url;
+- (BOOL)containsImage:(UIImage *)image;
+- (UIImage *)imageWithURL:(NSURL *)url;
 
 @end
