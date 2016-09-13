@@ -23,7 +23,8 @@ BPVStringConstantWithValue(kBPVApplictionSaveFileName, data.plist);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVUsers ()
-@property (nonatomic, copy) NSString *applicationFilePath;
+@property (nonatomic, strong)   id          observer;
+@property (nonatomic, copy)     NSString    *applicationFilePath;
 
 - (NSArray *)defaultArrayModel;
 - (NSArray *)arrayModel;
@@ -35,10 +36,15 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
+- (void)dealloc {
+   [self endObservation];
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         self.applicationFilePath = [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName];
+//        [self startObservation];
     }
     
     return self;
@@ -84,5 +90,25 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     return array;
 }
 
+//- (void)startObservation {
+//    self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillTerminateNotification
+//                                                                      object:nil
+//                                                                       queue:nil
+//                                                                  usingBlock:^(NSNotification * _Nonnull note) {
+//                                                                      <#code#>
+//                                                                  }];
+//    
+//    self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillResignActiveNotification
+//                                                                      object:nil
+//                                                                       queue:nil
+//                                                                  usingBlock:^(NSNotification * _Nonnull note) {
+//                                                                      
+//                                                                  }];
+//    
+//}
+
+- (void)endObservation {
+//    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+}
 
 @end

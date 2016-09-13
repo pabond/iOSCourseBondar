@@ -83,7 +83,7 @@ BPVStringConstant(BPVImages);
 - (BOOL)shouldLoadFromInternet {
     NSURL *url = self.url;
     
-    return url.isFileReferenceURL && ![self.cache containsImageWithURL:url];
+    return !url.isFileReferenceURL && ![self.cache containsImageWithURL:url];
 }
 
 #pragma mark -
@@ -109,6 +109,7 @@ BPVStringConstant(BPVImages);
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
     [imageData writeToFile:self.path atomically:YES];
     UIImage *image = [UIImage imageWithData:imageData];
+    
     [self.cache addImage:self withURL:url];
     NSLog(@"Image loaded from internet");
     

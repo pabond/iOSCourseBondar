@@ -58,7 +58,7 @@
     NSEnumerator *keys = [self.cache keyEnumerator];
         
     for (id key in keys) {
-        if (key == url) {
+        if ([key isEqual:url]) {
             result = YES;
         }
     }
