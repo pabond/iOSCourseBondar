@@ -10,7 +10,7 @@
 
 #import "BPVUsers.h"
 #import "BPVUser.h"
-#import "BPVArrayChange.h"
+#import "BPVArrayChange+BPVFilteredModel.h"
 #import "BPVAddModel.h"
 
 #import "NSArray+BPVExtensions.h"
@@ -48,16 +48,20 @@
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)filterArrayWithSting:(NSString *)text {
-    if (!text) {
-        return;
+- (void)filterArrayWithString:(NSString *)text {
+    if ([text  isEqual: @""]) {
+        text = @" ";
     }
-    
+
     self.filterString = text;
     
     [self removeAllObjects];
     NSArray *array = [[self.rootModel.models filteredUsingBlock:^BOOL(BPVUser *user) {
-        return [user.fullName containsString:text];
+        if (!text) {
+            return YES;
+        }
+        
+        return [user.fullName localizedCaseInsensitiveContainsString:text];
     }] mutableCopy];
     
     BPVWeakify(self)

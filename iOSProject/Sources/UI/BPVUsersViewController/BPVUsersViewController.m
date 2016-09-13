@@ -32,12 +32,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (IBAction)onSearchFieldEdit:(UITextField *)sender {
-    NSString *text = sender.text;
-    if ([text  isEqual: @""]) {
-        text = @" ";
-    }
-    
-    [self.filteredModel filterArrayWithSting:text];
+    [self.filteredModel filterArrayWithString:sender.text];
 }
 
 - (IBAction)onEditing:(id)sender {

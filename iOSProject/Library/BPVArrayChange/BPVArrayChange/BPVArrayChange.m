@@ -29,8 +29,4 @@
     return [[BPVMoveModel alloc] initWithIndex:index fromIndex:fromIndex object:(id)object];
 }
 
-- (void)applyToModel:(id)model withObject:(id)object {
-    
-}
-
 @end

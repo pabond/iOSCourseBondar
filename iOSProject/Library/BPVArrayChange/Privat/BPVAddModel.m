@@ -12,8 +12,4 @@
 
 @implementation BPVAddModel
 
-- (void)applyToModel:(BPVFilteredModel *)model withObject:(id)object {
-    [model addModel:object];
-}
-
 @end

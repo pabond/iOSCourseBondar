@@ -23,6 +23,6 @@ typedef NS_ENUM(NSUInteger, BPVFilteredModelState) {
 
 + (instancetype)filteredModelWithBaceObject:(id)object;
 
-- (void)filterArrayWithSting:(NSString *)text;
+- (void)filterArrayWithString:(NSString *)text;
 
 @end

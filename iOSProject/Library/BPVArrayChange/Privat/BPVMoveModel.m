@@ -12,8 +12,4 @@
 
 @implementation BPVMoveModel
 
-- (void)applyToModel:(BPVFilteredModel *)model withObject:(id)object {
-    [model moveModelFromIndex:self.fromIndex toIndex:self.index];
-}
-
 @end

@@ -77,8 +77,9 @@
     }
     
     @synchronized (self) {
+        NSUInteger index = [self indexOfModel:model];
         [self.mutableModels removeObject:model];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:[self indexOfModel:model] object:model]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:index object:model]];
     }
 }
 
@@ -132,8 +133,9 @@
 
 - (void)removeModelAtIndex:(NSUInteger)index {
     @synchronized (self) {
+        id object = [self modelAtIndex:index];
         [self.mutableModels removeObjectAtIndex:index];
-        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:index object:[self modelAtIndex:index]]];
+        [self notifyOfArrayChangeWithObject:[BPVArrayChange removeModelWithIndex:index object:object]];
     }
 }
 
