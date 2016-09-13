@@ -7,6 +7,7 @@
 //
 
 #import "BPVImagesCache.h"
+#import "BPVImage.h"
 #import "BPVMacro.h"
 
 @interface BPVImagesCache ()
@@ -15,8 +16,6 @@
 @end
 
 @implementation BPVImagesCache
-
-
 
 #pragma mark -
 #pragma mark Class methods
@@ -42,7 +41,7 @@
 #pragma mark -
 #pragma mark Public Implementaions
 
-- (void)addImage:(UIImage *)image withURL:(NSURL *)url {
+- (void)addImage:(BPVImage *)image withURL:(NSURL *)url {
     @synchronized (self) {
          [self.cache setObject:image forKey:url];
     }
@@ -67,7 +66,7 @@
     return result;
 }
 
-- (BOOL)containsImage:(UIImage *)image {
+- (BOOL)containsImage:(BPVImage *)image {
     BOOL result = NO;
     NSEnumerator *images = [self.cache objectEnumerator];
     
@@ -80,10 +79,9 @@
     return result;
 }
 
-- (UIImage *)imageWithURL:(NSURL *)url {
+- (BPVImage *)imageWithURL:(NSURL *)url {
     @synchronized (self) {
         return [self.cache objectForKey:url];
-
     }
 }
 

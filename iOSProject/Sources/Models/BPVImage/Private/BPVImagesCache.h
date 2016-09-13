@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-#import "UIKit/UIKit.h"
+@class BPVImage;
 
 @interface BPVImagesCache : NSObject
 
 + (instancetype)cache;
 
-- (void)addImage:(UIImage *)image withURL:(NSURL *)url;
+- (void)addImage:(BPVImage *)image withURL:(NSURL *)url;
 - (void)removeImageWithURL:(NSURL *)url;
 - (BOOL)containsImageWithURL:(NSURL *)url;
-- (BOOL)containsImage:(UIImage *)image;
-- (UIImage *)imageWithURL:(NSURL *)url;
+- (BOOL)containsImage:(BPVImage *)image;
+- (BPVImage *)imageWithURL:(NSURL *)url;
 
 @end
