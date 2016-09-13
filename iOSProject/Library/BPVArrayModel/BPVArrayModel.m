@@ -93,10 +93,6 @@
     }
 }
 
-- (void)removeAllObjects {
-    [self.mutableModels removeAllObjects];
-}
-
 - (id)modelAtIndex:(NSUInteger)index {
     if (!(index < self.count)) {
         return nil;

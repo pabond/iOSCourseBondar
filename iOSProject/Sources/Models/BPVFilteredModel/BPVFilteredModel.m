@@ -13,6 +13,8 @@
 #import "BPVArrayChange+BPVFilteredModel.h"
 #import "BPVAddModel.h"
 
+#import "BPVGCD.h"
+
 #import "NSArray+BPVExtensions.h"
 
 #import "BPVMacro.h"
@@ -48,29 +50,36 @@
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)filterArrayWithString:(NSString *)text {
-    if ([text  isEqual: @""]) {
-        text = @" ";
-    }
-
-    self.filterString = text;
-    
-    [self removeAllObjects];
-    NSArray *array = [[self.rootModel.models filteredUsingBlock:^BOOL(BPVUser *user) {
-        if (!text) {
-            return YES;
-        }
-        
-        return [user.fullName localizedCaseInsensitiveContainsString:text];
-    }] mutableCopy];
+- (void)filterArrayWithString:(NSString *)filtrationText {
+    __block NSString *text = filtrationText;
     
     BPVWeakify(self)
-    [self performBlockWithoutNotification:^{
+    BPVPerformAsyncBlockOnBackgroundQueue(^{
         BPVStrongifyAndReturnIfNil(self)
-        [self addModels:array];
-    }];
-    
-    [self notifyOfState:BPVModelDidFilter];
+        if ([text  isEqual: @""]) {
+            text = @" ";
+        }
+        
+        self.filterString = text;
+        
+        [self removeAllObjects];
+        NSArray *array = [[self.rootModel.models filteredUsingBlock:^BOOL(BPVUser *user) {
+            if (!text) {
+                return YES;
+            }
+            
+            return [user.fullName localizedCaseInsensitiveContainsString:text];
+        }] mutableCopy];
+        
+        [self performBlockWithoutNotification:^{
+            [self addModels:array];
+        }];
+        
+        BPVPerformAsyncBlockOnMainQueue(^{
+            BPVStrongifyAndReturnIfNil(self)
+            [self notifyOfState:BPVModelDidFilter];
+        });
+    });
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
@@ -85,6 +94,16 @@
 
 #pragma mark -
 #pragma mark Private implementations
+
+- (void)removeAllObjects {
+    for (id object in self.models) {
+        BPVWeakify(self)
+        [self performBlockWithoutNotification:^{
+            BPVStrongifyAndReturnIfNil(self)
+            [self removeModel:object];
+        }];
+    }
+}
 
 - (void)addModelsWiththoutNotification:(NSArray *)array {
     BPVWeakify(self)

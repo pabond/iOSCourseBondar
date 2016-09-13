@@ -28,7 +28,6 @@ typedef NS_ENUM(NSUInteger, BPVModelChangeState) {
 - (void)removeModel:(id)model;
 
 - (void)addModels:(NSArray *)models;
-- (void)removeAllObjects;
 
 - (id)modelAtIndex:(NSUInteger)index;
 

@@ -1,13 +1,13 @@
 //
-//  BPVLocalImage.h
+//  BPVFileSystemImage.h
 //  iOSProject
 //
-//  Created by Bondar Pavel on 9/12/16.
+//  Created by Bondar Pavel on 9/13/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
 #import "BPVImage.h"
 
-@interface BPVLocalImage : BPVImage
+@interface BPVFileSystemImage : BPVImage
 
 @end
