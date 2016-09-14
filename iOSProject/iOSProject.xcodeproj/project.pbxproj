@@ -32,6 +32,10 @@
 		2D4828FD1D6C905000AF3617 /* UITableView+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828E91D6C905000AF3617 /* UITableView+BPVExtensions.m */; };
 		2D4828FE1D6C905000AF3617 /* UIViewController+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828EC1D6C905000AF3617 /* UIViewController+BPVExtensions.m */; };
 		2D4828FF1D6C905000AF3617 /* UIWindow+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4828EF1D6C905000AF3617 /* UIWindow+BPVExtensions.m */; };
+		2D6504CF1D89337D007832F2 /* BPVAddModel+BPVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6504C61D89337D007832F2 /* BPVAddModel+BPVArrayModel.m */; };
+		2D6504D01D89337D007832F2 /* BPVArrayChange+BPVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6504C81D89337D007832F2 /* BPVArrayChange+BPVArrayModel.m */; };
+		2D6504D11D89337D007832F2 /* BPVMoveModel+BPVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6504CB1D89337D007832F2 /* BPVMoveModel+BPVArrayModel.m */; };
+		2D6504D21D89337D007832F2 /* BPVRemoveModel+BPVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6504CE1D89337D007832F2 /* BPVRemoveModel+BPVArrayModel.m */; };
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
 		2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */; };
 		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
@@ -60,10 +64,6 @@
 		2DD763EA1D87E8D700CEB5EA /* BPVArrayChange+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763E21D87E8D700CEB5EA /* BPVArrayChange+UITableView.m */; };
 		2DD763EB1D87E8D700CEB5EA /* BPVMoveModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763E51D87E8D700CEB5EA /* BPVMoveModel+UITableView.m */; };
 		2DD763EC1D87E8D700CEB5EA /* BPVRemoveModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763E81D87E8D700CEB5EA /* BPVRemoveModel+UITableView.m */; };
-		2DD763F91D87EA2900CEB5EA /* BPVAddModel+BPVFilteredModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763F01D87EA2900CEB5EA /* BPVAddModel+BPVFilteredModel.m */; };
-		2DD763FA1D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763F21D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel.m */; };
-		2DD763FB1D87EA2900CEB5EA /* BPVMoveModel+BPVFilteredModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763F51D87EA2900CEB5EA /* BPVMoveModel+BPVFilteredModel.m */; };
-		2DD763FC1D87EA2900CEB5EA /* BPVRemoveModel+BPVFilteredModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763F81D87EA2900CEB5EA /* BPVRemoveModel+BPVFilteredModel.m */; };
 		2DD764001D87F94100CEB5EA /* BPVFileSystemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763FF1D87F94100CEB5EA /* BPVFileSystemImage.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
 		2DE873A81D75C28900A3550A /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A71D75C28900A3550A /* BPVView.m */; };
@@ -140,6 +140,14 @@
 		2D4828EC1D6C905000AF3617 /* UIViewController+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BPVExtensions.m"; sourceTree = "<group>"; };
 		2D4828EE1D6C905000AF3617 /* UIWindow+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+BPVExtensions.h"; sourceTree = "<group>"; };
 		2D4828EF1D6C905000AF3617 /* UIWindow+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+BPVExtensions.m"; sourceTree = "<group>"; };
+		2D6504C51D89337D007832F2 /* BPVAddModel+BPVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVAddModel+BPVArrayModel.h"; sourceTree = "<group>"; };
+		2D6504C61D89337D007832F2 /* BPVAddModel+BPVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVAddModel+BPVArrayModel.m"; sourceTree = "<group>"; };
+		2D6504C71D89337D007832F2 /* BPVArrayChange+BPVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVArrayChange+BPVArrayModel.h"; sourceTree = "<group>"; };
+		2D6504C81D89337D007832F2 /* BPVArrayChange+BPVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVArrayChange+BPVArrayModel.m"; sourceTree = "<group>"; };
+		2D6504CA1D89337D007832F2 /* BPVMoveModel+BPVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVMoveModel+BPVArrayModel.h"; sourceTree = "<group>"; };
+		2D6504CB1D89337D007832F2 /* BPVMoveModel+BPVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVMoveModel+BPVArrayModel.m"; sourceTree = "<group>"; };
+		2D6504CD1D89337D007832F2 /* BPVRemoveModel+BPVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVRemoveModel+BPVArrayModel.h"; sourceTree = "<group>"; };
+		2D6504CE1D89337D007832F2 /* BPVRemoveModel+BPVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVRemoveModel+BPVArrayModel.m"; sourceTree = "<group>"; };
 		2DA8E9601D4C89DC0067032D /* BPVObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVObservableObject.h; sourceTree = "<group>"; };
 		2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVObservableObject.m; sourceTree = "<group>"; };
 		2DA8E9651D4CDE880067032D /* BPVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewCell.h; sourceTree = "<group>"; };
@@ -191,14 +199,6 @@
 		2DD763E51D87E8D700CEB5EA /* BPVMoveModel+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVMoveModel+UITableView.m"; sourceTree = "<group>"; };
 		2DD763E71D87E8D700CEB5EA /* BPVRemoveModel+UITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVRemoveModel+UITableView.h"; sourceTree = "<group>"; };
 		2DD763E81D87E8D700CEB5EA /* BPVRemoveModel+UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVRemoveModel+UITableView.m"; sourceTree = "<group>"; };
-		2DD763EF1D87EA2900CEB5EA /* BPVAddModel+BPVFilteredModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVAddModel+BPVFilteredModel.h"; sourceTree = "<group>"; };
-		2DD763F01D87EA2900CEB5EA /* BPVAddModel+BPVFilteredModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVAddModel+BPVFilteredModel.m"; sourceTree = "<group>"; };
-		2DD763F11D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVArrayChange+BPVFilteredModel.h"; sourceTree = "<group>"; };
-		2DD763F21D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVArrayChange+BPVFilteredModel.m"; sourceTree = "<group>"; };
-		2DD763F41D87EA2900CEB5EA /* BPVMoveModel+BPVFilteredModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVMoveModel+BPVFilteredModel.h"; sourceTree = "<group>"; };
-		2DD763F51D87EA2900CEB5EA /* BPVMoveModel+BPVFilteredModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVMoveModel+BPVFilteredModel.m"; sourceTree = "<group>"; };
-		2DD763F71D87EA2900CEB5EA /* BPVRemoveModel+BPVFilteredModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVRemoveModel+BPVFilteredModel.h"; sourceTree = "<group>"; };
-		2DD763F81D87EA2900CEB5EA /* BPVRemoveModel+BPVFilteredModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVRemoveModel+BPVFilteredModel.m"; sourceTree = "<group>"; };
 		2DD763FE1D87F94100CEB5EA /* BPVFileSystemImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVFileSystemImage.h; sourceTree = "<group>"; };
 		2DD763FF1D87F94100CEB5EA /* BPVFileSystemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVFileSystemImage.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
@@ -348,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				2D3F41F91D3FA29800A38A7B /* BPVAppDelegate.h */,
+				2DD763751D782A0800CEB5EA /* BPVUserCell */,
 				2D3F41FA1D3FA29800A38A7B /* BPVAppDelegate.m */,
 				2D3F41FB1D3FA29800A38A7B /* Info.plist */,
 				2D3F41FC1D3FA29800A38A7B /* main.m */,
@@ -542,6 +543,45 @@
 			path = UIWindow;
 			sourceTree = "<group>";
 		};
+		2D6504C31D89337D007832F2 /* BPVArrayChange+BPVArrayModel */ = {
+			isa = PBXGroup;
+			children = (
+				2D6504C41D89337D007832F2 /* BPVAddModel */,
+				2D6504C71D89337D007832F2 /* BPVArrayChange+BPVArrayModel.h */,
+				2D6504C81D89337D007832F2 /* BPVArrayChange+BPVArrayModel.m */,
+				2D6504C91D89337D007832F2 /* BPVMoveModel */,
+				2D6504CC1D89337D007832F2 /* BPVRemoveModel */,
+			);
+			path = "BPVArrayChange+BPVArrayModel";
+			sourceTree = "<group>";
+		};
+		2D6504C41D89337D007832F2 /* BPVAddModel */ = {
+			isa = PBXGroup;
+			children = (
+				2D6504C51D89337D007832F2 /* BPVAddModel+BPVArrayModel.h */,
+				2D6504C61D89337D007832F2 /* BPVAddModel+BPVArrayModel.m */,
+			);
+			path = BPVAddModel;
+			sourceTree = "<group>";
+		};
+		2D6504C91D89337D007832F2 /* BPVMoveModel */ = {
+			isa = PBXGroup;
+			children = (
+				2D6504CA1D89337D007832F2 /* BPVMoveModel+BPVArrayModel.h */,
+				2D6504CB1D89337D007832F2 /* BPVMoveModel+BPVArrayModel.m */,
+			);
+			path = BPVMoveModel;
+			sourceTree = "<group>";
+		};
+		2D6504CC1D89337D007832F2 /* BPVRemoveModel */ = {
+			isa = PBXGroup;
+			children = (
+				2D6504CD1D89337D007832F2 /* BPVRemoveModel+BPVArrayModel.h */,
+				2D6504CE1D89337D007832F2 /* BPVRemoveModel+BPVArrayModel.m */,
+			);
+			path = BPVRemoveModel;
+			sourceTree = "<group>";
+		};
 		2DA8E95F1D4C89DC0067032D /* BPVObservableObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,7 +632,6 @@
 		2DD763741D782A0800CEB5EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2DD763751D782A0800CEB5EA /* BPVUserCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -604,7 +643,8 @@
 				2DD763771D782A0800CEB5EA /* BPVUserCell.m */,
 				2DD763781D782A0800CEB5EA /* BPVUserCell.xib */,
 			);
-			path = BPVUserCell;
+			name = BPVUserCell;
+			path = ../Sources/UI/BPVUsersViewController/Views/BPVUserCell;
 			sourceTree = "<group>";
 		};
 		2DD763841D782A3000CEB5EA /* BPVTableViewController */ = {
@@ -770,45 +810,6 @@
 			path = BPVRemoveModel;
 			sourceTree = "<group>";
 		};
-		2DD763ED1D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel */ = {
-			isa = PBXGroup;
-			children = (
-				2DD763EE1D87EA2900CEB5EA /* BPVAddModel */,
-				2DD763F11D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel.h */,
-				2DD763F21D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel.m */,
-				2DD763F31D87EA2900CEB5EA /* BPVMoveModel */,
-				2DD763F61D87EA2900CEB5EA /* BPVRemoveModel */,
-			);
-			path = "BPVArrayChange+BPVFilteredModel";
-			sourceTree = "<group>";
-		};
-		2DD763EE1D87EA2900CEB5EA /* BPVAddModel */ = {
-			isa = PBXGroup;
-			children = (
-				2DD763EF1D87EA2900CEB5EA /* BPVAddModel+BPVFilteredModel.h */,
-				2DD763F01D87EA2900CEB5EA /* BPVAddModel+BPVFilteredModel.m */,
-			);
-			path = BPVAddModel;
-			sourceTree = "<group>";
-		};
-		2DD763F31D87EA2900CEB5EA /* BPVMoveModel */ = {
-			isa = PBXGroup;
-			children = (
-				2DD763F41D87EA2900CEB5EA /* BPVMoveModel+BPVFilteredModel.h */,
-				2DD763F51D87EA2900CEB5EA /* BPVMoveModel+BPVFilteredModel.m */,
-			);
-			path = BPVMoveModel;
-			sourceTree = "<group>";
-		};
-		2DD763F61D87EA2900CEB5EA /* BPVRemoveModel */ = {
-			isa = PBXGroup;
-			children = (
-				2DD763F71D87EA2900CEB5EA /* BPVRemoveModel+BPVFilteredModel.h */,
-				2DD763F81D87EA2900CEB5EA /* BPVRemoveModel+BPVFilteredModel.m */,
-			);
-			path = BPVRemoveModel;
-			sourceTree = "<group>";
-		};
 		2DD763FD1D87F91E00CEB5EA /* BPVFileSystemImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -867,7 +868,7 @@
 		2DE9D2F31D70331400371F7B /* BPVArrayChange */ = {
 			isa = PBXGroup;
 			children = (
-				2DD763ED1D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel */,
+				2D6504C31D89337D007832F2 /* BPVArrayChange+BPVArrayModel */,
 				2DD763DD1D87E8D700CEB5EA /* BPVArrayChange+UITableView */,
 			);
 			path = BPVArrayChange;
@@ -1080,21 +1081,21 @@
 				2D328D701D5CADF70064C76D /* BPVUser.m in Sources */,
 				2DE873AC1D75C36900A3550A /* BPVLoadingView.m in Sources */,
 				2DD763AE1D798AC300CEB5EA /* BPVModel.m in Sources */,
+				2D6504D21D89337D007832F2 /* BPVRemoveModel+BPVArrayModel.m in Sources */,
 				2DD7637E1D782A0800CEB5EA /* BPVUsersViewController.m in Sources */,
-				2DD763FC1D87EA2900CEB5EA /* BPVRemoveModel+BPVFilteredModel.m in Sources */,
 				2D4828F51D6C905000AF3617 /* NSArray+BPVExtensions.m in Sources */,
 				2DD763D61D86DEBB00CEB5EA /* BPVInternetImage.m in Sources */,
 				2DD763C01D7EC0C800CEB5EA /* BPVFilteredModel.m in Sources */,
 				2DD7639F1D786A2600CEB5EA /* BPVTwoIndexArrayChange.m in Sources */,
 				2DE9D2F21D702B8500371F7B /* NSMutableArray+BPVExtensions.m in Sources */,
+				2D6504CF1D89337D007832F2 /* BPVAddModel+BPVArrayModel.m in Sources */,
 				2DD763E91D87E8D700CEB5EA /* BPVAddModel+UITableView.m in Sources */,
 				2D4828F61D6C905000AF3617 /* NSFileManager+BPVExtensions.m in Sources */,
-				2DD763FA1D87EA2900CEB5EA /* BPVArrayChange+BPVFilteredModel.m in Sources */,
 				2DD7639E1D786A2600CEB5EA /* BPVOneIndexArrayChange.m in Sources */,
 				2DD763871D782A3000CEB5EA /* BPVTableViewController.m in Sources */,
 				2DD763A01D786A2600CEB5EA /* BPVAddModel.m in Sources */,
 				2DD7637D1D782A0800CEB5EA /* BPVUsersView.m in Sources */,
-				2DD763F91D87EA2900CEB5EA /* BPVAddModel+BPVFilteredModel.m in Sources */,
+				2D6504D11D89337D007832F2 /* BPVMoveModel+BPVArrayModel.m in Sources */,
 				2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */,
 				2DD763A21D786A2600CEB5EA /* BPVRemoveModel.m in Sources */,
 				2D4828FC1D6C905000AF3617 /* UINib+BPVExtensions.m in Sources */,
@@ -1109,10 +1110,10 @@
 				2DD763A11D786A2600CEB5EA /* BPVMoveModel.m in Sources */,
 				2D4828FB1D6C905000AF3617 /* BPVSupportEntity.m in Sources */,
 				2DE873A81D75C28900A3550A /* BPVView.m in Sources */,
-				2DD763FB1D87EA2900CEB5EA /* BPVMoveModel+BPVFilteredModel.m in Sources */,
 				2DD763C71D82DE3B00CEB5EA /* BPVImagesCache.m in Sources */,
 				2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */,
 				2DD763EC1D87E8D700CEB5EA /* BPVRemoveModel+UITableView.m in Sources */,
+				2D6504D01D89337D007832F2 /* BPVArrayChange+BPVArrayModel.m in Sources */,
 				2DD763EB1D87E8D700CEB5EA /* BPVMoveModel+UITableView.m in Sources */,
 				2DD763A61D786A3900CEB5EA /* BPVArrayModel.m in Sources */,
 				2DD763801D782A0800CEB5EA /* BPVUserCell.m in Sources */,

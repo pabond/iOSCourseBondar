@@ -10,8 +10,10 @@
 
 #import "BPVUsers.h"
 #import "BPVUser.h"
-#import "BPVArrayChange+BPVFilteredModel.h"
+#import "BPVArrayChange+BPVArrayModel.h"
 #import "BPVAddModel.h"
+#import "BPVMoveModel.h"
+#import "BPVRemoveModel.h"
 
 #import "BPVGCD.h"
 
@@ -23,8 +25,12 @@
 @property (nonatomic, strong)   BPVUsers    *rootModel;
 @property (nonatomic, copy)     NSString    *filterString;
 
-- (void)addModelsWiththoutNotification:(NSArray *)array;
-- (BOOL)shouldApplyWithObject:(BPVUser *)object;
+- (void)addModelsWithoutNotification:(NSArray *)array;
+
+- (BOOL)shouldApplyWithChangeModel:(BPVArrayChange *)changeModel;
+
+- (BPVArrayChange *)transformedMoveModelWithModel:(BPVMoveModel *)moveModel;
+- (NSUInteger)previousObjectIndexWithMoveModel:(BPVMoveModel *)moveModel;
 
 @end
 
@@ -50,21 +56,15 @@
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)filterArrayWithString:(NSString *)filtrationText {
-    __block NSString *text = filtrationText;
-    
+- (void)filterArrayWithString:(NSString *)text {
     BPVWeakify(self)
     BPVPerformAsyncBlockOnBackgroundQueue(^{
         BPVStrongifyAndReturnIfNil(self)
-        if ([text  isEqual: @""]) {
-            text = @" ";
-        }
-        
         self.filterString = text;
         
         [self removeAllObjects];
         NSArray *array = [[self.rootModel.models filteredUsingBlock:^BOOL(BPVUser *user) {
-            if (!text) {
+            if (!text.length) {
                 return YES;
             }
             
@@ -105,7 +105,7 @@
     }
 }
 
-- (void)addModelsWiththoutNotification:(NSArray *)array {
+- (void)addModelsWithoutNotification:(NSArray *)array {
     BPVWeakify(self)
     [self performBlockWithoutNotification:^{
         BPVStrongifyAndReturnIfNil(self)
@@ -113,20 +113,55 @@
     }];
 }
 
-- (BOOL)shouldApplyWithObject:(BPVUser *)object {
-    NSString *string = self.filterString;
-    if (!string) {
-        return YES;
+- (BOOL)shouldApplyWithChangeModel:(BPVArrayChange *)changeModel {
+    BPVUser *object = changeModel.object;
+    BOOL result = NO;
+    
+    if ([changeModel isMemberOfClass:[BPVAddModel class]]) {
+        result = [object.fullName containsString:self.filterString];
+    } else if ([self containsModel:object]) {
+        result = YES;
     }
     
-    return [object.fullName containsString:string];
+    return result;
+}
+
+- (BPVArrayChange *)transformedMoveModelWithModel:(BPVMoveModel *)moveModel {
+    id object = moveModel.object;
+    BPVArrayChange *newMoveModel = nil;
+    NSUInteger toIndex = moveModel.index;
+    
+    if ([self containsModel:object]) {
+        NSUInteger fromIndex = [self indexOfModel:object];
+        if (0 != toIndex) {
+            BOOL isLastIndex = toIndex == self.rootModel.count - 1;
+            toIndex = isLastIndex ? self.count - 1 : [self previousObjectIndexWithMoveModel:moveModel];
+        }
+        
+        newMoveModel = [BPVArrayChange moveModelWithIndex:toIndex fromIndex:fromIndex object:object];
+    }
+    
+    return newMoveModel ? newMoveModel : moveModel;
+}
+
+- (NSUInteger)previousObjectIndexWithMoveModel:(BPVMoveModel *)moveModel {
+    BPVUsers *rootModel = self.rootModel;
+    NSUInteger indexInRootModel = [rootModel indexOfModel:moveModel.object];
+    id previousObject = nil;
+    
+    do {
+        indexInRootModel -= 1;
+        previousObject = [rootModel modelAtIndex:indexInRootModel];
+    } while ([self containsModel:previousObject]);
+    
+    return [self indexOfModel:previousObject];
 }
 
 #pragma mark -
 #pragma mark BPVModelObserver
 
 - (void)modelDidLoad:(BPVArrayModel *)model {
-    [self addModelsWiththoutNotification:model.models];
+    [self addModelsWithoutNotification:model.models];
     
     [self notifyOfState:model.state];
 }
@@ -144,12 +179,15 @@
 
 - (void)model:(id)model didChangeWithModel:(BPVArrayChange *)changeModel {
     if (changeModel) {
-        id object = changeModel.object;
-        if ([changeModel isMemberOfClass:[BPVAddModel class]] && ![self shouldApplyWithObject:object]) {
+        if (![self shouldApplyWithChangeModel:changeModel]) {
             return;
         }
         
-        [changeModel applyToModel:self withObject:object];
+        if ([changeModel isMemberOfClass:[BPVMoveModel class]] && self.models.count != self.rootModel.count) {
+            changeModel = [self transformedMoveModelWithModel:(BPVMoveModel *)changeModel];
+        }
+        
+        [changeModel applyToModel:self withObject:changeModel.object];
     }
 }
 

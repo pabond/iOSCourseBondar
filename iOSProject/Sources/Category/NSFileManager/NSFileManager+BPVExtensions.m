@@ -20,6 +20,17 @@
 
 + (NSString *)applicationDataPathWithFolderName:(NSString *)folderName {
     NSString *dataPath = [[self libraryDirectoryPath] stringByAppendingPathComponent:folderName];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSError *error = nil;
+    
+    if (![fileManager fileExistsAtPath:dataPath]) {
+        [fileManager createDirectoryAtPath:dataPath
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:&error];
+        NSLog(@"%@", error);
+    }
 
     return dataPath;
 }

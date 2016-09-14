@@ -1,16 +1,16 @@
 //
-//  BPVAddModel+BPVFilteredModel.m
+//  BPVAddModel+BPVArrayModel.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/15/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVAddModel+BPVFilteredModel.h"
+#import "BPVAddModel+BPVArrayModel.h"
 
 @implementation BPVAddModel (UITableView)
 
-- (void)applyToModel:(BPVFilteredModel *)model withObject:(id)object {
+- (void)applyToModel:(BPVArrayModel *)model withObject:(id)object {
     [model addModel:object];
 }
 

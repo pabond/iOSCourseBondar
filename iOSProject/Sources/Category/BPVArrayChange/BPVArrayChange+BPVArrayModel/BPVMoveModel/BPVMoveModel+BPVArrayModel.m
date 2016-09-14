@@ -1,5 +1,5 @@
 //
-//  BPVMoveModel+BPVFilteredModel.m
+//  BPVMoveModel+BPVArrayModel.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 8/15/16.
@@ -8,11 +8,11 @@
 
 #import "UIKit/UIKit.h"
 
-#import "BPVMoveModel+BPVFilteredModel.h"
+#import "BPVMoveModel+BPVArrayModel.h"
 
-@implementation BPVMoveModel (BPVFilteredModel)
+@implementation BPVMoveModel (BPVArrayModel)
 
-- (void)applyToModel:(BPVFilteredModel *)model withObject:(id)object {
+- (void)applyToModel:(BPVArrayModel *)model withObject:(id)object {
     [model moveModelFromIndex:self.fromIndex toIndex:self.index];
 }
 
