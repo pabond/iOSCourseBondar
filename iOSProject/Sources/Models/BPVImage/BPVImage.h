@@ -11,11 +11,16 @@
 #import "UIKit/UIKit.h"
 
 @interface BPVImage : BPVModel
-@property (nonatomic, readonly) UIImage     *image;
-@property (nonatomic, readonly) NSURL       *url;
+@property (nonatomic, strong)   UIImage     *image;
+@property (nonatomic, strong)   NSURL       *url;
 @property (nonatomic, readonly) NSString    *path;
 @property (nonatomic, readonly) NSString    *fileName;
 
 + (instancetype)imageWithUrl:(NSURL *)url;
+
+- (instancetype)initWithUrl:(NSURL *)url;
+
+// you should call this method anly from subclasses
+- (UIImage *)specificLoadingOperation;
 
 @end

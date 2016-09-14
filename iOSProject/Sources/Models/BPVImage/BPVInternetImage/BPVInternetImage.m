@@ -7,7 +7,21 @@
 //
 
 #import "BPVInternetImage.h"
+#import "BPVImagesCache.h"
 
 @implementation BPVInternetImage
+
+- (UIImage *)specificLoadingOperation {
+    NSURL *url = self.url;
+    
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
+    [imageData writeToFile:self.path atomically:YES];
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+    [[BPVImagesCache cache] addImage:self withURL:url];
+    NSLog(@"Image loaded from internet");
+    
+    return image;
+}
 
 @end

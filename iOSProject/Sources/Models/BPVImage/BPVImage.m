@@ -12,6 +12,9 @@
 #import "BPVQueue.h"
 #import "BPVImagesCache.h"
 
+#import "BPVFileSystemImage.h"
+#import "BPVInternetImage.h"
+
 #import "NSFileManager+BPVExtensions.h"
 
 #import "BPVMacro.h"
@@ -20,11 +23,9 @@ BPVConstant(NSUInteger, kBPVSleepTime, 3);
 BPVStringConstant(BPVImages);
 
 @interface BPVImage ()
-@property (nonatomic, strong) UIImage           *image;
-@property (nonatomic, strong) NSURL             *url;
-@property (nonatomic, strong) BPVImagesCache    *cache;
 
-- (instancetype)initWithUrl:(NSURL *)url;
++ (instancetype)internetWithUrl:(NSURL *)url;
++ (instancetype)fileSystemImageWithUrl:(NSURL *)url;
 
 @end
 
@@ -40,15 +41,25 @@ BPVStringConstant(BPVImages);
     return [[self alloc] initWithUrl:url];
 }
 
++ (instancetype)internetWithUrl:(NSURL *)url {
+    return [[BPVInternetImage alloc] initWithUrl:url];
+}
+
++ (instancetype)fileSystemImageWithUrl:(NSURL *)url {
+    return [[BPVFileSystemImage alloc] initWithUrl:url];
+}
+
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
 - (instancetype)initWithUrl:(NSURL *)url {
-    self = [super init];
-    self.url = url;
-    self.cache = [BPVImagesCache cache];
+    BPVImagesCache *cache = [BPVImagesCache cache];
+    if ([cache containsImageWithURL:url]) {
+        return [cache imageWithURL:url];
+    }   
     
-    return self;
+    return [url isFileURL] ? [BPVFileSystemImage fileSystemImageWithUrl:url]
+                            : [BPVInternetImage internetWithUrl:url];
 }
 
 #pragma mark -
@@ -66,47 +77,20 @@ BPVStringConstant(BPVImages);
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)performLoading {
-    sleep(kBPVSleepTime);
-    self.image = [self shouldLoadFromInternet] ? [self imageFromInternet] : [self imageFromFileSystem];
-    
-    self.state = self.image ? BPVModelDidLoad : BPVModelFailLoading;
+- (UIImage *)specificLoadingOperation {
+    return nil;
 }
 
-- (BOOL)shouldLoadFromInternet {
-    NSURL *url = self.url;
+- (void)performLoading {
+    UIImage *image = [self specificLoadingOperation];
+    sleep(kBPVSleepTime);
     
-    return !url.isFileReferenceURL && ![self.cache containsImageWithURL:url];
+    self.image = image;
+    
+    self.state = image ? BPVModelDidLoad : BPVModelFailLoading;
 }
 
 #pragma mark -
 #pragma mark Private implementations
-
-- (UIImage *)imageFromFileSystem {
-    NSString *filePath = self.path;
-    
-    UIImage *image = [UIImage imageWithContentsOfFile:filePath];
-    if (!image) {
-        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
-        [self performLoading];
-    } else {
-        NSLog(@"image loaded from file system");
-    }
-    
-    return image;
-}
-
-- (UIImage *)imageFromInternet {
-    NSURL *url = self.url;
-    
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
-    [imageData writeToFile:self.path atomically:YES];
-    UIImage *image = [UIImage imageWithData:imageData];
-    
-    [self.cache addImage:self withURL:url];
-    NSLog(@"Image loaded from internet");
-    
-    return image;
-}
 
 @end

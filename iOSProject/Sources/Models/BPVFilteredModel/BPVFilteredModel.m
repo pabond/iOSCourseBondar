@@ -28,11 +28,7 @@
 - (instancetype)initWithRootModel:(id)model;
 
 - (void)addModelsWithoutNotification:(NSArray *)array;
-
 - (BOOL)shouldApplyWithChangeModel:(BPVArrayChange *)changeModel;
-
-- (BPVArrayChange *)transformedMoveModelWithModel:(BPVMoveModel *)moveModel;
-- (NSUInteger)previousObjectIndexWithMoveModel:(BPVMoveModel *)moveModel;
 
 @end
 
@@ -140,37 +136,6 @@
     return result;
 }
 
-- (BPVArrayChange *)transformedMoveModelWithModel:(BPVMoveModel *)moveModel {
-    id object = moveModel.object;
-    BPVArrayChange *newMoveModel = nil;
-    NSUInteger toIndex = moveModel.index;
-    
-    if ([self containsModel:object]) {
-        NSUInteger fromIndex = [self indexOfModel:object];
-        if (0 != toIndex) {
-            BOOL isLastIndex = toIndex == self.rootModel.count - 1;
-            toIndex = isLastIndex ? self.count - 1 : [self previousObjectIndexWithMoveModel:moveModel];
-        }
-        
-        newMoveModel = [BPVArrayChange moveModelWithIndex:toIndex fromIndex:fromIndex object:object];
-    }
-    
-    return newMoveModel ? newMoveModel : moveModel;
-}
-
-- (NSUInteger)previousObjectIndexWithMoveModel:(BPVMoveModel *)moveModel {
-    BPVArrayModel *rootModel = self.rootModel;
-    NSUInteger indexInRootModel = [rootModel indexOfModel:moveModel.object];
-    id previousObject = nil;
-    
-    do {
-        indexInRootModel -= 1;
-        previousObject = [rootModel modelAtIndex:indexInRootModel];
-    } while ([self containsModel:previousObject]);
-    
-    return [self indexOfModel:previousObject];
-}
-
 #pragma mark -
 #pragma mark BPVModelObserver
 
@@ -195,10 +160,6 @@
     if (changeModel) {
         if (![self shouldApplyWithChangeModel:changeModel]) {
             return;
-        }
-        
-        if ([changeModel isMemberOfClass:[BPVMoveModel class]] && self.models.count != self.rootModel.count) {
-            changeModel = [self transformedMoveModelWithModel:(BPVMoveModel *)changeModel];
         }
         
         [changeModel applyToModel:self withObject:changeModel.object];
