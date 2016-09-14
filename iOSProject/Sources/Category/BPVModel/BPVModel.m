@@ -12,6 +12,11 @@
 
 #import "BPVMacro.h"
 
+@interface BPVModel ()
+@property (nonatomic, strong)   id  observer;
+
+@end
+
 @implementation BPVModel
 
 #pragma mark -
@@ -51,10 +56,6 @@
     }
 }
 
-
-#pragma mark -
-#pragma mark Redefinition of parent methods
-
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {            
         case BPVModelDidLoad:
@@ -72,6 +73,35 @@
         default:
             return [super selectorForState:state];
     }
+}
+
+
+#pragma mark -
+#pragma mark Observation methods 
+
+- (void)startObservationForSelectorName:(NSString *)name block:(BPVBlock)block {
+    self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:name
+                                                                      object:nil
+                                                                       queue:nil
+                                                                  usingBlock:^(NSNotification * _Nonnull note) {
+                                                                      BPVPerformBlock(block);
+                                                                  }];
+}
+
+- (void)startObservationForSelectorNames:(NSArray *)names block:(BPVBlock)block {
+    for (NSString *name in names) {
+        [self startObservationForSelectorName:name block:block];
+    }
+}
+
+- (void)endObservationWithSelectorNames:(NSArray *)names {
+    for (id name in names) {
+        [self endObservationWithSelectorName:name];
+    }
+}
+
+- (void)endObservationWithSelectorName:(NSString *)name {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.observer name:name object:nil];
 }
 
 @end

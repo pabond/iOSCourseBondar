@@ -50,6 +50,10 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     return cell;
 }
 
+- (BPVArrayModel *)modelFromSubclass {
+    return [BPVUsers new];
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource
 

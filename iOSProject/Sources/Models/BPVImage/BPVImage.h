@@ -16,6 +16,6 @@
 @property (nonatomic, readonly) NSString    *path;
 @property (nonatomic, readonly) NSString    *fileName;
 
-+ (instancetype)imageFromUrl:(NSURL *)url;
++ (instancetype)imageWithUrl:(NSURL *)url;
 
 @end

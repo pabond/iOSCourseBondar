@@ -22,8 +22,10 @@
 #import "BPVMacro.h"
 
 @interface BPVFilteredModel ()
-@property (nonatomic, strong)   BPVUsers    *rootModel;
-@property (nonatomic, copy)     NSString    *filterString;
+@property (nonatomic, strong)   BPVArrayModel   *rootModel;
+@property (nonatomic, copy)     NSString        *filterString;
+
+- (instancetype)initWithRootModel:(id)model;
 
 - (void)addModelsWithoutNotification:(NSArray *)array;
 
@@ -39,18 +41,30 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)filteredModelWithBaceObject:(id)object {
-    return [[self alloc] initWithBaceObject:object];
++ (instancetype)filteredModelWithRootModel:(id)model {
+    return [[self alloc] initWithRootModel:model];
 }
 
 #pragma mark -
 #pragma mark Initializations and deallocations
 
-- (instancetype)initWithBaceObject:(id)obect {
+- (instancetype)initWithRootModel:(id)model {
     self = [super init];
-    self.rootModel = obect;
+    self.rootModel = model;
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setRootModel:(BPVArrayModel *)rootModel {
+    if (_rootModel != rootModel) {
+        [_rootModel removeObserver:self];
+        
+        _rootModel = rootModel;
+        [_rootModel addObserver:self];
+    }
 }
 
 #pragma mark -
@@ -145,7 +159,7 @@
 }
 
 - (NSUInteger)previousObjectIndexWithMoveModel:(BPVMoveModel *)moveModel {
-    BPVUsers *rootModel = self.rootModel;
+    BPVArrayModel *rootModel = self.rootModel;
     NSUInteger indexInRootModel = [rootModel indexOfModel:moveModel.object];
     id previousObject = nil;
     

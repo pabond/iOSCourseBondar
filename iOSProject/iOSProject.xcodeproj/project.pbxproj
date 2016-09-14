@@ -348,7 +348,6 @@
 			isa = PBXGroup;
 			children = (
 				2D3F41F91D3FA29800A38A7B /* BPVAppDelegate.h */,
-				2DD763751D782A0800CEB5EA /* BPVUserCell */,
 				2D3F41FA1D3FA29800A38A7B /* BPVAppDelegate.m */,
 				2D3F41FB1D3FA29800A38A7B /* Info.plist */,
 				2D3F41FC1D3FA29800A38A7B /* main.m */,
@@ -619,6 +618,7 @@
 		2DD7636E1D782A0800CEB5EA /* BPVUsersViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2DD763751D782A0800CEB5EA /* BPVUserCell */,
 				2DD763741D782A0800CEB5EA /* Views */,
 				2DD763711D782A0800CEB5EA /* BPVUsersViewController.h */,
 				2DD763721D782A0800CEB5EA /* BPVUsersViewController.m */,
@@ -644,7 +644,7 @@
 				2DD763781D782A0800CEB5EA /* BPVUserCell.xib */,
 			);
 			name = BPVUserCell;
-			path = ../Sources/UI/BPVUsersViewController/Views/BPVUserCell;
+			path = Views/BPVUserCell;
 			sourceTree = "<group>";
 		};
 		2DD763841D782A3000CEB5EA /* BPVTableViewController */ = {

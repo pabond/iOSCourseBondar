@@ -36,7 +36,7 @@ BPVStringConstant(BPVImages);
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)imageFromUrl:(NSURL *)url {
++ (instancetype)imageWithUrl:(NSURL *)url {
     return [[self alloc] initWithUrl:url];
 }
 
@@ -55,19 +55,12 @@ BPVStringConstant(BPVImages);
 #pragma mark Accessors
 
 - (NSString *)path {
-    BPVWeakify(self)
-    BPVReturnOnce(NSString, path, ^{
-        BPVStrongify(self)
-        return [[NSFileManager applicationDataPathWithFolderName:BPVImages] stringByAppendingPathComponent:self.fileName];
-    });
+    return [[NSFileManager applicationDataPathWithFolderName:BPVImages] stringByAppendingPathComponent:self.fileName];
 }
 
 - (NSString *)fileName {
-    BPVWeakify(self)
-    BPVReturnOnce(NSString, fileName, ^{
-        BPVStrongify(self)
-        return [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
-    });
+    return [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet
+                                                                                        URLUserAllowedCharacterSet]];
 }
 
 #pragma mark -

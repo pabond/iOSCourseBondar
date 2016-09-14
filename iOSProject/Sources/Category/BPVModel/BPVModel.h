@@ -38,4 +38,10 @@ typedef NS_ENUM(NSUInteger, BPVModelState) {
 //this method cen be implemented in subclasses if needed
 - (BOOL)shouldNotifyOfState:(NSUInteger)state;
 
+- (void)startObservationForSelectorName:(NSString *)name block:(BPVBlock)block;
+- (void)startObservationForSelectorNames:(NSArray *)names block:(BPVBlock)block;
+
+- (void)endObservationWithSelectorNames:(NSArray *)names;
+- (void)endObservationWithSelectorName:(NSString *)name;
+
 @end

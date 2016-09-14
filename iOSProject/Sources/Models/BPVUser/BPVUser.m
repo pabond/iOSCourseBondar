@@ -53,7 +53,7 @@ static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/20
 }
 
 - (BPVImage *)image {
-    return [BPVImage imageFromUrl:self.url];
+    return [BPVImage imageWithUrl:self.url];
 }
 
 #pragma mark -

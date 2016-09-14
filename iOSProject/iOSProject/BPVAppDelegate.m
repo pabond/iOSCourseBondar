@@ -19,11 +19,6 @@
 
 #import "BPVMacro.h"
 
-@interface BPVAppDelegate ()
-@property (nonatomic, strong) BPVUsers *users;
-
-@end
-
 @implementation BPVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -31,10 +26,6 @@
     self.window = window;
     
     BPVTableViewController *controller = [BPVUsersViewController viewController];
-    
-    BPVUsers *users = [[BPVUsers alloc] init];
-    controller.model = users;
-    self.users = users;
     
     window.rootViewController = controller;
     
@@ -45,7 +36,6 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     BPVPrintCurrentSelector;
-    [self.users save];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -62,7 +52,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     BPVPrintCurrentSelector;
-    [self.users save];
 }
 
 @end
