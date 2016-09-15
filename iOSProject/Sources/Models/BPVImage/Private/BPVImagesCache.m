@@ -51,7 +51,9 @@
 
 - (void)removeImageWithURL:(NSURL *)url {
     @synchronized (self) {
-        [self.cache removeObjectForKey:url];
+        if ([self containsImageWithURL:url]) {
+            [self.cache removeObjectForKey:url];
+        }
     }
 }
 

@@ -14,6 +14,7 @@
 - (instancetype)initWithUrl:(NSURL *)url {
     self = [super init];
     self.url = url;
+    [[BPVImagesCache cache] addImage:self withURL:url];
     
     return self;
 }
@@ -24,7 +25,6 @@
         [self removeImageWithProblem];
         [self performLoading];
     } else {
-        [[BPVImagesCache cache] addImage:self withURL:self.url];
         NSLog(@"image loaded from file system");
     }
     
