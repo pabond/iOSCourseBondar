@@ -7,6 +7,7 @@
 //
 
 #import "BPVFileSystemImage.h"
+#import "BPVImagesCache.h"
 
 @implementation BPVFileSystemImage
 
@@ -23,6 +24,7 @@
         [self removeImageWithProblem];
         [self performLoading];
     } else {
+        [[BPVImagesCache cache] addImage:self withURL:self.url];
         NSLog(@"image loaded from file system");
     }
     

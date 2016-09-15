@@ -17,6 +17,7 @@
 
 BPVStringConstantWithValue(kBPVUserName, userName);
 BPVStringConstantWithValue(kBPVUserSurname, userSurname);
+BPVStringConstantWithValue(kBPVUserURL, userURL);
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/2015/12/ziemelbriedis.png";
@@ -62,6 +63,7 @@ static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/20
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.name forKey:kBPVUserName];
     [aCoder encodeObject:self.surname forKey:kBPVUserSurname];
+    [aCoder encodeObject:self.url forKey:kBPVUserURL];
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -69,6 +71,7 @@ static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/20
     if (self) {
         self.name = [aDecoder decodeObjectForKey:kBPVUserName];
         self.surname = [aDecoder decodeObjectForKey:kBPVUserSurname];
+        self.url = [aDecoder decodeObjectForKey:kBPVUserURL];
     }
     
     return self;

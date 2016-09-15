@@ -21,11 +21,11 @@
         NSData *imageData = [NSData dataWithContentsOfURL:url];
         [self saveDataToFileSystem:imageData];
         
+        [[BPVImagesCache cache] addImage:self withURL:url];
+        
         image = [UIImage imageWithData:imageData];
         NSLog(@"Image loaded from internet");
     }
-    
-    [[BPVImagesCache cache] addImage:self withURL:url];
     
     return image;
 }
