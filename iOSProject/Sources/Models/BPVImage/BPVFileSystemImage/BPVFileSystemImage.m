@@ -13,7 +13,6 @@
 - (instancetype)initWithUrl:(NSURL *)url {
     self = [super init];
     self.url = url;
-    [self load];
     
     return self;
 }

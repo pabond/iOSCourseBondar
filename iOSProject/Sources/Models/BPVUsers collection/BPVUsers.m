@@ -19,6 +19,7 @@
 #import "BPVMacro.h"
 
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, data.plist);
+BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 //BPVConstant(NSUInteger, kBPVSleepTime, 5);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
@@ -42,7 +43,8 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.applicationFilePath = [NSFileManager applicationDataPathWithFileName:kBPVApplictionSaveFileName];
+        self.applicationFilePath = [[NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder]
+                                    stringByAppendingPathComponent:kBPVApplictionSaveFileName];
         [self startObservationForSelectorNames:[self observingSelectorsNames] block:^{
             [self save];
         }];
@@ -92,7 +94,9 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (NSArray *)observingSelectorsNames {
-    return @[UIApplicationWillTerminateNotification, UIApplicationWillResignActiveNotification];
+    BPVReturnOnce(NSArray, observers, (^{
+        return @[UIApplicationWillTerminateNotification, UIApplicationWillResignActiveNotification];
+    }));
 }
 
 @end

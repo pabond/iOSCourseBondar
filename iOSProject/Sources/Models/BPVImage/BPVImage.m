@@ -54,9 +54,11 @@ BPVStringConstant(BPVImages);
 
 - (instancetype)initWithUrl:(NSURL *)url {
     BPVImagesCache *cache = [BPVImagesCache cache];
-    if ([cache containsImageWithURL:url]) {
-        return [cache imageWithURL:url];
-    }   
+    @synchronized (self) {
+        if ([cache containsImageWithURL:url]) {
+            return [cache imageWithURL:url];
+        }
+    }
     
     return [url isFileURL] ? [BPVFileSystemImage fileSystemImageWithUrl:url]
                             : [BPVInternetImage internetWithUrl:url];
@@ -82,15 +84,12 @@ BPVStringConstant(BPVImages);
 }
 
 - (void)performLoading {
-    UIImage *image = [self specificLoadingOperation];
     sleep(kBPVSleepTime);
     
+    UIImage *image = [self specificLoadingOperation];
     self.image = image;
     
     self.state = image ? BPVModelDidLoad : BPVModelFailLoading;
 }
-
-#pragma mark -
-#pragma mark Private implementations
 
 @end

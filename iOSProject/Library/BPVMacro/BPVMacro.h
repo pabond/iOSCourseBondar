@@ -83,9 +83,9 @@
         static dispatch_once_t onceToken; \
         static type *variable = nil; \
         dispatch_once(&onceToken, ^{ \
-        if (block) { \
-            variable = block(); \
-        } \
+            if (block) { \
+                variable = block(); \
+            } \
         }); \
         \
         return variable; \

@@ -30,6 +30,7 @@
         
         _image = image;
         [_image addObserver:self];
+        [_image load];
     }
 }
 
