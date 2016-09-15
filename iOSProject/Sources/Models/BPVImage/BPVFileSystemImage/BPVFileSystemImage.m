@@ -18,11 +18,9 @@
 }
 
 - (UIImage *)specificLoadingOperation {
-    NSString *filePath = self.path;
-    
-    UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+    UIImage *image = [UIImage imageWithContentsOfFile:self.path];
     if (!image) {
-        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        [self removeImageWithProblem];
         [self performLoading];
     } else {
         NSLog(@"image loaded from file system");

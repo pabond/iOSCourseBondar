@@ -22,5 +22,9 @@
 
 // you should call this method anly from subclasses
 - (UIImage *)specificLoadingOperation;
+- (BOOL)imageExistInFileSystem;
+- (BOOL)removeImageWithProblem;
+
+- (void)saveDataToFileSystem:(NSData *)data;
 
 @end

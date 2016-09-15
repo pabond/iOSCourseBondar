@@ -13,13 +13,19 @@
 
 - (UIImage *)specificLoadingOperation {
     NSURL *url = self.url;
+    UIImage *image = nil;
     
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
-    [imageData writeToFile:self.path atomically:YES];
-    UIImage *image = [UIImage imageWithData:imageData];
+    if ([self imageExistInFileSystem]) {
+        image = [super specificLoadingOperation];
+    } else {
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        [self saveDataToFileSystem:imageData];
+        
+        image = [UIImage imageWithData:imageData];
+        NSLog(@"Image loaded from internet");
+    }
     
     [[BPVImagesCache cache] addImage:self withURL:url];
-    NSLog(@"Image loaded from internet");
     
     return image;
 }

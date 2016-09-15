@@ -126,9 +126,10 @@
 - (BOOL)shouldApplyWithChangeModel:(BPVArrayChange *)changeModel {
     BPVUser *object = changeModel.object;
     BOOL result = NO;
+    NSString *filterString = self.filterString;
     
     if ([changeModel isMemberOfClass:[BPVAddModel class]]) {
-        result = [object.fullName containsString:self.filterString];
+        result = filterString ? [object.fullName localizedCaseInsensitiveContainsString:filterString] : YES;
     } else if ([self containsModel:object]) {
         result = YES;
     }

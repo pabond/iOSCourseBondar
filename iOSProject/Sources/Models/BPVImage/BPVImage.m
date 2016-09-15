@@ -52,12 +52,15 @@ BPVStringConstant(BPVImages);
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
+- (void)dealloc {
+    [[BPVImagesCache cache] removeImageWithURL:self.url];
+}
+
 - (instancetype)initWithUrl:(NSURL *)url {
     BPVImagesCache *cache = [BPVImagesCache cache];
-    @synchronized (self) {
-        if ([cache containsImageWithURL:url]) {
-            return [cache imageWithURL:url];
-        }
+    if ([cache containsImageWithURL:url]) {
+        NSLog(@"Cached image will return");
+        return [cache imageWithURL:url];
     }
     
     return [url isFileURL] ? [BPVFileSystemImage fileSystemImageWithUrl:url]
@@ -90,6 +93,25 @@ BPVStringConstant(BPVImages);
     self.image = image;
     
     self.state = image ? BPVModelDidLoad : BPVModelFailLoading;
+}
+
+- (BOOL)imageExistInFileSystem {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.path];
+}
+
+- (void)saveDataToFileSystem:(NSData *)data {
+    if (![self imageExistInFileSystem]) {
+        [data writeToFile:self.path atomically:YES];
+    }
+}
+
+- (BOOL)removeImageWithProblem {
+    NSError *error = nil;
+    BOOL result = [[NSFileManager defaultManager] removeItemAtPath:self.path error:&error];
+    
+    NSLog(@"%@", error);
+    
+    return result;
 }
 
 @end

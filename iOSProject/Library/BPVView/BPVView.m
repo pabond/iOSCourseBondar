@@ -9,6 +9,8 @@
 #import "BPVView.h"
 
 #import "BPVLoadingView.h"
+#import "BPVGCD.h"
+#import "BPVMacro.h"
 
 @interface BPVView ()
 
@@ -56,8 +58,11 @@
 }
 
 - (void)setLoading:(BOOL)loading {
-    
-    [self.loadingView setVisible:loading animated:YES];
+    BPVWeakify(self)
+    BPVPerformAsyncBlockOnMainQueue(^{
+        BPVStrongifyAndReturnIfNil(self)
+        [self.loadingView setVisible:loading animated:YES];
+    });
 }
 
 - (BOOL)loading {

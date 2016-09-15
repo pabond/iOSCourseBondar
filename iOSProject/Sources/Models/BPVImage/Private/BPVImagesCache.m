@@ -43,7 +43,9 @@
 
 - (void)addImage:(BPVImage *)image withURL:(NSURL *)url {
     @synchronized (self) {
-         [self.cache setObject:image forKey:url];
+        if ([self containsImageWithURL:url]) {
+            [self.cache setObject:image forKey:url];
+        }
     }
 }
 
