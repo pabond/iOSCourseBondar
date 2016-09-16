@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, BPVFilteredModelState) {
 
 @interface BPVFilteredModel : BPVArrayModel <BPVModelObserver, BPVArrayModelObserver>
 
-+ (instancetype)filteredModelWithRootModel:(id)model;
++ (instancetype)filteredModelWithArrayModel:(id)model;
 
 - (void)filterArrayWithString:(NSString *)text;
 

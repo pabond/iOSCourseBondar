@@ -26,7 +26,8 @@
     self.window = window;
     
     BPVTableViewController *controller = [BPVUsersViewController viewController];
-    
+    controller.model = [BPVUsers new];
+
     window.rootViewController = controller;
     
     [window makeKeyAndVisible];

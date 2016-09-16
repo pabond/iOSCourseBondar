@@ -22,6 +22,11 @@
 BPVStringConstantWithValue(kBPVTableTitle, USERS LIST);
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
+@interface BPVTableViewController ()
+@property (nonatomic, strong) BPVFilteredModel *filteredModel;
+
+@end
+
 @implementation BPVUsersViewController
 
 #pragma mark -

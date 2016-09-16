@@ -15,6 +15,16 @@
 
 @implementation BPVImageView
 
+#pragma mark -
+#pragma mark Initializations and deallocations
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    [self initSubviews];
+    
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     [self initSubviews];

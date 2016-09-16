@@ -22,10 +22,10 @@
 #import "BPVMacro.h"
 
 @interface BPVFilteredModel ()
-@property (nonatomic, strong)   BPVArrayModel   *rootModel;
+@property (nonatomic, strong)   BPVArrayModel   *arrayModel;
 @property (nonatomic, copy)     NSString        *filterString;
 
-- (instancetype)initWithRootModel:(id)model;
+- (instancetype)initWithArrayModel:(id)model;
 
 - (void)addModelsWithoutNotification:(NSArray *)array;
 - (BOOL)shouldApplyWithChangeModel:(BPVArrayChange *)changeModel;
@@ -37,16 +37,16 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)filteredModelWithRootModel:(id)model {
-    return [[self alloc] initWithRootModel:model];
++ (instancetype)filteredModelWithArrayModel:(id)model {
+    return [[self alloc] initWithArrayModel:model];
 }
 
 #pragma mark -
 #pragma mark Initializations and deallocations
 
-- (instancetype)initWithRootModel:(id)model {
+- (instancetype)initWithArrayModel:(id)model {
     self = [super init];
-    self.rootModel = model;
+    self.arrayModel = model;
     
     return self;
 }
@@ -54,12 +54,12 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setRootModel:(BPVArrayModel *)rootModel {
-    if (_rootModel != rootModel) {
-        [_rootModel removeObserver:self];
+- (void)setArrayModel:(BPVArrayModel *)arrayModel {
+    if (_arrayModel != arrayModel) {
+        [_arrayModel removeObserver:self];
         
-        _rootModel = rootModel;
-        [_rootModel addObserver:self];
+        _arrayModel = arrayModel;
+        [_arrayModel addObserver:self];
     }
 }
 
@@ -73,7 +73,7 @@
         self.filterString = text;
         
         [self removeAllObjects];
-        NSArray *array = [[self.rootModel.models filteredUsingBlock:^BOOL(BPVUser *user) {
+        NSArray *array = [[self.arrayModel.models filteredUsingBlock:^BOOL(BPVUser *user) {
             if (!text.length) {
                 return YES;
             }
@@ -141,6 +141,10 @@
 #pragma mark BPVModelObserver
 
 - (void)modelDidLoad:(BPVArrayModel *)model {
+    if (self.count) {
+        [self removeAllObjects];
+    }
+    
     [self addModelsWithoutNotification:model.models];
     
     [self notifyOfState:model.state];
@@ -158,13 +162,11 @@
 #pragma mark BPVArrayModelObserver
 
 - (void)model:(id)model didChangeWithModel:(BPVArrayChange *)changeModel {
-    if (changeModel) {
-        if (![self shouldApplyWithChangeModel:changeModel]) {
-            return;
-        }
-        
-        [changeModel applyToModel:self withObject:changeModel.object];
+    if (!changeModel || ![self shouldApplyWithChangeModel:changeModel]) {
+        return;
     }
+        
+    [changeModel applyToModel:self withObject:changeModel.object];
 }
 
 @end

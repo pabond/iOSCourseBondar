@@ -17,10 +17,7 @@
     BPVModelObserver,
     BPVArrayModelObserver
 >
-@property (nonatomic, readonly) BPVArrayModel       *model;
-@property (nonatomic, readonly) BPVFilteredModel    *filteredModel;
+@property (nonatomic, strong) BPVArrayModel *model;
 
-//this method should be launched only from subclasses
-- (BPVArrayModel *)modelFromSubclass;
 
 @end

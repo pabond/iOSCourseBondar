@@ -19,30 +19,28 @@
 
 @interface BPVTableViewController ()
 @property (nonatomic, strong) BPVFilteredModel *filteredModel;
-@property (nonatomic, strong) BPVArrayModel    *model;
 
 @end
 
 @implementation BPVTableViewController
 
 #pragma mark -
-#pragma mark Initializations and deallocations
+#pragma mark Accessors
 
-- (instancetype)initWithNibName:(nullable NSString *)nibName bundle:(nullable NSBundle *)nibBundle {
-    self = [super initWithNibName:nibName bundle:nibBundle];
-    BPVArrayModel *model = [self modelFromSubclass];
-    self.model = model;
-    self.filteredModel = [BPVFilteredModel filteredModelWithRootModel:model];
-    
-    if ([self isViewLoaded]) {
-        [model load];
+- (void)setModel:(BPVArrayModel *)model {
+    if (_model != model) {
+        [_model removeObserver:self.filteredModel];
+        
+        _model = model;
+        self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:_model];
+        [_model addObserver:self.filteredModel];
+        
+        if ([self isViewLoaded]) {
+            [_model load];
+        }
     }
-    
-    return self;
 }
 
-#pragma mark -
-#pragma mark Accessors
 
 - (void)setFilteredModel:(BPVFilteredModel *)filteredModel {
     if (_filteredModel != filteredModel) {
@@ -57,13 +55,6 @@
     [super viewDidLoad];
     
     [self.model load];
-}
-
-#pragma mark -
-#pragma mark Public implementations 
-
-- (BPVArrayModel *)modelFromSubclass {
-    return nil;
 }
 
 #pragma mark -

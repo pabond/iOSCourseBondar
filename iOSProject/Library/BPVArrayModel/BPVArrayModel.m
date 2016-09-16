@@ -128,7 +128,9 @@
 }
 
 - (BOOL)containsModel:(id)model {
-    return [self.mutableModels containsObject:model];
+    @synchronized (self) {
+        return [self.mutableModels containsObject:model];
+    }
 }
 
 - (void)removeModelAtIndex:(NSUInteger)index {

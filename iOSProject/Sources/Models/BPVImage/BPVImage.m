@@ -75,8 +75,9 @@ BPVStringConstant(BPVImages);
 }
 
 - (NSString *)fileName {
-    return [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet
-                                                                                        URLUserAllowedCharacterSet]];
+    NSCharacterSet *characterSet = [NSCharacterSet URLUserAllowedCharacterSet];
+    
+    return [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:characterSet];
 }
 
 #pragma mark -
