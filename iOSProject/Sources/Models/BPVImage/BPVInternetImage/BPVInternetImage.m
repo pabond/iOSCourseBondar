@@ -39,4 +39,19 @@
     }
 }
 
+#pragma mark -
+#pragma mark NSURLSessionDownloadDelegate
+
+- (void)        URLSession:(NSURLSession *)session
+              downloadTask:(NSURLSessionDownloadTask *)downloadTask
+ didFinishDownloadingToURL:(NSURL *)location
+{
+    NSError *error = nil;
+    [[NSFileManager defaultManager] moveItemAtURL:location
+                                            toURL:self.url
+                                            error:&error];
+    
+    NSLog(@"didFinishDownloadingToURL = notification");
+}
+
 @end

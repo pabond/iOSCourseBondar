@@ -45,8 +45,8 @@ BPVStringConstant(BPVImages);
         return [cache imageWithURL:url];
     }
     
-    return url.isFileURL ? [BPVFileSystemImage fileSystemImageWithUrl:url]
-                            : [BPVInternetImage internetWithUrl:url];
+    return url.isFileURL ? [BPVImage fileSystemImageWithUrl:url]
+                            : [BPVImage internetWithUrl:url];
 }
 
 + (instancetype)internetWithUrl:(NSURL *)url {

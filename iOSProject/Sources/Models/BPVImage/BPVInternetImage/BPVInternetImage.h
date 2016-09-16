@@ -9,5 +9,4 @@
 #import "BPVFileSystemImage.h"
 
 @interface BPVInternetImage : BPVFileSystemImage
-
 @end
