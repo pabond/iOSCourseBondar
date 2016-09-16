@@ -9,23 +9,34 @@
 #import "BPVInternetImage.h"
 #import "BPVImagesCache.h"
 
+@interface BPVInternetImage ()
+
+- (void)saveDataToFileSystem:(NSData *)data;
+
+@end
+
 @implementation BPVInternetImage
 
-- (UIImage *)specificLoadingOperation {
-    NSURL *url = self.url;
-    UIImage *image = nil;
-    
-    if ([self imageExistInFileSystem]) {
-        image = [super specificLoadingOperation];
-    } else {
-        NSData *imageData = [NSData dataWithContentsOfURL:url];
+#pragma mark -
+#pragma mark Public implementations
+
+- (void)performLoading {
+    if (![self imageExistInFileSystem]) {
+        NSData *imageData = [NSData dataWithContentsOfURL:self.url];
         [self saveDataToFileSystem:imageData];
-        
-        image = [UIImage imageWithData:imageData];
         NSLog(@"Image loaded from internet");
     }
     
-    return image;
+    [super performLoading];
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (void)saveDataToFileSystem:(NSData *)data {
+    if (![self imageExistInFileSystem]) {
+        [data writeToFile:self.path atomically:YES];
+    }
 }
 
 @end

@@ -10,4 +10,6 @@
 
 @interface BPVFileSystemImage : BPVImage
 
+- (BOOL)imageExistInFileSystem;
+
 @end

@@ -14,8 +14,14 @@
 
 #import "BPVMacro.h"
 
-
 @implementation BPVUserCell
+
+#pragma mark -
+#pragma mark Initializations and deallocations
+
+- (void)dealloc {
+    self.user = nil;
+}
 
 #pragma mark - 
 #pragma mark Accessors

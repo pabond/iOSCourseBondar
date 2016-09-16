@@ -25,6 +25,14 @@
 @implementation BPVTableViewController
 
 #pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.filteredModel = nil;
+    self.model = nil;
+}
+
+#pragma mark -
 #pragma mark Accessors
 
 - (void)setModel:(BPVArrayModel *)model {

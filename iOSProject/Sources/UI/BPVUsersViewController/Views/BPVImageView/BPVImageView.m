@@ -18,6 +18,11 @@
 #pragma mark -
 #pragma mark Initializations and deallocations
 
+- (void)dealloc {
+    self.imageView = nil;
+    self.image = nil;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     [self initSubviews];

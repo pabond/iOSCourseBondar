@@ -24,14 +24,25 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVUsers ()
-@property (nonatomic, copy)     NSString    *applicationFilePath;
+@property (nonatomic, readonly)     NSString        *applicationFilePath;
+@property (nonatomic, strong)   NSMutableArray  *observers;
 
 - (NSArray *)defaultArrayModel;
 - (NSArray *)arrayModel;
 
+- (NSArray *)observingSelectorsNames;
+
+- (void)startObservationForSelectorName:(NSString *)name block:(BPVBlock)block;
+- (void)startObservationForSelectorNames:(NSArray *)names block:(BPVBlock)block;
+
+- (void)endObservationWithSelectorNames:(NSArray *)names;
+- (void)endObservationWithSelectorName:(NSString *)name;
+
 @end
 
 @implementation BPVUsers
+
+@dynamic applicationFilePath;
 
 #pragma mark -
 #pragma mark Initializationa and deallocations
@@ -43,14 +54,21 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.applicationFilePath = [[NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder]
-                                    stringByAppendingPathComponent:kBPVApplictionSaveFileName];
         [self startObservationForSelectorNames:[self observingSelectorsNames] block:^{
             [self save];
         }];
     }
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSString *)applicationFilePath {
+    NSString *modelsFolderPath = [NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder];
+    
+    return [modelsFolderPath stringByAppendingPathComponent:kBPVApplictionSaveFileName];
 }
 
 #pragma mark -
@@ -93,10 +111,44 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     return array;
 }
 
+#pragma mark -
+#pragma mark Observation methods
+
 - (NSArray *)observingSelectorsNames {
     BPVReturnOnce(NSArray, observers, (^{
         return @[UIApplicationWillTerminateNotification, UIApplicationWillResignActiveNotification];
     }));
+}
+
+- (void)startObservationForSelectorName:(NSString *)name block:(BPVBlock)block {
+    id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name
+                                                                    object:nil
+                                                                     queue:nil
+                                                                usingBlock:^(NSNotification * _Nonnull note) {
+                                                                    BPVPerformBlock(block);
+                                                                }];
+    
+    [self.observers addObject:observer];
+}
+
+- (void)startObservationForSelectorNames:(NSArray *)names block:(BPVBlock)block {
+    for (NSString *name in names) {
+        [self startObservationForSelectorName:name block:block];
+    }
+}
+
+- (void)endObservationWithSelectorNames:(NSArray *)names {
+    for (id name in names) {
+        [self endObservationWithSelectorName:name];
+    }
+}
+
+- (void)endObservationWithSelectorName:(NSString *)name {
+    for (id observer in self.observers) {
+        if ([observer respondsToSelector:@selector(name)]) {
+            [[NSNotificationCenter defaultCenter] removeObserver:observer name:name object:nil];
+        }
+    }
 }
 
 @end

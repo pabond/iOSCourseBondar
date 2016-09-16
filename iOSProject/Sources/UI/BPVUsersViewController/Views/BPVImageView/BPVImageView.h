@@ -13,7 +13,7 @@
 @class BPVImage;
 
 @interface BPVImageView : BPVView <BPVModelObserver>
-@property (nonatomic, strong)   UIImageView *imageView;
-@property (nonatomic, strong)   BPVImage    *image;
+@property (nonatomic, strong)   IBOutlet    UIImageView     *imageView;
+@property (nonatomic, strong)               BPVImage        *image;
 
 @end

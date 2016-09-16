@@ -9,26 +9,50 @@
 #import "BPVFileSystemImage.h"
 #import "BPVImagesCache.h"
 
+@interface BPVFileSystemImage ()
+
+- (BOOL)removeImageWithProblem;
+- (void)reloadImage;
+
+@end
+
 @implementation BPVFileSystemImage
 
-- (instancetype)initWithUrl:(NSURL *)url {
-    self = [super init];
-    self.url = url;
-    [[BPVImagesCache cache] addImage:self withURL:url];
-    
-    return self;
-}
+#pragma mark -
+#pragma mark Public implementations
 
-- (UIImage *)specificLoadingOperation {
+- (void)performLoading {
     UIImage *image = [UIImage imageWithContentsOfFile:self.path];
     if (!image) {
-        [self removeImageWithProblem];
-        [self performLoading];
+        [self reloadImage];
+        return;
     } else {
         NSLog(@"image loaded from file system");
     }
     
-    return image;
+    self.image = image;
+    self.state = image ? BPVModelDidLoad : BPVModelFailLoading;
+}
+
+- (BOOL)imageExistInFileSystem {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.path];
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (void)reloadImage {
+    [self removeImageWithProblem];
+    [self performLoading];
+}
+
+- (BOOL)removeImageWithProblem {
+    NSError *error = nil;
+    BOOL result = [[NSFileManager defaultManager] removeItemAtPath:self.path error:&error];
+    
+    NSLog(@"%@", error);
+    
+    return result;
 }
 
 @end

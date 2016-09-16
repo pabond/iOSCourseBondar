@@ -19,13 +19,14 @@
 
 #import "BPVMacro.h"
 
-BPVConstant(NSUInteger, kBPVSleepTime, 3);
 BPVStringConstant(BPVImages);
 
 @interface BPVImage ()
 
 + (instancetype)internetWithUrl:(NSURL *)url;
 + (instancetype)fileSystemImageWithUrl:(NSURL *)url;
+
+- (instancetype)initWithUrl:(NSURL *)url;
 
 @end
 
@@ -38,7 +39,14 @@ BPVStringConstant(BPVImages);
 #pragma mark Class methods
 
 + (instancetype)imageWithUrl:(NSURL *)url {
-    return [[self alloc] initWithUrl:url];
+    BPVImagesCache *cache = [BPVImagesCache cache];
+    if ([cache containsImageWithURL:url]) {
+        NSLog(@"Cached image will return");
+        return [cache imageWithURL:url];
+    }
+    
+    return url.isFileURL ? [BPVFileSystemImage fileSystemImageWithUrl:url]
+                            : [BPVInternetImage internetWithUrl:url];
 }
 
 + (instancetype)internetWithUrl:(NSURL *)url {
@@ -57,14 +65,11 @@ BPVStringConstant(BPVImages);
 }
 
 - (instancetype)initWithUrl:(NSURL *)url {
-    BPVImagesCache *cache = [BPVImagesCache cache];
-    if ([cache containsImageWithURL:url]) {
-        NSLog(@"Cached image will return");
-        return [cache imageWithURL:url];
-    }
+    self = [super init];
+    self.url = url;
+    [[BPVImagesCache cache] addImage:self withURL:url];
     
-    return [url isFileURL] ? [BPVFileSystemImage fileSystemImageWithUrl:url]
-                            : [BPVInternetImage internetWithUrl:url];
+    return self;
 }
 
 #pragma mark -
@@ -78,41 +83,6 @@ BPVStringConstant(BPVImages);
     NSCharacterSet *characterSet = [NSCharacterSet URLUserAllowedCharacterSet];
     
     return [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:characterSet];
-}
-
-#pragma mark -
-#pragma mark Public implementations
-
-- (UIImage *)specificLoadingOperation {
-    return nil;
-}
-
-- (void)performLoading {
-    sleep(kBPVSleepTime);
-    
-    UIImage *image = [self specificLoadingOperation];
-    self.image = image;
-    
-    self.state = image ? BPVModelDidLoad : BPVModelFailLoading;
-}
-
-- (BOOL)imageExistInFileSystem {
-    return [[NSFileManager defaultManager] fileExistsAtPath:self.path];
-}
-
-- (void)saveDataToFileSystem:(NSData *)data {
-    if (![self imageExistInFileSystem]) {
-        [data writeToFile:self.path atomically:YES];
-    }
-}
-
-- (BOOL)removeImageWithProblem {
-    NSError *error = nil;
-    BOOL result = [[NSFileManager defaultManager] removeItemAtPath:self.path error:&error];
-    
-    NSLog(@"%@", error);
-    
-    return result;
 }
 
 @end
