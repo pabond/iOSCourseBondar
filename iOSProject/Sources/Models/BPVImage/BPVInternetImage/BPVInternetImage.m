@@ -13,7 +13,8 @@
 
 - (void)saveDataToFileSystem:(NSData *)data;
 - (BOOL)removeImageWithProblem;
-- (void)reloadImage;
+
+- (void)finishImageLoading;
 
 @end
 
@@ -23,22 +24,12 @@
 #pragma mark Public implementations
 
 - (void)performLoading {
-    UIImage *image = nil;
-    
     if (![self imageLoaded]) {
         [self loadImageFormInternet];
-    }
-    
-    image = [self imageFromFileSystem];
-    
-    if (image) {
-        self.image = image;
-        NSLog(@"image will load from file system");
+        return;
     } else {
-        [self reloadImage];
+        [self finishImageLoading];
     }
-    
-    self.state = image ? BPVModelDidLoad : BPVModelFailLoading;
 }
 
 #pragma mark -
@@ -68,24 +59,46 @@
 #pragma mark -
 #pragma mark Private implementations
 
-- (void)reloadImage {
-    [self removeImageWithProblem];
-    [self performLoading];
-}
-
 - (BOOL)removeImageWithProblem {
     NSError *error = nil;
     BOOL result = [[NSFileManager defaultManager] removeItemAtPath:self.path error:&error];
-    
+        
     NSLog(@"%@", error);
-    
+        
     return result;
 }
 
+
 - (void)loadImageFormInternet {
-    NSData *imageData = [NSData dataWithContentsOfURL:self.url];
-    [self saveDataToFileSystem:imageData];
-    NSLog(@"Image loaded from internet");
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionTask *task = [session dataTaskWithURL:self.url
+                                    completionHandler:^(NSData * _Nullable data,
+                                                        NSURLResponse * _Nullable response,
+                                                        NSError * _Nullable error) {
+                                        if (!error) {
+                                            [self saveDataToFileSystem:data];
+                                            NSLog(@"Image loaded from internet");
+                                            [self finishImageLoading];
+                                        }
+                                    }];
+    
+    [task resume];
+}
+
+- (void)finishImageLoading {
+    @synchronized (self) {
+        NSUInteger state = BPVModelDidLoad;
+        UIImage *image = [self imageFromFileSystem];
+        
+        if (image) {
+            self.image = image;
+        } else {
+            [self removeImageWithProblem];
+            state = BPVModelFailLoading;
+        }
+        
+        self.state = state;
+    }
 }
 
 @end
