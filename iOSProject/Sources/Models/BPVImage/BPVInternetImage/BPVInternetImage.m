@@ -59,15 +59,6 @@
 #pragma mark -
 #pragma mark Private implementations
 
-- (BOOL)removeImageWithProblem {
-    NSError *error = nil;
-    BOOL result = [[NSFileManager defaultManager] removeItemAtPath:self.path error:&error];
-        
-    NSLog(@"%@", error);
-        
-    return result;
-}
-
 - (NSURLSessionTask *)loadingTask {
     NSURLSession *session = [NSURLSession sharedSession];
     return [session dataTaskWithURL:self.url
@@ -85,22 +76,6 @@
 - (void)loadImageFormInternet {
     NSURLSessionTask *task = [self loadingTask];
     [task resume];
-}
-
-- (void)finishImageLoading {
-    @synchronized (self) {
-        NSUInteger state = BPVModelDidLoad;
-        UIImage *image = [self imageFromFileSystem];
-        
-        if (image) {
-            self.image = image;
-        } else {
-            [self removeImageWithProblem];
-            state = BPVModelFailLoading;
-        }
-        
-        self.state = state;
-    }
 }
 
 @end
