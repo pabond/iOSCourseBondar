@@ -12,6 +12,8 @@
 @interface BPVInternetImage ()
 
 - (void)saveDataToFileSystem:(NSData *)data;
+- (BOOL)removeImageWithProblem;
+- (void)reloadImage;
 
 @end
 
@@ -21,20 +23,29 @@
 #pragma mark Public implementations
 
 - (void)performLoading {
-    if (![self imageExistInFileSystem]) {
-        NSData *imageData = [NSData dataWithContentsOfURL:self.url];
-        [self saveDataToFileSystem:imageData];
-        NSLog(@"Image loaded from internet");
+    UIImage *image = nil;
+    
+    if (![self imageLoaded]) {
+        [self loadImageFormInternet];
     }
     
-    [super performLoading];
+    image = [self imageFromFileSystem];
+    
+    if (image) {
+        self.image = image;
+        NSLog(@"image will load from file system");
+    } else {
+        [self reloadImage];
+    }
+    
+    self.state = image ? BPVModelDidLoad : BPVModelFailLoading;
 }
 
 #pragma mark -
 #pragma mark Private implementations
 
 - (void)saveDataToFileSystem:(NSData *)data {
-    if (![self imageExistInFileSystem]) {
+    if (![self imageLoaded]) {
         [data writeToFile:self.path atomically:YES];
     }
 }
@@ -52,6 +63,29 @@
                                             error:&error];
     
     NSLog(@"didFinishDownloadingToURL = notification");
+}
+
+#pragma mark -
+#pragma mark Private implementations
+
+- (void)reloadImage {
+    [self removeImageWithProblem];
+    [self performLoading];
+}
+
+- (BOOL)removeImageWithProblem {
+    NSError *error = nil;
+    BOOL result = [[NSFileManager defaultManager] removeItemAtPath:self.path error:&error];
+    
+    NSLog(@"%@", error);
+    
+    return result;
+}
+
+- (void)loadImageFormInternet {
+    NSData *imageData = [NSData dataWithContentsOfURL:self.url];
+    [self saveDataToFileSystem:imageData];
+    NSLog(@"Image loaded from internet");
 }
 
 @end

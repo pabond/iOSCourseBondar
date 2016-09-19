@@ -19,7 +19,6 @@
 #pragma mark Initializations and deallocations
 
 - (void)dealloc {
-    self.imageView = nil;
     self.image = nil;
 }
 
@@ -76,7 +75,6 @@
         BPVStrongifyAndReturnIfNil(self)
         self.loading = YES;
     });
-    
 }
 
 - (void)modelDidLoad:(BPVImage *)model {

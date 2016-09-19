@@ -24,19 +24,19 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVUsers ()
-@property (nonatomic, readonly)     NSString        *applicationFilePath;
-@property (nonatomic, strong)   NSMutableArray  *observers;
+@property (nonatomic, readonly) NSString            *applicationFilePath;
+@property (nonatomic, strong)   NSMutableDictionary *observers;
 
 - (NSArray *)defaultArrayModel;
 - (NSArray *)arrayModel;
 
 - (NSArray *)observingSelectorsNames;
 
-- (void)startObservationForSelectorName:(NSString *)name block:(BPVBlock)block;
-- (void)startObservationForSelectorNames:(NSArray *)names block:(BPVBlock)block;
+- (void)startObservationForNotificationName:(NSString *)name block:(BPVBlock)block;
+- (void)startObservationForNotificationNames:(NSArray *)names block:(BPVBlock)block;
 
-- (void)endObservationWithSelectorNames:(NSArray *)names;
-- (void)endObservationWithSelectorName:(NSString *)name;
+- (void)endObservationWithNotificationNames:(NSArray *)names;
+- (void)endObservationWithNotificationName:(NSString *)name;
 
 @end
 
@@ -48,13 +48,14 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 #pragma mark Initializationa and deallocations
 
 - (void)dealloc {
-   [self endObservationWithSelectorNames:[self observingSelectorsNames]];
+   [self endObservationWithNotificationNames:[self observingSelectorsNames]];
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self startObservationForSelectorNames:[self observingSelectorsNames] block:^{
+        self.observers = [NSMutableDictionary dictionary];
+        [self startObservationForNotificationNames:[self observingSelectorsNames] block:^{
             [self save];
         }];
     }
@@ -120,7 +121,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
     }));
 }
 
-- (void)startObservationForSelectorName:(NSString *)name block:(BPVBlock)block {
+- (void)startObservationForNotificationName:(NSString *)name block:(BPVBlock)block {
     id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name
                                                                     object:nil
                                                                      queue:nil
@@ -128,27 +129,25 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
                                                                     BPVPerformBlock(block);
                                                                 }];
     
-    [self.observers addObject:observer];
+    [self.observers setObject:observer forKey:name];
 }
 
-- (void)startObservationForSelectorNames:(NSArray *)names block:(BPVBlock)block {
+- (void)startObservationForNotificationNames:(NSArray *)names block:(BPVBlock)block {
     for (NSString *name in names) {
-        [self startObservationForSelectorName:name block:block];
+        [self startObservationForNotificationName:name block:block];
     }
 }
 
-- (void)endObservationWithSelectorNames:(NSArray *)names {
+- (void)endObservationWithNotificationNames:(NSArray *)names {
     for (id name in names) {
-        [self endObservationWithSelectorName:name];
+        [self endObservationWithNotificationName:name];
     }
 }
 
-- (void)endObservationWithSelectorName:(NSString *)name {
-    for (id observer in self.observers) {
-        if ([observer respondsToSelector:@selector(name)]) {
-            [[NSNotificationCenter defaultCenter] removeObserver:observer name:name object:nil];
-        }
-    }
+- (void)endObservationWithNotificationName:(NSString *)name {
+    NSNotificationCenter * notificationCenter = [NSNotificationCenter defaultCenter];
+    id observer = [self.observers objectForKey:name];
+    [notificationCenter removeObserver:observer name:name object:nil];
 }
 
 @end

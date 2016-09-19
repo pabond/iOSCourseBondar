@@ -10,6 +10,7 @@
 
 @interface BPVFileSystemImage : BPVImage
 
-- (BOOL)imageExistInFileSystem;
+- (BOOL)imageLoaded;
+- (UIImage *)imageFromFileSystem;
 
 @end

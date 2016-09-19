@@ -25,7 +25,7 @@ uint32_t BPVRandomWithCount(uint32_t count) {
 - (BPVSquarePositionType)nextSquarePosition;
 
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated;
-- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)handler;
+- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated completionHandler:(BPVHandler)handler;
 
 @end
 
@@ -56,7 +56,7 @@ uint32_t BPVRandomWithCount(uint32_t count) {
 - (void)startAutoAnimation {
     BPVWeakify(self);
     BPVSquarePositionType position = [self nextSquarePosition];
-    [self setSquarePosition:position animated:YES complitionHandler:^{
+    [self setSquarePosition:position animated:YES completionHandler:^{
         BPVStrongify(self);
         if (self.shouldStop) {
             self.animating = NO;
@@ -85,10 +85,13 @@ uint32_t BPVRandomWithCount(uint32_t count) {
 #pragma mark Private Implementations
 
 - (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated {
-    [self setSquarePosition:squarePosition animated:animated complitionHandler:nil];
+    [self setSquarePosition:squarePosition animated:animated completionHandler:nil];
 }
 
-- (void)setSquarePosition:(BPVSquarePositionType)squarePosition animated:(BOOL)animated complitionHandler:(BPVHandler)complition {
+- (void)setSquarePosition:(BPVSquarePositionType)squarePosition
+                 animated:(BOOL)animated
+        completionHandler:(BPVHandler)completion
+{
     if (_squarePosition != squarePosition) {
         
         [UIView animateWithDuration:animated ? kBPVAnimationDuration : 0
@@ -97,8 +100,8 @@ uint32_t BPVRandomWithCount(uint32_t count) {
                          animations:^{ self.squareView.frame = [self squareWithType:squarePosition]; }
                          completion:^(BOOL finished) {
                              _squarePosition = squarePosition;
-                             if (complition && self.animating) {
-                                 complition();
+                             if (completion && self.animating) {
+                                 completion();
                              }
                          }];
     }

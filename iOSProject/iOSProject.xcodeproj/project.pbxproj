@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1425B81D8FCAB200C5AD2E /* BPVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1425B01D8FCAB200C5AD2E /* BPVImageView.m */; };
+		2D1425B91D8FCAB200C5AD2E /* BPVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1425B31D8FCAB200C5AD2E /* BPVLoadingView.m */; };
+		2D1425BA1D8FCAB200C5AD2E /* BPVLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D1425B41D8FCAB200C5AD2E /* BPVLoadingView.xib */; };
+		2D1425BB1D8FCAB200C5AD2E /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1425B71D8FCAB200C5AD2E /* BPVView.m */; };
 		2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D661D5CADF70064C76D /* BPVImage.m */; };
 		2D328D701D5CADF70064C76D /* BPVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D691D5CADF70064C76D /* BPVUser.m */; };
 		2D328D721D5CADF70064C76D /* BPVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D6E1D5CADF70064C76D /* BPVUsers.m */; };
@@ -47,8 +51,6 @@
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
 		2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */; };
 		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
-		2DAB67521D8C0548007D334D /* BPVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DAB67511D8C0548007D334D /* BPVImageView.m */; };
-		2DAB67551D8C3EDB007D334D /* BPVImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DAB67541D8C3EDB007D334D /* BPVImageModelDispatcher.m */; };
 		2DBE77B31D72BF2B0057DDC0 /* BPVArrayModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */; };
 		2DD7637D1D782A0800CEB5EA /* BPVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763701D782A0800CEB5EA /* BPVUsersView.m */; };
 		2DD7637E1D782A0800CEB5EA /* BPVUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763721D782A0800CEB5EA /* BPVUsersViewController.m */; };
@@ -63,15 +65,12 @@
 		2DD763A11D786A2600CEB5EA /* BPVMoveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7639A1D786A2600CEB5EA /* BPVMoveModel.m */; };
 		2DD763A21D786A2600CEB5EA /* BPVRemoveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7639C1D786A2600CEB5EA /* BPVRemoveModel.m */; };
 		2DD763A61D786A3900CEB5EA /* BPVArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763A51D786A3900CEB5EA /* BPVArrayModel.m */; };
-		2DD763B01D79A2FD00CEB5EA /* BPVLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD763AF1D79A2FD00CEB5EA /* BPVLoadingView.xib */; };
 		2DD763B41D7D8BA500CEB5EA /* BPVQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763B31D7D8BA500CEB5EA /* BPVQueue.m */; };
 		2DD763C01D7EC0C800CEB5EA /* BPVFilteredModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763BF1D7EC0C800CEB5EA /* BPVFilteredModel.m */; };
 		2DD763C71D82DE3B00CEB5EA /* BPVImagesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763C61D82DE3B00CEB5EA /* BPVImagesCache.m */; };
 		2DD763D61D86DEBB00CEB5EA /* BPVInternetImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763D51D86DEBB00CEB5EA /* BPVInternetImage.m */; };
 		2DD764001D87F94100CEB5EA /* BPVFileSystemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763FF1D87F94100CEB5EA /* BPVFileSystemImage.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
-		2DE873A81D75C28900A3550A /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A71D75C28900A3550A /* BPVView.m */; };
-		2DE873AC1D75C36900A3550A /* BPVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873AB1D75C36900A3550A /* BPVLoadingView.m */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +93,13 @@
 
 /* Begin PBXFileReference section */
 		2809F6776B7F87F0D9655301 /* Pods-iOSProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D1425AF1D8FCAB200C5AD2E /* BPVImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImageView.h; sourceTree = "<group>"; };
+		2D1425B01D8FCAB200C5AD2E /* BPVImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImageView.m; sourceTree = "<group>"; };
+		2D1425B21D8FCAB200C5AD2E /* BPVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLoadingView.h; sourceTree = "<group>"; };
+		2D1425B31D8FCAB200C5AD2E /* BPVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLoadingView.m; sourceTree = "<group>"; };
+		2D1425B41D8FCAB200C5AD2E /* BPVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVLoadingView.xib; sourceTree = "<group>"; };
+		2D1425B61D8FCAB200C5AD2E /* BPVView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVView.h; sourceTree = "<group>"; };
+		2D1425B71D8FCAB200C5AD2E /* BPVView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVView.m; sourceTree = "<group>"; };
 		2D328D651D5CADF70064C76D /* BPVImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImage.h; sourceTree = "<group>"; };
 		2D328D661D5CADF70064C76D /* BPVImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImage.m; sourceTree = "<group>"; };
 		2D328D681D5CADF70064C76D /* BPVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUser.h; sourceTree = "<group>"; };
@@ -172,10 +178,6 @@
 		2DA8E9651D4CDE880067032D /* BPVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewCell.h; sourceTree = "<group>"; };
 		2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewCell.m; sourceTree = "<group>"; };
 		2DA8E99D1D51DF010067032D /* BPVUserLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BPVUserLogo.png; sourceTree = "<group>"; };
-		2DAB67501D8C0548007D334D /* BPVImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImageView.h; sourceTree = "<group>"; };
-		2DAB67511D8C0548007D334D /* BPVImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImageView.m; sourceTree = "<group>"; };
-		2DAB67531D8C3EDB007D334D /* BPVImageModelDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImageModelDispatcher.h; sourceTree = "<group>"; };
-		2DAB67541D8C3EDB007D334D /* BPVImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImageModelDispatcher.m; sourceTree = "<group>"; };
 		2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVArrayModelTest.m; sourceTree = "<group>"; };
 		2DD7636F1D782A0800CEB5EA /* BPVUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersView.h; sourceTree = "<group>"; };
 		2DD763701D782A0800CEB5EA /* BPVUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersView.m; sourceTree = "<group>"; };
@@ -201,7 +203,6 @@
 		2DD7639C1D786A2600CEB5EA /* BPVRemoveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVRemoveModel.m; sourceTree = "<group>"; };
 		2DD763A41D786A3900CEB5EA /* BPVArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVArrayModel.h; sourceTree = "<group>"; };
 		2DD763A51D786A3900CEB5EA /* BPVArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVArrayModel.m; sourceTree = "<group>"; };
-		2DD763AF1D79A2FD00CEB5EA /* BPVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVLoadingView.xib; sourceTree = "<group>"; };
 		2DD763B21D7D8BA500CEB5EA /* BPVQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVQueue.h; sourceTree = "<group>"; };
 		2DD763B31D7D8BA500CEB5EA /* BPVQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVQueue.m; sourceTree = "<group>"; };
 		2DD763BE1D7EC0C800CEB5EA /* BPVFilteredModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVFilteredModel.h; sourceTree = "<group>"; };
@@ -214,10 +215,6 @@
 		2DD763FF1D87F94100CEB5EA /* BPVFileSystemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVFileSystemImage.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
 		2DE873A31D75C24800A3550A /* BPVMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVMacro.m; sourceTree = "<group>"; };
-		2DE873A61D75C28900A3550A /* BPVView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVView.h; sourceTree = "<group>"; };
-		2DE873A71D75C28900A3550A /* BPVView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVView.m; sourceTree = "<group>"; };
-		2DE873AA1D75C36900A3550A /* BPVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLoadingView.h; sourceTree = "<group>"; };
-		2DE873AB1D75C36900A3550A /* BPVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLoadingView.m; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -248,6 +245,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D1425AD1D8FCAB200C5AD2E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2D1425AE1D8FCAB200C5AD2E /* BPVImageView */,
+				2D1425B11D8FCAB200C5AD2E /* BPVLoadingView */,
+				2D1425B51D8FCAB200C5AD2E /* BPVView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2D1425AE1D8FCAB200C5AD2E /* BPVImageView */ = {
+			isa = PBXGroup;
+			children = (
+				2D1425AF1D8FCAB200C5AD2E /* BPVImageView.h */,
+				2D1425B01D8FCAB200C5AD2E /* BPVImageView.m */,
+			);
+			path = BPVImageView;
+			sourceTree = "<group>";
+		};
+		2D1425B11D8FCAB200C5AD2E /* BPVLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				2D1425B21D8FCAB200C5AD2E /* BPVLoadingView.h */,
+				2D1425B31D8FCAB200C5AD2E /* BPVLoadingView.m */,
+				2D1425B41D8FCAB200C5AD2E /* BPVLoadingView.xib */,
+			);
+			path = BPVLoadingView;
+			sourceTree = "<group>";
+		};
+		2D1425B51D8FCAB200C5AD2E /* BPVView */ = {
+			isa = PBXGroup;
+			children = (
+				2D1425B61D8FCAB200C5AD2E /* BPVView.h */,
+				2D1425B71D8FCAB200C5AD2E /* BPVView.m */,
+			);
+			path = BPVView;
+			sourceTree = "<group>";
+		};
 		2D328D631D5CADF70064C76D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,14 +400,13 @@
 		2D3F42101D40C2C500A38A7B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				2D1425AD1D8FCAB200C5AD2E /* Views */,
 				2D805EAD1D8AD0140057A232 /* Category */,
 				2DD763B11D7D8BA500CEB5EA /* Queue */,
 				2DD763AB1D79763D00CEB5EA /* BPVModel */,
 				2DD763A31D786A3900CEB5EA /* BPVArrayModel */,
 				2DD7638C1D786A2600CEB5EA /* BPVArrayChange */,
 				2DD763841D782A3000CEB5EA /* BPVTableViewController */,
-				2DE873A91D75C36900A3550A /* BPVLoadingView */,
-				2DE873A51D75C25700A3550A /* BPVView */,
 				2DE873A11D75C24800A3550A /* BPVMacro */,
 				2D4828961D6AEADC00AF3617 /* GCD */,
 				2DA8E9631D4CDE610067032D /* Classes */,
@@ -706,15 +740,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		2DAB674F1D8C0548007D334D /* BPVImageView */ = {
-			isa = PBXGroup;
-			children = (
-				2DAB67501D8C0548007D334D /* BPVImageView.h */,
-				2DAB67511D8C0548007D334D /* BPVImageView.m */,
-			);
-			path = BPVImageView;
-			sourceTree = "<group>";
-		};
 		2DD7636E1D782A0800CEB5EA /* BPVUsersViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -731,7 +756,6 @@
 		2DD763741D782A0800CEB5EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2DAB674F1D8C0548007D334D /* BPVImageView */,
 				2DD763751D782A0800CEB5EA /* BPVUserCell */,
 			);
 			path = Views;
@@ -840,8 +864,6 @@
 			children = (
 				2DD763C51D82DE3B00CEB5EA /* BPVImagesCache.h */,
 				2DD763C61D82DE3B00CEB5EA /* BPVImagesCache.m */,
-				2DAB67531D8C3EDB007D334D /* BPVImageModelDispatcher.h */,
-				2DAB67541D8C3EDB007D334D /* BPVImageModelDispatcher.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -880,25 +902,6 @@
 				2DE873A31D75C24800A3550A /* BPVMacro.m */,
 			);
 			path = BPVMacro;
-			sourceTree = "<group>";
-		};
-		2DE873A51D75C25700A3550A /* BPVView */ = {
-			isa = PBXGroup;
-			children = (
-				2DE873A61D75C28900A3550A /* BPVView.h */,
-				2DE873A71D75C28900A3550A /* BPVView.m */,
-			);
-			path = BPVView;
-			sourceTree = "<group>";
-		};
-		2DE873A91D75C36900A3550A /* BPVLoadingView */ = {
-			isa = PBXGroup;
-			children = (
-				2DE873AA1D75C36900A3550A /* BPVLoadingView.h */,
-				2DE873AB1D75C36900A3550A /* BPVLoadingView.m */,
-				2DD763AF1D79A2FD00CEB5EA /* BPVLoadingView.xib */,
-			);
-			path = BPVLoadingView;
 			sourceTree = "<group>";
 		};
 		901516722A207463FCC40A7F /* Pods */ = {
@@ -1026,9 +1029,9 @@
 			files = (
 				2D3F41EF1D3F6EB600A38A7B /* LaunchScreen.storyboard in Resources */,
 				2D3F41F41D3F6EC500A38A7B /* Assets.xcassets in Resources */,
-				2DD763B01D79A2FD00CEB5EA /* BPVLoadingView.xib in Resources */,
 				2DD7637F1D782A0800CEB5EA /* BPVUsersViewController.xib in Resources */,
 				2DD763811D782A0800CEB5EA /* BPVUserCell.xib in Resources */,
+				2D1425BA1D8FCAB200C5AD2E /* BPVLoadingView.xib in Resources */,
 				2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */,
 				2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */,
 				2D3F424D1D4C021500A38A7B /* BPVSquareViewController.xib in Resources */,
@@ -1106,7 +1109,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D328D701D5CADF70064C76D /* BPVUser.m in Sources */,
-				2DE873AC1D75C36900A3550A /* BPVLoadingView.m in Sources */,
 				2D805F091D8AD0140057A232 /* BPVSupportEntity.m in Sources */,
 				2D805EFD1D8AD0140057A232 /* BPVMoveModel+UITableView.m in Sources */,
 				2D805EF91D8AD0140057A232 /* BPVMoveModel+BPVArrayModel.m in Sources */,
@@ -1114,6 +1116,7 @@
 				2DD763D61D86DEBB00CEB5EA /* BPVInternetImage.m in Sources */,
 				2D805F041D8AD0140057A232 /* NSKeyedUnarchiver+BPVExtensions.m in Sources */,
 				2DD763C01D7EC0C800CEB5EA /* BPVFilteredModel.m in Sources */,
+				2D1425BB1D8FCAB200C5AD2E /* BPVView.m in Sources */,
 				2D805F081D8AD0140057A232 /* NSTimer+BPVExtensions.m in Sources */,
 				2DD7639F1D786A2600CEB5EA /* BPVTwoIndexArrayChange.m in Sources */,
 				2D805F061D8AD0140057A232 /* NSString+BPVExtensions.m in Sources */,
@@ -1122,6 +1125,7 @@
 				2DD763A01D786A2600CEB5EA /* BPVAddModel.m in Sources */,
 				2DD7637D1D782A0800CEB5EA /* BPVUsersView.m in Sources */,
 				2D805F011D8AD0140057A232 /* NSBundle+BPVExtensions.m in Sources */,
+				2D1425B81D8FCAB200C5AD2E /* BPVImageView.m in Sources */,
 				2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */,
 				2DD763A21D786A2600CEB5EA /* BPVRemoveModel.m in Sources */,
 				2D805F021D8AD0140057A232 /* NSFileManager+BPVExtensions.m in Sources */,
@@ -1133,16 +1137,14 @@
 				2DD763A11D786A2600CEB5EA /* BPVMoveModel.m in Sources */,
 				2D805EF71D8AD0140057A232 /* BPVAddModel+BPVArrayModel.m in Sources */,
 				2D805F051D8AD0140057A232 /* NSMutableArray+BPVExtensions.m in Sources */,
+				2D1425B91D8FCAB200C5AD2E /* BPVLoadingView.m in Sources */,
 				2D805F071D8AD0140057A232 /* NSString+BPVRandomName.m in Sources */,
-				2DE873A81D75C28900A3550A /* BPVView.m in Sources */,
 				2DD763C71D82DE3B00CEB5EA /* BPVImagesCache.m in Sources */,
-				2DAB67551D8C3EDB007D334D /* BPVImageModelDispatcher.m in Sources */,
 				2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */,
 				2D805F0D1D8AD0140057A232 /* UIWindow+BPVExtensions.m in Sources */,
 				2D805F101D8AD3080057A232 /* BPVModel.m in Sources */,
 				2D805EFC1D8AD0140057A232 /* BPVArrayChange+UITableView.m in Sources */,
 				2DD763A61D786A3900CEB5EA /* BPVArrayModel.m in Sources */,
-				2DAB67521D8C0548007D334D /* BPVImageView.m in Sources */,
 				2DD763801D782A0800CEB5EA /* BPVUserCell.m in Sources */,
 				2D805EFB1D8AD0140057A232 /* BPVAddModel+UITableView.m in Sources */,
 				2D805F031D8AD0140057A232 /* NSIndexPath+BPVExtensions.m in Sources */,
