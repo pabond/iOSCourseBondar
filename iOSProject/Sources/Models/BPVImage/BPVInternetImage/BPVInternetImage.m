@@ -68,10 +68,9 @@
     return result;
 }
 
-
-- (void)loadImageFormInternet {
+- (NSURLSessionTask *)loadingTask {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionTask *task = [session dataTaskWithURL:self.url
+    return [session dataTaskWithURL:self.url
                                     completionHandler:^(NSData * _Nullable data,
                                                         NSURLResponse * _Nullable response,
                                                         NSError * _Nullable error) {
@@ -81,7 +80,10 @@
                                             [self finishImageLoading];
                                         }
                                     }];
-    
+}
+
+- (void)loadImageFormInternet {
+    NSURLSessionTask *task = [self loadingTask];
     [task resume];
 }
 

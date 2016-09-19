@@ -28,7 +28,9 @@
     BPVTableViewController *controller = [BPVUsersViewController viewController];
     controller.model = [BPVUsers new];
 
-    window.rootViewController = controller;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    window.rootViewController = navigationController;
     
     [window makeKeyAndVisible];
     

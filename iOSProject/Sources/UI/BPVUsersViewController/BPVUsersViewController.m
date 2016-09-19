@@ -29,6 +29,12 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 @implementation BPVUsersViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+        
+    self.navigationItem.title = kBPVTableTitle;
+}
+
 #pragma mark -
 #pragma mark Interface Handling
 
@@ -64,10 +70,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredModel.count;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return kBPVTableTitle;
 }
 
 #pragma mark -

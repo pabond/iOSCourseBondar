@@ -8,6 +8,6 @@
 
 #import "BPVFileSystemImage.h"
 
-@interface BPVInternetImage : BPVFileSystemImage
+@interface BPVInternetImage : BPVFileSystemImage <NSURLSessionDataDelegate>
 
 @end
