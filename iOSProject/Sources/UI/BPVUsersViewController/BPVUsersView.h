@@ -11,8 +11,6 @@
 @interface BPVUsersView : BPVView
 @property (nonatomic, strong) IBOutlet UITableView  *usersTableView;
 @property (nonatomic, strong) IBOutlet UITextField  *searchField;
-@property (nonatomic, strong) IBOutlet UIButton     *addButton;
-@property (nonatomic, strong) IBOutlet UIButton     *editingButton;
 
 @property (nonatomic, assign) BOOL                  editing;
 

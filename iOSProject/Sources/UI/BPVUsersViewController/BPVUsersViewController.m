@@ -48,16 +48,18 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
                                                                                action:@selector(onAdd:)];
     [self.navigationItem setLeftBarButtonItem:addButton animated:YES];
     
-    UIBarButtonItem *editingButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-                                                                                   target:self
-                                                                                   action:@selector(onEditing:)];
+    UIBarButtonItem *editingButton = [[UIBarButtonItem alloc] initWithTitle:kBPVEditingButton
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(onEditing:)];
+    
     [self.navigationItem setRightBarButtonItem:editingButton animated:YES];
 }
 
 #pragma mark -
 #pragma mark Interface Handling
 
-- (IBAction)onAdd:(id)sender {
+- (void)onAdd:(id)sender {
     [self.model addModel:[BPVUser new]];
 }
 
@@ -65,7 +67,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     [self.filteredModel filterArrayWithString:sender.text];
 }
 
-- (IBAction)onEditing:(id)sender {
+- (void)onEditing:(id)sender {
     BPVUsersView *usersView = self.usersView;
     BOOL editing = !usersView.editing;
     usersView.editing = editing;

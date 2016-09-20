@@ -7,6 +7,8 @@
 //
 
 #import "BPVTableViewController.h"
+
+#import "BPVUserViewController.h"
 #import "BPVUserCell.h"
 #import "BPVLoadingView.h"
 
@@ -49,7 +51,6 @@
     }
 }
 
-
 - (void)setFilteredModel:(BPVFilteredModel *)filteredModel {
     if (_filteredModel != filteredModel) {
         [_filteredModel removeObserver:self];
@@ -74,6 +75,13 @@
 
 #pragma mark -
 #pragma mark UITableViewDataSource
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    BPVUserViewController *userController = [BPVUserViewController new];
+    userController.user = self.filteredModel[indexPath.row];
+    
+    [self.navigationController pushViewController:userController animated:YES];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.model.count;

@@ -14,24 +14,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4k8-0R-7GP">
-                    <rect key="frame" x="8" y="64" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Add"/>
-                    <connections>
-                        <action selector="onAdd:" destination="-1" eventType="touchUpInside" id="fze-DO-O8e"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8Sg-oI-Nlw">
-                    <rect key="frame" x="269" y="64" width="43" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Edit"/>
-                    <connections>
-                        <action selector="onEditing:" destination="-1" eventType="touchUpInside" id="mta-qs-hdY"/>
-                    </connections>
-                </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1p6-JR-xW5">
-                    <rect key="frame" x="8" y="121" width="304" height="439"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1p6-JR-xW5">
+                    <rect key="frame" x="8" y="37" width="304" height="523"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="scrollIndicatorInsets" minX="0.0" minY="40" maxX="0.0" maxY="30"/>
@@ -40,8 +24,8 @@
                         <outlet property="delegate" destination="-1" id="qLC-3h-n4Y"/>
                     </connections>
                 </tableView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="GDM-pf-swn">
-                    <rect key="frame" x="8" y="76" width="304" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Input text to search" minimumFontSize="17" clearButtonMode="whileEditing" id="GDM-pf-swn">
+                    <rect key="frame" x="8" y="57" width="304" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -53,12 +37,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="addButton" destination="4k8-0R-7GP" id="rsQ-Tn-7JM"/>
-                <outlet property="editingButton" destination="8Sg-oI-Nlw" id="fZd-pv-3fK"/>
                 <outlet property="searchField" destination="GDM-pf-swn" id="z5b-oc-aKg"/>
                 <outlet property="usersTableView" destination="1p6-JR-xW5" id="OfH-fn-81I"/>
             </connections>
-            <point key="canvasLocation" x="374" y="371"/>
+            <point key="canvasLocation" x="373" y="335"/>
         </view>
     </objects>
 </document>

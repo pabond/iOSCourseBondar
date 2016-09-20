@@ -11,6 +11,9 @@
 		2D1425B91D8FCAB200C5AD2E /* BPVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1425B31D8FCAB200C5AD2E /* BPVLoadingView.m */; };
 		2D1425BA1D8FCAB200C5AD2E /* BPVLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D1425B41D8FCAB200C5AD2E /* BPVLoadingView.xib */; };
 		2D1425BB1D8FCAB200C5AD2E /* BPVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1425B71D8FCAB200C5AD2E /* BPVView.m */; };
+		2D1425C21D915F4900C5AD2E /* BPVUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1425C11D915F4900C5AD2E /* BPVUserView.m */; };
+		2D1425C81D9161D000C5AD2E /* BPVUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1425C61D9161D000C5AD2E /* BPVUserViewController.m */; };
+		2D1425C91D9161D000C5AD2E /* BPVUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D1425C71D9161D000C5AD2E /* BPVUserViewController.xib */; };
 		2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D661D5CADF70064C76D /* BPVImage.m */; };
 		2D328D701D5CADF70064C76D /* BPVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D691D5CADF70064C76D /* BPVUser.m */; };
 		2D328D721D5CADF70064C76D /* BPVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D6E1D5CADF70064C76D /* BPVUsers.m */; };
@@ -100,6 +103,11 @@
 		2D1425B41D8FCAB200C5AD2E /* BPVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVLoadingView.xib; sourceTree = "<group>"; };
 		2D1425B61D8FCAB200C5AD2E /* BPVView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVView.h; sourceTree = "<group>"; };
 		2D1425B71D8FCAB200C5AD2E /* BPVView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVView.m; sourceTree = "<group>"; };
+		2D1425C01D915F4900C5AD2E /* BPVUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUserView.h; sourceTree = "<group>"; };
+		2D1425C11D915F4900C5AD2E /* BPVUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUserView.m; sourceTree = "<group>"; };
+		2D1425C51D9161D000C5AD2E /* BPVUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUserViewController.h; sourceTree = "<group>"; };
+		2D1425C61D9161D000C5AD2E /* BPVUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUserViewController.m; sourceTree = "<group>"; };
+		2D1425C71D9161D000C5AD2E /* BPVUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVUserViewController.xib; sourceTree = "<group>"; };
 		2D328D651D5CADF70064C76D /* BPVImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImage.h; sourceTree = "<group>"; };
 		2D328D661D5CADF70064C76D /* BPVImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImage.m; sourceTree = "<group>"; };
 		2D328D681D5CADF70064C76D /* BPVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUser.h; sourceTree = "<group>"; };
@@ -281,6 +289,18 @@
 				2D1425B71D8FCAB200C5AD2E /* BPVView.m */,
 			);
 			path = BPVView;
+			sourceTree = "<group>";
+		};
+		2D1425BC1D915EC100C5AD2E /* BPVUserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2D1425C51D9161D000C5AD2E /* BPVUserViewController.h */,
+				2D1425C61D9161D000C5AD2E /* BPVUserViewController.m */,
+				2D1425C71D9161D000C5AD2E /* BPVUserViewController.xib */,
+				2D1425C01D915F4900C5AD2E /* BPVUserView.h */,
+				2D1425C11D915F4900C5AD2E /* BPVUserView.m */,
+			);
+			path = BPVUserViewController;
 			sourceTree = "<group>";
 		};
 		2D328D631D5CADF70064C76D /* Models */ = {
@@ -743,6 +763,7 @@
 		2DD7636E1D782A0800CEB5EA /* BPVUsersViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2D1425BC1D915EC100C5AD2E /* BPVUserViewController */,
 				2DD763741D782A0800CEB5EA /* Views */,
 				2DD763711D782A0800CEB5EA /* BPVUsersViewController.h */,
 				2DD763721D782A0800CEB5EA /* BPVUsersViewController.m */,
@@ -1033,6 +1054,7 @@
 				2DD763811D782A0800CEB5EA /* BPVUserCell.xib in Resources */,
 				2D1425BA1D8FCAB200C5AD2E /* BPVLoadingView.xib in Resources */,
 				2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */,
+				2D1425C91D9161D000C5AD2E /* BPVUserViewController.xib in Resources */,
 				2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */,
 				2D3F424D1D4C021500A38A7B /* BPVSquareViewController.xib in Resources */,
 			);
@@ -1136,6 +1158,7 @@
 				2D805F001D8AD0140057A232 /* NSArray+BPVExtensions.m in Sources */,
 				2DD763A11D786A2600CEB5EA /* BPVMoveModel.m in Sources */,
 				2D805EF71D8AD0140057A232 /* BPVAddModel+BPVArrayModel.m in Sources */,
+				2D1425C81D9161D000C5AD2E /* BPVUserViewController.m in Sources */,
 				2D805F051D8AD0140057A232 /* NSMutableArray+BPVExtensions.m in Sources */,
 				2D1425B91D8FCAB200C5AD2E /* BPVLoadingView.m in Sources */,
 				2D805F071D8AD0140057A232 /* NSString+BPVRandomName.m in Sources */,
@@ -1145,6 +1168,7 @@
 				2D805F101D8AD3080057A232 /* BPVModel.m in Sources */,
 				2D805EFC1D8AD0140057A232 /* BPVArrayChange+UITableView.m in Sources */,
 				2DD763A61D786A3900CEB5EA /* BPVArrayModel.m in Sources */,
+				2D1425C21D915F4900C5AD2E /* BPVUserView.m in Sources */,
 				2DD763801D782A0800CEB5EA /* BPVUserCell.m in Sources */,
 				2D805EFB1D8AD0140057A232 /* BPVAddModel+UITableView.m in Sources */,
 				2D805F031D8AD0140057A232 /* NSIndexPath+BPVExtensions.m in Sources */,

@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSURLSessionTask *task;
 
 - (BOOL)removeCorruptedImage;
+- (void)loadFormInternet;
 
 @end
 
