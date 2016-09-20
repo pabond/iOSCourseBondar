@@ -12,28 +12,19 @@
 #import "BPVQueue.h"
 #import "BPVImagesCache.h"
 
-#import "BPVFileSystemImage.h"
+#import "BPVLocalImage.h"
 #import "BPVInternetImage.h"
-
-#import "NSFileManager+BPVExtensions.h"
-
-#import "BPVMacro.h"
-
-BPVStringConstant(BPVImages);
 
 @interface BPVImage ()
 
 + (instancetype)internetWithUrl:(NSURL *)url;
-+ (instancetype)fileSystemImageWithUrl:(NSURL *)url;
++ (instancetype)localImageWithUrl:(NSURL *)url;
 
 - (instancetype)initWithUrl:(NSURL *)url;
 
 @end
 
 @implementation BPVImage
-
-@dynamic path;
-@dynamic fileName;
 
 #pragma mark -
 #pragma mark Class methods
@@ -45,7 +36,7 @@ BPVStringConstant(BPVImages);
         return [cache imageWithURL:url];
     }
     
-    return url.isFileURL ? [BPVImage fileSystemImageWithUrl:url]
+    return url.isFileURL ? [BPVImage localImageWithUrl:url]
                             : [BPVImage internetWithUrl:url];
 }
 
@@ -53,8 +44,8 @@ BPVStringConstant(BPVImages);
     return [[BPVInternetImage alloc] initWithUrl:url];
 }
 
-+ (instancetype)fileSystemImageWithUrl:(NSURL *)url {
-    return [[BPVFileSystemImage alloc] initWithUrl:url];
++ (instancetype)localImageWithUrl:(NSURL *)url {
+    return [[BPVLocalImage alloc] initWithUrl:url];
 }
 
 #pragma mark -
@@ -73,16 +64,11 @@ BPVStringConstant(BPVImages);
 }
 
 #pragma mark -
-#pragma mark Accessors
+#pragma mark Public implementations
 
-- (NSString *)path {
-    return [[NSFileManager applicationDataPathWithFolderName:BPVImages] stringByAppendingPathComponent:self.fileName];
-}
-
-- (NSString *)fileName {
-    NSCharacterSet *characterSet = [NSCharacterSet URLUserAllowedCharacterSet];
-    
-    return [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:characterSet];
+- (void)finishLoadingImage:(UIImage *)image {
+    self.image = image;
+    self.state = image ? BPVModelDidLoad : BPVModelFailLoading;
 }
 
 @end

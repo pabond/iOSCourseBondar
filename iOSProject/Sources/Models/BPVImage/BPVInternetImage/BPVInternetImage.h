@@ -6,8 +6,8 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVFileSystemImage.h"
+#import "BPVLocalImage.h"
 
-@interface BPVInternetImage : BPVFileSystemImage <NSURLSessionDataDelegate>
+@interface BPVInternetImage : BPVLocalImage <NSURLSessionDataDelegate>
 
 @end

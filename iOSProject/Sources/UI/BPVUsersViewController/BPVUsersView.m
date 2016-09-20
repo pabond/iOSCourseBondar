@@ -8,11 +8,6 @@
 
 #import "BPVUsersView.h"
 
-#import "BPVMacro.h"
-
-BPVStringConstantWithValue(kBPVEditingButton, Edit);
-BPVStringConstantWithValue(kBPVDoneButton, Done);
-
 @implementation BPVUsersView
 
 @dynamic editing;
@@ -23,9 +18,6 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
 
 - (void)setEditing:(BOOL)editing {
     self.usersTableView.editing = editing;
-    
-    [self.editingButton setTitle:(editing ? kBPVDoneButton : kBPVEditingButton)
-                        forState:UIControlStateNormal];
 }
 
 @end

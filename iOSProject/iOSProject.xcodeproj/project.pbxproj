@@ -69,7 +69,7 @@
 		2DD763C01D7EC0C800CEB5EA /* BPVFilteredModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763BF1D7EC0C800CEB5EA /* BPVFilteredModel.m */; };
 		2DD763C71D82DE3B00CEB5EA /* BPVImagesCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763C61D82DE3B00CEB5EA /* BPVImagesCache.m */; };
 		2DD763D61D86DEBB00CEB5EA /* BPVInternetImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763D51D86DEBB00CEB5EA /* BPVInternetImage.m */; };
-		2DD764001D87F94100CEB5EA /* BPVFileSystemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763FF1D87F94100CEB5EA /* BPVFileSystemImage.m */; };
+		2DD764001D87F94100CEB5EA /* BPVLocalImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763FF1D87F94100CEB5EA /* BPVLocalImage.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
@@ -211,8 +211,8 @@
 		2DD763C61D82DE3B00CEB5EA /* BPVImagesCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImagesCache.m; sourceTree = "<group>"; };
 		2DD763D41D86DEBB00CEB5EA /* BPVInternetImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVInternetImage.h; sourceTree = "<group>"; };
 		2DD763D51D86DEBB00CEB5EA /* BPVInternetImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVInternetImage.m; sourceTree = "<group>"; };
-		2DD763FE1D87F94100CEB5EA /* BPVFileSystemImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVFileSystemImage.h; sourceTree = "<group>"; };
-		2DD763FF1D87F94100CEB5EA /* BPVFileSystemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVFileSystemImage.m; sourceTree = "<group>"; };
+		2DD763FE1D87F94100CEB5EA /* BPVLocalImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLocalImage.h; sourceTree = "<group>"; };
+		2DD763FF1D87F94100CEB5EA /* BPVLocalImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLocalImage.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
 		2DE873A31D75C24800A3550A /* BPVMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVMacro.m; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -889,8 +889,8 @@
 		2DD763FD1D87F91E00CEB5EA /* BPVFileSystemImage */ = {
 			isa = PBXGroup;
 			children = (
-				2DD763FE1D87F94100CEB5EA /* BPVFileSystemImage.h */,
-				2DD763FF1D87F94100CEB5EA /* BPVFileSystemImage.m */,
+				2DD763FE1D87F94100CEB5EA /* BPVLocalImage.h */,
+				2DD763FF1D87F94100CEB5EA /* BPVLocalImage.m */,
 			);
 			path = BPVFileSystemImage;
 			sourceTree = "<group>";
@@ -1150,7 +1150,7 @@
 				2D805F031D8AD0140057A232 /* NSIndexPath+BPVExtensions.m in Sources */,
 				2D3F424B1D4C021500A38A7B /* BPVBackgroundView.m in Sources */,
 				2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */,
-				2DD764001D87F94100CEB5EA /* BPVFileSystemImage.m in Sources */,
+				2DD764001D87F94100CEB5EA /* BPVLocalImage.m in Sources */,
 				2D805EFE1D8AD0140057A232 /* BPVRemoveModel+UITableView.m in Sources */,
 				2DD7639D1D786A2600CEB5EA /* BPVArrayChange.m in Sources */,
 				2D805F0B1D8AD0140057A232 /* UITableView+BPVExtensions.m in Sources */,

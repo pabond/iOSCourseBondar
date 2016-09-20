@@ -19,6 +19,9 @@
 
 #import "BPVMacro.h"
 
+BPVStringConstantWithValue(kBPVEditingButton, Edit);
+BPVStringConstantWithValue(kBPVDoneButton, Done);
+
 BPVStringConstantWithValue(kBPVTableTitle, USERS LIST);
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
@@ -29,10 +32,26 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 @implementation BPVUsersViewController
 
+#pragma mark -
+#pragma mark Initializations and deallocations
+
 - (void)viewDidLoad {
     [super viewDidLoad];
         
     self.navigationItem.title = kBPVTableTitle;
+    [self initBarButtons];
+}
+
+- (void)initBarButtons {
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                               target:self
+                                                                               action:@selector(onAdd:)];
+    [self.navigationItem setLeftBarButtonItem:addButton animated:YES];
+    
+    UIBarButtonItem *editingButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                                                                   target:self
+                                                                                   action:@selector(onEditing:)];
+    [self.navigationItem setRightBarButtonItem:editingButton animated:YES];
 }
 
 #pragma mark -
@@ -48,7 +67,9 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (IBAction)onEditing:(id)sender {
     BPVUsersView *usersView = self.usersView;
-    usersView.editing = !usersView.editing;
+    BOOL editing = !usersView.editing;
+    usersView.editing = editing;
+    self.navigationItem.rightBarButtonItem.title =  editing ? kBPVDoneButton : kBPVEditingButton;
 }
 
 #pragma mark -
