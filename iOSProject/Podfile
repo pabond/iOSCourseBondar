@@ -1,3 +1,9 @@
-target ‘iOSProjectTests’ do
-  pod ‘Kiwi’, '~> 2.3’
+target 'iOSProjectTests' do
+	pod 'Kiwi', '~> 2.3'
+end
+
+target 'iOSProject' do
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKLoginKit'
+    pod 'FBSDKShareKit'
 end
