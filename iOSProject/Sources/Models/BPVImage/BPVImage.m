@@ -8,8 +8,6 @@
 
 #import "BPVImage.h"
 
-#import "BPVGCD.h"
-#import "BPVQueue.h"
 #import "BPVImagesCache.h"
 
 #import "BPVLocalImage.h"

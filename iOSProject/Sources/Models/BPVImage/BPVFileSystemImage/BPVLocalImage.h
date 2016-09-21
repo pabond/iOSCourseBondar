@@ -9,10 +9,7 @@
 #import "BPVImage.h"
 
 @interface BPVLocalImage : BPVImage
-@property (nonatomic, readonly) NSURL    *localURL;
-@property (nonatomic, readonly) NSString    *path;
 
-- (BOOL)cached;
-- (UIImage *)performLoadingWithURL:(NSURL *)url;
+- (UIImage *)imageWithURL:(NSURL *)url;
 
 @end

@@ -10,10 +10,9 @@
 
 #import "BPVFilteredModel.h"
 
-@interface BPVUsersViewController : BPVTableViewController <BPVFilteredModelObserver>
+@interface BPVUsersViewController : BPVTableViewController <BPVFilteredModelObserver, UISearchBarDelegate>
 
 - (void)onEditing:(id)sender;
 - (void)onAdd:(id)sender;
-- (IBAction)onSearchFieldEdit:(id)sender;
 
 @end

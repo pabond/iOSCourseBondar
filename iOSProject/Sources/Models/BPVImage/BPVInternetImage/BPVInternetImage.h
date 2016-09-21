@@ -8,6 +8,15 @@
 
 #import "BPVLocalImage.h"
 
-@interface BPVInternetImage : BPVLocalImage <NSURLSessionDataDelegate>
+typedef void(^BPVCompletionHandler)(NSURL *location, NSURLResponse *response, NSError *error);
+
+
+@interface BPVInternetImage : BPVLocalImage
+
+// setting task calls "resume" method
+// these methods can be rewritten in subclasses
+- (void)loadFromInternet;
+- (NSURLSession *)session;
+- (BPVCompletionHandler)downloadTaskCompletionHandler;
 
 @end

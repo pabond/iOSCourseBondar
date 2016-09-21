@@ -77,6 +77,8 @@
 #pragma mark UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     BPVUserViewController *userController = [BPVUserViewController new];
     userController.user = self.filteredModel[indexPath.row];
     

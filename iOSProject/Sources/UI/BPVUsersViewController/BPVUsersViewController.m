@@ -35,11 +35,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark Initializations and deallocations
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-        
+- (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+    self = [super initWithNibName:nibName bundle:nibBundle];
+    
     self.navigationItem.title = kBPVTableTitle;
     [self initBarButtons];
+    
+    return self;
 }
 
 - (void)initBarButtons {
@@ -61,10 +63,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)onAdd:(id)sender {
     [self.model addModel:[BPVUser new]];
-}
-
-- (IBAction)onSearchFieldEdit:(UITextField *)sender {
-    [self.filteredModel filterArrayWithString:sender.text];
 }
 
 - (void)onEditing:(id)sender {
@@ -123,6 +121,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)modelDidFilter:(id)model {
     [self.usersView.usersTableView reloadData];
+}
+
+#pragma mark -
+#pragma mark UISearchBarDelegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self.filteredModel filterArrayWithString:searchText];
 }
 
 @end

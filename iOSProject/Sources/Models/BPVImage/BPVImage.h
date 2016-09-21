@@ -11,8 +11,8 @@
 #import "UIKit/UIKit.h"
 
 @interface BPVImage : BPVModel
-@property (nonatomic, strong)   UIImage             *image;
-@property (nonatomic, strong)   NSURL               *url;
+@property (nonatomic, strong)   UIImage *image;
+@property (nonatomic, strong)   NSURL   *url;
 
 + (instancetype)imageWithUrl:(NSURL *)url;
 

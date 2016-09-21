@@ -8,15 +8,46 @@
 
 #import "BPVInternetImage.h"
 
-@interface BPVInternetImage ()
-@property (nonatomic, strong) NSURLSessionTask *task;
+#import "NSFileManager+BPVExtensions.h"
 
+#import "BPVMacro.h"
+
+BPVStringConstant(BPVImages);
+
+@interface BPVInternetImage ()
+@property (nonatomic, strong)   NSURLSessionTask    *task;
+@property (nonatomic, readonly) NSURL               *localURL;
+@property (nonatomic, readonly) NSString            *path;
+@property (nonatomic, readonly) NSString            *fileName;
+
+- (BOOL)cached;
 - (BOOL)removeCorruptedImage;
-- (void)loadFormInternet;
 
 @end
 
 @implementation BPVInternetImage
+
+@dynamic localURL;
+@dynamic path;
+@dynamic fileName;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSURL *)localURL {
+    return [NSURL URLWithString:self.path];
+}
+
+- (NSString *)path {
+    return [[NSFileManager applicationDataPathWithFolderName:BPVImages] stringByAppendingPathComponent:self.fileName];
+}
+
+- (NSString *)fileName {
+    NSCharacterSet *characterSet = [NSCharacterSet URLUserAllowedCharacterSet];
+    
+    return [self.url.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:characterSet];
+}
+
 
 #pragma mark -
 #pragma mark Initaializations and deallocations
@@ -41,35 +72,41 @@
 #pragma mark Public implementations
 
 - (void)performLoading {
-    if ([self cached]) {
-        UIImage *image = [super performLoadingWithURL:self.localURL];
-        if (!image) {
-            [self removeCorruptedImage];
-            [self performLoading];
-        } else {
-            [self finishLoadingImage:image];
-        }
+    UIImage *image = [self imageWithURL:self.localURL];
+    if (image) {
+        [self finishLoadingImage:image];
     } else {
-        [self loadFormInternet];
+        [self removeCorruptedImage];
+        [self loadFromInternet];
     }
+}
+
+- (NSURLSession *)session {
+    return [NSURLSession sharedSession];
+}
+
+- (BPVCompletionHandler)downloadTaskCompletionHandler {
+    return ^(NSURL *location, NSURLResponse *response, NSError *error) {
+        if (error) {
+            self.state = BPVModelFailLoading;
+            return;
+        }
+        
+        NSURL *url = self.localURL;
+        
+        [[NSFileManager defaultManager] copyItemAtURL:location toURL:url error:nil];
+        NSLog(@"Image loaded from internet");
+        
+        [self finishLoadingImage:[self imageWithURL:url]];
+    };
+}
+
+- (void)loadFromInternet {
+    self.task = [[self session] downloadTaskWithURL:self.url completionHandler:[self downloadTaskCompletionHandler]];
 }
 
 #pragma mark -
 #pragma mark Private implementations
-
-- (void)loadFormInternet {
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    self.task = [session downloadTaskWithURL:self.url completionHandler:^(NSURL * _Nullable location,
-                                                                          NSURLResponse * _Nullable response,
-                                                                          NSError * _Nullable error)
-                 {
-                     [[NSData dataWithContentsOfURL:location] writeToFile:self.path atomically:YES];
-                     NSLog(@"Image loaded from internet");
-                     
-                     [super performLoading];
-                 }];
-}
 
 - (BOOL)removeCorruptedImage {
     NSError *error = nil;
@@ -78,6 +115,10 @@
     NSLog(@"%@", error);
     
     return result;
+}
+
+- (BOOL)cached {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.path];
 }
 
 @end
