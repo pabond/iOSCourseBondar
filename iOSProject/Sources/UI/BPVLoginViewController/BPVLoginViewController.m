@@ -21,11 +21,11 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 
 - (instancetype)initWithNibName:(nullable NSString *)nibName bundle:(nullable NSBundle *)nibBundle {
     self = [super initWithNibName:nibName bundle:nibBundle];
-    if (self) {
-        BPVImage *image = [BPVImage imageWithUrl:[NSURL URLWithString:kBPVImageURL]];
-        BPVLoginView *loginView = self.loginView;
-        loginView.imageView.image = image;
-    }
+    
+    BPVImage *image = [BPVImage imageWithUrl:[NSURL URLWithString:kBPVImageURL]];
+    BPVLoginView *loginView = self.loginView;
+    loginView.imageView.image = image;
+    
     return self;
 }
 
