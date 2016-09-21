@@ -75,6 +75,9 @@
 		2DD763D61D86DEBB00CEB5EA /* BPVInternetImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763D51D86DEBB00CEB5EA /* BPVInternetImage.m */; };
 		2DD764001D87F94100CEB5EA /* BPVLocalImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763FF1D87F94100CEB5EA /* BPVLocalImage.m */; };
 		2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE873A31D75C24800A3550A /* BPVMacro.m */; };
+		2DFBC5DA1D92E277001F3BFE /* BPVLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC5D91D92E277001F3BFE /* BPVLoginView.m */; };
+		2DFBC5DE1D92E28C001F3BFE /* BPVLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC5DC1D92E28C001F3BFE /* BPVLoginViewController.m */; };
+		2DFBC5DF1D92E28C001F3BFE /* BPVLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DFBC5DD1D92E28C001F3BFE /* BPVLoginViewController.xib */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -226,6 +229,11 @@
 		2DD763FF1D87F94100CEB5EA /* BPVLocalImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLocalImage.m; sourceTree = "<group>"; };
 		2DE873A21D75C24800A3550A /* BPVMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVMacro.h; sourceTree = "<group>"; };
 		2DE873A31D75C24800A3550A /* BPVMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVMacro.m; sourceTree = "<group>"; };
+		2DFBC5D81D92E277001F3BFE /* BPVLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLoginView.h; sourceTree = "<group>"; };
+		2DFBC5D91D92E277001F3BFE /* BPVLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLoginView.m; sourceTree = "<group>"; };
+		2DFBC5DB1D92E28C001F3BFE /* BPVLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLoginViewController.h; sourceTree = "<group>"; };
+		2DFBC5DC1D92E28C001F3BFE /* BPVLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLoginViewController.m; sourceTree = "<group>"; };
+		2DFBC5DD1D92E28C001F3BFE /* BPVLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVLoginViewController.xib; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -313,6 +321,18 @@
 				2D1425D01D92755E00C5AD2E /* BPVViewController.m */,
 			);
 			path = BPVViewController;
+			sourceTree = "<group>";
+		};
+		2D1425D21D92ABE200C5AD2E /* BPVLoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC5DB1D92E28C001F3BFE /* BPVLoginViewController.h */,
+				2DFBC5DC1D92E28C001F3BFE /* BPVLoginViewController.m */,
+				2DFBC5DD1D92E28C001F3BFE /* BPVLoginViewController.xib */,
+				2DFBC5D81D92E277001F3BFE /* BPVLoginView.h */,
+				2DFBC5D91D92E277001F3BFE /* BPVLoginView.m */,
+			);
+			path = BPVLoginViewController;
 			sourceTree = "<group>";
 		};
 		2D328D631D5CADF70064C76D /* Models */ = {
@@ -460,6 +480,7 @@
 		2D3F42431D4C021500A38A7B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2D1425D21D92ABE200C5AD2E /* BPVLoginViewController */,
 				2DD7636E1D782A0800CEB5EA /* BPVUsersViewController */,
 				2D3F42441D4C021500A38A7B /* BPVSquareViewController */,
 			);
@@ -1068,6 +1089,7 @@
 				2D1425BA1D8FCAB200C5AD2E /* BPVLoadingView.xib in Resources */,
 				2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */,
 				2D1425C91D9161D000C5AD2E /* BPVUserViewController.xib in Resources */,
+				2DFBC5DF1D92E28C001F3BFE /* BPVLoginViewController.xib in Resources */,
 				2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */,
 				2D3F424D1D4C021500A38A7B /* BPVSquareViewController.xib in Resources */,
 			);
@@ -1157,6 +1179,7 @@
 				2D805F061D8AD0140057A232 /* NSString+BPVExtensions.m in Sources */,
 				2DD7639E1D786A2600CEB5EA /* BPVOneIndexArrayChange.m in Sources */,
 				2DD763871D782A3000CEB5EA /* BPVTableViewController.m in Sources */,
+				2DFBC5DA1D92E277001F3BFE /* BPVLoginView.m in Sources */,
 				2DD763A01D786A2600CEB5EA /* BPVAddModel.m in Sources */,
 				2DD7637D1D782A0800CEB5EA /* BPVUsersView.m in Sources */,
 				2D805F011D8AD0140057A232 /* NSBundle+BPVExtensions.m in Sources */,
@@ -1171,6 +1194,7 @@
 				2D805F001D8AD0140057A232 /* NSArray+BPVExtensions.m in Sources */,
 				2DD763A11D786A2600CEB5EA /* BPVMoveModel.m in Sources */,
 				2D805EF71D8AD0140057A232 /* BPVAddModel+BPVArrayModel.m in Sources */,
+				2DFBC5DE1D92E28C001F3BFE /* BPVLoginViewController.m in Sources */,
 				2D1425C81D9161D000C5AD2E /* BPVUserViewController.m in Sources */,
 				2D805F051D8AD0140057A232 /* NSMutableArray+BPVExtensions.m in Sources */,
 				2D1425B91D8FCAB200C5AD2E /* BPVLoadingView.m in Sources */,

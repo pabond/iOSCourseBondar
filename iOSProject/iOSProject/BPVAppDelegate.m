@@ -10,6 +10,7 @@
 
 #import "BPVSquareViewController.h"
 #import "BPVUsersViewController.h"
+#import "BPVLoginViewController.h"
 #import "BPVArrayModel.h"
 
 #import "BPVUsers.h"
@@ -25,8 +26,10 @@
     UIWindow *window = [UIWindow window];
     self.window = window;
     
-    BPVTableViewController *controller = [BPVUsersViewController viewController];
-    controller.model = [BPVUsers new];
+//    BPVTableViewController *controller = [BPVUsersViewController viewController];
+//    controller.model = [BPVUsers new];
+    
+    BPVLoginViewController *controller = [BPVLoginViewController viewController];
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
