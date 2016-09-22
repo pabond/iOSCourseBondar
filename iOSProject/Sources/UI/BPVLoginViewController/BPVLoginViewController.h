@@ -10,4 +10,6 @@
 
 @interface BPVLoginViewController : UIViewController
 
+- (IBAction)onLogin:(id)sender;
+
 @end

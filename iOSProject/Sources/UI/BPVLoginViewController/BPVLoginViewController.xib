@@ -17,19 +17,24 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QCA-po-ieN">
                     <rect key="frame" x="0.0" y="438" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.2364128076" green="0.827818159" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Log In"/>
+                    <color key="backgroundColor" red="0.086970489281118155" green="0.11537912873305663" blue="0.67367473821989532" alpha="0.85361258865248213" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="Log in with Facebook">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onLogin:" destination="-1" eventType="touchUpInside" id="QqO-xv-L4x"/>
+                    </connections>
                 </button>
-                <view contentMode="scaleToFill" id="cy5-wr-90j" customClass="BPVImageView">
-                    <rect key="frame" x="0.0" y="53" width="320" height="291"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qQQ-Nb-6KL">
+                    <rect key="frame" x="0.0" y="61" width="320" height="294"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="imageView" destination="cy5-wr-90j" id="7sY-I8-TEe"/>
-                <outlet property="loginButton" destination="QCA-po-ieN" id="wHp-sU-s8H"/>
+                <outlet property="imageView" destination="qQQ-Nb-6KL" id="VVQ-I8-KWB"/>
+                <outlet property="loginButton" destination="QCA-po-ieN" id="goE-Cb-sCh"/>
             </connections>
             <point key="canvasLocation" x="340" y="319"/>
         </view>

@@ -20,24 +20,45 @@
 
 #import "BPVMacro.h"
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 @implementation BPVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
     UIWindow *window = [UIWindow window];
     self.window = window;
     
-//    BPVTableViewController *controller = [BPVUsersViewController viewController];
-//    controller.model = [BPVUsers new];
+    //    BPVTableViewController *controller = [BPVUsersViewController viewController];
+    //    controller.model = [BPVUsers new];
     
     BPVLoginViewController *controller = [BPVLoginViewController viewController];
-
+    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
     window.rootViewController = navigationController;
     
     [window makeKeyAndVisible];
+
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:sourceApplication
+                                                               annotation:annotation
+                    ];
+    // Add any custom logic here.
+    return handled;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -53,6 +74,8 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
+    
     BPVPrintCurrentSelector;
 }
 
