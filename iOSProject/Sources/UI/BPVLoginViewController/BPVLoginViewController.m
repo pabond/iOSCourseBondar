@@ -12,6 +12,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #import "BPVLoginView.h"
+#import "BPVLoginFacebookContext.h"
+
 #import "BPVImage.h"
 
 #import "BPVMacro.h"
@@ -27,18 +29,11 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 #pragma mark Interface Handling
 
 - (IBAction)onLogin:(id)sender {
-    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login logInWithReadPermissions:@[@"public_profile"]
-                 fromViewController:self
-                            handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                if (error) {
-                                    NSLog(@"Process error");
-                                } else if (result.isCancelled) {
-                                    NSLog(@"Cancelled");
-                                } else {
-                                    NSLog(@"Logged in");
-                                }
-                            }];
+    BPVLoginFacebookContext *context = [BPVLoginFacebookContext new];
+    context.loginManager = [FBSDKLoginManager new];
+    context.controller = self;
+    
+    [context execute];
 }
 
 @end

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPVLoginViewController : UIViewController
+#import "BPVViewController.h"
+
+@interface BPVLoginViewController : BPVViewController
 
 - (IBAction)onLogin:(id)sender;
 

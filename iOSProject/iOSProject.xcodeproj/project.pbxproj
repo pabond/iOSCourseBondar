@@ -77,6 +77,8 @@
 		2DFBC5DA1D92E277001F3BFE /* BPVLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC5D91D92E277001F3BFE /* BPVLoginView.m */; };
 		2DFBC5DE1D92E28C001F3BFE /* BPVLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC5DC1D92E28C001F3BFE /* BPVLoginViewController.m */; };
 		2DFBC5DF1D92E28C001F3BFE /* BPVLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DFBC5DD1D92E28C001F3BFE /* BPVLoginViewController.xib */; };
+		2DFBC5E61D951D6E001F3BFE /* BPVContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC5E51D951D6E001F3BFE /* BPVContext.m */; };
+		2DFBC5EA1D951E75001F3BFE /* BPVLoginFacebookContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC5E91D951E75001F3BFE /* BPVLoginFacebookContext.m */; };
 		708B5D60EEBC9BC5CF87A1F3 /* libPods-iOSProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
@@ -233,6 +235,10 @@
 		2DFBC5DB1D92E28C001F3BFE /* BPVLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLoginViewController.h; sourceTree = "<group>"; };
 		2DFBC5DC1D92E28C001F3BFE /* BPVLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLoginViewController.m; sourceTree = "<group>"; };
 		2DFBC5DD1D92E28C001F3BFE /* BPVLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVLoginViewController.xib; sourceTree = "<group>"; };
+		2DFBC5E41D951D6E001F3BFE /* BPVContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVContext.h; sourceTree = "<group>"; };
+		2DFBC5E51D951D6E001F3BFE /* BPVContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVContext.m; sourceTree = "<group>"; };
+		2DFBC5E81D951E75001F3BFE /* BPVLoginFacebookContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLoginFacebookContext.h; sourceTree = "<group>"; };
+		2DFBC5E91D951E75001F3BFE /* BPVLoginFacebookContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLoginFacebookContext.m; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25F584F31364ECA33A18054 /* Pods-iOSProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -341,6 +347,7 @@
 		2D328D631D5CADF70064C76D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2DFBC5E31D951D41001F3BFE /* BPVContext */,
 				2DD763BD1D7EC0C800CEB5EA /* BPVFilteredModel */,
 				2D328D641D5CADF70064C76D /* BPVImage */,
 				2D328D671D5CADF70064C76D /* BPVUser */,
@@ -961,6 +968,25 @@
 			path = BPVMacro;
 			sourceTree = "<group>";
 		};
+		2DFBC5E31D951D41001F3BFE /* BPVContext */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC5E41D951D6E001F3BFE /* BPVContext.h */,
+				2DFBC5E51D951D6E001F3BFE /* BPVContext.m */,
+				2DFBC5E71D951DF8001F3BFE /* Private */,
+			);
+			path = BPVContext;
+			sourceTree = "<group>";
+		};
+		2DFBC5E71D951DF8001F3BFE /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC5E81D951E75001F3BFE /* BPVLoginFacebookContext.h */,
+				2DFBC5E91D951E75001F3BFE /* BPVLoginFacebookContext.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 		901516722A207463FCC40A7F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1243,7 +1269,9 @@
 				2D805F0A1D8AD0140057A232 /* UINib+BPVExtensions.m in Sources */,
 				2D4828991D6AEADC00AF3617 /* BPVGCD.m in Sources */,
 				2D3F41FF1D3FA29800A38A7B /* main.m in Sources */,
+				2DFBC5E61D951D6E001F3BFE /* BPVContext.m in Sources */,
 				2D805F001D8AD0140057A232 /* NSArray+BPVExtensions.m in Sources */,
+				2DFBC5EA1D951E75001F3BFE /* BPVLoginFacebookContext.m in Sources */,
 				2DD763A11D786A2600CEB5EA /* BPVMoveModel.m in Sources */,
 				2D805EF71D8AD0140057A232 /* BPVAddModel+BPVArrayModel.m in Sources */,
 				2DFBC5DE1D92E28C001F3BFE /* BPVLoginViewController.m in Sources */,
