@@ -6,11 +6,13 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BPVViewController.h"
 
 @class BPVUser;
 
-@interface BPVUserViewController : UIViewController
+@interface BPVUserViewController : BPVViewController
 @property (nonatomic, strong) BPVUser *user;
+
+- (IBAction)onFriends:(id)sender;
 
 @end

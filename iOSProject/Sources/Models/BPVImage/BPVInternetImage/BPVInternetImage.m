@@ -35,7 +35,7 @@ BPVStringConstant(BPVImages);
 #pragma mark Accessors
 
 - (NSURL *)localURL {
-    return [NSURL URLWithString:self.path];
+    return [NSURL fileURLWithPath:self.path];
 }
 
 - (NSString *)path {
@@ -94,10 +94,18 @@ BPVStringConstant(BPVImages);
         
         NSURL *url = self.localURL;
         
-        [[NSFileManager defaultManager] copyItemAtURL:location toURL:url error:nil];
-        NSLog(@"Image loaded from internet");
+        NSError *moveError = nil;
+        [[NSFileManager defaultManager] copyItemAtURL:location toURL:url error:&moveError];
         
-        [self finishLoadingImage:[self imageWithURL:url]];
+        if (moveError) {
+             NSLog(@"[ERROR]%@", moveError);
+        }
+
+        NSLog(@"Image loaded from internet");
+        BOOL isCached = [self cached];
+        UIImage *image = [self imageWithURL:[self cached] ? url : location];
+        
+        [self finishLoadingImage:image];
     };
 }
 

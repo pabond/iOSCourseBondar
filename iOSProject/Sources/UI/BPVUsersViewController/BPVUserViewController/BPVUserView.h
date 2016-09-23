@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutlet  UILabel         *name;
 @property (nonatomic, strong) IBOutlet  UILabel         *surnameContainer;
 @property (nonatomic, strong) IBOutlet  UILabel         *surname;
+@property (nonatomic, strong) IBOutlet  UIButton        *friendsButton;
 
 @property (nonatomic, strong) BPVUser   *user;
 
