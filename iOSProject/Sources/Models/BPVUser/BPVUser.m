@@ -22,11 +22,6 @@ BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/2015/12/ziemelbriedis.png";
 
-@interface BPVUser ()
-@property (nonatomic, strong) NSURL *url;
-
-@end
-
 @implementation BPVUser
 
 @dynamic image;

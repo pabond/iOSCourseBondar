@@ -9,7 +9,6 @@
 #import "BPVContext.h"
 
 @interface BPVLoginFacebookContext : BPVContext
-@property (nonatomic, strong) id controller;
 @property (nonatomic, strong) id loginManager;
 
 @end

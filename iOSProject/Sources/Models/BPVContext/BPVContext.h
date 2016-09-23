@@ -7,8 +7,10 @@
 //
 
 #import "BPVObservableObject.h"
+#import "BPVViewController.h"
 
 @interface BPVContext : BPVObservableObject
+@property (nonatomic, strong) BPVViewController *controller;
 
 - (void)execute;
 - (void)cancel;

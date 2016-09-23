@@ -8,7 +8,8 @@
 
 #import "BPVLoginFacebookContext.h"
 
-#import "BPVUserViewController.h"
+#import "BPVUserInfoContext.h"
+
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
@@ -30,6 +31,9 @@ BPVStringConstantWithValue(kBPVPermitionPublicProfile, public_profile);
                                             } else {
                                                 NSLog(@"Logged in");
                                                 
+                                                BPVUserInfoContext *context  = [BPVUserInfoContext new];
+                                                context.controller = self.controller;
+                                                [context execute];
                                             }
                                         }];
 }
