@@ -11,7 +11,7 @@
 #import "BPVImageView.h"
 
 @interface BPVLoginView : UIView
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIImageView  *imageView;
 @property (nonatomic, strong) IBOutlet UIButton     *loginButton;
 
 @end

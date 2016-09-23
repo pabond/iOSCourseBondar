@@ -24,32 +24,21 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 @implementation BPVLoginViewController
 
 #pragma mark -
-#pragma mark View lifecycle
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:kBPVLogoImageName ofType:kBPVLogoImageFormat];
-    self.loginView.imageView.image = [UIImage imageWithContentsOfFile:path];
-}
-
-#pragma mark -
 #pragma mark Interface Handling
 
 - (IBAction)onLogin:(id)sender {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login
-     logInWithReadPermissions: @[@"public_profile"]
-     fromViewController:self
-     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-         if (error) {
-             NSLog(@"Process error");
-         } else if (result.isCancelled) {
-             NSLog(@"Cancelled");
-         } else {
-             NSLog(@"Logged in");
-         }
-     }];
+    [login logInWithReadPermissions:@[@"public_profile"]
+                 fromViewController:self
+                            handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                                if (error) {
+                                    NSLog(@"Process error");
+                                } else if (result.isCancelled) {
+                                    NSLog(@"Cancelled");
+                                } else {
+                                    NSLog(@"Logged in");
+                                }
+                            }];
 }
 
 @end

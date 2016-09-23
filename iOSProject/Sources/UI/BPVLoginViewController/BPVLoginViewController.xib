@@ -26,7 +26,7 @@
                         <action selector="onLogin:" destination="-1" eventType="touchUpInside" id="QqO-xv-L4x"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qQQ-Nb-6KL">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebookLogo" id="qQQ-Nb-6KL">
                     <rect key="frame" x="0.0" y="61" width="320" height="294"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -39,4 +39,7 @@
             <point key="canvasLocation" x="340" y="319"/>
         </view>
     </objects>
+    <resources>
+        <image name="facebookLogo" width="320" height="240"/>
+    </resources>
 </document>

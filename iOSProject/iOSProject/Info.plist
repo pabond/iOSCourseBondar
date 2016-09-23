@@ -53,12 +53,12 @@
         <dict>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>fbpavelbondar.iOSProject</string>
+                <string>fb185951395166241</string>
             </array>
         </dict>
     </array>
     <key>FacebookAppID</key>
-    <string>pavelbondar.iOSProject</string>
+    <string>185951395166241</string>
     <key>FacebookDisplayName</key>
     <string>BPVFriendsList</string>
     <key>LSApplicationQueriesSchemes</key>

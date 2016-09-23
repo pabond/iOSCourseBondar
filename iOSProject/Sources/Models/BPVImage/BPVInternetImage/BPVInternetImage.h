@@ -14,6 +14,8 @@ typedef void(^BPVCompletionHandler)(NSURL *location, NSURLResponse *response, NS
 @interface BPVInternetImage : BPVLocalImage
 
 // setting task calls "resume" method
+
+// you should never call this methods directly from outside subclasses
 // these methods can be rewritten in subclasses
 - (void)loadFromInternet;
 - (NSURLSession *)session;

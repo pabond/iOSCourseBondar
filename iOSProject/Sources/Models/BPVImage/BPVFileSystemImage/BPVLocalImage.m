@@ -13,6 +13,10 @@
 #pragma mark -
 #pragma mark Public implementations
 
+- (void)performLoading {
+    [self finishLoadingImage:[self imageWithURL:self.url]];
+}
+
 - (UIImage *)imageWithURL:(NSURL *)url {
     return [UIImage imageWithContentsOfFile:[url absoluteString]];
 }

@@ -15,9 +15,6 @@
 
 @interface BPVImage ()
 
-+ (instancetype)internetWithUrl:(NSURL *)url;
-+ (instancetype)localImageWithUrl:(NSURL *)url;
-
 - (instancetype)initWithUrl:(NSURL *)url;
 
 @end
@@ -28,22 +25,17 @@
 #pragma mark Class methods
 
 + (instancetype)imageWithUrl:(NSURL *)url {
-    BPVImagesCache *cache = [BPVImagesCache cache];
-    if ([cache containsImageWithURL:url]) {
-        NSLog(@"Cached image will return");
-        return [cache imageWithURL:url];
+    @synchronized (self) {
+        BPVImagesCache *cache = [BPVImagesCache cache];
+        if ([cache containsImageWithURL:url]) {
+            NSLog(@"Cached image will return");
+            return [cache imageWithURL:url];
+        }
+        
+        Class class = url.isFileURL ? [BPVLocalImage class] : [BPVInternetImage class];
+        
+        return  [[class alloc] initWithUrl:url];
     }
-    
-    return url.isFileURL ? [BPVImage localImageWithUrl:url]
-                            : [BPVImage internetWithUrl:url];
-}
-
-+ (instancetype)internetWithUrl:(NSURL *)url {
-    return [[BPVInternetImage alloc] initWithUrl:url];
-}
-
-+ (instancetype)localImageWithUrl:(NSURL *)url {
-    return [[BPVLocalImage alloc] initWithUrl:url];
 }
 
 #pragma mark -

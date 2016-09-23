@@ -54,7 +54,6 @@
 		2D805F101D8AD3080057A232 /* BPVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D805F0F1D8AD3080057A232 /* BPVModel.m */; };
 		2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */; };
 		2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */; };
-		2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA8E99D1D51DF010067032D /* BPVUserLogo.png */; };
 		2DBE77B31D72BF2B0057DDC0 /* BPVArrayModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */; };
 		2DD7637D1D782A0800CEB5EA /* BPVUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763701D782A0800CEB5EA /* BPVUsersView.m */; };
 		2DD7637E1D782A0800CEB5EA /* BPVUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD763721D782A0800CEB5EA /* BPVUsersViewController.m */; };
@@ -78,7 +77,6 @@
 		2DFBC5DA1D92E277001F3BFE /* BPVLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC5D91D92E277001F3BFE /* BPVLoginView.m */; };
 		2DFBC5DE1D92E28C001F3BFE /* BPVLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC5DC1D92E28C001F3BFE /* BPVLoginViewController.m */; };
 		2DFBC5DF1D92E28C001F3BFE /* BPVLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DFBC5DD1D92E28C001F3BFE /* BPVLoginViewController.xib */; };
-		2DFBC5E11D930492001F3BFE /* facebook_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DFBC5E01D930492001F3BFE /* facebook_logo.png */; };
 		708B5D60EEBC9BC5CF87A1F3 /* libPods-iOSProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
@@ -193,7 +191,6 @@
 		2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVObservableObject.m; sourceTree = "<group>"; };
 		2DA8E9651D4CDE880067032D /* BPVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVTableViewCell.h; sourceTree = "<group>"; };
 		2DA8E9661D4CDE880067032D /* BPVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVTableViewCell.m; sourceTree = "<group>"; };
-		2DA8E99D1D51DF010067032D /* BPVUserLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BPVUserLogo.png; sourceTree = "<group>"; };
 		2DBE77B21D72BF2B0057DDC0 /* BPVArrayModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVArrayModelTest.m; sourceTree = "<group>"; };
 		2DD7636F1D782A0800CEB5EA /* BPVUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsersView.h; sourceTree = "<group>"; };
 		2DD763701D782A0800CEB5EA /* BPVUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsersView.m; sourceTree = "<group>"; };
@@ -236,7 +233,6 @@
 		2DFBC5DB1D92E28C001F3BFE /* BPVLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVLoginViewController.h; sourceTree = "<group>"; };
 		2DFBC5DC1D92E28C001F3BFE /* BPVLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVLoginViewController.m; sourceTree = "<group>"; };
 		2DFBC5DD1D92E28C001F3BFE /* BPVLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPVLoginViewController.xib; sourceTree = "<group>"; };
-		2DFBC5E01D930492001F3BFE /* facebook_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_logo.png; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25F584F31364ECA33A18054 /* Pods-iOSProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -796,8 +792,6 @@
 		2DA8E9981D4D5F490067032D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2DFBC5E01D930492001F3BFE /* facebook_logo.png */,
-				2DA8E99D1D51DF010067032D /* BPVUserLogo.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1101,8 +1095,6 @@
 				2DD7637F1D782A0800CEB5EA /* BPVUsersViewController.xib in Resources */,
 				2DD763811D782A0800CEB5EA /* BPVUserCell.xib in Resources */,
 				2D1425BA1D8FCAB200C5AD2E /* BPVLoadingView.xib in Resources */,
-				2DFBC5E11D930492001F3BFE /* facebook_logo.png in Resources */,
-				2DA8E99E1D51DF010067032D /* BPVUserLogo.png in Resources */,
 				2D1425C91D9161D000C5AD2E /* BPVUserViewController.xib in Resources */,
 				2DFBC5DF1D92E28C001F3BFE /* BPVLoginViewController.xib in Resources */,
 				2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */,
