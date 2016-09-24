@@ -8,7 +8,12 @@
 
 #import "BPVContext.h"
 
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
+@class BPVLoginViewController;
+
 @interface BPVLoginFacebookContext : BPVContext
-@property (nonatomic, strong) id loginManager;
+@property (nonatomic, strong) BPVLoginViewController        *controller;
+@property (nonatomic, strong) FBSDKLoginManagerLoginResult  *result;
 
 @end

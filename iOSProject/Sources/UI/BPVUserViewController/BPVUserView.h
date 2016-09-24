@@ -6,12 +6,14 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
+#import "BPVView.h"
+
 #import <UIKit/UIKit.h>
 
 @class BPVImageView;
 @class BPVUser;
 
-@interface BPVUserView : UIView
+@interface BPVUserView : BPVView
 @property (nonatomic, strong) IBOutlet  BPVImageView    *imageView;
 @property (nonatomic, strong) IBOutlet  UIButton        *friendsButton;
 

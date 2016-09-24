@@ -7,12 +7,14 @@
 //
 
 #import "BPVObservableObject.h"
-#import "BPVViewController.h"
 
 @interface BPVContext : BPVObservableObject
-@property (nonatomic, strong) BPVViewController *controller;
+@property (nonatomic, assign, getter=isCanceled) BOOL canceled;
 
+// you should never call this methods directly from outside subclasses
+// this method should be rewritten in subclasses
 - (void)execute;
+
 - (void)cancel;
 
 @end

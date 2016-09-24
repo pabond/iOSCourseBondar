@@ -13,5 +13,6 @@
 @interface BPVLoginViewController : BPVViewController
 
 - (IBAction)onLogin:(id)sender;
+- (void)showUserProfile;
 
 @end

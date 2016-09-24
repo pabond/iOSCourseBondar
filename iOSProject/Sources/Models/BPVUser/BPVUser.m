@@ -11,6 +11,8 @@
 #import "BPVImage.h"
 #import "BPVGCD.h"
 
+#import "BPVUserInfoContext.h"
+
 #import "NSString+BPVRandomName.h"
 
 #import "BPVMacro.h"
@@ -20,7 +22,6 @@ BPVStringConstantWithValue(kBPVUserSurname, userSurname);
 BPVStringConstantWithValue(kBPVUserURL, userURL);
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
-static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/2015/12/ziemelbriedis.png";
 
 @implementation BPVUser
 
@@ -34,10 +35,6 @@ static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/20
 - (instancetype)init {
     self = [super init];
     
-    self.name = [NSString randomName];
-    self.surname = [NSString randomName];
-    self.url = [NSURL URLWithString:kBPVImageURL];
-    
     return self;
 }
 
@@ -49,7 +46,16 @@ static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/20
 }
 
 - (BPVImage *)image {
-    return [BPVImage imageWithUrl:self.url];
+    return [BPVImage imageWithUrl:self.imageURL];
+}
+
+#pragma mark -
+#pragma mark Public implementations
+
+- (void)performLoading {
+    BPVUserInfoContext *userFillContext  = [BPVUserInfoContext new];
+    userFillContext.user = self;
+    [userFillContext execute];
 }
 
 #pragma mark -
@@ -58,7 +64,7 @@ static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/20
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.name forKey:kBPVUserName];
     [aCoder encodeObject:self.surname forKey:kBPVUserSurname];
-    [aCoder encodeObject:self.url forKey:kBPVUserURL];
+    [aCoder encodeObject:self.imageURL forKey:kBPVUserURL];
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -66,7 +72,7 @@ static NSString * const kBPVImageURL = @"http://denderi.lv/wp-content/uploads/20
     if (self) {
         self.name = [aDecoder decodeObjectForKey:kBPVUserName];
         self.surname = [aDecoder decodeObjectForKey:kBPVUserSurname];
-        self.url = [aDecoder decodeObjectForKey:kBPVUserURL];
+        self.imageURL = [aDecoder decodeObjectForKey:kBPVUserURL];
     }
     
     return self;

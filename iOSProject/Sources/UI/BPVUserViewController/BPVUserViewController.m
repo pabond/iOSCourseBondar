@@ -9,7 +9,6 @@
 #import "BPVUserViewController.h"
 
 #import "BPVUserView.h"
-#import "BPVUser.h"
 
 #import "BPVMacro.h"
 
@@ -22,12 +21,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 - (void)setUser:(BPVUser *)user {
     if (_user != user) {
-        _user = user;
+        [_user removeObserver:self];
         
-        self.title = user.fullName;
+        _user = user;
+        [_user addObserver:self];
+        
+        [_user load];
     }
-    
-    self.userView.user = user;
 }
 
 #pragma mark -
@@ -44,6 +44,23 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 - (IBAction)onFriends:(id)sender {
     
+}
+
+#pragma mark -
+#pragma mark BPVModelObserver
+
+- (void)modelWillLoad:(id)model {
+    self.userView.loading = YES;
+}
+
+- (void)modelDidLoad:(BPVUser *)model {
+    self.userView.loading = NO;
+    self.title = model.fullName;
+    self.userView.user = model;
+}
+
+- (void)modelFailLoading:(id)model {
+    self.userView.loading = NO;
 }
 
 @end

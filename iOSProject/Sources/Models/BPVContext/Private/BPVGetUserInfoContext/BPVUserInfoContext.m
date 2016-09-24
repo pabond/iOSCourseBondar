@@ -14,8 +14,6 @@
 #import "BPVUserViewController.h"
 #import "BPVUser.h"
 
-#import "UIViewController+BPVExtensions.h"
-
 @implementation BPVUserInfoContext
 
 - (void)execute {
@@ -31,7 +29,7 @@
             return;
         }
         
-        BPVUser *user = [BPVUser new];
+        BPVUser *user = self.user;
         
         user.name = result[@"first_name"];
         user.surname = result[@"last_name"];
@@ -39,12 +37,9 @@
         user.birthday = result[@"birthday"];
         
         NSDictionary *picture = result[@"picture"][@"data"];
-        user.url = [NSURL URLWithString:picture[@"url"]];
+        user.imageURL = [NSURL URLWithString:picture[@"url"]];
         
-        BPVUserViewController *userController = [BPVUserViewController viewController];
-        userController.user = user;
-        
-        [self.controller.navigationController pushViewController:userController animated:YES];
+        user.state = BPVModelDidLoad;
     }];
 }
 
