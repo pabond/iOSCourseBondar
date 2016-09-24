@@ -94,16 +94,10 @@ BPVStringConstant(BPVImages);
         
         NSURL *url = self.localURL;
         
-        NSError *moveError = nil;
-        [[NSFileManager defaultManager] copyItemAtURL:location toURL:url error:&moveError];
+        [[NSFileManager defaultManager] copyItemAtURL:location toURL:url error:nil];
         
-        if (moveError) {
-             NSLog(@"[ERROR]%@", moveError);
-        }
-
         NSLog(@"Image loaded from internet");
-        BOOL isCached = [self cached];
-        UIImage *image = [self imageWithURL:[self cached] ? url : location];
+        UIImage *image = [self imageWithURL:location];
         
         [self finishLoadingImage:image];
     };

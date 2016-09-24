@@ -16,6 +16,7 @@
 
 + (instancetype)imageWithUrl:(NSURL *)url;
 
+// this method should be called once and only from child subclasses
 - (void)finishLoadingImage:(UIImage *)image;
 
 @end

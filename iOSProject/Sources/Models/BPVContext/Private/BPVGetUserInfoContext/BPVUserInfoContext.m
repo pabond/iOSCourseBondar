@@ -19,9 +19,10 @@
 @implementation BPVUserInfoContext
 
 - (void)execute {
+    NSDictionary *paremters = @{@"fields":@"id,first_name,last_name,picture.type(large), email,birthday"};
     FBSDKGraphRequest *request = nil;
     request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
-                                                parameters:@{@"fields": @"id, first_name, last_name, picture.type(large)"}
+                                                parameters:paremters
                                                 HTTPMethod:@"GET"];
     
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
@@ -32,14 +33,16 @@
         
         BPVUser *user = [BPVUser new];
         
-        user.name = [result objectForKey:@"first_name"];
-        user.surname = [result objectForKey:@"last_name"];
-        NSDictionary *picture = [[result objectForKey:@"picture"] objectForKey:@"data"];
-        user.url = [NSURL URLWithString:[picture objectForKey:@"url"]];
+        user.name = result[@"first_name"];
+        user.surname = result[@"last_name"];
+        user.email = result[@"email"];
+        user.birthday = result[@"birthday"];
+        
+        NSDictionary *picture = result[@"picture"][@"data"];
+        user.url = [NSURL URLWithString:picture[@"url"]];
         
         BPVUserViewController *userController = [BPVUserViewController viewController];
         userController.user = user;
-        
         
         [self.controller.navigationController pushViewController:userController animated:YES];
     }];

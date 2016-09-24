@@ -39,4 +39,11 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
     self.userView.user = self.user;
 }
 
+#pragma mark -
+#pragma mark Interface Handling
+
+- (IBAction)onFriends:(id)sender {
+    
+}
+
 @end

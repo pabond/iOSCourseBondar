@@ -24,17 +24,12 @@ BPVStringConstantWithValue(kBPVPermitionPublicProfile, public_profile);
     [self.loginManager logInWithReadPermissions:@[kBPVPermitionPublicProfile]
                              fromViewController:self.controller
                                         handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                            if (error) {
-                                                NSLog(@"Process error");
-                                            } else if (result.isCancelled) {
-                                                NSLog(@"Cancelled");
-                                            } else {
-                                                NSLog(@"Logged in");
+                                            
                                                 
-                                                BPVUserInfoContext *context  = [BPVUserInfoContext new];
-                                                context.controller = self.controller;
-                                                [context execute];
-                                            }
+                                            BPVUserInfoContext *context  = [BPVUserInfoContext new];
+                                            context.controller = self.controller;
+                                            [context execute];
+                                            
                                         }];
 }
 

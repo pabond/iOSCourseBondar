@@ -27,6 +27,8 @@
     self.nameContainer.text = user.name;
     self.surnameContainer.text = user.surname;
     self.imageView.image = user.image;
+    self.birthdayContainer.text = user.birthday;
+    self.emailContainer.text = user.email;
 }
 
 @end
