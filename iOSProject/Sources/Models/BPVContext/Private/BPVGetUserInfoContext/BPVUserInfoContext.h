@@ -13,6 +13,5 @@
 
 @interface BPVUserInfoContext : BPVContext
 @property (nonatomic, strong)   BPVUser                 *user;
-@property (nonatomic, strong)   BPVUserViewController   *controller;
 
 @end

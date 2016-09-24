@@ -16,9 +16,13 @@
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, copy)     NSString    *surname;
 @property (nonatomic, readonly) NSString    *fullName;
+
 @property (nonatomic, readonly) BPVImage    *image;
 @property (nonatomic, strong)   NSURL       *imageURL;
+
 @property (nonatomic, copy)     NSString    *birthday;
 @property (nonatomic, copy)     NSString    *email;
+
+@property (nonatomic, assign)   NSUInteger  ID;
 
 @end

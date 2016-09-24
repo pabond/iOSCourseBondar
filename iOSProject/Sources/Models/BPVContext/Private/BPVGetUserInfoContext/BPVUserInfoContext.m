@@ -35,6 +35,7 @@
         user.surname = result[@"last_name"];
         user.email = result[@"email"];
         user.birthday = result[@"birthday"];
+        user.ID = (NSUInteger)result[@"id"];
         
         NSDictionary *picture = result[@"picture"][@"data"];
         user.imageURL = [NSURL URLWithString:picture[@"url"]];
