@@ -53,11 +53,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 
 - (void)showUserProfile {
     BPVLoginFacebookContext *context = self.context;
-    if (!context.result.token || context.isCanceled) {
+    FBSDKAccessToken *token = context.result.token;
+    if (!token || context.isCanceled) {
         return;
     }
     
     BPVUser *user = [BPVUser new];
+    user.ID = token.userID;
     
     BPVUserViewController *userController = [BPVUserViewController viewController];
     userController.user = user;

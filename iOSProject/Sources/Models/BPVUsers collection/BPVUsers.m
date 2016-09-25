@@ -11,10 +11,11 @@
 #import "BPVUser.h"
 #import "BPVGCD.h"
 
+#import "BPVFriendsListContext.h"
+
 #import "NSFileManager+BPVExtensions.h"
 #import "NSKeyedUnarchiver+BPVExtensions.h"
 #import "NSArray+BPVExtensions.h"
-#import "BPVFilteredModel.h"
 
 #import "BPVMacro.h"
 
@@ -84,13 +85,7 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (void)performLoading {
-    BPVWeakify(self)
-    [self performBlockWithoutNotification:^{
-        BPVStrongifyAndReturnIfNil(self)
-        [self addModels:[self arrayModel]];
-    }];
-    
-    self.state = BPVModelDidLoad;
+
 }
 
 #pragma mark -
@@ -101,11 +96,18 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (NSArray *)arrayModel {
-    NSArray *array = [NSKeyedUnarchiver objectFromFileWithPath:self.applicationFilePath];
-    if (array && array.count) {
+    NSArray *array = nil;
+    
+    BPVFriendsListContext *context = [BPVFriendsListContext new];
+    context.userID = self.user.ID;
+    context.model = self;
+    
+    [context execute];
+    
+    if (array) {
         NSLog(@"[LOADING] Array will load from file");
     } else {
-        array = [self defaultArrayModel];
+        array = [NSKeyedUnarchiver objectFromFileWithPath:self.applicationFilePath];;
         NSLog(@"[LOADING] Default array count will load");
     }
     

@@ -9,6 +9,12 @@
 #import "BPVUserViewController.h"
 
 #import "BPVUserView.h"
+#import "BPVUsers.h"
+#import "BPVUsersViewController.h"
+
+#import "BPVFriendsListContext.h"
+
+#import "UIViewController+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
@@ -43,7 +49,11 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 #pragma mark Interface Handling
 
 - (IBAction)onFriends:(id)sender {
+    BPVUsers *friends = [BPVUsers new];
+    BPVUsersViewController *controller = [BPVUsersViewController viewController];
+    controller.model = friends;
     
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark -

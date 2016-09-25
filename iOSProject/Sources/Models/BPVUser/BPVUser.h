@@ -23,6 +23,6 @@
 @property (nonatomic, copy)     NSString    *birthday;
 @property (nonatomic, copy)     NSString    *email;
 
-@property (nonatomic, assign)   NSUInteger  ID;
+@property (nonatomic, copy)     NSString    *ID;
 
 @end

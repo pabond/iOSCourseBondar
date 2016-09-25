@@ -18,8 +18,9 @@
 
 - (void)execute {
     NSDictionary *paremters = @{@"fields":@"id,first_name,last_name,picture.type(large), email,birthday"};
+    BPVUser *user = self.user;
     FBSDKGraphRequest *request = nil;
-    request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
+    request = [[FBSDKGraphRequest alloc] initWithGraphPath:user.ID
                                                 parameters:paremters
                                                 HTTPMethod:@"GET"];
     
@@ -28,14 +29,12 @@
             NSLog(@"Faild data load with error: %@", error);
             return;
         }
-        
-        BPVUser *user = self.user;
-        
+    
         user.name = result[@"first_name"];
         user.surname = result[@"last_name"];
         user.email = result[@"email"];
         user.birthday = result[@"birthday"];
-        user.ID = (NSUInteger)result[@"id"];
+        user.ID = result[@"id"];
         
         NSDictionary *picture = result[@"picture"][@"data"];
         user.imageURL = [NSURL URLWithString:picture[@"url"]];
