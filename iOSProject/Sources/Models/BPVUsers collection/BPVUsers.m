@@ -21,15 +21,10 @@
 
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, data.plist);
 BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
-//BPVConstant(NSUInteger, kBPVSleepTime, 5);
-BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 
 @interface BPVUsers ()
 @property (nonatomic, readonly) NSString            *applicationFilePath;
 @property (nonatomic, strong)   NSMutableDictionary *observers;
-
-- (NSArray *)defaultArrayModel;
-- (NSArray *)arrayModel;
 
 - (NSArray *)observingSelectorsNames;
 
@@ -85,33 +80,15 @@ BPVConstant(NSUInteger, kBPVDefaultUsersCount, 10);
 }
 
 - (void)performLoading {
-
-}
-
-#pragma mark -
-#pragma mark Private implementations
-
-- (NSArray *)defaultArrayModel {
-    return [NSArray arrayWithObjectsFactoryWithCount:kBPVDefaultUsersCount block:^id { return [BPVUser new]; }];
-}
-
-- (NSArray *)arrayModel {
-    NSArray *array = nil;
-    
     BPVFriendsListContext *context = [BPVFriendsListContext new];
     context.userID = self.user.ID;
-    context.model = self;
+    context.arrayModel = self;
     
     [context execute];
-    
-    if (array) {
-        NSLog(@"[LOADING] Array will load from file");
-    } else {
-        array = [NSKeyedUnarchiver objectFromFileWithPath:self.applicationFilePath];;
-        NSLog(@"[LOADING] Default array count will load");
-    }
-    
-    return array;
+}
+
+- (NSArray *)cachedArray {
+    return [NSKeyedUnarchiver objectFromFileWithPath:self.applicationFilePath];
 }
 
 #pragma mark -

@@ -19,7 +19,13 @@
 
 BPVStringConstantWithValue(kBPVUserName, userName);
 BPVStringConstantWithValue(kBPVUserSurname, userSurname);
+
 BPVStringConstantWithValue(kBPVUserURL, userURL);
+BPVStringConstantWithValue(kBPVUserID, userID);
+
+BPVStringConstantWithValue(kBPVUserBirthday, userBirthday);
+BPVStringConstantWithValue(kBPVUserEmail, userEmail);
+
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
@@ -64,6 +70,11 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.name forKey:kBPVUserName];
     [aCoder encodeObject:self.surname forKey:kBPVUserSurname];
+    
+    [aCoder encodeObject:self.email forKey:kBPVUserEmail];
+    [aCoder encodeObject:self.birthday forKey:kBPVUserBirthday];
+    
+    [aCoder encodeObject:self.ID forKey:kBPVUserID];
     [aCoder encodeObject:self.imageURL forKey:kBPVUserURL];
 }
 
@@ -72,7 +83,12 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
     if (self) {
         self.name = [aDecoder decodeObjectForKey:kBPVUserName];
         self.surname = [aDecoder decodeObjectForKey:kBPVUserSurname];
+        
         self.imageURL = [aDecoder decodeObjectForKey:kBPVUserURL];
+        self.email = [aDecoder decodeObjectForKey:kBPVUserEmail];
+        
+        self.birthday = [aDecoder decodeObjectForKey:kBPVUserBirthday];
+        self.ID = [aDecoder decodeObjectForKey:kBPVUserID];
     }
     
     return self;

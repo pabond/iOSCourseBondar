@@ -8,8 +8,6 @@
 
 #import "BPVTableViewController.h"
 
-#import "BPVUserViewController.h"
-#import "BPVUserCell.h"
 #import "BPVLoadingView.h"
 
 #import "BPVArrayChange.h"
@@ -75,15 +73,6 @@
 
 #pragma mark -
 #pragma mark UITableViewDataSource
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    BPVUserViewController *userController = [BPVUserViewController new];
-    userController.user = self.filteredModel[indexPath.row];
-    
-    [self.navigationController pushViewController:userController animated:YES];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.model.count;

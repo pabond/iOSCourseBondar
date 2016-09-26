@@ -50,6 +50,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 - (IBAction)onFriends:(id)sender {
     BPVUsers *friends = [BPVUsers new];
+    friends.user = self.user;
     BPVUsersViewController *controller = [BPVUsersViewController viewController];
     controller.model = friends;
     

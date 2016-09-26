@@ -8,6 +8,11 @@
 
 #import "BPVContext.h"
 
+@interface BPVContext ()
+@property (nonatomic, assign, getter=isCanceled) BOOL canceled;
+
+@end
+
 @implementation BPVContext
 
 - (void)execute {

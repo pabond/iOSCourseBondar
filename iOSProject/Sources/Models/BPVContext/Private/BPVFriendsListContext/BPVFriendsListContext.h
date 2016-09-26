@@ -8,10 +8,10 @@
 
 #import "BPVContext.h"
 
-@class BPVArrayModel;
+@class BPVUsers;
 
 @interface BPVFriendsListContext : BPVContext
-@property (nonatomic, copy)     NSString        *userID;
-@property (nonatomic, strong)   BPVArrayModel   *arrayModel;
+@property (nonatomic, copy)     NSString    *userID;
+@property (nonatomic, strong)   BPVUsers    *arrayModel;
 
 @end
