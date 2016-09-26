@@ -10,6 +10,8 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
+#import "BPVUserInfoContext.h"
+
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
@@ -47,16 +49,15 @@
         NSArray *friendsList = result[kBPVData];
         NSMutableArray *array = [NSMutableArray array];
         BPVUser *user = nil;
+        BPVUserInfoContext *userContext = [BPVUserInfoContext new];
         
         if (friendsList) {
             for (NSDictionary *friend in friendsList) {
-                 user = [BPVUser new];
+                user = [BPVUser new];
+                userContext.user = user;
+                userContext.userInfo = friend;
                 
-                user.name = friend[kBPVName];
-                user.surname = friend[kBPVSurname];
-                user.ID = friend[kBPVId];
-                NSDictionary *picture = friend[kBPVPicture][kBPVData];
-                user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
+                [userContext execute];
                 
                 [array addObject:user];
             }
@@ -75,6 +76,16 @@
         
         self.arrayModel.state = BPVModelDidLoad;
     }];
+}
+
+- (NSDictionary *)dictionatyWithResponseResult:(NSDictionary *)result {
+    if (!result) {
+        return nil;
+    }
+    
+//    NSMutableDictionary *dictionary = [result mutableCopy];
+    
+    return nil;
 }
 
 @end

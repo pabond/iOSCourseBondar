@@ -12,7 +12,8 @@
 @class BPVUserViewController;
 
 @interface BPVUserInfoContext : BPVFriendsListContext
-@property (nonatomic, strong)   BPVUser     *user;
-@property (nonatomic, readonly) NSString    *detailedParametersList;
+@property (nonatomic, strong)   BPVUser         *user;
+@property (nonatomic, readonly) NSString        *detailedParametersList;
+@property (nonatomic, strong)   NSDictionary    *userInfo;
 
 @end

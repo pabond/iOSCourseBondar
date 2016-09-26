@@ -13,6 +13,12 @@
 #import "BPVUserViewController.h"
 #import "BPVUser.h"
 
+@interface BPVUserInfoContext ()
+
+- (void)fillUserWithDictionary:(NSDictionary *)result;
+
+@end
+
 @implementation BPVUserInfoContext
 
 @dynamic detailedParametersList;
@@ -26,11 +32,17 @@
     }));
 }
 
-
 #pragma mark -
 #pragma mark Public Implementations
 
 - (void)execute {
+    NSDictionary *userInfo = self.userInfo;
+    
+    if (userInfo) {
+        [self fillUserWithDictionary:userInfo];
+        return;
+    }
+    
     NSDictionary *paremters = @{kBPVFields:self.detailedParametersList};
     BPVUser *user = self.user;
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:user.ID
@@ -43,17 +55,26 @@
             return;
         }
     
-        user.name = result[kBPVName];
-        user.surname = result[kBPVSurname];
-        user.email = result[kBPVEmail];
-        user.birthday = result[kBPVBirthday];
-        user.ID = result[kBPVId];
-        
-        NSDictionary *picture = result[kBPVPicture][kBPVData];
-        user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
+        [self fillUserWithDictionary:result];
         
         user.state = BPVModelDidLoad;
     }];
+}
+
+#pragma mark -
+#pragma mark Private Implementations
+
+- (void)fillUserWithDictionary:(NSDictionary *)userInfo {
+    BPVUser *user = self.user;
+    
+    user.name = userInfo[kBPVName];
+    user.surname = userInfo[kBPVSurname];
+    user.email = userInfo[kBPVEmail];
+    user.birthday = userInfo[kBPVBirthday];
+    user.ID = userInfo[kBPVId];
+    
+    NSDictionary *picture = userInfo[kBPVPicture][kBPVData];
+    user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
 }
 
 @end

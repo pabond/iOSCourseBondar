@@ -15,5 +15,6 @@
 @property (nonatomic, strong)   BPVUsers    *arrayModel;
 @property (nonatomic, readonly) NSString    *parametersList;
 
+- (NSDictionary *)dictionatyWithResponseResult:(NSDictionary *)result;
 
 @end
