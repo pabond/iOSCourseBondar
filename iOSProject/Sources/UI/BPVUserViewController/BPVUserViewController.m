@@ -37,15 +37,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 }
 
 #pragma mark -
-#pragma mark View Lifecycle
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.userView.user = self.user;
-}
-
-#pragma mark -
 #pragma mark Interface Handling
 
 - (IBAction)onFriends:(id)sender {

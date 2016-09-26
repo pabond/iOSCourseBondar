@@ -6,12 +6,15 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVContext.h"
+#import "BPVFacebookContext.h"
 
 @class BPVUsers;
 
-@interface BPVFriendsListContext : BPVContext
+@interface BPVFriendsListContext : BPVFacebookContext
 @property (nonatomic, copy)     NSString    *userID;
 @property (nonatomic, strong)   BPVUsers    *arrayModel;
+
+@property (nonatomic, readonly) NSString *parametersList;
+
 
 @end

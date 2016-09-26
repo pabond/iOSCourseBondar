@@ -9,20 +9,34 @@
 #import "BPVUserInfoContext.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #import "BPVUserViewController.h"
 #import "BPVUser.h"
 
 @implementation BPVUserInfoContext
 
+@dynamic detailedParametersList;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSString *)detailedParametersList {
+    BPVReturnOnce(NSString, parametersList, (^{
+        return [NSString stringWithFormat:@"%@,%@,%@", self.parametersList, kBPVBirthday, kBPVEmail];
+    }));
+}
+
+
+#pragma mark -
+#pragma mark Public Implementations
+
 - (void)execute {
-    NSDictionary *paremters = @{@"fields":@"id,first_name,last_name,picture.type(large), email,birthday"};
+    NSDictionary *paremters = @{kBPVFields:self.detailedParametersList};
     BPVUser *user = self.user;
     FBSDKGraphRequest *request = nil;
     request = [[FBSDKGraphRequest alloc] initWithGraphPath:user.ID
                                                 parameters:paremters
-                                                HTTPMethod:@"GET"];
+                                                HTTPMethod:kBPVGetMethod];
     
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
         if (error || !result) {
@@ -30,14 +44,14 @@
             return;
         }
     
-        user.name = result[@"first_name"];
-        user.surname = result[@"last_name"];
-        user.email = result[@"email"];
-        user.birthday = result[@"birthday"];
-        user.ID = result[@"id"];
+        user.name = result[kBPVName];
+        user.surname = result[kBPVSurname];
+        user.email = result[kBPVEmail];
+        user.birthday = result[kBPVBirthday];
+        user.ID = result[kBPVId];
         
-        NSDictionary *picture = result[@"picture"][@"data"];
-        user.imageURL = [NSURL URLWithString:picture[@"url"]];
+        NSDictionary *picture = result[kBPVPicture][kBPVData];
+        user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
         
         user.state = BPVModelDidLoad;
     }];

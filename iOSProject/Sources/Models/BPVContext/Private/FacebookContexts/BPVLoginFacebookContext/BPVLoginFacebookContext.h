@@ -6,13 +6,13 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVContext.h"
+#import "BPVFacebookContext.h"
 
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @class BPVLoginViewController;
 
-@interface BPVLoginFacebookContext : BPVContext
+@interface BPVLoginFacebookContext : BPVFacebookContext
 @property (nonatomic, strong) BPVLoginViewController        *controller;
 @property (nonatomic, strong) FBSDKLoginManagerLoginResult  *result;
 

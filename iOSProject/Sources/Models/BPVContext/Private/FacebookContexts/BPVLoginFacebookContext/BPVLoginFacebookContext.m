@@ -8,8 +8,6 @@
 
 #import "BPVLoginFacebookContext.h"
 
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-
 #import "BPVLoginViewController.h"
 
 #import "BPVMacro.h"
@@ -17,6 +15,9 @@
 BPVStringConstantWithValue(kBPVPermitionPublicProfile, public_profile);
 
 @implementation BPVLoginFacebookContext
+
+#pragma mark -
+#pragma mark Public Implementations
 
 - (void)execute {
     [[FBSDKLoginManager new] logInWithReadPermissions:@[kBPVPermitionPublicProfile]

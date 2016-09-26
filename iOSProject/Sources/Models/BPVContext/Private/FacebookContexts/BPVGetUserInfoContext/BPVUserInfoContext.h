@@ -6,12 +6,14 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVContext.h"
+#import "BPVFriendsListContext.h"
 
 @class BPVUser;
 @class BPVUserViewController;
 
-@interface BPVUserInfoContext : BPVContext
+@interface BPVUserInfoContext : BPVFriendsListContext
 @property (nonatomic, strong)   BPVUser     *user;
+
+@property (nonatomic, readonly) NSString *detailedParametersList;
 
 @end
