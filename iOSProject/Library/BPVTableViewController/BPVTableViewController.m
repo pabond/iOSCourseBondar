@@ -33,6 +33,15 @@
 }
 
 #pragma mark -
+#pragma mark - ViewLifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.model load];
+}
+
+#pragma mark -
 #pragma mark Accessors
 
 - (void)setModel:(BPVArrayModel *)model {
@@ -56,12 +65,6 @@
         _filteredModel = filteredModel;
         [_filteredModel addObserver:self];
     }
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.model load];
 }
 
 #pragma mark -

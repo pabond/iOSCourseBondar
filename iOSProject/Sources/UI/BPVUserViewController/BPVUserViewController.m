@@ -22,6 +22,12 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 @implementation BPVUserViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.user load];
+}
+
 #pragma mark -
 #pragma mark Accessors
 
@@ -32,7 +38,9 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
         _user = user;
         [_user addObserver:self];
         
-        [_user load];
+        if ([self isViewLoaded]) {
+            [_user load];
+        }
     }
 }
 

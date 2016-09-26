@@ -33,10 +33,9 @@
 - (void)execute {
     NSDictionary *paremters = @{kBPVFields:self.detailedParametersList};
     BPVUser *user = self.user;
-    FBSDKGraphRequest *request = nil;
-    request = [[FBSDKGraphRequest alloc] initWithGraphPath:user.ID
-                                                parameters:paremters
-                                                HTTPMethod:kBPVGetMethod];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:user.ID
+                                                                   parameters:paremters
+                                                                   HTTPMethod:kBPVGetMethod];
     
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
         if (error || !result) {

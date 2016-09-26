@@ -63,8 +63,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
     
     BPVUserViewController *userController = [BPVUserViewController viewController];
     userController.user = user;
+    
     [self.navigationController pushViewController:userController animated:YES];
 }
-
 
 @end

@@ -34,10 +34,9 @@
 - (void)execute {
     NSDictionary *parameters = @{kBPVFields:self.parametersList};
     NSString *path = [self.userID stringByAppendingString:kBPVFriends];
-    FBSDKGraphRequest *request = nil;
-    request = [[FBSDKGraphRequest alloc] initWithGraphPath:path
-                                                parameters:parameters
-                                                HTTPMethod:kBPVGetMethod];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:path
+                                                                   parameters:parameters
+                                                                   HTTPMethod:kBPVGetMethod];
     
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
         if (error || !result) {
