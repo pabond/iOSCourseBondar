@@ -61,6 +61,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 - (void)performLoading {
     BPVUserInfoContext *userFillContext  = [BPVUserInfoContext new];
     userFillContext.user = self;
+    
     [userFillContext execute];
 }
 

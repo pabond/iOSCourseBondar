@@ -118,7 +118,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     self.usersView.loading = YES;
 }
 
-- (void)modelDidLoad:(BPVArrayModel *)model {
+- (void)modelDidLoad:(id)model {
     [self.usersView.usersTableView reloadData];
     self.usersView.loading = NO;
 }

@@ -13,8 +13,7 @@
 @interface BPVFriendsListContext : BPVFacebookContext
 @property (nonatomic, copy)     NSString    *userID;
 @property (nonatomic, strong)   BPVUsers    *arrayModel;
-
-@property (nonatomic, readonly) NSString *parametersList;
+@property (nonatomic, readonly) NSString    *parametersList;
 
 
 @end

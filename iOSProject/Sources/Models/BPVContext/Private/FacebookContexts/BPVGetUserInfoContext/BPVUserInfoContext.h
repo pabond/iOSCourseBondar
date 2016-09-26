@@ -13,7 +13,6 @@
 
 @interface BPVUserInfoContext : BPVFriendsListContext
 @property (nonatomic, strong)   BPVUser     *user;
-
-@property (nonatomic, readonly) NSString *detailedParametersList;
+@property (nonatomic, readonly) NSString    *detailedParametersList;
 
 @end
