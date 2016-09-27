@@ -13,6 +13,10 @@
 #import "BPVArrayChange.h"
 #import "BPVFilteredModel.h"
 
+#import "BPVUser.h"
+
+#import "BPVFriendsListContext.h"
+
 #import "BPVObservableObject.h"
 
 #import "BPVMacro.h"
@@ -38,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.model load];
+    [self loadModel];
 }
 
 #pragma mark -
@@ -53,7 +57,7 @@
         [_model addObserver:self.filteredModel];
         
         if ([self isViewLoaded]) {
-            [_model load];
+            [self loadModel];
         }
     }
 }
@@ -65,6 +69,17 @@
         _filteredModel = filteredModel;
         [_filteredModel addObserver:self];
     }
+}
+
+#pragma mark -
+#pragma mark PublicImplementations
+
+- (void)loadModel {
+    BPVFriendsListContext *context = [BPVFriendsListContext new];
+    context.userID = self.user.ID;
+    context.arrayModel = self.model;
+    
+    [context execute];
 }
 
 #pragma mark -

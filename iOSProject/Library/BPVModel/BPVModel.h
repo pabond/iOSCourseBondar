@@ -11,7 +11,9 @@
 typedef NS_ENUM(NSUInteger, BPVModelState) {
     BPVModelDidUnload,
     BPVModelWillLoad,
+    BPVModelDidLoadID,
     BPVModelDidLoad,
+    BPVModelDidLoadDetailedInfo,
     BPVModelFailLoading,
     BPVCount
 };
@@ -24,6 +26,9 @@ typedef NS_ENUM(NSUInteger, BPVModelState) {
 
 - (void)modelWillLoad:(id)model;
 - (void)modelDidUnload:(id)model;
+
+- (void)modelDidLoadID:(id)model;
+- (void)modelDidLoadDetailedInfo:(id)model;
 
 @end
 

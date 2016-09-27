@@ -35,7 +35,7 @@
 
 - (void)execute {
     NSDictionary *parameters = @{kBPVFields:self.parametersList};
-    NSString *path = [self.userID stringByAppendingString:kBPVFriends];
+    NSString *path = [NSString stringWithFormat:@"%@/%@", self.userID, kBPVFriends];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:path
                                                                    parameters:parameters
                                                                    HTTPMethod:kBPVGetMethod];
@@ -64,7 +64,7 @@
             
             NSLog(@"[LOADING] Array loaded from Internet");
         } else {
-            [array addObjectsFromArray:[self.arrayModel cachedArray]];
+            [array addObjectsFromArray:[(BPVUsers *)self.arrayModel cachedArray]];
             NSLog(@"[LOADING] Array will load from file");
         }
         

@@ -65,6 +65,12 @@
         case BPVModelDidUnload:
             return @selector(modelDidUnload:);
             
+        case BPVModelDidLoadID:
+            return @selector(modelDidLoadID:);
+            
+        case BPVModelDidLoadDetailedInfo:
+            return @selector(modelDidLoadDetailedInfo:);
+            
         default:
             return [super selectorForState:state];
     }

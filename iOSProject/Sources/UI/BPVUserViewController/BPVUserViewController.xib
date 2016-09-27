@@ -26,7 +26,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mg9-ZY-E9G">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mg9-ZY-E9G">
                     <rect key="frame" x="128" y="320" width="184" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -40,7 +40,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="surname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HBX-jj-FUp">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HBX-jj-FUp">
                     <rect key="frame" x="128" y="350" width="184" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -63,7 +63,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="day of birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EDC-6A-QJi">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EDC-6A-QJi">
                     <rect key="frame" x="128" y="379" width="184" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -77,7 +77,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LNx-Hi-vvh">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LNx-Hi-vvh">
                     <rect key="frame" x="128" y="408" width="184" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -87,16 +87,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="birthday" destination="dL1-rB-c7R" id="6C4-ia-1hr"/>
-                <outlet property="birthdayContainer" destination="EDC-6A-QJi" id="Ial-5h-MJv"/>
-                <outlet property="email" destination="9bg-EH-9lL" id="tgi-TY-lq2"/>
-                <outlet property="emailContainer" destination="LNx-Hi-vvh" id="yI2-xq-Xb0"/>
-                <outlet property="friendsButton" destination="8jn-Ar-TWx" id="L0d-tV-rSA"/>
-                <outlet property="imageView" destination="Mgw-hh-D6j" id="P8s-Vd-lMy"/>
-                <outlet property="name" destination="r5T-tr-UqV" id="lWr-gr-2gn"/>
-                <outlet property="nameContainer" destination="Mg9-ZY-E9G" id="h7W-aX-Gnz"/>
-                <outlet property="surname" destination="cbd-aR-Ngu" id="fOU-l3-1a3"/>
-                <outlet property="surnameContainer" destination="HBX-jj-FUp" id="dSY-D6-y87"/>
+                <outlet property="birthdayLabel" destination="EDC-6A-QJi" id="woI-K0-5yH"/>
+                <outlet property="emailLabel" destination="LNx-Hi-vvh" id="V4s-Be-82y"/>
+                <outlet property="friendsButton" destination="8jn-Ar-TWx" id="O4a-td-qmG"/>
+                <outlet property="imageView" destination="Mgw-hh-D6j" id="j7y-C1-bnc"/>
+                <outlet property="nameLabel" destination="Mg9-ZY-E9G" id="9yQ-LT-utv"/>
+                <outlet property="surnameLabel" destination="HBX-jj-FUp" id="Om8-h5-8dn"/>
             </connections>
             <point key="canvasLocation" x="340" y="383"/>
         </view>

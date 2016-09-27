@@ -8,7 +8,11 @@
 
 #import "BPVLoginFacebookContext.h"
 
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 #import "BPVLoginViewController.h"
+#import "BPVUser.h"
 
 #import "BPVMacro.h"
 
@@ -21,11 +25,13 @@ BPVStringConstantWithValue(kBPVPermitionPublicProfile, public_profile);
 
 - (void)execute {
     [[FBSDKLoginManager new] logInWithReadPermissions:@[kBPVPermitionPublicProfile]
-                             fromViewController:self.controller
-                                        handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                            self.result = result;
-                                            [self.controller showUserProfile];
-                                        }];
+                                   fromViewController:self.controller
+                                              handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                                                  BPVUser *user = self.user;
+                                            
+                                                  user.state = (user.ID = result.token.userID) ? BPVModelDidLoadID
+                                                                                                : BPVModelFailLoading;
+                                              }];
 }
 
 @end

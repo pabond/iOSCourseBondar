@@ -11,8 +11,6 @@
 #import "BPVUser.h"
 #import "BPVGCD.h"
 
-#import "BPVFriendsListContext.h"
-
 #import "NSFileManager+BPVExtensions.h"
 #import "NSKeyedUnarchiver+BPVExtensions.h"
 #import "NSArray+BPVExtensions.h"
@@ -77,14 +75,6 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
     } else {
         NSLog(@"[FAIL] Data not saved");
     }
-}
-
-- (void)performLoading {
-    BPVFriendsListContext *context = [BPVFriendsListContext new];
-    context.userID = self.user.ID;
-    context.arrayModel = self;
-    
-    [context execute];
 }
 
 - (NSArray *)cachedArray {

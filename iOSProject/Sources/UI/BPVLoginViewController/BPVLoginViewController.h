@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "BPVViewController.h"
+#import "BPVUser.h"
 
-@interface BPVLoginViewController : BPVViewController
+@interface BPVLoginViewController : BPVViewController <BPVModelObserver>
 
 - (IBAction)onLogin:(id)sender;
-- (void)showUserProfile;
 
 @end

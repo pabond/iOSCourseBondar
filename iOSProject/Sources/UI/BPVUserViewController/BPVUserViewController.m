@@ -12,6 +12,7 @@
 #import "BPVUsers.h"
 #import "BPVUsersViewController.h"
 
+#import "BPVUserInfoContext.h"
 #import "BPVFriendsListContext.h"
 
 #import "UIViewController+BPVExtensions.h"
@@ -25,7 +26,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.user load];
+    [self loadModel];
 }
 
 #pragma mark -
@@ -39,7 +40,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
         [_user addObserver:self];
         
         if ([self isViewLoaded]) {
-            [_user load];
+            [self loadModel];
         }
     }
 }
@@ -49,11 +50,21 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 - (IBAction)onFriends:(id)sender {
     BPVUsers *friends = [BPVUsers new];
-    friends.user = self.user;
     BPVUsersViewController *controller = [BPVUsersViewController viewController];
+    controller.user = self.user;
     controller.model = friends;
     
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark -
+#pragma mark Public implementations
+
+- (void)loadModel {
+    BPVUserInfoContext *userFillContext  = [BPVUserInfoContext new];
+    userFillContext.user = self.user;
+    
+    [userFillContext execute];
 }
 
 #pragma mark -

@@ -13,6 +13,10 @@
 #pragma mark -
 #pragma mark Initializations and deallocations
 
+- (void)dealloc {
+    [self.context cancel];
+}
+
 - (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
     self = [super initWithNibName:nibName bundle:nibBundle];
     
@@ -21,6 +25,10 @@
     self.edgesForExtendedLayout = UIRectEdgeBottom;
     
     return self;
+}
+
+- (void)loadModel {
+
 }
 
 @end

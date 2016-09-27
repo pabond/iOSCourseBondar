@@ -17,17 +17,11 @@
 @property (nonatomic, strong) IBOutlet  BPVImageView    *imageView;
 @property (nonatomic, strong) IBOutlet  UIButton        *friendsButton;
 
-@property (nonatomic, strong) IBOutlet  UILabel         *name;
-@property (nonatomic, strong) IBOutlet  UILabel         *nameContainer;
+@property (nonatomic, strong) IBOutlet  UILabel         *nameLabel;
+@property (nonatomic, strong) IBOutlet  UILabel         *surnameLabel;
 
-@property (nonatomic, strong) IBOutlet  UILabel         *surname;
-@property (nonatomic, strong) IBOutlet  UILabel         *surnameContainer;
-
-@property (nonatomic, strong) IBOutlet  UILabel         *birthday;
-@property (nonatomic, strong) IBOutlet  UILabel         *birthdayContainer;
-
-@property (nonatomic, strong) IBOutlet  UILabel         *email;
-@property (nonatomic, strong) IBOutlet  UILabel         *emailContainer;
+@property (nonatomic, strong) IBOutlet  UILabel         *birthdayLabel;
+@property (nonatomic, strong) IBOutlet  UILabel         *emailLabel;
 
 @property (nonatomic, strong) BPVUser   *user;
 

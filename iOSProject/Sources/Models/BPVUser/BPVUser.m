@@ -11,8 +11,6 @@
 #import "BPVImage.h"
 #import "BPVGCD.h"
 
-#import "BPVUserInfoContext.h"
-
 #import "NSString+BPVRandomName.h"
 
 #import "BPVMacro.h"
@@ -53,16 +51,6 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 - (BPVImage *)image {
     return [BPVImage imageWithUrl:self.imageURL];
-}
-
-#pragma mark -
-#pragma mark Public implementations
-
-- (void)performLoading {
-    BPVUserInfoContext *userFillContext  = [BPVUserInfoContext new];
-    userFillContext.user = self;
-    
-    [userFillContext execute];
 }
 
 #pragma mark -

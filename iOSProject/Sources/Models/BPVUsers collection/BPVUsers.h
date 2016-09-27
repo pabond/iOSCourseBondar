@@ -8,10 +8,7 @@
 
 #import "BPVArrayModel.h"
 
-@class BPVUser;
-
 @interface BPVUsers : BPVArrayModel
-@property (nonatomic, strong) BPVUser *user;
 
 - (NSArray *)cachedArray;
 

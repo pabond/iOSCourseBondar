@@ -24,11 +24,11 @@
 }
 
 - (void)fillWithUser:(BPVUser *)user {
-    self.nameContainer.text = user.name;
-    self.surnameContainer.text = user.surname;
+    self.nameLabel.text = user.name;
+    self.surnameLabel.text = user.surname;
     self.imageView.image = user.image;
-    self.birthdayContainer.text = user.birthday;
-    self.emailContainer.text = user.email;
+    self.birthdayLabel.text = user.birthday;
+    self.emailLabel.text = user.email;
 }
 
 @end

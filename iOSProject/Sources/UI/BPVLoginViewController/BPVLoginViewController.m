@@ -8,14 +8,13 @@
 
 #import "BPVLoginViewController.h"
 
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-
-#import "BPVUserViewController.h"
-#import "BPVUser.h"
+#import "BPVUsersViewController.h"
+#import "BPVUsers.h"
 
 #import "BPVLoginView.h"
 #import "BPVLoginFacebookContext.h"
+
+#import "BPVGCD.h"
 
 #import "BPVImage.h"
 
@@ -29,19 +28,39 @@ BPVStringConstantWithValue(kBPVLogoImageFormat, png);
 BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, BPVLoginView)
 
 @interface BPVLoginViewController ()
-@property (nonatomic, strong) BPVLoginFacebookContext   *context;
+@property (nonatomic, strong) BPVUser                   *user;
 
 @end
 
 @implementation BPVLoginViewController
 
 #pragma mark -
+#pragma mark Accessors
+
+- (void)setUser:(BPVUser *)user {
+    if (_user != user) {
+        [_user removeObserver:self];
+        
+        _user = user;
+        [_user addObserver:self];
+        
+        [self loadModel];
+    }
+}
+
+#pragma mark -
 #pragma mark Interface Handling
 
 - (IBAction)onLogin:(id)sender {
-    FBSDKLoginManagerLoginResult *result = nil;
+    self.user = [BPVUser new];
+}
+
+#pragma mark -
+#pragma mark Public implementations 
+
+- (void)loadModel {
     BPVLoginFacebookContext *context = [BPVLoginFacebookContext new];
-    context.result = result;
+    context.user = self.user;
     context.controller = self;
     self.context = context;
     
@@ -49,22 +68,14 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 }
 
 #pragma mark -
-#pragma mark publicImplementations
+#pragma mark BPVModelObserver
 
-- (void)showUserProfile {
-    BPVLoginFacebookContext *context = self.context;
-    FBSDKAccessToken *token = context.result.token;
-    if (!token || context.isCanceled) {
-        return;
-    }
+- (void)modelDidLoadID:(BPVUser *)model {
+    BPVUsersViewController *usersController = [BPVUsersViewController viewController];
+    usersController.user = model;
+    usersController.model = [BPVUsers new];
     
-    BPVUser *user = [BPVUser new];
-    user.ID = token.userID;
-    
-    BPVUserViewController *userController = [BPVUserViewController viewController];
-    userController.user = user;
-    
-    [self.navigationController pushViewController:userController animated:YES];
+    [self.navigationController pushViewController:usersController animated:YES];
 }
 
 @end

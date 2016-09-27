@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface BPVViewController : UIViewController
+@property (nonatomic, strong)   id  context;
+
+- (void)loadModel;
 
 @end
