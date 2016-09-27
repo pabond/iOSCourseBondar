@@ -26,39 +26,27 @@
 #pragma mark -
 #pragma mark Accessors
 
+- (NSDictionary *)paremeters {
+    return @{kBPVFields:self.detailedParametersList};
+}
+
 - (NSString *)detailedParametersList {
-    BPVReturnOnce(NSString, parametersList, (^{
-        return [NSString stringWithFormat:@"%@,%@,%@", self.parametersList, kBPVBirthday, kBPVEmail];
-    }));
+    return [NSString stringWithFormat:@"%@,%@,%@", self.parametersList, kBPVBirthday, kBPVEmail];
+}
+
+- (NSString *)path {
+    return self.user.ID;
 }
 
 #pragma mark -
 #pragma mark Public Implementations
 
-- (void)execute {
+- (void)performLoadingWithInfo:(NSDictionary *)info {
     NSDictionary *userInfo = self.userInfo;
     
-    if (userInfo) {
-        [self fillUserWithDictionary:userInfo];
-        return;
-    }
+    NSDictionary *result = userInfo ? userInfo : info;
     
-    NSDictionary *paremters = @{kBPVFields:self.detailedParametersList};
-    BPVUser *user = self.user;
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:user.ID
-                                                                   parameters:paremters
-                                                                   HTTPMethod:kBPVGetMethod];
-    
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
-        if (error || !result) {
-            NSLog(@"Faild data load with error: %@", error);
-            return;
-        }
-    
-        [self fillUserWithDictionary:result];
-        
-        user.state = BPVModelDidLoad;
-    }];
+    [self fillUserWithDictionary:result];
 }
 
 #pragma mark -
@@ -69,12 +57,20 @@
     
     user.name = userInfo[kBPVName];
     user.surname = userInfo[kBPVSurname];
-    user.email = userInfo[kBPVEmail];
-    user.birthday = userInfo[kBPVBirthday];
     user.ID = userInfo[kBPVId];
-    
     NSDictionary *picture = userInfo[kBPVPicture][kBPVData];
     user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
+    
+    NSUInteger state = BPVModelDidLoad;
+    
+    if (!userInfo) {
+        user.email = userInfo[kBPVEmail];
+        user.birthday = userInfo[kBPVBirthday];
+        
+        state = BPVModelDidLoadDetailedInfo;
+    }
+    
+    user.state = state;
 }
 
 @end

@@ -74,7 +74,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
     self.userView.loading = YES;
 }
 
-- (void)modelDidLoad:(BPVUser *)model {
+- (void)modelDidLoadDetailedInfo:(BPVUser *)model {
     self.userView.loading = NO;
     self.title = model.fullName;
     self.userView.user = model;

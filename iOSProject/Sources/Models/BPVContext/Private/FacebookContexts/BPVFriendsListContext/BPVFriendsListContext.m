@@ -15,8 +15,6 @@
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
-#import "BPVMacro.h"
-
 @implementation BPVFriendsListContext
 
 @dynamic parametersList;
@@ -24,68 +22,51 @@
 #pragma mark -
 #pragma mark Accessors
 
+- (NSDictionary *)paremeters {
+    return @{kBPVFields:self.parametersList};
+}
+
 - (NSString *)parametersList {
-    BPVReturnOnce(NSString, parametersList, (^{
-        return [NSString stringWithFormat:@"%@,%@,%@,%@", kBPVId, kBPVName, kBPVSurname, kBPVLargePicture];
-    }));
+    return [NSString stringWithFormat:@"%@,%@,%@,%@", kBPVId, kBPVName, kBPVSurname, kBPVLargePicture];
+}
+
+- (NSString *)path {
+    return [NSString stringWithFormat:@"%@/%@", self.userID, kBPVFriends];
 }
 
 #pragma mark -
 #pragma mark Public Implementations
 
-- (void)execute {
-    NSDictionary *parameters = @{kBPVFields:self.parametersList};
-    NSString *path = [NSString stringWithFormat:@"%@/%@", self.userID, kBPVFriends];
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:path
-                                                                   parameters:parameters
-                                                                   HTTPMethod:kBPVGetMethod];
+- (void)performLoadingWithInfo:(NSDictionary *)info {
+    NSArray *friendsList = info[kBPVData];
+    NSMutableArray *array = [NSMutableArray array];
+    BPVUser *user = nil;
+    BPVUserInfoContext *userContext = [BPVUserInfoContext new];
     
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
-        if (error || !result) {
-            NSLog(@"Faild data load with error: %@", error);
-            return;
-        }
-
-        NSArray *friendsList = result[kBPVData];
-        NSMutableArray *array = [NSMutableArray array];
-        BPVUser *user = nil;
-        BPVUserInfoContext *userContext = [BPVUserInfoContext new];
-        
-        if (friendsList) {
-            for (NSDictionary *friend in friendsList) {
-                user = [BPVUser new];
-                userContext.user = user;
-                userContext.userInfo = friend;
-                
-                [userContext execute];
-                
-                [array addObject:user];
-            }
+    if (friendsList) {
+        for (NSDictionary *friend in friendsList) {
+            user = [BPVUser new];
+            userContext.user = user;
+            userContext.userInfo = friend;
             
-            NSLog(@"[LOADING] Array loaded from Internet");
-        } else {
-            [array addObjectsFromArray:[(BPVUsers *)self.arrayModel cachedArray]];
-            NSLog(@"[LOADING] Array will load from file");
+            [userContext execute];
+            
+            [array addObject:user];
         }
         
-        BPVWeakify(self)
-        [self.arrayModel performBlockWithoutNotification:^{
-            BPVStrongifyAndReturnIfNil(self)
-            [self.arrayModel addModels:array];
-        }];
-        
-        self.arrayModel.state = BPVModelDidLoad;
-    }];
-}
-
-- (NSDictionary *)dictionatyWithResponseResult:(NSDictionary *)result {
-    if (!result) {
-        return nil;
+        NSLog(@"[LOADING] Array loaded from Internet");
+    } else {
+        [array addObjectsFromArray:[(BPVUsers *)self.arrayModel cachedArray]];
+        NSLog(@"[LOADING] Array will load from file");
     }
     
-//    NSMutableDictionary *dictionary = [result mutableCopy];
+    BPVWeakify(self)
+    [self.arrayModel performBlockWithoutNotification:^{
+        BPVStrongifyAndReturnIfNil(self)
+        [self.arrayModel addModels:array];
+    }];
     
-    return nil;
+    self.arrayModel.state = BPVModelDidLoad;
 }
 
 @end

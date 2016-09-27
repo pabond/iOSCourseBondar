@@ -27,7 +27,10 @@ BPVStringConstantWithValue(kBPVFields, fields);
 static NSString * const kBPVId = @"id";
 
 @interface BPVFacebookContext : BPVContext
+@property (nonatomic, readonly) NSString        *parametersList;
+@property (nonatomic, readonly) NSString        *path;
+@property (nonatomic, readonly) NSDictionary    *paremeters;
 
-
+- (void)performLoadingWithInfo:(NSDictionary *)info;
 
 @end

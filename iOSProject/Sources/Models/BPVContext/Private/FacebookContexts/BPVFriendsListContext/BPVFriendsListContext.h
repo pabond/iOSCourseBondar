@@ -13,8 +13,5 @@
 @interface BPVFriendsListContext : BPVFacebookContext
 @property (nonatomic, copy)     NSString        *userID;
 @property (nonatomic, strong)   BPVArrayModel   *arrayModel;
-@property (nonatomic, readonly) NSString        *parametersList;
-
-- (NSDictionary *)dictionatyWithResponseResult:(NSDictionary *)result;
 
 @end
