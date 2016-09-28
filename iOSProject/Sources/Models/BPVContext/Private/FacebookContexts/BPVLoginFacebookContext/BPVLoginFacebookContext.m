@@ -27,10 +27,13 @@ BPVStringConstantWithValue(kBPVPermitionPublicProfile, public_profile);
     [[FBSDKLoginManager new] logInWithReadPermissions:@[kBPVPermitionPublicProfile]
                                    fromViewController:self.controller
                                               handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                                  BPVUser *user = self.user;
-                                            
-                                                  user.state = (user.ID = result.token.userID) ? BPVModelDidLoadID
-                                                                                                : BPVModelFailLoading;
+                                                  BPVUser *user = (BPVUser *)self.model;
+                                                  if (!result) {
+                                                      user.state = BPVModelFailLoading;
+                                                  }
+                                                  
+                                                  user.ID = result.token.userID;
+                                                  user.state = BPVModelDidLoadID;
                                               }];
 }
 

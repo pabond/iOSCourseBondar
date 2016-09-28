@@ -11,7 +11,7 @@
 #import "BPVViewController.h"
 #import "BPVUser.h"
 
-@interface BPVLoginViewController : BPVViewController <BPVModelObserver>
+@interface BPVLoginViewController : BPVViewController <BPVUserObserver>
 
 - (IBAction)onLogin:(id)sender;
 

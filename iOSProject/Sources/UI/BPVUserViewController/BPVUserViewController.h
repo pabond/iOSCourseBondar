@@ -9,7 +9,7 @@
 #import "BPVViewController.h"
 #import "BPVUser.h"
 
-@interface BPVUserViewController : BPVViewController <BPVModelObserver>
+@interface BPVUserViewController : BPVViewController <BPVUserObserver>
 @property (nonatomic, strong) BPVUser *user;
 
 - (IBAction)onFriends:(id)sender;

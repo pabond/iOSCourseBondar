@@ -14,6 +14,7 @@
 #import "BPVFilteredModel.h"
 
 #import "BPVUser.h"
+#import "BPVUsers.h"
 
 #import "BPVFriendsListContext.h"
 
@@ -48,6 +49,14 @@
 #pragma mark -
 #pragma mark Accessors
 
+- (void)setUser:(BPVUser *)user {
+    if (_user !=  user) {
+        _user = user;
+        
+        self.model = [BPVUsers new];
+    }
+}
+
 - (void)setModel:(BPVArrayModel *)model {
     if (_model != model) {
         [_model removeObserver:self.filteredModel];
@@ -56,9 +65,9 @@
         self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:_model];
         [_model addObserver:self.filteredModel];
         
-        if ([self isViewLoaded]) {
+//        if ([self isViewLoaded]) {
             [self loadModel];
-        }
+//        }
     }
 }
 
@@ -76,8 +85,8 @@
 
 - (void)loadModel {
     BPVFriendsListContext *context = [BPVFriendsListContext new];
-    context.userID = self.user.ID;
-    context.arrayModel = self.model;
+    context.user = self.user;
+    context.model = self.model;
     
     [context execute];
 }

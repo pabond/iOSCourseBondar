@@ -60,7 +60,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 
 - (void)loadModel {
     BPVLoginFacebookContext *context = [BPVLoginFacebookContext new];
-    context.user = self.user;
+    context.model = self.user;
     context.controller = self;
     self.context = context;
     
@@ -68,12 +68,11 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 }
 
 #pragma mark -
-#pragma mark BPVModelObserver
+#pragma mark BPVUserObserver
 
 - (void)modelDidLoadID:(BPVUser *)model {
     BPVUsersViewController *usersController = [BPVUsersViewController viewController];
     usersController.user = model;
-    usersController.model = [BPVUsers new];
     
     [self.navigationController pushViewController:usersController animated:YES];
 }

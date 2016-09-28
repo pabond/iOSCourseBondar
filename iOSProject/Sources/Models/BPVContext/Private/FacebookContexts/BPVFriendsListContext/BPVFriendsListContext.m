@@ -10,63 +10,59 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-#import "BPVUserInfoContext.h"
-
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
 @implementation BPVFriendsListContext
 
-@dynamic parametersList;
-
 #pragma mark -
 #pragma mark Accessors
 
 - (NSDictionary *)paremeters {
-    return @{kBPVFields:self.parametersList};
-}
-
-- (NSString *)parametersList {
-    return [NSString stringWithFormat:@"%@,%@,%@,%@", kBPVId, kBPVName, kBPVSurname, kBPVLargePicture];
+    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@,%@,%@", kBPVId, kBPVName, kBPVSurname, kBPVLargePicture]};
 }
 
 - (NSString *)path {
-    return [NSString stringWithFormat:@"%@/%@", self.userID, kBPVFriends];
+    return [NSString stringWithFormat:@"%@/%@", self.user.ID, kBPVFriends];
 }
 
 #pragma mark -
 #pragma mark Public Implementations
 
-- (void)performLoadingWithInfo:(NSDictionary *)info {
+- (void)fillModelWithInfo:(NSDictionary *)info {
     NSArray *friendsList = info[kBPVData];
     NSMutableArray *array = [NSMutableArray array];
-    BPVUser *user = nil;
-    BPVUserInfoContext *userContext = [BPVUserInfoContext new];
+    
+     BPVUsers *model = (BPVUsers *)self.model;
     
     if (friendsList) {
         for (NSDictionary *friend in friendsList) {
-            user = [BPVUser new];
-            userContext.user = user;
-            userContext.userInfo = friend;
+            BPVUser *user = [BPVUser new];
             
-            [userContext execute];
+            user.name = friend[kBPVName];
+            user.surname = friend[kBPVSurname];
+            
+            user.ID = friend[kBPVId];
+            
+            NSDictionary *picture = friend[kBPVPicture][kBPVData];
+            user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
             
             [array addObject:user];
         }
         
         NSLog(@"[LOADING] Array loaded from Internet");
     } else {
-        [array addObjectsFromArray:[(BPVUsers *)self.arrayModel cachedArray]];
+        [array addObjectsFromArray:[model cachedArray]];
         NSLog(@"[LOADING] Array will load from file");
     }
     
     BPVWeakify(self)
-    [self.arrayModel performBlockWithoutNotification:^{
+    [model performBlockWithoutNotification:^{
         BPVStrongifyAndReturnIfNil(self)
-        [self.arrayModel addModels:array];
+        [model addModels:array];
     }];
     
-    self.arrayModel.state = BPVModelDidLoad;
+    model.state = BPVModelDidLoad;
 }
 
 @end

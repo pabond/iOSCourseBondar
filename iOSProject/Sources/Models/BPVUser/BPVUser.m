@@ -54,6 +54,22 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 }
 
 #pragma mark -
+#pragma mark Public implemantations
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case BPVModelDidLoadID:
+            return @selector(modelDidLoadID:);
+            
+        case BPVModelDidLoadDetailedInfo:
+            return @selector(modelDidLoadDetailedInfo:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
+#pragma mark -
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {

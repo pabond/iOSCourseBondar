@@ -10,6 +10,8 @@
 
 #import "BPVMacro.h"
 
+@class BPVModel;
+
 BPVStringConstantWithValue(kBPVGetMethod, GET);
 
 //perameters
@@ -27,10 +29,14 @@ BPVStringConstantWithValue(kBPVFields, fields);
 static NSString * const kBPVId = @"id";
 
 @interface BPVFacebookContext : BPVContext
-@property (nonatomic, readonly) NSString        *parametersList;
+@property (nonatomic, strong)   BPVModel        *model;
 @property (nonatomic, readonly) NSString        *path;
 @property (nonatomic, readonly) NSDictionary    *paremeters;
 
-- (void)performLoadingWithInfo:(NSDictionary *)info;
+//this method sould be implemented in subclasses
+- (void)fillModelWithInfo:(NSDictionary *)info;
+
+//this method cen be implemented in subclasses if needed
+- (BOOL)shouldNotifyOfState:(NSUInteger)state;
 
 @end

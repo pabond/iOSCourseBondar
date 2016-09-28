@@ -12,6 +12,19 @@
 
 @class BPVImage;
 
+typedef NS_ENUM(NSUInteger, BPVUserLaodState) {
+    BPVModelDidLoadID = BPVCount,
+    BPVModelDidLoadDetailedInfo
+};
+
+@protocol BPVUserObserver <BPVModelObserver>
+
+@optional
+- (void)modelDidLoadID:(id)model;
+- (void)modelDidLoadDetailedInfo:(id)model;
+
+@end
+
 @interface BPVUser : BPVModel <NSCoding>
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, copy)     NSString    *surname;

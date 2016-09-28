@@ -49,10 +49,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 #pragma mark Interface Handling
 
 - (IBAction)onFriends:(id)sender {
-    BPVUsers *friends = [BPVUsers new];
     BPVUsersViewController *controller = [BPVUsersViewController viewController];
     controller.user = self.user;
-    controller.model = friends;
     
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -68,7 +66,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 }
 
 #pragma mark -
-#pragma mark BPVModelObserver
+#pragma mark BPVUserObserver
 
 - (void)modelWillLoad:(id)model {
     self.userView.loading = YES;

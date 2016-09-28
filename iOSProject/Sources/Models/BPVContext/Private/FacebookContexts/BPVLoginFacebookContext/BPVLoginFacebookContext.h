@@ -6,12 +6,11 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVFacebookContext.h"
-@class BPVUser;
+#import "BPVFriendsListContext.h"
+
 @class BPVLoginViewController;
 
-@interface BPVLoginFacebookContext : BPVFacebookContext
+@interface BPVLoginFacebookContext : BPVFriendsListContext
 @property (nonatomic, strong) BPVLoginViewController    *controller;
-@property (nonatomic, strong) BPVUser                   *user;
 
 @end

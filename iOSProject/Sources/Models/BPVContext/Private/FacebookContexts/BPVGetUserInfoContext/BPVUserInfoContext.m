@@ -13,25 +13,19 @@
 #import "BPVUserViewController.h"
 #import "BPVUser.h"
 
-@interface BPVUserInfoContext ()
-
-- (void)fillUserWithDictionary:(NSDictionary *)result;
-
-@end
-
 @implementation BPVUserInfoContext
-
-@dynamic detailedParametersList;
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSDictionary *)paremeters {
-    return @{kBPVFields:self.detailedParametersList};
-}
-
-- (NSString *)detailedParametersList {
-    return [NSString stringWithFormat:@"%@,%@,%@", self.parametersList, kBPVBirthday, kBPVEmail];
+    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@",
+                         kBPVId,
+                         kBPVName,
+                         kBPVSurname,
+                         kBPVLargePicture,
+                         kBPVBirthday,
+                         kBPVEmail]};
 }
 
 - (NSString *)path {
@@ -41,36 +35,24 @@
 #pragma mark -
 #pragma mark Public Implementations
 
-- (void)performLoadingWithInfo:(NSDictionary *)info {
-    NSDictionary *userInfo = self.userInfo;
-    
-    NSDictionary *result = userInfo ? userInfo : info;
-    
-    [self fillUserWithDictionary:result];
+- (BOOL)shouldNotifyOfState:(NSUInteger)state {
+    return BPVModelDidLoadDetailedInfo == state || BPVModelWillLoad == state;
 }
 
-#pragma mark -
-#pragma mark Private Implementations
-
-- (void)fillUserWithDictionary:(NSDictionary *)userInfo {
+- (void)fillModelWithInfo:(NSDictionary *)info {
     BPVUser *user = self.user;
     
-    user.name = userInfo[kBPVName];
-    user.surname = userInfo[kBPVSurname];
-    user.ID = userInfo[kBPVId];
-    NSDictionary *picture = userInfo[kBPVPicture][kBPVData];
+    user.name = info[kBPVName];
+    user.surname = info[kBPVSurname];
+    
+    user.ID = info[kBPVId];
+    user.email = info[kBPVEmail];
+    user.birthday = info[kBPVBirthday];
+    
+    NSDictionary *picture = info[kBPVPicture][kBPVData];
     user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
     
-    NSUInteger state = BPVModelDidLoad;
-    
-    if (!userInfo) {
-        user.email = userInfo[kBPVEmail];
-        user.birthday = userInfo[kBPVBirthday];
-        
-        state = BPVModelDidLoadDetailedInfo;
-    }
-    
-    user.state = state;
+    user.state = BPVModelDidLoadDetailedInfo;
 }
 
 @end
