@@ -46,12 +46,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     return self;
 }
 
-- (void)initBarButtons {
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                               target:self
-                                                                               action:@selector(onAdd:)];
-    [self.navigationItem setLeftBarButtonItem:addButton animated:YES];
-    
+- (void)initBarButtons {    
     UIBarButtonItem *editingButton = [[UIBarButtonItem alloc] initWithTitle:kBPVEditingButton
                                                                       style:UIBarButtonItemStylePlain
                                                                      target:self
@@ -62,10 +57,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 #pragma mark -
 #pragma mark Interface Handling
-
-- (void)onAdd:(id)sender {
-    [self.model addModel:[BPVUser new]];
-}
 
 - (void)onEditing:(id)sender {
     BPVUsersView *usersView = self.usersView;

@@ -13,6 +13,5 @@
 @interface BPVUsersViewController : BPVTableViewController <BPVFilteredModelObserver, UISearchBarDelegate>
 
 - (void)onEditing:(id)sender;
-- (void)onAdd:(id)sender;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "BPVLoginViewController.h"
 
-#import "BPVUsersViewController.h"
+#import "BPVFirstUsersViewController.h"
 #import "BPVUsers.h"
 
 #import "BPVLoginView.h"
@@ -85,7 +85,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 #pragma mark BPVUserObserver
 
 - (void)modelDidLoadID:(BPVUser *)model {
-    BPVUsersViewController *usersController = [BPVUsersViewController viewController];
+    BPVUsersViewController *usersController = [BPVFirstUsersViewController viewController];
     usersController.user = model;
     
     [self.navigationController pushViewController:usersController animated:YES];
