@@ -30,13 +30,16 @@ static NSString * const kBPVId = @"id";
 
 @interface BPVFacebookContext : BPVContext
 @property (nonatomic, strong)   BPVModel        *model;
+
+//this getters should be implemented in subclasses
 @property (nonatomic, readonly) NSString        *path;
 @property (nonatomic, readonly) NSDictionary    *paremeters;
 
-//this method sould be implemented in subclasses
+//this method should be implemented in subclasses
 - (void)fillModelWithInfo:(NSDictionary *)info;
 
 //this method cen be implemented in subclasses if needed
 - (BOOL)shouldNotifyOfState:(NSUInteger)state;
+- (NSString *)HTTPMethod;
 
 @end

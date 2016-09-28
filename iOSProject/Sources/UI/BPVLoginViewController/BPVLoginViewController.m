@@ -85,6 +85,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 #pragma mark BPVUserObserver
 
 - (void)modelDidLoadID:(BPVUser *)model {
+    self.context = nil;
     BPVUsersViewController *usersController = [BPVFirstUsersViewController viewController];
     usersController.user = model;
     

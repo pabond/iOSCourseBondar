@@ -44,6 +44,10 @@
     return BPVModelDidLoad == state || BPVModelWillLoad == state;
 }
 
+- (NSString *)HTTPMethod {
+    return kBPVGetMethod;
+}
+
 - (void)execute {
     NSUInteger state = self.model.state;
     @synchronized (self) {
@@ -62,7 +66,7 @@
 - (void)loadModel {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:self.path
                                                                    parameters:self.paremeters
-                                                                   HTTPMethod:kBPVGetMethod];
+                                                                   HTTPMethod:[self HTTPMethod]];
     
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
         if (error || !result) {

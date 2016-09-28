@@ -34,7 +34,6 @@
 
 - (void)dealloc {
     self.filteredModel = nil;
-    self.model = nil;
 }
 
 #pragma mark -
