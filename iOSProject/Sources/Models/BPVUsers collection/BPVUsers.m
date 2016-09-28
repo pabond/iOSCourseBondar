@@ -41,17 +41,10 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
-- (void)dealloc {
-   [self endObservationWithNotificationNames:[self observingSelectorsNames]];
-}
-
 - (instancetype)init {
     self = [super init];
     if (self) {
         self.observers = [NSMutableDictionary dictionary];
-        [self startObservationForNotificationNames:[self observingSelectorsNames] block:^{
-            [self save];
-        }];
     }
     
     return self;
@@ -61,24 +54,25 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 #pragma mark Accessors
 
 - (NSString *)applicationFilePath {
-    NSString *modelsFolderPath = [NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder];
-    
-    return [modelsFolderPath stringByAppendingPathComponent:kBPVApplictionSaveFileName];
+    return  [NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder];
 }
 
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self.models toFile:self.applicationFilePath]) {
+- (void)saveToFile:(NSString *)fileName {
+    NSString *filePath = [self.applicationFilePath stringByAppendingPathComponent:fileName];
+    if ([NSKeyedArchiver archiveRootObject:self.models toFile:filePath]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");
     }
 }
 
-- (NSArray *)cachedArray {
-    return [NSKeyedUnarchiver objectFromFileWithPath:self.applicationFilePath];
+- (NSArray *)cachedArrayWithUserID:(NSString *)userID {
+    NSString *path = [self.applicationFilePath stringByAppendingPathComponent:userID];
+    
+    return [NSKeyedUnarchiver objectFromFileWithPath:path];
 }
 
 #pragma mark -

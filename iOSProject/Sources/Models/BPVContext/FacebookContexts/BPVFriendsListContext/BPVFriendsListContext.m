@@ -30,10 +30,11 @@
 #pragma mark Public Implementations
 
 - (void)fillModelWithInfo:(NSDictionary *)info {
+    NSString *userID = self.user.ID;
     NSArray *friendsList = info[kBPVData];
     NSMutableArray *array = [NSMutableArray array];
     
-     BPVUsers *model = (BPVUsers *)self.model;
+    BPVUsers *model = (BPVUsers *)self.model;
     
     if (friendsList) {
         for (NSDictionary *friend in friendsList) {
@@ -50,9 +51,10 @@
             [array addObject:user];
         }
         
+        [self.model saveToFile:userID];
         NSLog(@"[LOADING] Array loaded from Internet");
     } else {
-        [array addObjectsFromArray:[model cachedArray]];
+        [array addObjectsFromArray:[model cachedArrayWithUserID:userID]];
         NSLog(@"[LOADING] Array will load from file");
     }
     

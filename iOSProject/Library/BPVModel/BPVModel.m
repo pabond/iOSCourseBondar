@@ -28,7 +28,7 @@
 #pragma mark -
 #pragma mark saving and restoring of state
 
-- (void)save {
+- (void)saveToFile:(NSString *)fileName {
     
 }
 

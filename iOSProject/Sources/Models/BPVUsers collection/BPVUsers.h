@@ -10,6 +10,6 @@
 
 @interface BPVUsers : BPVArrayModel
 
-- (NSArray *)cachedArray;
+- (NSArray *)cachedArrayWithUserID:(NSString *)userID;
 
 @end

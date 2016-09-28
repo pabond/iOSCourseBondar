@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, BPVModelState) {
 
 @interface BPVModel : BPVObservableObject
 
-- (void)save;
+- (void)saveToFile:(NSString *)fileName;
 - (void)load;
 
 //this method sould be implemented in subclasses
