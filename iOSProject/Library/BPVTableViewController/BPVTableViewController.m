@@ -59,11 +59,9 @@
 
 - (void)setModel:(BPVArrayModel *)model {
     if (_model != model) {
-        [_model removeObserver:self.filteredModel];
-        
         _model = model;
+        
         self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:_model];
-        [_model addObserver:self.filteredModel];
         
 //        if ([self isViewLoaded]) {
             [self loadModel];

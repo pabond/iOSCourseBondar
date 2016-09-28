@@ -46,4 +46,13 @@
     return nil;
 }
 
+- (instancetype)JSONReprezentation {
+    NSMutableArray *array = [NSMutableArray array];
+    for (id object in self) {
+        [array addObject:[object JSONReprezentation]];
+    }
+    
+    return array;
+}
+
 @end

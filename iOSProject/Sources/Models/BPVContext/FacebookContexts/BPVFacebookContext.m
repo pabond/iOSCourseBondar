@@ -9,10 +9,11 @@
 #import "BPVFacebookContext.h"
 
 #import "BPVModel.h"
-
 #import "BPVGCD.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+
+#import "NSDictionary+BPVExtensions.h"
 
 @interface BPVFacebookContext ()
 
@@ -70,7 +71,7 @@
             return;
         }
         
-        [self fillModelWithInfo:result];
+        [self fillModelWithInfo:[result JSONReprezentation]];
     }];
 }
 

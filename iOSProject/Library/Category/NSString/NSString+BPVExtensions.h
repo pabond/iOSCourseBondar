@@ -23,4 +23,6 @@
 
 - (NSArray *)symbols;
 
+- (instancetype)JSONReprezentation;
+
 @end
