@@ -87,6 +87,7 @@
     BPVFriendsListContext *context = [BPVFriendsListContext new];
     context.user = self.user;
     context.model = self.model;
+    self.context = context;
     
     [context execute];
 }

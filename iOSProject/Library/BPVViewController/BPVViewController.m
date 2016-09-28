@@ -14,7 +14,7 @@
 #pragma mark Initializations and deallocations
 
 - (void)dealloc {
-    [self.context cancel];
+    self.context = nil;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {

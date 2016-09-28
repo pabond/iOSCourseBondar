@@ -12,11 +12,12 @@
 #import "BPVUsers.h"
 
 #import "BPVLoginView.h"
-#import "BPVLoginFacebookContext.h"
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "BPVGCD.h"
-
 #import "BPVImage.h"
+#import "BPVLoginFacebookContext.h"
 
 #import "UIViewController+BPVExtensions.h"
 
@@ -28,11 +29,24 @@ BPVStringConstantWithValue(kBPVLogoImageFormat, png);
 BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, BPVLoginView)
 
 @interface BPVLoginViewController ()
-@property (nonatomic, strong) BPVUser                   *user;
+@property (nonatomic, strong) BPVUser   *user;
 
 @end
 
 @implementation BPVLoginViewController
+
+#pragma mark -
+#pragma mark View lifecycle
+
+- (void)viewDidLoad {
+    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
+    if (token) {
+        BPVUser *user = [BPVUser new];
+        self.user = user;
+        user.ID = token.userID;
+        user.state = BPVModelDidLoadID;
+    }
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -43,8 +57,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
         
         _user = user;
         [_user addObserver:self];
-        
-        [self loadModel];
     }
 }
 
@@ -53,6 +65,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 
 - (IBAction)onLogin:(id)sender {
     self.user = [BPVUser new];
+    
+    [self loadModel];
 }
 
 #pragma mark -

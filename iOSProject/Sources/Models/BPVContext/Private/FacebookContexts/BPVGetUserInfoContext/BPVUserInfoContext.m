@@ -29,7 +29,9 @@
 }
 
 - (NSString *)path {
-    return self.user.ID;
+    BPVUser *user = (BPVUser *)self.model;
+    
+    return user.ID;
 }
 
 #pragma mark -
@@ -40,7 +42,7 @@
 }
 
 - (void)fillModelWithInfo:(NSDictionary *)info {
-    BPVUser *user = self.user;
+    BPVUser *user = (BPVUser *)self.model;
     
     user.name = info[kBPVName];
     user.surname = info[kBPVSurname];
