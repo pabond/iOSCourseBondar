@@ -44,6 +44,10 @@
 #pragma mark -
 #pragma mark Initializations and deallocations
 
+- (void)dealloc {
+    self.arrayModel = nil;
+}
+
 - (instancetype)initWithArrayModel:(id)model {
     self = [super init];
     self.arrayModel = model;

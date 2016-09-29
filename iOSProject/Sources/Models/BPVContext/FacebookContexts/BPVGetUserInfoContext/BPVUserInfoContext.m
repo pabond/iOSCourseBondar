@@ -54,7 +54,13 @@
     NSDictionary *picture = info[kBPVPicture][kBPVData];
     user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
     
-    user.state = BPVModelDidLoadDetailedInfo;
+    NSUInteger state = BPVModelDidLoadDetailedInfo;
+    if (self.isCanceled) {
+        self.model = self.defaultModel;
+        state = BPVModelFailLoading;
+    }
+    
+    user.state = state;
 }
 
 @end

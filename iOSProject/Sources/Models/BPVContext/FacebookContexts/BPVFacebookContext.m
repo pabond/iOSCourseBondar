@@ -16,6 +16,7 @@
 #import "NSDictionary+BPVExtensions.h"
 
 @interface BPVFacebookContext ()
+@property (nonatomic, strong) BPVModel  *defaultModel;
 
 - (void)loadModel;
 
@@ -28,6 +29,14 @@
 
 #pragma mark -
 #pragma mark Accessors
+
+- (void)setModel:(BPVModel *)model {
+    if (_model != model) {
+        _model = model;
+        
+        self.defaultModel = [model copy];
+    }
+}
 
 - (NSString *)path {
     return nil;

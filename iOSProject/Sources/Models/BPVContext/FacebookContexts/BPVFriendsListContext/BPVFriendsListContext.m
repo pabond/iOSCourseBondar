@@ -64,7 +64,13 @@
         [model addModels:array];
     }];
     
-    model.state = BPVModelDidLoad;
+    NSUInteger state = BPVModelDidLoad;
+    if (self.isCanceled) {
+        self.model = self.defaultModel;
+        state = BPVModelFailLoading;
+    }
+    
+    model.state = state;
 }
 
 @end

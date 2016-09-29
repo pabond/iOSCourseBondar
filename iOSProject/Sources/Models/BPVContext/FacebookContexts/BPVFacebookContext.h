@@ -30,6 +30,7 @@ static NSString * const kBPVId = @"id";
 
 @interface BPVFacebookContext : BPVContext
 @property (nonatomic, strong)   BPVModel        *model;
+@property (nonatomic, readonly) BPVModel        *defaultModel;
 
 //this getters should be implemented in subclasses
 @property (nonatomic, readonly) NSString        *path;

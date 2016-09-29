@@ -34,6 +34,7 @@
 
 - (void)dealloc {
     self.filteredModel = nil;
+    self.model = nil;
 }
 
 #pragma mark -
@@ -52,15 +53,15 @@
     if (_user !=  user) {
         _user = user;
         
-        self.model = [BPVUsers new];
+        BPVArrayModel *model = [BPVUsers new];
+        self.model = model;
+        self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:model];
     }
 }
 
 - (void)setModel:(BPVArrayModel *)model {
     if (_model != model) {
         _model = model;
-        
-        self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:_model];
         
 //        if ([self isViewLoaded]) {
             [self loadModel];
