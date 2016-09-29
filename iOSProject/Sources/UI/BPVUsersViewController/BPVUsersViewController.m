@@ -24,7 +24,7 @@
 BPVStringConstantWithValue(kBPVEditingButton, Edit);
 BPVStringConstantWithValue(kBPVDoneButton, Done);
 
-BPVStringConstantWithValue(kBPVTableTitle, USERS LIST);
+BPVStringConstantWithValue(kBPVTableTitle, FRIENDS);
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
 @interface BPVTableViewController ()
@@ -116,6 +116,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (void)modelFailLoading:(id)model {
+    
     self.usersView.loading = NO;
 }
 

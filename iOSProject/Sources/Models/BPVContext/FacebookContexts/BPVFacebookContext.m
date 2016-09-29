@@ -10,6 +10,7 @@
 
 #import "BPVModel.h"
 #import "BPVGCD.h"
+#import "BPVFriendsListContext.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -78,9 +79,10 @@
                                                                    HTTPMethod:[self HTTPMethod]];
     
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
-        if (error || !result) {
+        if ((error || !result) && ![self isMemberOfClass:[BPVFriendsListContext class]]) {
             NSLog(@"Faild data load with error: %@", error);
-            
+            self.model.state = BPVModelFailLoading;
+                
             return;
         }
         

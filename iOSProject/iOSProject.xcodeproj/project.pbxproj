@@ -86,6 +86,7 @@
 		2DFBC62A1D9C108B001F3BFE /* NSDictionary+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6291D9C108B001F3BFE /* NSDictionary+BPVExtensions.m */; };
 		2DFBC62D1D9C10A3001F3BFE /* NSNull+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC62C1D9C10A3001F3BFE /* NSNull+BPVExtensions.m */; };
 		2DFBC6301D9C10C5001F3BFE /* NSNumber+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC62F1D9C10C5001F3BFE /* NSNumber+BPVExtensions.m */; };
+		2DFBC6341D9D665B001F3BFE /* iOSProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6321D9D665B001F3BFE /* iOSProject.xcdatamodeld */; };
 		708B5D60EEBC9BC5CF87A1F3 /* libPods-iOSProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
@@ -260,6 +261,7 @@
 		2DFBC62C1D9C10A3001F3BFE /* NSNull+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DFBC62E1D9C10C5001F3BFE /* NSNumber+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+BPVExtensions.h"; sourceTree = "<group>"; };
 		2DFBC62F1D9C10C5001F3BFE /* NSNumber+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BPVExtensions.m"; sourceTree = "<group>"; };
+		2DFBC6331D9D665B001F3BFE /* iOSProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSProject.xcdatamodel; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25F584F31364ECA33A18054 /* Pods-iOSProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 		2D328D631D5CADF70064C76D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2DFBC6311D9D6605001F3BFE /* BPVCoreData */,
 				2DFBC5E31D951D41001F3BFE /* BPVContext */,
 				2DD763BD1D7EC0C800CEB5EA /* BPVFilteredModel */,
 				2D328D641D5CADF70064C76D /* BPVImage */,
@@ -1078,6 +1081,14 @@
 			path = NSNumber;
 			sourceTree = "<group>";
 		};
+		2DFBC6311D9D6605001F3BFE /* BPVCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC6321D9D665B001F3BFE /* iOSProject.xcdatamodeld */,
+			);
+			path = BPVCoreData;
+			sourceTree = "<group>";
+		};
 		901516722A207463FCC40A7F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1347,6 +1358,7 @@
 				2DFBC62A1D9C108B001F3BFE /* NSDictionary+BPVExtensions.m in Sources */,
 				2D1425BB1D8FCAB200C5AD2E /* BPVView.m in Sources */,
 				2D805F081D8AD0140057A232 /* NSTimer+BPVExtensions.m in Sources */,
+				2DFBC6341D9D665B001F3BFE /* iOSProject.xcdatamodeld in Sources */,
 				2DD7639F1D786A2600CEB5EA /* BPVTwoIndexArrayChange.m in Sources */,
 				2D805F061D8AD0140057A232 /* NSString+BPVExtensions.m in Sources */,
 				2DD7639E1D786A2600CEB5EA /* BPVOneIndexArrayChange.m in Sources */,
@@ -1653,6 +1665,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2DFBC6321D9D665B001F3BFE /* iOSProject.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2DFBC6331D9D665B001F3BFE /* iOSProject.xcdatamodel */,
+			);
+			currentVersion = 2DFBC6331D9D665B001F3BFE /* iOSProject.xcdatamodel */;
+			path = iOSProject.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2D3F41A01D3F65EB00A38A7B /* Project object */;
 }

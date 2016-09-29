@@ -80,7 +80,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
     self.userView.user = model;
 }
 
-- (void)modelFailLoading:(id)model {
+- (void)modelFailLoading:(BPVUser *)model {
+    [self loadModel];
     self.userView.loading = NO;
 }
 
