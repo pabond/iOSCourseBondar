@@ -10,6 +10,6 @@
 
 @interface NSNumber (BPVExtensions)
 
-- (instancetype)JSONReprezentation;
+- (instancetype)JSONRepresentation;
 
 @end

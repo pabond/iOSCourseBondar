@@ -87,7 +87,9 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 - (void)modelDidLoadID:(BPVUser *)model {
     self.context = nil;
     BPVUsersViewController *usersController = [BPVFirstUsersViewController viewController];
-    usersController.user = model;
+    BPVUsers *friends = [BPVUsers friendsWithUserID:model.ID];
+    model.friends = friends;
+    usersController.model = friends;
     
     [self.navigationController pushViewController:usersController animated:YES];
 }

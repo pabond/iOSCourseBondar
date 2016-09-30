@@ -10,16 +10,18 @@
 
 @implementation NSDictionary (BPVExtensions)
 
-- (instancetype)JSONReprezentation {
+- (instancetype)JSONRepresentation {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     NSArray *keys = [self allKeys];
     
     for (id key in keys) {
-        id object = [self[key] JSONReprezentation];
-        [dictionary setObject:object forKey:key];
+        id object = [self[key] JSONRepresentation];
+        if (object) {
+            [dictionary setObject:object forKey:key];
+        }
     }
     
-    return dictionary;
+    return [[self class] dictionaryWithDictionary:dictionary];
 }
 
 @end

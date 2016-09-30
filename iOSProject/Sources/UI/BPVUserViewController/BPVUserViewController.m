@@ -50,7 +50,10 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 - (IBAction)onFriends:(id)sender {
     BPVUsersViewController *controller = [BPVUsersViewController viewController];
-    controller.user = self.user;
+    BPVUser *user = self.user;
+    BPVUsers *friends = [BPVUsers friendsWithUserID:user.ID];
+    user.friends = friends;
+    controller.model = friends;
     
     [self.navigationController pushViewController:controller animated:YES];
 }

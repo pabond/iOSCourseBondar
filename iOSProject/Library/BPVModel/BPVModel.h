@@ -28,12 +28,17 @@ typedef NS_ENUM(NSUInteger, BPVModelState) {
 @end
 
 @interface BPVModel : BPVObservableObject
+@property (nonatomic, readonly) NSString    *filePath;
+@property (nonatomic, readonly) BOOL        isCached;
+@property (nonatomic, readonly) NSString    *applicationModelsPath;
 
-- (void)saveToFile:(NSString *)fileName;
+//these methods sould be implemented in subclasses
+- (void)save;
 - (void)load;
-
-//this method sould be implemented in subclasses
 - (void)performLoading;
+
+//for direct call of this method you should implement "filePath" getter or should be overwritten in subclasses
+- (id)cachedModel;
 
 //this method cen be implemented in subclasses if needed
 - (BOOL)shouldNotifyOfState:(NSUInteger)state;

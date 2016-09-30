@@ -10,6 +10,6 @@
 
 @interface NSDictionary (BPVExtensions)
 
-- (instancetype)JSONReprezentation;
+- (instancetype)JSONRepresentation;
 
 @end

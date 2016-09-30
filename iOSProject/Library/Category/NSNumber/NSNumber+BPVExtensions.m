@@ -10,7 +10,7 @@
 
 @implementation NSNumber (BPVExtensions)
 
-- (instancetype)JSONReprezentation {
+- (instancetype)JSONRepresentation {
     return self;
 }
 

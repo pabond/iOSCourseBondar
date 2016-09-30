@@ -76,17 +76,24 @@
 - (void)loadModel {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:self.path
                                                                    parameters:self.paremeters
-                                                                   HTTPMethod:[self HTTPMethod]];
-    
+                                                                   HTTPMethod:[self HTTPMethod]];    
+    if (![NSThread mainThread]) {
+        [self performSelectorOnMainThread:@selector(loadModelWithRequest:) withObject:request waitUntilDone:NO];
+    } else {
+        [self loadModelWithRequest:request];
+    }
+}
+
+- (void)loadModelWithRequest:(FBSDKGraphRequest *)request {
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
-        if ((error || !result) && ![self isMemberOfClass:[BPVFriendsListContext class]]) {
+        if ((error || !result) && !self.model.isCached) {
             NSLog(@"Faild data load with error: %@", error);
             self.model.state = BPVModelFailLoading;
-                
+            
             return;
         }
         
-        [self fillModelWithInfo:[result JSONReprezentation]];
+        [self fillModelWithInfo:[result JSONRepresentation]];
     }];
 }
 

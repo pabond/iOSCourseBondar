@@ -10,6 +10,6 @@
 
 @interface NSNull (BPVExtensions)
 
-- (instancetype)JSONReprezentation;
+- (instancetype)JSONRepresentation;
 
 @end

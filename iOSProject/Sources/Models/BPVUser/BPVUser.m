@@ -27,6 +27,8 @@ BPVStringConstantWithValue(kBPVUserEmail, userEmail);
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
+BPVStringConstantWithValue(kBPVPlist, plist);
+
 @implementation BPVUser
 
 @dynamic image;
@@ -53,8 +55,23 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
     return [BPVImage imageWithUrl:self.imageURL];
 }
 
+- (NSString *)filePath {
+    NSString *fileName = [NSString stringWithFormat:@"%@.%@", self.ID, kBPVPlist];
+    NSString *path = [self.applicationModelsPath stringByAppendingPathComponent:fileName];
+    
+    return path;
+}
+
 #pragma mark -
 #pragma mark Public implemantations
+
+- (void)save {
+    if ([NSKeyedArchiver archiveRootObject:self toFile:self.filePath]) {
+        NSLog(@"[SAVE] Saving operation succeeds");
+    } else {
+        NSLog(@"[FAIL] Data not saved");
+    }
+}
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {

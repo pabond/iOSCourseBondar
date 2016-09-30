@@ -23,14 +23,13 @@
 }
 
 - (NSString *)path {
-    return [NSString stringWithFormat:@"%@/%@", self.user.ID, kBPVFriends];
+    return [NSString stringWithFormat:@"%@/%@", self.userID, kBPVFriends];
 }
 
 #pragma mark -
 #pragma mark Public Implementations
 
 - (void)fillModelWithInfo:(NSDictionary *)info {
-    NSString *userID = self.user.ID;
     NSArray *friendsList = info[kBPVData];
     NSMutableArray *array = [NSMutableArray array];
     
@@ -51,10 +50,10 @@
             [array addObject:user];
         }
         
-        [self.model saveToFile:userID];
+        [self.model save];
         NSLog(@"[LOADING] Array loaded from Internet");
     } else {
-        [array addObjectsFromArray:[model cachedArrayWithUserID:userID]];
+        [array addObjectsFromArray:[model cachedModel]];
         NSLog(@"[LOADING] Array will load from file");
     }
     

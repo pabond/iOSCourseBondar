@@ -10,7 +10,7 @@
 
 @implementation NSNull (BPVExtensions)
 
-- (instancetype)JSONReprezentation {
+- (instancetype)JSONRepresentation {
     return nil;
 }
 

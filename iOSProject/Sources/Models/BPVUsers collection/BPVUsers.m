@@ -11,18 +11,17 @@
 #import "BPVUser.h"
 #import "BPVGCD.h"
 
-#import "NSFileManager+BPVExtensions.h"
-#import "NSKeyedUnarchiver+BPVExtensions.h"
-#import "NSArray+BPVExtensions.h"
-
 #import "BPVMacro.h"
 
 BPVStringConstantWithValue(kBPVApplictionSaveFileName, data.plist);
-BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
+BPVStringConstantWithValue(kBPVFriends, friends);
+BPVStringConstantWithValue(kBPVPlist, plist);
 
 @interface BPVUsers ()
-@property (nonatomic, readonly) NSString            *applicationFilePath;
 @property (nonatomic, strong)   NSMutableDictionary *observers;
+@property (nonatomic, assign)   NSString            *userID;
+
+- (instancetype)initWithUserID:(NSString *)userID;
 
 - (NSArray *)observingSelectorsNames;
 
@@ -36,16 +35,20 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 @implementation BPVUsers
 
-@dynamic applicationFilePath;
+#pragma mark -
+#pragma mark Class methods
+
++ (instancetype)friendsWithUserID:(NSString *)userID {
+    return [[[self class] alloc] initWithUserID:userID];
+}
 
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
-- (instancetype)init {
+- (instancetype)initWithUserID:(NSString *)userID {
     self = [super init];
-    if (self) {
-        self.observers = [NSMutableDictionary dictionary];
-    }
+    self.observers = [NSMutableDictionary dictionary];
+    self.userID = userID;
     
     return self;
 }
@@ -53,26 +56,22 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 #pragma mark -
 #pragma mark Accessors
 
-- (NSString *)applicationFilePath {
-    return  [NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder];
+- (NSString *)filePath {
+    NSString *fileName = [NSString stringWithFormat:@"%@%@.%@", self.userID, kBPVFriends, kBPVPlist];
+    NSString *path = [self.applicationModelsPath stringByAppendingPathComponent:fileName];
+    
+    return path;
 }
 
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)saveToFile:(NSString *)fileName {
-    NSString *filePath = [self.applicationFilePath stringByAppendingPathComponent:fileName];
-    if ([NSKeyedArchiver archiveRootObject:self.models toFile:filePath]) {
+- (void)save {
+    if ([NSKeyedArchiver archiveRootObject:self.models toFile:self.filePath]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");
     }
-}
-
-- (NSArray *)cachedArrayWithUserID:(NSString *)userID {
-    NSString *path = [self.applicationFilePath stringByAppendingPathComponent:userID];
-    
-    return [NSKeyedUnarchiver objectFromFileWithPath:path];
 }
 
 #pragma mark -

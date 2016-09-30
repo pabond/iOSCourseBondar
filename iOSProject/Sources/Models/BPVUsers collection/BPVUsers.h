@@ -9,7 +9,8 @@
 #import "BPVArrayModel.h"
 
 @interface BPVUsers : BPVArrayModel
+@property (nonatomic, readonly) NSString *userID;
 
-- (NSArray *)cachedArrayWithUserID:(NSString *)userID;
++ (instancetype)friendsWithUserID:(NSString *)userID;
 
 @end

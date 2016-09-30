@@ -19,13 +19,7 @@
 #pragma mark Accessors
 
 - (NSDictionary *)paremeters {
-    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@",
-                         kBPVId,
-                         kBPVName,
-                         kBPVSurname,
-                         kBPVLargePicture,
-                         kBPVBirthday,
-                         kBPVEmail]};
+    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@", kBPVBirthday, kBPVEmail]};
 }
 
 - (NSString *)path {
@@ -44,15 +38,14 @@
 - (void)fillModelWithInfo:(NSDictionary *)info {
     BPVUser *user = (BPVUser *)self.model;
     
-    user.name = info[kBPVName];
-    user.surname = info[kBPVSurname];
-    
-    user.ID = info[kBPVId];
-    user.email = info[kBPVEmail];
-    user.birthday = info[kBPVBirthday];
-    
-    NSDictionary *picture = info[kBPVPicture][kBPVData];
-    user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
+    if (info) {
+        user.email = info[kBPVEmail];
+        user.birthday = info[kBPVBirthday];
+        
+        [user save];
+    } else {
+        user = [user cachedModel];
+    }
     
     NSUInteger state = BPVModelDidLoadDetailedInfo;
     if (self.isCanceled) {

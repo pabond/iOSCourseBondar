@@ -49,19 +49,13 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setUser:(BPVUser *)user {
-    if (_user !=  user) {
-        _user = user;
-        
-        BPVArrayModel *model = [BPVUsers new];
-        self.model = model;
-        self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:model];
-    }
-}
-
 - (void)setModel:(BPVArrayModel *)model {
     if (_model != model) {
         _model = model;
+        
+        if (model) {
+            self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:model];
+        }
         
 //        if ([self isViewLoaded]) {
             [self loadModel];
@@ -82,9 +76,10 @@
 #pragma mark PublicImplementations
 
 - (void)loadModel {
+    BPVUsers *model = (BPVUsers *)self.model;
     BPVFriendsListContext *context = [BPVFriendsListContext new];
-    context.user = self.user;
-    context.model = self.model;
+    context.model = model;
+    context.userID = model.userID;
     self.context = context;
     
     [context execute];

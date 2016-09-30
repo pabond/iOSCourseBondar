@@ -11,6 +11,7 @@
 #import "BPVModel.h"
 
 @class BPVImage;
+@class BPVUsers;
 
 typedef NS_ENUM(NSUInteger, BPVUserLaodState) {
     BPVModelDidLoadID = BPVCount,
@@ -37,5 +38,7 @@ typedef NS_ENUM(NSUInteger, BPVUserLaodState) {
 @property (nonatomic, copy)     NSString    *email;
 
 @property (nonatomic, copy)     NSString    *ID;
+
+@property (nonatomic, strong)   BPVUsers    *friends;
 
 @end

@@ -21,6 +21,5 @@
     BPVArrayModelObserver
 >
 @property (nonatomic, strong) BPVArrayModel *model;
-@property (nonatomic, strong) BPVUser       *user;
 
 @end

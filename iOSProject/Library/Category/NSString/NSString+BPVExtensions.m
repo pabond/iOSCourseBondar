@@ -80,7 +80,7 @@ static const NSUInteger kNSSrtingDefouldRandomStringLength = 30;
     return [result copy];
 }
 
-- (instancetype)JSONReprezentation {
+- (instancetype)JSONRepresentation {
     return self;
 }
 
