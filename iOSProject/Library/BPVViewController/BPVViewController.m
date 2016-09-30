@@ -14,7 +14,7 @@
 #pragma mark Initializations and deallocations
 
 - (void)dealloc {
-    [self.context cancel];
+    self.context = nil;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
@@ -26,6 +26,20 @@
     
     return self;
 }
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setContext:(id)context {
+    if (_context != context) {
+        [_context cancel];
+        
+        _context = context;
+    }
+}
+
+#pragma mark -
+#pragma mark Public implementations
 
 - (void)loadModel {
 
