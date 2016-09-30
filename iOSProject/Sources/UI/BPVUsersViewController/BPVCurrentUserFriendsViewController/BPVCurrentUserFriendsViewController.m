@@ -1,12 +1,12 @@
 //
-//  BPVFirstUsersViewController.m
+//  BPVCurrentUserFriendsViewController.m
 //  iOSProject
 //
 //  Created by Bondar Pavel on 9/28/16.
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVFirstUsersViewController.h"
+#import "BPVCurrentUserFriendsViewController.h"
 
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -14,7 +14,7 @@
 
 BPVStringConstantWithValue(kBPVOnLogout, Logout);
 
-@implementation BPVFirstUsersViewController
+@implementation BPVCurrentUserFriendsViewController
 
 #pragma mark -
 #pragma mark ViewLifecycle

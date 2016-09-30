@@ -18,5 +18,6 @@ typedef BOOL(^BPVArrayFiltredUsingBlock)(id object);
 - (id)objectWithClass:(Class)cls;
 
 - (instancetype)JSONRepresentation;
+- (NSMutableArray *)JSONRepresentationObjects;
 
 @end

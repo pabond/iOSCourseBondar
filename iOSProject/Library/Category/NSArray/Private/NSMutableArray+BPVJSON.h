@@ -1,5 +1,5 @@
 //
-//  NSArray+NSMutableArray.h
+//  NSMutableArray+BPVJSON.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 9/30/16.
@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSArray (NSMutableArray)
+@interface NSMutableArray (BPVJSON)
 
-//- (instancetype)JSONRepresentation;
+- (instancetype)JSONRepresentation;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  BPVFirstUsersViewController.h
+//  BPVCurrentUserFriendsViewController.h
 //  iOSProject
 //
 //  Created by Bondar Pavel on 9/28/16.
@@ -8,7 +8,7 @@
 
 #import "BPVUsersViewController.h"
 
-@interface BPVFirstUsersViewController : BPVUsersViewController
+@interface BPVCurrentUserFriendsViewController : BPVUsersViewController
 
 - (void)onLogout;
 

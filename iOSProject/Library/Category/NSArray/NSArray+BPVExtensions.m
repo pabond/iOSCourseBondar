@@ -8,8 +8,6 @@
 
 #import "NSArray+BPVExtensions.h"
 
-#import "NSArray+NSMutableArray.h"
-
 @implementation NSArray (BPVExtensions)
 
 + (instancetype)arrayWithObjectsFactoryWithCount:(NSUInteger)count block:(id(^)())block {
@@ -48,7 +46,7 @@
     return nil;
 }
 
-- (instancetype)JSONRepresentation {
+- (NSMutableArray *)JSONRepresentationObjects {
     NSMutableArray *array = [NSMutableArray array];
     for (id object in self) {
         if (object) {
@@ -57,6 +55,10 @@
     }
     
     return array;
+}
+
+- (instancetype)JSONRepresentation {
+    return [[self class] arrayWithArray:[self JSONRepresentationObjects]];
 }
 
 @end

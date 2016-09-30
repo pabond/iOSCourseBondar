@@ -8,7 +8,7 @@
 
 #import "BPVLoginViewController.h"
 
-#import "BPVFirstUsersViewController.h"
+#import "BPVCurrentUserFriendsViewController.h"
 #import "BPVUsers.h"
 
 #import "BPVLoginView.h"
@@ -86,7 +86,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 
 - (void)modelDidLoadID:(BPVUser *)model {
     self.context = nil;
-    BPVUsersViewController *usersController = [BPVFirstUsersViewController viewController];
+    BPVUsersViewController *usersController = [BPVCurrentUserFriendsViewController viewController];
     BPVUsers *friends = [BPVUsers friendsWithUserID:model.ID];
     model.friends = friends;
     usersController.model = friends;

@@ -7,6 +7,7 @@
 //
 
 #import "BPVModel.h"
+#import "BPVUser.h"
 
 #import "BPVGCD.h"
 
@@ -46,7 +47,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 }
 
 - (BOOL)shouldNotifyOfState:(NSUInteger)state {
-    return BPVModelDidLoad == state || BPVModelWillLoad == state;
+    return BPVModelDidLoad == state || BPVModelWillLoad == state || BPVModelDidLoadDetailedInfo == state;
 }
 
 #pragma mark -
