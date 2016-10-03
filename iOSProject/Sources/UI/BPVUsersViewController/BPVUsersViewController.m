@@ -10,11 +10,12 @@
 
 #import "BPVUsersView.h"
 #import "BPVUsers.h"
-#import "BPVUser.h"
 
 #import "BPVUserCell.h"
 
 #import "BPVUserViewController.h"
+
+#import "BPVFriendsListContext.h"
 
 #import "UITableView+BPVExtensions.h"
 #import "BPVArrayChange+UITableView.h"
@@ -27,15 +28,14 @@ BPVStringConstantWithValue(kBPVDoneButton, Done);
 BPVStringConstantWithValue(kBPVTableTitle, FRIENDS);
 BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, BPVUsersView)
 
-@interface BPVTableViewController ()
-@property (nonatomic, strong) BPVFilteredModel *filteredModel;
-
-@end
-
 @implementation BPVUsersViewController
 
 #pragma mark -
 #pragma mark Initializations and deallocations
+
+- (void)dealloc {
+    self.user = nil;
+}
 
 - (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
     self = [super initWithNibName:nibName bundle:nibBundle];
@@ -53,6 +53,31 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
                                                                      action:@selector(onEditing:)];
     
     [self.navigationItem setRightBarButtonItem:editingButton animated:YES];
+}
+
+#pragma mark -
+#pragma mark View LifeCycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self loadModel];
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setUser:(BPVUser *)user {
+    if (_user != user) {
+        [_user removeObserver:self];
+        
+        _user = user;
+        [_user addObserver:self];
+        
+//        if ([self isViewLoaded]) {
+            [self loadModel];
+//        }
+    }
 }
 
 #pragma mark -
@@ -77,6 +102,15 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (BPVArrayModel *)modelFromSubclass {
     return [BPVUsers new];
+}
+
+#pragma mark -
+#pragma mark Private Implementatoins
+
+- (void)loadModel {
+    BPVFriendsListContext *context = [BPVFriendsListContext new];
+    context.user = self.user;
+    self.context = context;
 }
 
 #pragma mark -
@@ -118,6 +152,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 - (void)modelFailLoading:(id)model {
     
     self.usersView.loading = NO;
+}
+
+#pragma mark -
+#pragma mark BPVUserObserver
+
+- (void)modelDidLoadFriends:(BPVUser *)model {
+    self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:model.friends];
 }
 
 #pragma mark -

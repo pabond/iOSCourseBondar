@@ -23,9 +23,7 @@
 }
 
 - (NSString *)path {
-    BPVUser *user = (BPVUser *)self.model;
-    
-    return user.ID;
+    return self.user.ID;
 }
 
 #pragma mark -
@@ -36,20 +34,15 @@
 }
 
 - (void)fillModelWithInfo:(NSDictionary *)info {
-    BPVUser *user = (BPVUser *)self.model;
+    BPVUser *user = self.user;
     
-    if (info) {
-        user.email = info[kBPVEmail];
-        user.birthday = info[kBPVBirthday];
+    [self fillUser:user withUserInfo:info];
         
-        [user save];
-    } else {
-        user = [user cachedModel];
-    }
+    [self saveObject:user];
     
     NSUInteger state = BPVModelDidLoadDetailedInfo;
     if (self.isCanceled) {
-        self.model = self.defaultModel;
+        user = self.defaultModel;
         state = BPVModelFailLoading;
     }
     

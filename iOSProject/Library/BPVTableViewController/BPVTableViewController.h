@@ -20,6 +20,7 @@
     BPVModelObserver,
     BPVArrayModelObserver
 >
-@property (nonatomic, strong) BPVArrayModel *model;
+@property (nonatomic, strong) BPVFilteredModel  *filteredModel;
+@property (nonatomic, strong) BPVArrayModel     *model;
 
 @end

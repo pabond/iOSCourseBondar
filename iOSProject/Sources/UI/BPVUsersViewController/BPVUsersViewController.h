@@ -7,10 +7,11 @@
 //
 
 #import "BPVTableViewController.h"
-
+#import "BPVUser.h"
 #import "BPVFilteredModel.h"
 
-@interface BPVUsersViewController : BPVTableViewController <BPVFilteredModelObserver, UISearchBarDelegate>
+@interface BPVUsersViewController : BPVTableViewController <BPVFilteredModelObserver, UISearchBarDelegate, BPVUserObserver>
+@property (nonatomic, strong) BPVUser   *user;
 
 - (void)onEditing:(id)sender;
 

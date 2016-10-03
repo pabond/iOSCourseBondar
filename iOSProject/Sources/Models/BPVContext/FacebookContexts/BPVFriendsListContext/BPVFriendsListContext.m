@@ -13,6 +13,8 @@
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
+BPVStringConstantWithValue(kBPVPlist, plist);
+
 @implementation BPVFriendsListContext
 
 #pragma mark -
@@ -23,7 +25,11 @@
 }
 
 - (NSString *)path {
-    return [NSString stringWithFormat:@"%@/%@", self.userID, kBPVFriends];
+    return [NSString stringWithFormat:@"%@/%@", self.user.ID, kBPVFriends];
+}
+
+- (NSString *)fileName {
+    return [NSString stringWithFormat:@"%@%@.%@", self.user.ID, kBPVFriends, kBPVPlist];
 }
 
 #pragma mark -
@@ -33,27 +39,20 @@
     NSArray *friendsList = info[kBPVData];
     NSMutableArray *array = [NSMutableArray array];
     
-    BPVUsers *model = (BPVUsers *)self.model;
+    BPVUser *user = self.user;
+    BPVUsers *model = user.friends;
     
     if (friendsList) {
         for (NSDictionary *friend in friendsList) {
             BPVUser *user = [BPVUser new];
-            
-            user.name = friend[kBPVName];
-            user.surname = friend[kBPVSurname];
-            
-            user.ID = friend[kBPVId];
-            
-            NSDictionary *picture = friend[kBPVPicture][kBPVData];
-            user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
+            [self fillUser:user withUserInfo:friend];
             
             [array addObject:user];
         }
         
-        [self.model save];
         NSLog(@"[LOADING] Array loaded from Internet");
     } else {
-        [array addObjectsFromArray:[model cachedModel]];
+        [array addObjectsFromArray:[self cachedModel]];
         NSLog(@"[LOADING] Array will load from file");
     }
     
@@ -63,13 +62,28 @@
         [model addModels:array];
     }];
     
-    NSUInteger state = BPVModelDidLoad;
+    [self saveObject:model.models];
+    
+    NSUInteger state = BPVModelDidLoadFriends;
     if (self.isCanceled) {
-        self.model = self.defaultModel;
+        self.user = self.defaultModel;
         state = BPVModelFailLoading;
     }
     
-    model.state = state;
+    user.state = state;
+}
+
+- (void)fillUser:(BPVUser *)user withUserInfo:(NSDictionary *)userInfo {
+    user.name = userInfo[kBPVName];
+    user.surname = userInfo[kBPVSurname];
+    
+    user.ID = userInfo[kBPVId];
+    
+    NSDictionary *picture = userInfo[kBPVPicture][kBPVData];
+    user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
+    
+    user.email = userInfo[kBPVEmail];
+    user.birthday = userInfo[kBPVBirthday];
 }
 
 @end

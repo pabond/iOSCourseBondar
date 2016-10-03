@@ -9,15 +9,21 @@
 #import "BPVFacebookContext.h"
 
 #import "BPVModel.h"
+#import "BPVUser.h"
 #import "BPVGCD.h"
 #import "BPVFriendsListContext.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
+#import "NSFileManager+BPVExtensions.h"
 #import "NSDictionary+BPVExtensions.h"
+#import "NSKeyedUnarchiver+BPVExtensions.h"
+
+BPVStringConstantWithValue(kBPVPlist, plist);
+BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 @interface BPVFacebookContext ()
-@property (nonatomic, strong) BPVModel  *defaultModel;
+@property (nonatomic, strong) BPVUser  *defaultModel;
 
 - (void)loadModel;
 
@@ -27,16 +33,36 @@
 
 @dynamic paremeters;
 @dynamic path;
+@dynamic applicationModelsPath;
+@dynamic filePath;
+@dynamic fileName;
+@dynamic isCached;
 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setModel:(BPVModel *)model {
-    if (_model != model) {
-        _model = model;
+- (void)setUser:(BPVUser *)user {
+    if (_user != user) {
+        _user = user;
         
-        self.defaultModel = [model copy];
+        self.defaultModel = [_user copy];
     }
+}
+
+- (BOOL)isCached {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
+}
+
+- (NSString *)applicationModelsPath {
+    return  [NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder];
+}
+
+- (NSString *)filePath {
+    return [self.applicationModelsPath stringByAppendingPathComponent:[self fileName]];
+}
+
+- (NSString *)fileName {
+    return [NSString stringWithFormat:@"%@.%@", self.user.ID, kBPVPlist];
 }
 
 - (NSString *)path {
@@ -59,15 +85,15 @@
 }
 
 - (void)execute {
-    NSUInteger state = self.model.state;
+    NSUInteger state = self.user.state;
     @synchronized (self) {
         if ([self shouldNotifyOfState:state]) {
-            [self.model notifyOfState:state];
+            [self.user notifyOfState:state];
             
             return;
         }
         
-        self.model.state = BPVModelWillLoad;
+        self.user.state = BPVModelWillLoad;
 
         [self loadModel];
     }
@@ -76,19 +102,27 @@
 - (void)loadModel {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:self.path
                                                                    parameters:self.paremeters
-                                                                   HTTPMethod:[self HTTPMethod]];    
-    if (![NSThread mainThread]) {
-        [self performSelectorOnMainThread:@selector(loadModelWithRequest:) withObject:request waitUntilDone:NO];
-    } else {
+                                                                   HTTPMethod:[self HTTPMethod]];
+    BPVWeakify(self)
+    BPVPerformSyncBlockOnMainQueue(^{
+        BPVStrongifyAndReturnIfNil(self)
         [self loadModelWithRequest:request];
-    }
+    });
+}
+
+- (id)cachedModel {
+    return [NSKeyedUnarchiver objectFromFileWithPath:self.filePath];
 }
 
 - (void)loadModelWithRequest:(FBSDKGraphRequest *)request {
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
-        if ((error || !result) && !self.model.isCached) {
+        if (error) {
+            if (!self.isCached) {
+                [self cachedModel];
+            }
+            
             NSLog(@"Faild data load with error: %@", error);
-            self.model.state = BPVModelFailLoading;
+            self.user.state = BPVModelFailLoading;
             
             return;
         }
@@ -99,6 +133,14 @@
 
 - (void)fillModelWithInfo:(NSDictionary *)info {
 
+}
+
+- (void)saveObject:(id)object {
+    if ([NSKeyedArchiver archiveRootObject:object toFile:self.filePath]) {
+        NSLog(@"[SAVE] Saving operation succeeds");
+    } else {
+        NSLog(@"[FAIL] Data not saved");
+    }
 }
 
 @end

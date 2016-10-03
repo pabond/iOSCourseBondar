@@ -8,6 +8,7 @@
 
 #import "BPVUser.h"
 
+#import "BPVUsers.h"
 #import "BPVImage.h"
 #import "BPVGCD.h"
 
@@ -27,7 +28,10 @@ BPVStringConstantWithValue(kBPVUserEmail, userEmail);
 BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
-BPVStringConstantWithValue(kBPVPlist, plist);
+@interface BPVUser ()
+@property (nonatomic, strong)   BPVUsers    *friends;
+
+@end
 
 @implementation BPVUser
 
@@ -40,6 +44,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 
 - (instancetype)init {
     self = [super init];
+    self.friends = [BPVUsers new];
     
     return self;
 }
@@ -55,23 +60,8 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     return [BPVImage imageWithUrl:self.imageURL];
 }
 
-- (NSString *)filePath {
-    NSString *fileName = [NSString stringWithFormat:@"%@.%@", self.ID, kBPVPlist];
-    NSString *path = [self.applicationModelsPath stringByAppendingPathComponent:fileName];
-    
-    return path;
-}
-
 #pragma mark -
 #pragma mark Public implemantations
-
-- (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self toFile:self.filePath]) {
-        NSLog(@"[SAVE] Saving operation succeeds");
-    } else {
-        NSLog(@"[FAIL] Data not saved");
-    }
-}
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
@@ -80,7 +70,10 @@ BPVStringConstantWithValue(kBPVPlist, plist);
             
         case BPVModelDidLoadDetailedInfo:
             return @selector(modelDidLoadDetailedInfo:);
-            
+
+        case BPVModelDidLoadFriends:
+            return @selector(modelDidLoadFriends:);
+
         default:
             return [super selectorForState:state];
     }

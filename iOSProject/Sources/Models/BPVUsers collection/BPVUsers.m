@@ -13,15 +13,8 @@
 
 #import "BPVMacro.h"
 
-BPVStringConstantWithValue(kBPVApplictionSaveFileName, data.plist);
-BPVStringConstantWithValue(kBPVFriends, friends);
-BPVStringConstantWithValue(kBPVPlist, plist);
-
 @interface BPVUsers ()
 @property (nonatomic, strong)   NSMutableDictionary *observers;
-@property (nonatomic, assign)   NSString            *userID;
-
-- (instancetype)initWithUserID:(NSString *)userID;
 
 - (NSArray *)observingSelectorsNames;
 
@@ -36,42 +29,13 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 @implementation BPVUsers
 
 #pragma mark -
-#pragma mark Class methods
-
-+ (instancetype)friendsWithUserID:(NSString *)userID {
-    return [[[self class] alloc] initWithUserID:userID];
-}
-
-#pragma mark -
 #pragma mark Initializationa and deallocations
 
-- (instancetype)initWithUserID:(NSString *)userID {
+- (instancetype)init {
     self = [super init];
     self.observers = [NSMutableDictionary dictionary];
-    self.userID = userID;
     
     return self;
-}
-
-#pragma mark -
-#pragma mark Accessors
-
-- (NSString *)filePath {
-    NSString *fileName = [NSString stringWithFormat:@"%@%@.%@", self.userID, kBPVFriends, kBPVPlist];
-    NSString *path = [self.applicationModelsPath stringByAppendingPathComponent:fileName];
-    
-    return path;
-}
-
-#pragma mark -
-#pragma mark Public implementations
-
-- (void)save {
-    if ([NSKeyedArchiver archiveRootObject:self.models toFile:self.filePath]) {
-        NSLog(@"[SAVE] Saving operation succeeds");
-    } else {
-        NSLog(@"[FAIL] Data not saved");
-    }
 }
 
 #pragma mark -

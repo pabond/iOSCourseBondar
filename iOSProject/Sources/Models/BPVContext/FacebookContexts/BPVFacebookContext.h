@@ -10,7 +10,7 @@
 
 #import "BPVMacro.h"
 
-@class BPVModel;
+@class BPVUser;
 
 BPVStringConstantWithValue(kBPVGetMethod, GET);
 
@@ -29,15 +29,24 @@ BPVStringConstantWithValue(kBPVFields, fields);
 static NSString * const kBPVId = @"id";
 
 @interface BPVFacebookContext : BPVContext
-@property (nonatomic, strong)   BPVModel        *model;
-@property (nonatomic, readonly) BPVModel        *defaultModel;
+@property (nonatomic, strong)   BPVUser         *user;
+@property (nonatomic, readonly) BPVUser         *defaultModel;
+@property (nonatomic, readonly) NSString        *applicationModelsPath;
+@property (nonatomic, readonly) NSString        *filePath;
+@property (nonatomic, readonly) BOOL            isCached;
 
 //this getters should be implemented in subclasses
+@property (nonatomic, readonly) NSString        *fileName;
 @property (nonatomic, readonly) NSString        *path;
 @property (nonatomic, readonly) NSDictionary    *paremeters;
 
+- (void)saveObject:(id)object;
+
 //this method should be implemented in subclasses
 - (void)fillModelWithInfo:(NSDictionary *)info;
+
+// youShould never call this method directly, only from subclasses
+- (id)cachedModel;
 
 //this method cen be implemented in subclasses if needed
 - (BOOL)shouldNotifyOfState:(NSUInteger)state;

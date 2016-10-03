@@ -9,8 +9,5 @@
 #import "BPVArrayModel.h"
 
 @interface BPVUsers : BPVArrayModel
-@property (nonatomic, readonly) NSString *userID;
-
-+ (instancetype)friendsWithUserID:(NSString *)userID;
 
 @end

@@ -27,7 +27,7 @@ BPVStringConstantWithValue(kBPVPermitionPublicProfile, public_profile);
     [[FBSDKLoginManager new] logInWithReadPermissions:@[kBPVPermitionPublicProfile]
                                    fromViewController:self.controller
                                               handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                                  BPVUser *user = (BPVUser *)self.model;
+                                                  BPVUser *user = self.user;
                                                   if (!result || self.isCanceled) {
                                                       user.state = BPVModelFailLoading;
                                                   }

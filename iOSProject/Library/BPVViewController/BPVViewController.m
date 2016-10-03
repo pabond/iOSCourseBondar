@@ -8,6 +8,8 @@
 
 #import "BPVViewController.h"
 
+#import "BPVContext.h"
+
 @implementation BPVViewController
 
 #pragma mark -
@@ -30,11 +32,12 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setContext:(id)context {
+- (void)setContext:(BPVContext *)context {
     if (_context != context) {
         [_context cancel];
         
         _context = context;
+        [_context execute];
     }
 }
 

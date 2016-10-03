@@ -64,6 +64,8 @@
         
         _arrayModel = arrayModel;
         [_arrayModel addObserver:self];
+        
+        _arrayModel.state = BPVModelDidLoad;
     }
 }
 

@@ -12,5 +12,4 @@
 @property (nonatomic, strong) IBOutlet UITableView  *usersTableView;
 @property (nonatomic, assign) BOOL                  editing;
 
-
 @end

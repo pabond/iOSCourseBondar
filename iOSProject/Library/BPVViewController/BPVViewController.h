@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BPVViewController : UIViewController
+//setting of this property calls context execute;
 @property (nonatomic, strong)   id  context;
 
 - (void)loadModel;

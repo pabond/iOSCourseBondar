@@ -23,6 +23,9 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 @implementation BPVUserViewController
 
+#pragma mark -
+#pragma mark View LifeCycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -50,10 +53,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 - (IBAction)onFriends:(id)sender {
     BPVUsersViewController *controller = [BPVUsersViewController viewController];
-    BPVUser *user = self.user;
-    BPVUsers *friends = [BPVUsers friendsWithUserID:user.ID];
-    user.friends = friends;
-    controller.model = friends;
+    controller.user = self.user;
     
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -63,10 +63,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 - (void)loadModel {
     BPVUserInfoContext *userFillContext  = [BPVUserInfoContext new];
-    userFillContext.model = self.user;
+    userFillContext.user = self.user;
     self.context = userFillContext;
-    
-    [userFillContext execute];
 }
 
 #pragma mark -

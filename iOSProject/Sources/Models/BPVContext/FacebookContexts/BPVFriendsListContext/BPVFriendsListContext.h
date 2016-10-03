@@ -12,6 +12,7 @@
 @class BPVUser;
 
 @interface BPVFriendsListContext : BPVFacebookContext
-@property (nonatomic, copy)   NSString    *userID;
+
+- (void)fillUser:(BPVUser *)user withUserInfo:(NSDictionary *)userInfo;
 
 @end

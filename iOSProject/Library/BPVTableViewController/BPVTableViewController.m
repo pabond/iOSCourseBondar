@@ -16,16 +16,9 @@
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
-#import "BPVFriendsListContext.h"
-
 #import "BPVObservableObject.h"
 
 #import "BPVMacro.h"
-
-@interface BPVTableViewController ()
-@property (nonatomic, strong) BPVFilteredModel *filteredModel;
-
-@end
 
 @implementation BPVTableViewController
 
@@ -34,7 +27,6 @@
 
 - (void)dealloc {
     self.filteredModel = nil;
-    self.model = nil;
 }
 
 #pragma mark -
@@ -49,20 +41,6 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setModel:(BPVArrayModel *)model {
-    if (_model != model) {
-        _model = model;
-        
-        if (model) {
-            self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:model];
-        }
-        
-//        if ([self isViewLoaded]) {
-            [self loadModel];
-//        }
-    }
-}
-
 - (void)setFilteredModel:(BPVFilteredModel *)filteredModel {
     if (_filteredModel != filteredModel) {
         [_filteredModel removeObserver:self];
@@ -70,19 +48,6 @@
         _filteredModel = filteredModel;
         [_filteredModel addObserver:self];
     }
-}
-
-#pragma mark -
-#pragma mark PublicImplementations
-
-- (void)loadModel {
-    BPVUsers *model = (BPVUsers *)self.model;
-    BPVFriendsListContext *context = [BPVFriendsListContext new];
-    context.model = model;
-    context.userID = model.userID;
-    self.context = context;
-    
-    [context execute];
 }
 
 #pragma mark -
@@ -96,7 +61,7 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.model.count;
+    return self.filteredModel.count;
 }
 
 - (void)        tableView:(UITableView *)tableView

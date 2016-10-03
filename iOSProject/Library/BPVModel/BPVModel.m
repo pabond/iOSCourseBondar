@@ -11,33 +11,9 @@
 
 #import "BPVGCD.h"
 
-#import "NSFileManager+BPVExtensions.h"
-#import "NSKeyedUnarchiver+BPVExtensions.h"
-
 #import "BPVMacro.h"
 
-BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
-
 @implementation BPVModel
-
-@dynamic isCached;
-@dynamic filePath;
-@dynamic applicationModelsPath;
-
-#pragma mark -
-#pragma mark Accessors
-
-- (NSString *)applicationModelsPath {
-    return  [NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder];
-}
-
-- (NSString *)filePath {
-    return nil;
-}
-
-- (BOOL)isCached {
-    return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
-}
 
 #pragma mark -
 #pragma mark Public imolementations
@@ -74,10 +50,6 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
             [self performLoading];
         });
     }
-}
-
-- (id)cachedModel {
-    return [NSKeyedUnarchiver objectFromFileWithPath:self.filePath];
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
