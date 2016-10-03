@@ -86,8 +86,9 @@
 		2DFBC62D1D9C10A3001F3BFE /* NSNull+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC62C1D9C10A3001F3BFE /* NSNull+BPVExtensions.m */; };
 		2DFBC6301D9C10C5001F3BFE /* NSNumber+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC62F1D9C10C5001F3BFE /* NSNumber+BPVExtensions.m */; };
 		2DFBC6341D9D665B001F3BFE /* iOSProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6321D9D665B001F3BFE /* iOSProject.xcdatamodeld */; };
-		2DFBC6381D9E47E2001F3BFE /* NSMutableArray+BPVJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6371D9E47E2001F3BFE /* NSMutableArray+BPVJSON.m */; };
 		2DFBC63C1D9EB282001F3BFE /* BPVCurrentUserFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC63B1D9EB282001F3BFE /* BPVCurrentUserFriendsViewController.m */; };
+		2DFBC63F1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC63E1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.m */; };
+		2DFBC6421DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6411DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m */; };
 		708B5D60EEBC9BC5CF87A1F3 /* libPods-iOSProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
@@ -261,10 +262,12 @@
 		2DFBC62E1D9C10C5001F3BFE /* NSNumber+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+BPVExtensions.h"; sourceTree = "<group>"; };
 		2DFBC62F1D9C10C5001F3BFE /* NSNumber+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DFBC6331D9D665B001F3BFE /* iOSProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSProject.xcdatamodel; sourceTree = "<group>"; };
-		2DFBC6361D9E47E2001F3BFE /* NSMutableArray+BPVJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BPVJSON.h"; sourceTree = "<group>"; };
-		2DFBC6371D9E47E2001F3BFE /* NSMutableArray+BPVJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+BPVJSON.m"; sourceTree = "<group>"; };
 		2DFBC63A1D9EB282001F3BFE /* BPVCurrentUserFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVCurrentUserFriendsViewController.h; sourceTree = "<group>"; };
 		2DFBC63B1D9EB282001F3BFE /* BPVCurrentUserFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVCurrentUserFriendsViewController.m; sourceTree = "<group>"; };
+		2DFBC63D1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BPVJSONRepresentation.h"; sourceTree = "<group>"; };
+		2DFBC63E1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BPVJSONRepresentation.m"; sourceTree = "<group>"; };
+		2DFBC6401DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BPVJSONReoresentation.h"; sourceTree = "<group>"; };
+		2DFBC6411DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+BPVJSONReoresentation.m"; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25F584F31364ECA33A18054 /* Pods-iOSProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -648,9 +651,10 @@
 		2D805ECA1D8AD0140057A232 /* NSArray */ = {
 			isa = PBXGroup;
 			children = (
-				2DFBC6351D9E4786001F3BFE /* Private */,
 				2D805ECB1D8AD0140057A232 /* NSArray+BPVExtensions.h */,
 				2D805ECC1D8AD0140057A232 /* NSArray+BPVExtensions.m */,
+				2DFBC63D1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.h */,
+				2DFBC63E1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.m */,
 			);
 			path = NSArray;
 			sourceTree = "<group>";
@@ -704,6 +708,8 @@
 			children = (
 				2D805EDC1D8AD0140057A232 /* NSMutableArray+BPVExtensions.h */,
 				2D805EDD1D8AD0140057A232 /* NSMutableArray+BPVExtensions.m */,
+				2DFBC6401DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.h */,
+				2DFBC6411DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m */,
 			);
 			path = NSMutableArray;
 			sourceTree = "<group>";
@@ -1084,15 +1090,6 @@
 			path = BPVCoreData;
 			sourceTree = "<group>";
 		};
-		2DFBC6351D9E4786001F3BFE /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				2DFBC6361D9E47E2001F3BFE /* NSMutableArray+BPVJSON.h */,
-				2DFBC6371D9E47E2001F3BFE /* NSMutableArray+BPVJSON.m */,
-			);
-			path = Private;
-			sourceTree = "<group>";
-		};
 		2DFBC6391D9EB282001F3BFE /* BPVCurrentUserFriendsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1373,6 +1370,7 @@
 				2D805F081D8AD0140057A232 /* NSTimer+BPVExtensions.m in Sources */,
 				2DFBC6341D9D665B001F3BFE /* iOSProject.xcdatamodeld in Sources */,
 				2DD7639F1D786A2600CEB5EA /* BPVTwoIndexArrayChange.m in Sources */,
+				2DFBC6421DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m in Sources */,
 				2D805F061D8AD0140057A232 /* NSString+BPVExtensions.m in Sources */,
 				2DD7639E1D786A2600CEB5EA /* BPVOneIndexArrayChange.m in Sources */,
 				2DD763871D782A3000CEB5EA /* BPVTableViewController.m in Sources */,
@@ -1408,6 +1406,7 @@
 				2DD763801D782A0800CEB5EA /* BPVUserCell.m in Sources */,
 				2D805EFB1D8AD0140057A232 /* BPVAddModel+UITableView.m in Sources */,
 				2D805F031D8AD0140057A232 /* NSIndexPath+BPVExtensions.m in Sources */,
+				2DFBC63F1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.m in Sources */,
 				2D1425D11D92755E00C5AD2E /* BPVViewController.m in Sources */,
 				2D3F424B1D4C021500A38A7B /* BPVBackgroundView.m in Sources */,
 				2DA8E9621D4C89DC0067032D /* BPVObservableObject.m in Sources */,
@@ -1419,7 +1418,6 @@
 				2D3F41FD1D3FA29800A38A7B /* BPVAppDelegate.m in Sources */,
 				2D805EFA1D8AD0140057A232 /* BPVRemoveModel+BPVArrayModel.m in Sources */,
 				2D3F424C1D4C021500A38A7B /* BPVSquareViewController.m in Sources */,
-				2DFBC6381D9E47E2001F3BFE /* NSMutableArray+BPVJSON.m in Sources */,
 				2DD763B41D7D8BA500CEB5EA /* BPVQueue.m in Sources */,
 				2D328D721D5CADF70064C76D /* BPVUsers.m in Sources */,
 				2D805F0C1D8AD0140057A232 /* UIViewController+BPVExtensions.m in Sources */,

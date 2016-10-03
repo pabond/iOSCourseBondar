@@ -86,4 +86,8 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     user.birthday = userInfo[kBPVBirthday];
 }
 
+- (NSUInteger)willLoadState {
+    return BPVModelWillLoadFriends;
+}
+
 @end

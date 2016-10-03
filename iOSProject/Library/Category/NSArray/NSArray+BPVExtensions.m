@@ -46,19 +46,4 @@
     return nil;
 }
 
-- (NSMutableArray *)JSONRepresentationObjects {
-    NSMutableArray *array = [NSMutableArray array];
-    for (id object in self) {
-        if (object) {
-            [array addObject:[object JSONRepresentation]];
-        }
-    }
-    
-    return array;
-}
-
-- (instancetype)JSONRepresentation {
-    return [[self class] arrayWithArray:[self JSONRepresentationObjects]];
-}
-
 @end

@@ -93,7 +93,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
             return;
         }
         
-        self.user.state = BPVModelWillLoad;
+        self.user.state = [self willLoadState];
 
         [self loadModel];
     }
@@ -133,6 +133,10 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 - (void)fillModelWithInfo:(NSDictionary *)info {
 
+}
+
+- (NSUInteger)willLoadState {
+    return BPVModelWillLoad;
 }
 
 - (void)saveObject:(id)object {

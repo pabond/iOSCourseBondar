@@ -139,7 +139,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark -
 #pragma mark BPVModelObserver
 
-- (void)modelWillLoad:(id)model {
+- (void)modelWillLoadFriends:(id)model {
     self.usersView.loading = YES;
 }
 
@@ -150,6 +150,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (void)modelFailLoading:(id)model {
+    [self loadModel];
     
     self.usersView.loading = NO;
 }

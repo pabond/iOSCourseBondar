@@ -13,7 +13,6 @@
 #import "BPVUsersViewController.h"
 
 #import "BPVUserInfoContext.h"
-#import "BPVFriendsListContext.h"
 
 #import "UIViewController+BPVExtensions.h"
 
@@ -70,7 +69,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 #pragma mark -
 #pragma mark BPVUserObserver
 
-- (void)modelWillLoad:(id)model {
+- (void)modelWillLoadDetailedInfo:(id)model {
     self.userView.loading = YES;
 }
 

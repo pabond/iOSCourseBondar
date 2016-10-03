@@ -48,7 +48,8 @@ static NSString * const kBPVId = @"id";
 // youShould never call this method directly, only from subclasses
 - (id)cachedModel;
 
-//this method cen be implemented in subclasses if needed
+//this method can be implemented in subclasses if needed
+- (NSUInteger)willLoadState;
 - (BOOL)shouldNotifyOfState:(NSUInteger)state;
 - (NSString *)HTTPMethod;
 

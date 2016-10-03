@@ -49,4 +49,8 @@
     user.state = state;
 }
 
+- (NSUInteger)willLoadState {
+    return BPVModelWillLoadDetailedInfo;
+}
+
 @end
