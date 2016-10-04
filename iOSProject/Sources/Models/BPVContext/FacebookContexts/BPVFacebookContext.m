@@ -73,6 +73,10 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
     return nil;
 }
 
+- (NSString *)parapetersList {
+    return [NSString stringWithFormat:@"%@,%@,%@,%@", kBPVId, kBPVName, kBPVSurname, kBPVLargePicture];
+}
+
 #pragma mark -
 #pragma mark Public implementations
 
@@ -116,13 +120,18 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 - (void)loadModelWithRequest:(FBSDKGraphRequest *)request {
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
+        BPVUser *user = self.user;
         if (error) {
-            if (!self.isCached) {
-                [self cachedModel];
+            if (self.isCached) {
+                id cachedModel = [self cachedModel];
+                [self fillModelWithModel:cachedModel];
+                user.state = [self didLoadState];
+                
+                return;
             }
             
             NSLog(@"Faild data load with error: %@", error);
-            self.user.state = BPVModelFailLoading;
+            user.state = [self failLoadingState];
             
             return;
         }
@@ -135,8 +144,33 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 }
 
+- (void)fillModelWithModel:(id)model {
+    [self fillUser:self.user withUser:model];
+}
+
 - (NSUInteger)willLoadState {
     return BPVModelWillLoad;
+}
+
+- (NSUInteger)didLoadState {
+    return BPVModelDidLoad;
+}
+
+- (NSUInteger)failLoadingState {
+    return BPVModelFailLoading;
+}
+
+- (void)fillUser:(BPVUser *)user withUserInfo:(NSDictionary *)userInfo {
+    user.name = userInfo[kBPVName];
+    user.surname = userInfo[kBPVSurname];
+    
+    user.ID = userInfo[kBPVId];
+    
+    NSDictionary *picture = userInfo[kBPVPicture][kBPVData];
+    user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
+    
+    user.email = userInfo[kBPVEmail];
+    user.birthday = userInfo[kBPVBirthday];
 }
 
 - (void)saveObject:(id)object {
@@ -145,6 +179,15 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
     } else {
         NSLog(@"[FAIL] Data not saved");
     }
+}
+
+- (void)fillUser:(BPVUser *)user withUser:(BPVUser *)cachedUser {
+    user.name = cachedUser.name;
+    user.surname = cachedUser.surname;
+    user.ID = cachedUser.ID;
+    user.imageURL = cachedUser.imageURL;
+    user.birthday = cachedUser.birthday;
+    user.email = cachedUser.email;
 }
 
 @end

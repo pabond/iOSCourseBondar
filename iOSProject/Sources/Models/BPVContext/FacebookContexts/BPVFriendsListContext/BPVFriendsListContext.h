@@ -13,6 +13,4 @@
 
 @interface BPVFriendsListContext : BPVFacebookContext
 
-- (void)fillUser:(BPVUser *)user withUserInfo:(NSDictionary *)userInfo;
-
 @end

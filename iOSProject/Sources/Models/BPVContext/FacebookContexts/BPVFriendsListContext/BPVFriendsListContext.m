@@ -21,7 +21,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 #pragma mark Accessors
 
 - (NSDictionary *)paremeters {
-    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@,%@,%@", kBPVId, kBPVName, kBPVSurname, kBPVLargePicture]};
+    return @{kBPVFields:self.parapetersList};
 }
 
 - (NSString *)path {
@@ -63,31 +63,34 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     }];
     
     [self saveObject:model.models];
-    
-    NSUInteger state = BPVModelDidLoadFriends;
-    if (self.isCanceled) {
-        self.user = self.defaultModel;
-        state = BPVModelFailLoading;
-    }
-    
-    user.state = state;
+
+    user.state = BPVModelDidLoadFriends;
 }
 
-- (void)fillUser:(BPVUser *)user withUserInfo:(NSDictionary *)userInfo {
-    user.name = userInfo[kBPVName];
-    user.surname = userInfo[kBPVSurname];
-    
-    user.ID = userInfo[kBPVId];
-    
-    NSDictionary *picture = userInfo[kBPVPicture][kBPVData];
-    user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
-    
-    user.email = userInfo[kBPVEmail];
-    user.birthday = userInfo[kBPVBirthday];
+- (void)fillModelWithModel:(BPVUsers *)model {
+    BPVUsers *friends = self.user.friends;
+    BPVUser *friend = nil;
+    for (NSUInteger iterator = 0; iterator < model.count; iterator++) {
+        friend = friends[iterator];
+        if (!friend) {
+            [friends addModel:[BPVUser new]];
+            friend = friends[iterator];
+        }
+        
+        [self fillUser:friend withUser:model[iterator]];
+    }
 }
 
 - (NSUInteger)willLoadState {
     return BPVModelWillLoadFriends;
+}
+
+- (NSUInteger)didLoadState {
+    return BPVModelDidLoadFriends;
+}
+
+- (NSUInteger)failLoadingState {
+    return BPVModelFailLoadingFriends;
 }
 
 @end

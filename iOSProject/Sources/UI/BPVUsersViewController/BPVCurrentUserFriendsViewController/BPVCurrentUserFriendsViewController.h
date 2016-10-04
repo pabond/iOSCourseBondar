@@ -10,6 +10,4 @@
 
 @interface BPVCurrentUserFriendsViewController : BPVUsersViewController
 
-- (void)onLogout;
-
 @end

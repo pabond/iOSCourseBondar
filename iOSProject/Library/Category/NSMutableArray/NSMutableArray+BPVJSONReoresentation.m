@@ -13,7 +13,7 @@
 @implementation NSMutableArray (BPVJSONReoresentation)
 
 - (instancetype)JSONRepresentation {
-    return [self JSONRepresentationObjects];
+    return [NSMutableArray arrayWithArray:[self JSONRepresentationObjects]];
 }
 
 @end

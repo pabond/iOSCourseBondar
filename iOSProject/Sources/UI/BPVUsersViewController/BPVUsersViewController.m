@@ -74,9 +74,9 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
         _user = user;
         [_user addObserver:self];
         
-//        if ([self isViewLoaded]) {
+        if ([self isViewLoaded]) {
             [self loadModel];
-//        }
+        }
     }
 }
 
@@ -146,7 +146,6 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 - (void)modelDidLoad:(id)model {
     [self.usersView.usersTableView reloadData];
     self.usersView.loading = NO;
-    self.context = nil;
 }
 
 - (void)modelFailLoading:(id)model {
@@ -159,7 +158,9 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark BPVUserObserver
 
 - (void)modelDidLoadFriends:(BPVUser *)model {
-    self.filteredModel = [BPVFilteredModel filteredModelWithArrayModel:model.friends];
+    BPVFilteredModel *filteredModel = [BPVFilteredModel new];
+    self.filteredModel = filteredModel;
+    filteredModel.arrayModel = model.friends;
 }
 
 #pragma mark -

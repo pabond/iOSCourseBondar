@@ -58,7 +58,7 @@ dispatch_queue_t BPVDisptchQueueWithPriorityType(BPVDispatchQueuePriorityType ty
 #pragma mark Private implementations
 
 void BPVPerformBlockOnMainQueueWithTypeAndBlock(BPVBlockExecutionType type, BPVGCDBlock block) {
-    if ([NSThread isMainThread]) {
+    if ([NSThread isMainThread] && type == BPVBlockExecutionSynchronous) {
         block();
     } else {
         BPVPefromBlockWithQueueAndType(type, dispatch_get_main_queue(), block);

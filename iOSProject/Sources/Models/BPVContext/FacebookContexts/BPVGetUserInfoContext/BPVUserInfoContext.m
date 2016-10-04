@@ -19,7 +19,7 @@
 #pragma mark Accessors
 
 - (NSDictionary *)paremeters {
-    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@", kBPVBirthday, kBPVEmail]};
+    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@,%@", self.parapetersList, kBPVBirthday, kBPVEmail]};
 }
 
 - (NSString *)path {
@@ -39,18 +39,20 @@
     [self fillUser:user withUserInfo:info];
         
     [self saveObject:user];
-    
-    NSUInteger state = BPVModelDidLoadDetailedInfo;
-    if (self.isCanceled) {
-        user = self.defaultModel;
-        state = BPVModelFailLoading;
-    }
-    
-    user.state = state;
+
+    user.state = BPVModelDidLoadDetailedInfo;
 }
 
 - (NSUInteger)willLoadState {
     return BPVModelWillLoadDetailedInfo;
+}
+
+- (NSUInteger)didLoadState {
+    return BPVModelDidLoadDetailedInfo;
+}
+
+- (NSUInteger)failLoadingState {
+    return BPVModelFailLoadingDetailedInfo;
 }
 
 @end

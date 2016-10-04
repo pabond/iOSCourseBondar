@@ -74,13 +74,16 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 }
 
 - (void)modelDidLoadDetailedInfo:(BPVUser *)model {
-    self.context = nil;
     self.userView.loading = NO;
     self.title = model.fullName;
     self.userView.user = model;
 }
 
 - (void)modelFailLoading:(BPVUser *)model {
+    self.userView.loading = NO;
+}
+
+- (void)modelFailLoadingDetailedInfo:(BPVUser *)model {
     [self loadModel];
     self.userView.loading = NO;
 }

@@ -14,16 +14,24 @@
 
 BPVStringConstantWithValue(kBPVOnLogout, Logout);
 
+@interface  BPVCurrentUserFriendsViewController ()
+
+- (void)onLogout:(id)sender;
+
+@end
+
 @implementation BPVCurrentUserFriendsViewController
 
 #pragma mark -
 #pragma mark ViewLifecycle
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:kBPVOnLogout
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
-                                                                    action:@selector(onLogout)];
+                                                                    action:@selector(onLogout:)];
     
     [self.navigationItem setLeftBarButtonItem:logoutButton animated:YES];
 }
@@ -38,7 +46,7 @@ BPVStringConstantWithValue(kBPVOnLogout, Logout);
 #pragma mark -
 #pragma mark Interface Handling
 
-- (void)onLogout {
+- (void)onLogout:(id)sender {
     [[FBSDKLoginManager new] logOut];
     
     [self.navigationController popToRootViewControllerAnimated:YES];

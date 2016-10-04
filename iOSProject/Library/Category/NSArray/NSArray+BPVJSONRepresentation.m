@@ -22,7 +22,7 @@
 }
 
 - (instancetype)JSONRepresentation {
-    return [[self class] arrayWithArray:[self JSONRepresentationObjects]];
+    return [NSArray arrayWithArray:[self JSONRepresentationObjects]];
 }
 
 

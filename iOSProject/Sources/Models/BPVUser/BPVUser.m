@@ -79,6 +79,12 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
             
         case BPVModelWillLoadFriends:
             return @selector(modelWillLoadFriends:);
+            
+        case BPVModelFailLoadingFriends:
+            return @selector(modelFailLoadingFriends:);
+            
+        case BPVModelFailLoadingDetailedInfo:
+            return @selector(modelFailLoadingDetailedInfo:);
 
         default:
             return [super selectorForState:state];

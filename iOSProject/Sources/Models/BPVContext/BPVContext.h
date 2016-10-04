@@ -9,7 +9,6 @@
 #import "BPVObservableObject.h"
 
 @interface BPVContext : NSObject
-@property (nonatomic, readonly, getter=isCanceled) BOOL canceled;
 
 // you should never call this methods directly from outside subclasses
 // this method should be rewritten in subclasses

@@ -6,8 +6,8 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
-#import "BPVFriendsListContext.h"
+#import "BPVFacebookContext.h"
 
-@interface BPVUserInfoContext : BPVFriendsListContext
+@interface BPVUserInfoContext : BPVFacebookContext
 
 @end

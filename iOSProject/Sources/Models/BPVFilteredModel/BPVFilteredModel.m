@@ -22,10 +22,7 @@
 #import "BPVMacro.h"
 
 @interface BPVFilteredModel ()
-@property (nonatomic, strong)   BPVArrayModel   *arrayModel;
 @property (nonatomic, copy)     NSString        *filterString;
-
-- (instancetype)initWithArrayModel:(id)model;
 
 - (void)addModelsWithoutNotification:(NSArray *)array;
 - (BOOL)shouldApplyWithChangeModel:(BPVArrayChange *)changeModel;
@@ -37,22 +34,11 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)filteredModelWithArrayModel:(id)model {
-    return [[self alloc] initWithArrayModel:model];
-}
-
 #pragma mark -
 #pragma mark Initializations and deallocations
 
 - (void)dealloc {
     self.arrayModel = nil;
-}
-
-- (instancetype)initWithArrayModel:(id)model {
-    self = [super init];
-    self.arrayModel = model;
-    
-    return self;
 }
 
 #pragma mark -
@@ -147,13 +133,11 @@
 #pragma mark BPVModelObserver
 
 - (void)modelDidLoad:(BPVArrayModel *)model {
-    if (self.count) {
-        [self removeAllObjects];
-    }
+    [self removeAllObjects];
     
     [self addModelsWithoutNotification:model.models];
     
-    [self notifyOfState:model.state];
+    [self notifyOfState:BPVModelDidLoad];
 }
 
 - (void)modelFailLoading:(BPVArrayModel *)model {

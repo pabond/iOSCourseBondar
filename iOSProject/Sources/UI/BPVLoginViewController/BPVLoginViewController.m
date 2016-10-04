@@ -83,11 +83,12 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 #pragma mark BPVUserObserver
 
 - (void)modelDidLoadID:(BPVUser *)model {
-    self.context = nil;
-    BPVUsersViewController *usersController = [BPVCurrentUserFriendsViewController viewController];
-    usersController.user = model;
-    
-    [self.navigationController pushViewController:usersController animated:YES];
+    BPVPerformAsyncBlockOnMainQueue(^{
+        BPVUsersViewController *usersController = [BPVCurrentUserFriendsViewController viewController];
+        usersController.user = model;
+        
+        [self.navigationController pushViewController:usersController animated:YES];
+    });
 }
 
 @end
