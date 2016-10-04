@@ -81,7 +81,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 #pragma mark Public implementations
 
 - (BOOL)shouldNotifyOfState:(NSUInteger)state {
-    return BPVModelDidLoad == state || BPVModelWillLoad == state;
+    return [self didLoadState] == state || [self willLoadState] == state;
 }
 
 - (NSString *)HTTPMethod {
