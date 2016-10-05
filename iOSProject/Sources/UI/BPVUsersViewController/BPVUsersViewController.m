@@ -69,10 +69,9 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)setUser:(BPVUser *)user {
     if (_user != user) {
-        [_user removeObserver:self];
-        
         _user = user;
-        [_user addObserver:self];
+        
+        self.model = _user.friends;
         
         if ([self isViewLoaded]) {
             [self loadModel];
@@ -95,7 +94,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BPVUserCell *cell = [tableView cellWithClass:[BPVUserCell class]];
-    cell.user = self.filteredModel[indexPath.row];
+    cell.user = self.model[indexPath.row];
     
     return cell;
 }
@@ -108,8 +107,11 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 #pragma mark Private Implementatoins
 
 - (void)loadModel {
+    BPVUser *user = self.user;
+    self.model = user.friends;
+    
     BPVFriendsListContext *context = [BPVFriendsListContext new];
-    context.user = self.user;
+    context.user = user;
     self.context = context;
 }
 
@@ -120,13 +122,13 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     BPVUserViewController *userController = [BPVUserViewController new];
-    userController.user = self.filteredModel[indexPath.row];
+    userController.user = self.model[indexPath.row];
     
     [self.navigationController pushViewController:userController animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.filteredModel.count;
+    return self.model.count;
 }
 
 #pragma mark -
@@ -149,32 +151,16 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 }
 
 - (void)modelFailLoading:(id)model {
-    [self loadModel];
-    
+    [self loadModel];    
     self.usersView.loading = NO;
 }
 
 #pragma mark -
 #pragma mark BPVUserObserver
 
-- (void)modelDidLoadFriends:(BPVUser *)model {
-    BPVFilteredModel *filteredModel = [BPVFilteredModel new];
-    self.filteredModel = filteredModel;
-    filteredModel.arrayModel = model.friends;
-}
-
-#pragma mark -
-#pragma mark BPVFilteredModelObserver
-
-- (void)modelDidFilter:(id)model {
+- (void)modelDidLoadFriends:(BPVUsers *)model {
     [self.usersView.usersTableView reloadData];
-}
-
-#pragma mark -
-#pragma mark UISearchBarDelegate
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [self.filteredModel filterArrayWithString:searchText];
+    self.usersView.loading = NO;
 }
 
 @end

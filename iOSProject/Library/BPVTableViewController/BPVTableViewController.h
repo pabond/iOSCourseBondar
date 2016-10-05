@@ -11,7 +11,6 @@
 #import "BPVViewController.h"
 #import "BPVArrayModel.h"
 
-@class BPVFilteredModel;
 @class BPVUser;
 
 @interface BPVTableViewController : BPVViewController    <
@@ -20,7 +19,6 @@
     BPVModelObserver,
     BPVArrayModelObserver
 >
-@property (nonatomic, strong) BPVFilteredModel  *filteredModel;
 @property (nonatomic, strong) BPVArrayModel     *model;
 
 @end

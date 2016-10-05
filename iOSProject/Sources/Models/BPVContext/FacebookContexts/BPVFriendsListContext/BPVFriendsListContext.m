@@ -21,7 +21,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 #pragma mark Accessors
 
 - (NSDictionary *)paremeters {
-    return @{kBPVFields:self.parapetersList};
+    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@,%@,%@", kBPVId, kBPVName, kBPVSurname, kBPVLargePicture]};
 }
 
 - (NSString *)path {
@@ -39,12 +39,12 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     NSArray *friendsList = info[kBPVData];
     NSMutableArray *array = [NSMutableArray array];
     
-    BPVUser *user = self.user;
-    BPVUsers *model = user.friends;
+    BPVUsers *model = [self modelToLoad];
     
     if (friendsList) {
+        BPVUser *user = nil;
         for (NSDictionary *friend in friendsList) {
-            BPVUser *user = [BPVUser new];
+            user = [BPVUser new];
             [self fillUser:user withUserInfo:friend];
             
             [array addObject:user];
@@ -64,11 +64,11 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     
     [self saveObject:model.models];
 
-    user.state = BPVModelDidLoadFriends;
+    model.state = BPVModelDidLoadFriends;
 }
 
-- (void)fillModelWithModel:(BPVUsers *)model {
-    BPVUsers *friends = self.user.friends;
+- (void)fillModelWithCachedModel:(BPVUsers *)model {
+    BPVUsers *friends = [self modelToLoad];
     BPVUser *friend = nil;
     for (NSUInteger iterator = 0; iterator < model.count; iterator++) {
         friend = friends[iterator];
@@ -91,6 +91,10 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 
 - (NSUInteger)failLoadingState {
     return BPVModelFailLoadingFriends;
+}
+
+- (id)modelToLoad {
+    return self.user.friends;
 }
 
 @end

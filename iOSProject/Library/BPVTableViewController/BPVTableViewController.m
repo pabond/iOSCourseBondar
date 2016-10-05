@@ -11,7 +11,6 @@
 #import "BPVLoadingView.h"
 
 #import "BPVArrayChange.h"
-#import "BPVFilteredModel.h"
 
 #import "BPVUser.h"
 #import "BPVUsers.h"
@@ -26,7 +25,7 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.filteredModel = nil;
+    self.model = nil;
 }
 
 #pragma mark -
@@ -41,12 +40,16 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setFilteredModel:(BPVFilteredModel *)filteredModel {
-    if (_filteredModel != filteredModel) {
-        [_filteredModel removeObserver:self];
+- (void)setModel:(BPVUsers *)model {
+    if (_model != model) {
+        [_model removeObserver:self];
         
-        _filteredModel = filteredModel;
-        [_filteredModel addObserver:self];
+        _model = model;
+        [_model addObserver:self];
+        
+        if ([self isViewLoaded]) {
+            [self loadModel];
+        }
     }
 }
 
@@ -61,7 +64,7 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.filteredModel.count;
+    return self.model.count;
 }
 
 - (void)        tableView:(UITableView *)tableView
@@ -78,7 +81,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.model.count == self.filteredModel.count;
+    return YES;
 }
 
 - (void)    tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath

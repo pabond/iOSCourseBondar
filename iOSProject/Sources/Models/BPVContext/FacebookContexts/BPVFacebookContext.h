@@ -34,7 +34,6 @@ static NSString * const kBPVId = @"id";
 @property (nonatomic, readonly) NSString        *applicationModelsPath;
 @property (nonatomic, readonly) NSString        *filePath;
 @property (nonatomic, readonly) BOOL            isCached;
-@property (nonatomic, readonly) NSString        *parapetersList;
 
 //this getters should be implemented in subclasses
 @property (nonatomic, readonly) NSString        *fileName;
@@ -45,12 +44,13 @@ static NSString * const kBPVId = @"id";
 
 //this method should be implemented in subclasses
 - (void)fillModelWithInfo:(NSDictionary *)info;
-- (void)fillModelWithModel:(id)model;
+- (void)fillModelWithCachedModel:(id)model;
 
 // youShould never call this method directly, only from subclasses
 - (id)cachedModel;
 
 //this method can be implemented in subclasses if needed
+- (id)modelToLoad;
 - (NSUInteger)willLoadState;
 - (NSUInteger)didLoadState;
 - (NSUInteger)failLoadingState;

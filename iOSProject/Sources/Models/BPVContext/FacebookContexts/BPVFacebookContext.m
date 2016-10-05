@@ -73,10 +73,6 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
     return nil;
 }
 
-- (NSString *)parapetersList {
-    return [NSString stringWithFormat:@"%@,%@,%@,%@", kBPVId, kBPVName, kBPVSurname, kBPVLargePicture];
-}
-
 #pragma mark -
 #pragma mark Public implementations
 
@@ -89,7 +85,8 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 }
 
 - (void)execute {
-    NSUInteger state = self.user.state;
+    BPVModel *model = [self modelToLoad];
+    NSUInteger state = model.state;
     @synchronized (self) {
         if ([self shouldNotifyOfState:state]) {
             [self.user notifyOfState:state];
@@ -97,7 +94,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
             return;
         }
         
-        self.user.state = [self willLoadState];
+        model.state = [self willLoadState];
 
         [self loadModel];
     }
@@ -118,13 +115,17 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
     return [NSKeyedUnarchiver objectFromFileWithPath:self.filePath];
 }
 
+- (id)modelToLoad {
+    return self.user;
+}
+
 - (void)loadModelWithRequest:(FBSDKGraphRequest *)request {
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
         BPVUser *user = self.user;
         if (error) {
             if (self.isCached) {
                 id cachedModel = [self cachedModel];
-                [self fillModelWithModel:cachedModel];
+                [self fillModelWithCachedModel:cachedModel];
                 user.state = [self didLoadState];
                 
                 return;
@@ -144,7 +145,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 }
 
-- (void)fillModelWithModel:(id)model {
+- (void)fillModelWithCachedModel:(id)model {
     [self fillUser:self.user withUser:model];
 }
 

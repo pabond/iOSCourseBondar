@@ -19,7 +19,13 @@
 #pragma mark Accessors
 
 - (NSDictionary *)paremeters {
-    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@,%@", self.parapetersList, kBPVBirthday, kBPVEmail]};
+    return @{kBPVFields:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@",
+                         kBPVBirthday,
+                         kBPVEmail,
+                         kBPVId,
+                         kBPVName,
+                         kBPVSurname,
+                         kBPVLargePicture]};
 }
 
 - (NSString *)path {
@@ -37,7 +43,6 @@
     BPVUser *user = self.user;
     
     [self fillUser:user withUserInfo:info];
-        
     [self saveObject:user];
 
     user.state = BPVModelDidLoadDetailedInfo;
