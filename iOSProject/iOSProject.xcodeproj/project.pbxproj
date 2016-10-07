@@ -89,6 +89,12 @@
 		2DFBC63C1D9EB282001F3BFE /* BPVCurrentUserFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC63B1D9EB282001F3BFE /* BPVCurrentUserFriendsViewController.m */; };
 		2DFBC63F1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC63E1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.m */; };
 		2DFBC6421DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6411DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m */; };
+		2DFBC6851DA784FA001F3BFE /* BPVImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC67E1DA784FA001F3BFE /* BPVImage+CoreDataProperties.m */; };
+		2DFBC6861DA784FA001F3BFE /* BPVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6801DA784FA001F3BFE /* BPVImage.m */; };
+		2DFBC6871DA784FA001F3BFE /* BPVUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6821DA784FA001F3BFE /* BPVUser+CoreDataProperties.m */; };
+		2DFBC6881DA784FA001F3BFE /* BPVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6841DA784FA001F3BFE /* BPVUser.m */; };
+		2DFBC68E1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC68D1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.m */; };
+		2DFBC6921DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6911DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m */; };
 		708B5D60EEBC9BC5CF87A1F3 /* libPods-iOSProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
@@ -268,6 +274,18 @@
 		2DFBC63E1DA2B4B3001F3BFE /* NSArray+BPVJSONRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BPVJSONRepresentation.m"; sourceTree = "<group>"; };
 		2DFBC6401DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BPVJSONReoresentation.h"; sourceTree = "<group>"; };
 		2DFBC6411DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+BPVJSONReoresentation.m"; sourceTree = "<group>"; };
+		2DFBC67D1DA784FA001F3BFE /* BPVImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVImage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		2DFBC67E1DA784FA001F3BFE /* BPVImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVImage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		2DFBC67F1DA784FA001F3BFE /* BPVImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVImage.h; sourceTree = "<group>"; };
+		2DFBC6801DA784FA001F3BFE /* BPVImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVImage.m; sourceTree = "<group>"; };
+		2DFBC6811DA784FA001F3BFE /* BPVUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPVUser+CoreDataProperties.h"; sourceTree = "<group>"; };
+		2DFBC6821DA784FA001F3BFE /* BPVUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BPVUser+CoreDataProperties.m"; sourceTree = "<group>"; };
+		2DFBC6831DA784FA001F3BFE /* BPVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUser.h; sourceTree = "<group>"; };
+		2DFBC6841DA784FA001F3BFE /* BPVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUser.m; sourceTree = "<group>"; };
+		2DFBC68C1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+BPVExtensions.h"; sourceTree = "<group>"; };
+		2DFBC68D1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+BPVExtensions.m"; sourceTree = "<group>"; };
+		2DFBC6901DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectID+BPVExtensions.h"; sourceTree = "<group>"; };
+		2DFBC6911DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectID+BPVExtensions.m"; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25F584F31364ECA33A18054 /* Pods-iOSProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -480,6 +498,7 @@
 		2D3F42101D40C2C500A38A7B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				2DFBC68A1DA789E1001F3BFE /* ActiveRecord */,
 				2D1425AD1D8FCAB200C5AD2E /* Views */,
 				2D805EAD1D8AD0140057A232 /* Category */,
 				2DD763B11D7D8BA500CEB5EA /* Queue */,
@@ -1085,6 +1104,7 @@
 		2DFBC6311D9D6605001F3BFE /* BPVCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				2DFBC67C1DA784FA001F3BFE /* BPVManagedObjectsSubclasses */,
 				2DFBC6321D9D665B001F3BFE /* iOSProject.xcdatamodeld */,
 			);
 			path = BPVCoreData;
@@ -1097,6 +1117,48 @@
 				2DFBC63B1D9EB282001F3BFE /* BPVCurrentUserFriendsViewController.m */,
 			);
 			path = BPVCurrentUserFriendsViewController;
+			sourceTree = "<group>";
+		};
+		2DFBC67C1DA784FA001F3BFE /* BPVManagedObjectsSubclasses */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC67D1DA784FA001F3BFE /* BPVImage+CoreDataProperties.h */,
+				2DFBC67E1DA784FA001F3BFE /* BPVImage+CoreDataProperties.m */,
+				2DFBC67F1DA784FA001F3BFE /* BPVImage.h */,
+				2DFBC6801DA784FA001F3BFE /* BPVImage.m */,
+				2DFBC6811DA784FA001F3BFE /* BPVUser+CoreDataProperties.h */,
+				2DFBC6821DA784FA001F3BFE /* BPVUser+CoreDataProperties.m */,
+				2DFBC6831DA784FA001F3BFE /* BPVUser.h */,
+				2DFBC6841DA784FA001F3BFE /* BPVUser.m */,
+			);
+			path = BPVManagedObjectsSubclasses;
+			sourceTree = "<group>";
+		};
+		2DFBC68A1DA789E1001F3BFE /* ActiveRecord */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC68F1DA78ED4001F3BFE /* NSManagedObjectID */,
+				2DFBC68B1DA789E1001F3BFE /* NSManagedObject */,
+			);
+			path = ActiveRecord;
+			sourceTree = "<group>";
+		};
+		2DFBC68B1DA789E1001F3BFE /* NSManagedObject */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC68C1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.h */,
+				2DFBC68D1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.m */,
+			);
+			path = NSManagedObject;
+			sourceTree = "<group>";
+		};
+		2DFBC68F1DA78ED4001F3BFE /* NSManagedObjectID */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC6901DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.h */,
+				2DFBC6911DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m */,
+			);
+			path = NSManagedObjectID;
 			sourceTree = "<group>";
 		};
 		901516722A207463FCC40A7F /* Pods */ = {
@@ -1377,6 +1439,9 @@
 				2DFBC5DA1D92E277001F3BFE /* BPVLoginView.m in Sources */,
 				2DD763A01D786A2600CEB5EA /* BPVAddModel.m in Sources */,
 				2DD7637D1D782A0800CEB5EA /* BPVUsersView.m in Sources */,
+				2DFBC6851DA784FA001F3BFE /* BPVImage+CoreDataProperties.m in Sources */,
+				2DFBC6921DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m in Sources */,
+				2DFBC6871DA784FA001F3BFE /* BPVUser+CoreDataProperties.m in Sources */,
 				2D805F011D8AD0140057A232 /* NSBundle+BPVExtensions.m in Sources */,
 				2D1425B81D8FCAB200C5AD2E /* BPVImageView.m in Sources */,
 				2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */,
@@ -1397,10 +1462,12 @@
 				2D805F071D8AD0140057A232 /* NSString+BPVRandomName.m in Sources */,
 				2DD763C71D82DE3B00CEB5EA /* BPVImagesCache.m in Sources */,
 				2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */,
+				2DFBC6861DA784FA001F3BFE /* BPVImage.m in Sources */,
 				2DFBC6301D9C10C5001F3BFE /* NSNumber+BPVExtensions.m in Sources */,
 				2D805F0D1D8AD0140057A232 /* UIWindow+BPVExtensions.m in Sources */,
 				2D805F101D8AD3080057A232 /* BPVModel.m in Sources */,
 				2D805EFC1D8AD0140057A232 /* BPVArrayChange+UITableView.m in Sources */,
+				2DFBC6881DA784FA001F3BFE /* BPVUser.m in Sources */,
 				2DD763A61D786A3900CEB5EA /* BPVArrayModel.m in Sources */,
 				2DFBC5FA1D96B818001F3BFE /* BPVUserView.m in Sources */,
 				2DD763801D782A0800CEB5EA /* BPVUserCell.m in Sources */,
@@ -1420,6 +1487,7 @@
 				2D3F424C1D4C021500A38A7B /* BPVSquareViewController.m in Sources */,
 				2DD763B41D7D8BA500CEB5EA /* BPVQueue.m in Sources */,
 				2D328D721D5CADF70064C76D /* BPVUsers.m in Sources */,
+				2DFBC68E1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.m in Sources */,
 				2D805F0C1D8AD0140057A232 /* UIViewController+BPVExtensions.m in Sources */,
 				2DFBC62D1D9C10A3001F3BFE /* NSNull+BPVExtensions.m in Sources */,
 				2DFBC61F1D9BF194001F3BFE /* BPVUserInfoContext.m in Sources */,

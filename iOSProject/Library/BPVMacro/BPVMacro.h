@@ -6,6 +6,8 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
+#define $(...)  [NSSet setWithObjects:__VA_ARGS__, nil]
+
 #define BPVDefineBaseViewProrety(propertyName, viewClass) \
     @property (nonatomic, readonly) viewClass *propertyName;
 
@@ -91,3 +93,17 @@
         return variable; \
         \
     } while (0)
+
+#define BPVStringFromSEL(selector) \
+    NSStringFromSelector(@selector(selector))
+
+//#define BPVSetVelueForSEL(value, selector) \
+//    do { \
+//        [self setValue:value forKey:BPVStringFromSEL(selector)]; \
+//    } while (0)
+//
+//
+//#define BPVVelueForSEL(selector) \
+//    do { \
+//        return [self valueForKey:BPVStringFromSEL(selector)]; \
+//    } while (0)

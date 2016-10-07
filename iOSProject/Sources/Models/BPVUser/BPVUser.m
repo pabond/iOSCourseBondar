@@ -70,18 +70,9 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
             
         case BPVModelDidLoadDetailedInfo:
             return @selector(modelDidLoadDetailedInfo:);
-
-        case BPVModelDidLoadFriends:
-            return @selector(modelDidLoadFriends:);
             
         case BPVModelWillLoadDetailedInfo:
             return @selector(modelWillLoadDetailedInfo:);
-            
-        case BPVModelWillLoadFriends:
-            return @selector(modelWillLoadFriends:);
-            
-        case BPVModelFailLoadingFriends:
-            return @selector(modelFailLoadingFriends:);
             
         case BPVModelFailLoadingDetailedInfo:
             return @selector(modelFailLoadingDetailedInfo:);

@@ -64,7 +64,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     
     [self saveObject:model.models];
 
-    model.state = BPVModelDidLoadFriends;
+    model.state = BPVModelDidLoad;
 }
 
 - (void)fillModelWithCachedModel:(BPVUsers *)model {
@@ -79,18 +79,6 @@ BPVStringConstantWithValue(kBPVPlist, plist);
         
         [self fillUser:friend withUser:model[iterator]];
     }
-}
-
-- (NSUInteger)willLoadState {
-    return BPVModelWillLoadFriends;
-}
-
-- (NSUInteger)didLoadState {
-    return BPVModelDidLoadFriends;
-}
-
-- (NSUInteger)failLoadingState {
-    return BPVModelFailLoadingFriends;
 }
 
 - (id)modelToLoad {

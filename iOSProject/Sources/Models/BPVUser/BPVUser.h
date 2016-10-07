@@ -16,11 +16,8 @@
 typedef NS_ENUM(NSUInteger, BPVUserLoadState) {
     BPVModelDidLoadID = BPVCount,
     BPVModelDidLoadDetailedInfo,
-    BPVModelDidLoadFriends,
     BPVModelWillLoadDetailedInfo,
-    BPVModelWillLoadFriends,
-    BPVModelFailLoadingDetailedInfo,
-    BPVModelFailLoadingFriends
+    BPVModelFailLoadingDetailedInfo
 };
 
 @protocol BPVUserObserver <BPVModelObserver>
@@ -28,10 +25,7 @@ typedef NS_ENUM(NSUInteger, BPVUserLoadState) {
 @optional
 - (void)modelDidLoadID:(id)model;
 - (void)modelDidLoadDetailedInfo:(id)model;
-- (void)modelDidLoadFriends:(id)model;
 - (void)modelWillLoadDetailedInfo:(id)model;
-- (void)modelWillLoadFriends:(id)model;
-- (void)modelFailLoadingFriends:(id)model;
 - (void)modelFailLoadingDetailedInfo:(id)model;
 
 @end
