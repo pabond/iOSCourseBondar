@@ -95,6 +95,8 @@
 		2DFBC6881DA784FA001F3BFE /* BPVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6841DA784FA001F3BFE /* BPVUser.m */; };
 		2DFBC68E1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC68D1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.m */; };
 		2DFBC6921DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6911DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m */; };
+		2DFBC6961DA7BA66001F3BFE /* BPVCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6951DA7BA66001F3BFE /* BPVCoreDataManager.m */; };
+		2DFBC69A1DA7FE49001F3BFE /* NSManagedObjectContext+BPVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBC6991DA7FE49001F3BFE /* NSManagedObjectContext+BPVExtensions.m */; };
 		708B5D60EEBC9BC5CF87A1F3 /* libPods-iOSProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */; };
 		90F58E8844B03E008B9F909B /* libPods-iOSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14945B9782108B5601F4979 /* libPods-iOSProjectTests.a */; };
 /* End PBXBuildFile section */
@@ -286,6 +288,10 @@
 		2DFBC68D1DA789E1001F3BFE /* NSManagedObject+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+BPVExtensions.m"; sourceTree = "<group>"; };
 		2DFBC6901DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectID+BPVExtensions.h"; sourceTree = "<group>"; };
 		2DFBC6911DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectID+BPVExtensions.m"; sourceTree = "<group>"; };
+		2DFBC6941DA7BA66001F3BFE /* BPVCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVCoreDataManager.h; sourceTree = "<group>"; };
+		2DFBC6951DA7BA66001F3BFE /* BPVCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVCoreDataManager.m; sourceTree = "<group>"; };
+		2DFBC6981DA7FE49001F3BFE /* NSManagedObjectContext+BPVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+BPVExtensions.h"; sourceTree = "<group>"; };
+		2DFBC6991DA7FE49001F3BFE /* NSManagedObjectContext+BPVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+BPVExtensions.m"; sourceTree = "<group>"; };
 		93D0410507B8541589EE8A52 /* Pods-iOSProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProjectTests/Pods-iOSProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		93DC5E7321121A6FAAED25EC /* libPods-iOSProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25F584F31364ECA33A18054 /* Pods-iOSProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSProject/Pods-iOSProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1137,6 +1143,8 @@
 		2DFBC68A1DA789E1001F3BFE /* ActiveRecord */ = {
 			isa = PBXGroup;
 			children = (
+				2DFBC6971DA7FE22001F3BFE /* NSManagedObjectContext */,
+				2DFBC6931DA7B7C6001F3BFE /* BPVCoreDataManager */,
 				2DFBC68F1DA78ED4001F3BFE /* NSManagedObjectID */,
 				2DFBC68B1DA789E1001F3BFE /* NSManagedObject */,
 			);
@@ -1159,6 +1167,24 @@
 				2DFBC6911DA78EE9001F3BFE /* NSManagedObjectID+BPVExtensions.m */,
 			);
 			path = NSManagedObjectID;
+			sourceTree = "<group>";
+		};
+		2DFBC6931DA7B7C6001F3BFE /* BPVCoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC6941DA7BA66001F3BFE /* BPVCoreDataManager.h */,
+				2DFBC6951DA7BA66001F3BFE /* BPVCoreDataManager.m */,
+			);
+			path = BPVCoreDataManager;
+			sourceTree = "<group>";
+		};
+		2DFBC6971DA7FE22001F3BFE /* NSManagedObjectContext */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBC6981DA7FE49001F3BFE /* NSManagedObjectContext+BPVExtensions.h */,
+				2DFBC6991DA7FE49001F3BFE /* NSManagedObjectContext+BPVExtensions.m */,
+			);
+			path = NSManagedObjectContext;
 			sourceTree = "<group>";
 		};
 		901516722A207463FCC40A7F /* Pods */ = {
@@ -1427,12 +1453,14 @@
 				2DD763D61D86DEBB00CEB5EA /* BPVInternetImage.m in Sources */,
 				2D805F041D8AD0140057A232 /* NSKeyedUnarchiver+BPVExtensions.m in Sources */,
 				2DD763C01D7EC0C800CEB5EA /* BPVFilteredModel.m in Sources */,
+				2DFBC69A1DA7FE49001F3BFE /* NSManagedObjectContext+BPVExtensions.m in Sources */,
 				2DFBC62A1D9C108B001F3BFE /* NSDictionary+BPVExtensions.m in Sources */,
 				2D1425BB1D8FCAB200C5AD2E /* BPVView.m in Sources */,
 				2D805F081D8AD0140057A232 /* NSTimer+BPVExtensions.m in Sources */,
 				2DFBC6341D9D665B001F3BFE /* iOSProject.xcdatamodeld in Sources */,
 				2DD7639F1D786A2600CEB5EA /* BPVTwoIndexArrayChange.m in Sources */,
 				2DFBC6421DA2B50E001F3BFE /* NSMutableArray+BPVJSONReoresentation.m in Sources */,
+				2DFBC6961DA7BA66001F3BFE /* BPVCoreDataManager.m in Sources */,
 				2D805F061D8AD0140057A232 /* NSString+BPVExtensions.m in Sources */,
 				2DD7639E1D786A2600CEB5EA /* BPVOneIndexArrayChange.m in Sources */,
 				2DD763871D782A3000CEB5EA /* BPVTableViewController.m in Sources */,
