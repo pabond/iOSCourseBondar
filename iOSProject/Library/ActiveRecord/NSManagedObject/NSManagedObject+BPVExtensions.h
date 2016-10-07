@@ -28,7 +28,6 @@
 - (void)addCustomValues:(NSSet *)values forKey:(NSString *)key;
 - (void)removeCustomValues:(NSSet *)values forKey:(NSString *)key;
 
-- (void)addCustomValues:(NSSet *)values inMutableOrderedSetForKey:(NSString *)key;
 - (void)addCustomValue:(id)value inMutableOrderedSetForKey:(NSString *)key;
 
 @end

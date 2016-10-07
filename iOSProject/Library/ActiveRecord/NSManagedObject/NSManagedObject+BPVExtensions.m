@@ -8,16 +8,21 @@
 
 #import "NSManagedObject+BPVExtensions.h"
 
+#import "NSManagedObjectContext+BPVExtensions.h"
+
 #import "BPVMacro.h"
 
 @implementation NSManagedObject (BPVExtensions)
+
+#pragma mark -
+#pragma mark Class methods
 
 + (NSArray *)fetchEntityWithSortDescriptors:(NSArray *)sortDescriptors
                                   predicate:(NSPredicate *)predicate
                               prefatchPaths:(NSArray *)prefetchPaths
 {
     return [NSManagedObjectContext fetchEntity:NSStringFromClass([self class])
-                             withSortDesripors:sortDescriptors
+                           withSortDescriptors:sortDescriptors
                                      predicate:predicate
                                  prefetchPaths:prefetchPaths];
 }
@@ -25,6 +30,9 @@
 + (id)managedObject {
     return [NSManagedObjectContext managedObjectWithEntity:NSStringFromClass([self class])];
 }
+
+#pragma mark -
+#pragma mark Public Implementations
 
 - (void)deleteManagedObject {
     [NSManagedObjectContext deleteManagedObject:self];
