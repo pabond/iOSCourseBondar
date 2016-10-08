@@ -8,7 +8,6 @@
 
 #import "BPVFacebookContext.h"
 
-#import "BPVModel.h"
 #import "BPVUser.h"
 #import "BPVGCD.h"
 #import "BPVFriendsListContext.h"

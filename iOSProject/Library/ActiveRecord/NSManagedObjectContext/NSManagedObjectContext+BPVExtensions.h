@@ -10,6 +10,8 @@
 
 @interface NSManagedObjectContext (BPVExtensions)
 
++ (NSManagedObjectContext *)sharedContext;
+
 + (id)managedObjectWithEntity:(NSString *)entityName;
 
 + (NSArray *)fetchEntity:(NSString *)entityName
@@ -17,16 +19,9 @@
                predicate:(NSPredicate *)predicate
            prefetchPaths:(NSArray *)prefetchPaths;
 
-+ (id)getObjectWithName:(NSString *)name
-               forValue:(NSString *)valueName
-               ofEntity:(NSString *)entityName;
-
-+ (id)getObjectWithProperty:(id)property
-                   forValue:(NSString *)valueName
-                   ofEntity:(NSString *)entityName;
-
-+ (id)managedObjectWithManagedObjectIDURL:(NSURL *)url;
-+ (id)managedObjectWithManagedObjectID:(NSManagedObjectID *)managedObjectID;
++ (id)objectWithProperty:(id)property
+                forValue:(NSString *)valueName
+                ofEntity:(NSString *)entityName;
 
 + (void)deleteManagedObject:(NSManagedObject *)object;
 + (void)resetManagedObjectContext;

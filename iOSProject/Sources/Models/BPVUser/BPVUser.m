@@ -25,9 +25,6 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 BPVStringConstantWithValue(kBPVUserBirthday, userBirthday);
 BPVStringConstantWithValue(kBPVUserEmail, userEmail);
 
-BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
-BPVStringConstantWithValue(kBPVUserImageFormat, png);
-
 @interface BPVUser ()
 @property (nonatomic, strong)   BPVUsers    *friends;
 
