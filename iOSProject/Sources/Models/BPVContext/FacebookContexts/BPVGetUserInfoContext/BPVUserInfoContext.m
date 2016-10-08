@@ -13,6 +13,8 @@
 #import "BPVUserViewController.h"
 #import "BPVUser.h"
 
+#import "BPVUserInteractionContext.h"
+
 @implementation BPVUserInfoContext
 
 #pragma mark -
@@ -29,7 +31,9 @@
 }
 
 - (NSString *)path {
-    return self.user.ID;
+    BPVUser *model = self.model;
+    
+    return model.ID;
 }
 
 #pragma mark -
@@ -40,9 +44,9 @@
 }
 
 - (void)fillModelWithInfo:(NSDictionary *)info {
-    BPVUser *user = self.user;
+    BPVUser *user = self.model;
     
-    [self fillUser:user withUserInfo:info];
+    [BPVUserInteractionContext fillUser:user withUserInfo:info];
     [self saveObject:user];
 
     user.state = BPVModelDidLoadDetailedInfo;

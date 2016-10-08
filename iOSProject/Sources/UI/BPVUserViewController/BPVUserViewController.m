@@ -62,7 +62,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVUserViewController, userView, BPV
 
 - (void)loadModel {
     BPVUserInfoContext *userFillContext  = [BPVUserInfoContext new];
-    userFillContext.user = self.user;
+    userFillContext.model = self.user;
     self.context = userFillContext;
 }
 

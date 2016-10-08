@@ -13,6 +13,8 @@
 #import "BPVGCD.h"
 #import "BPVFriendsListContext.h"
 
+#import "BPVUserInteractionContext.h"
+
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "NSFileManager+BPVExtensions.h"
@@ -23,7 +25,6 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 @interface BPVFacebookContext ()
-@property (nonatomic, strong) BPVUser  *defaultModel;
 
 - (void)loadModel;
 
@@ -41,14 +42,6 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setUser:(BPVUser *)user {
-    if (_user != user) {
-        _user = user;
-        
-        self.defaultModel = [_user copy];
-    }
-}
-
 - (BOOL)isCached {
     return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
 }
@@ -62,7 +55,9 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 }
 
 - (NSString *)fileName {
-    return [NSString stringWithFormat:@"%@.%@", self.user.ID, kBPVPlist];
+    BPVUser *model = self.model;
+    
+    return [NSString stringWithFormat:@"%@.%@", model.ID, kBPVPlist];
 }
 
 - (NSString *)path {
@@ -89,7 +84,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
     NSUInteger state = model.state;
     @synchronized (self) {
         if ([self shouldNotifyOfState:state]) {
-            [self.user notifyOfState:state];
+            [model notifyOfState:state];
             
             return;
         }
@@ -116,23 +111,23 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 }
 
 - (id)modelToLoad {
-    return self.user;
+    return self.model;
 }
 
 - (void)loadModelWithRequest:(FBSDKGraphRequest *)request {
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
-        BPVUser *user = self.user;
+        BPVModel *model = [self modelToLoad];
         if (error) {
             if (self.isCached) {
                 id cachedModel = [self cachedModel];
                 [self fillModelWithCachedModel:cachedModel];
-                user.state = [self didLoadState];
+                model.state = [self didLoadState];
                 
                 return;
             }
             
             NSLog(@"Faild data load with error: %@", error);
-            user.state = [self failLoadingState];
+            model.state = [self failLoadingState];
             
             return;
         }
@@ -146,7 +141,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 }
 
 - (void)fillModelWithCachedModel:(id)model {
-    [self fillUser:self.user withUser:model];
+    [BPVUserInteractionContext fillUser:self.model withUser:model];
 }
 
 - (NSUInteger)willLoadState {
@@ -161,34 +156,12 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
     return BPVModelFailLoading;
 }
 
-- (void)fillUser:(BPVUser *)user withUserInfo:(NSDictionary *)userInfo {
-    user.name = userInfo[kBPVName];
-    user.surname = userInfo[kBPVSurname];
-    
-    user.ID = userInfo[kBPVId];
-    
-    NSDictionary *picture = userInfo[kBPVPicture][kBPVData];
-    user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
-    
-    user.email = userInfo[kBPVEmail];
-    user.birthday = userInfo[kBPVBirthday];
-}
-
 - (void)saveObject:(id)object {
     if ([NSKeyedArchiver archiveRootObject:object toFile:self.filePath]) {
         NSLog(@"[SAVE] Saving operation succeeds");
     } else {
         NSLog(@"[FAIL] Data not saved");
     }
-}
-
-- (void)fillUser:(BPVUser *)user withUser:(BPVUser *)cachedUser {
-    user.name = cachedUser.name;
-    user.surname = cachedUser.surname;
-    user.ID = cachedUser.ID;
-    user.imageURL = cachedUser.imageURL;
-    user.birthday = cachedUser.birthday;
-    user.email = cachedUser.email;
 }
 
 @end

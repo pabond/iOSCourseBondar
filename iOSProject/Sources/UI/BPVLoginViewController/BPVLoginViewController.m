@@ -74,7 +74,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 
 - (void)loadModel {
     BPVLoginFacebookContext *context = [BPVLoginFacebookContext new];
-    context.user = self.user;
+    context.model = self.user;
     context.controller = self;
     self.context = context;
 }

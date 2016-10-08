@@ -111,7 +111,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     self.model = user.friends;
     
     BPVFriendsListContext *context = [BPVFriendsListContext new];
-    context.user = user;
+    context.model = user;
     self.context = context;
 }
 

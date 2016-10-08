@@ -11,10 +11,10 @@
         <attribute name="surname" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BPVUser" inverseName="friends" inverseEntity="BPVUser" syncable="YES"/>
-        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BPVImage" inverseName="user" inverseEntity="BPVImage" syncable="YES"/>
+        <relationship name="image" optional="YES" transient="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BPVImage" inverseName="user" inverseEntity="BPVImage" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BPVUser" positionX="-308" positionY="-90" width="128" height="148"/>
         <element name="BPVImage" positionX="-54" positionY="0" width="128" height="73"/>
+        <element name="BPVUser" positionX="-308" positionY="-90" width="128" height="150"/>
     </elements>
 </model>

@@ -29,8 +29,7 @@ BPVStringConstantWithValue(kBPVFields, fields);
 static NSString * const kBPVId = @"id";
 
 @interface BPVFacebookContext : BPVContext
-@property (nonatomic, strong)   BPVUser         *user;
-@property (nonatomic, readonly) BPVUser         *defaultModel;
+@property (nonatomic, strong)   id              model;
 @property (nonatomic, readonly) NSString        *applicationModelsPath;
 @property (nonatomic, readonly) NSString        *filePath;
 @property (nonatomic, readonly) BOOL            isCached;
@@ -56,8 +55,5 @@ static NSString * const kBPVId = @"id";
 - (NSUInteger)failLoadingState;
 - (BOOL)shouldNotifyOfState:(NSUInteger)state;
 - (NSString *)HTTPMethod;
-- (void)fillUser:(BPVUser *)user withUserInfo:(NSDictionary *)userInfo;
-
-- (void)fillUser:(BPVUser *)user withUser:(BPVUser *)cachedUser;
 
 @end

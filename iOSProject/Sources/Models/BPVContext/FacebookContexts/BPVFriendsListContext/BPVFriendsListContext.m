@@ -13,6 +13,8 @@
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
+#import "BPVUserInteractionContext.h"
+
 BPVStringConstantWithValue(kBPVPlist, plist);
 
 @implementation BPVFriendsListContext
@@ -25,11 +27,15 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 }
 
 - (NSString *)path {
-    return [NSString stringWithFormat:@"%@/%@", self.user.ID, kBPVFriends];
+    BPVUser *model = self.model;
+    
+    return [NSString stringWithFormat:@"%@/%@", model.ID, kBPVFriends];
 }
 
 - (NSString *)fileName {
-    return [NSString stringWithFormat:@"%@%@.%@", self.user.ID, kBPVFriends, kBPVPlist];
+    BPVUser *model = self.model;
+    
+    return [NSString stringWithFormat:@"%@%@.%@", model.ID, kBPVFriends, kBPVPlist];
 }
 
 #pragma mark -
@@ -45,7 +51,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
         BPVUser *user = nil;
         for (NSDictionary *friend in friendsList) {
             user = [BPVUser new];
-            [self fillUser:user withUserInfo:friend];
+            [BPVUserInteractionContext fillUser:user withUserInfo:friend];
             
             [array addObject:user];
         }
@@ -77,12 +83,14 @@ BPVStringConstantWithValue(kBPVPlist, plist);
             friend = friends[iterator];
         }
         
-        [self fillUser:friend withUser:model[iterator]];
+        [BPVUserInteractionContext fillUser:friend withUser:model[iterator]];
     }
 }
 
 - (id)modelToLoad {
-    return self.user.friends;
+    BPVUser *model = self.model;
+    
+    return model.friends;
 }
 
 @end
