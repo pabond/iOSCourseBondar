@@ -12,6 +12,8 @@
 
 #import "BPVMacro.h"
 
+typedef void(^BPVBlock)();
+
 @implementation NSManagedObject (BPVExtensions)
 
 #pragma mark -
@@ -28,7 +30,7 @@
 }
 
 + (id)managedObject {
-    return [NSManagedObjectContext managedObjectWithEntity:NSStringFromClass([self class])];
+    return [NSManagedObjectContext managedObjectWithEntity:NSStringFromClass([self class]) ];
 }
 
 #pragma mark -
@@ -65,21 +67,31 @@
 }
 
 - (void)addCustomValues:(NSSet *)values forKey:(NSString *)key {
-    [self willChangeValueForKey:key withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
     NSMutableSet *primitiveSet = [self primitiveValueForKey:key];
-    [primitiveSet unionSet:values];
-    [self didChangeValueForKey:key withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
+    [self changeValues:values forKey:key withBlock:^{
+        [primitiveSet unionSet:values];
+    }];
 }
 
 - (void)removeCustomValues:(NSSet *)values forKey:(NSString *)key {
-    [self willChangeValueForKey:key withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
     NSMutableSet *primitiveSet = [self primitiveValueForKey:key];
-    [primitiveSet minusSet:values];
-    [self didChangeValueForKey:key withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
+    [self changeValues:values forKey:key withBlock:^{
+        [primitiveSet minusSet:values];
+    }];
 }
 
 - (void)addCustomValue:(id)value inMutableOrderedSetForKey:(NSString *)key {
     [[self primitiveValueForKey:key] addObject:value];
+}
+
+- (void)changeValues:(NSSet *)values forKey:(NSString *)key withBlock:(BPVBlock)block {
+    if (!block) {
+        return;
+    }
+    
+    [self willChangeValueForKey:key withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
+    block();
+    [self didChangeValueForKey:key withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
 }
 
 @end

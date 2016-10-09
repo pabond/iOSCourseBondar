@@ -21,7 +21,7 @@ BPVStringConstant(BPVFiles);
 BPVStringConstantWithValue(kBPVSQLite, sqlite);
 
 #define BPVDefaultStoreName(momName) \
-    [NSString stringWithFormat:@"%@%@", momName, kBPVStore]
+    [NSString stringWithFormat:@"%@%@%@", momName, kBPVStore, kBPVSQLite]
 
 @interface BPVCoreDataManager ()
 @property (nonatomic, copy) NSString *storeName;
@@ -90,7 +90,7 @@ BPVStringConstantWithValue(kBPVSQLite, sqlite);
 {
     self = [super init];
     self.momName = momName;
-    self.storeName = storeName;
+    self.storeName = [NSString stringWithFormat:@"%@%@", storeName, kBPVSQLite];
     self.storeType = storeType;
     
     return self;
@@ -119,9 +119,8 @@ BPVStringConstantWithValue(kBPVSQLite, sqlite);
     }
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:self.momName ofType:kBPVMomType];
+    NSURL *url = [bundle URLForResource:self.momName withExtension:kBPVMomType];
     
-    NSURL *url = [NSURL fileURLWithPath:path];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:url];
     
     return _managedObjectModel;
@@ -131,36 +130,24 @@ BPVStringConstantWithValue(kBPVSQLite, sqlite);
     if (_persistentStoreCoordinator) {
         return _persistentStoreCoordinator;
     }
- 
-    NSURL *url = [NSURL fileURLWithPath:[[NSFileManager applicationDataPathWithFolderName:BPVFiles] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", self.storeName, kBPVSQLite]]];
     
-    NSError *error = nil;
+    NSString *folderPath = [NSFileManager applicationDataPathWithFolderName:BPVFiles];
+    NSString *filePath = [folderPath stringByAppendingPathComponent:self.storeName];
+    NSURL *url = [NSURL fileURLWithPath:filePath];
+    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     NSString *storeType = self.storeType;
     if (!storeType) {
         storeType = kBPVDefaultStoreType;
     }
-    
+
     [_persistentStoreCoordinator addPersistentStoreWithType:storeType
                                               configuration:nil
                                                         URL:url
                                                     options:nil
-                                                      error:&error] ;
+                                                      error:nil];
     
     return _persistentStoreCoordinator;
-}
-
-#pragma mark -
-#pragma mark Public Implementations
-
-- (void)deleteCurrentStore {
-    NSString *storePath = [[NSFileManager libraryDirectoryPath] stringByAppendingString:[NSString stringWithFormat:@"%@%@",self.storeName, kBPVSQLite]];
-    NSPersistentStore *persistentStore = [[self.persistentStoreCoordinator persistentStores] firstObject];
-    [self.persistentStoreCoordinator removePersistentStore:persistentStore error:nil];
-    [[NSFileManager defaultManager] removeItemAtURL:persistentStore.URL error:nil];
-    
-    NSLog(@"Store at path:%@, was deleted", storePath);
-    __sharedManager = nil;
 }
 
 @end

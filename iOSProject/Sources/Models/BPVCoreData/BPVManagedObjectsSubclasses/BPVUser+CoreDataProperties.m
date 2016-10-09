@@ -11,6 +11,8 @@
 
 #import "BPVUser+CoreDataProperties.h"
 
+#import "BPVImage.h"
+
 #import "BPVMacro.h"
 
 @implementation BPVUser (CoreDataProperties)
@@ -21,8 +23,10 @@
 @dynamic email;
 @dynamic userID;
 @dynamic birthday;
-@dynamic images;
+@dynamic image;
 @dynamic friends;
+@dynamic imageURL;
+
 
 #pragma mark -
 #pragma mark Accessors
@@ -31,12 +35,64 @@
     return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
 }
 
+- (BPVImage *)image {
+    return [BPVImage imageWithUrl:[NSURL URLWithString:self.imageURL]];
+}
+
 - (void)setName:(NSString *)name {
-    [self setValue:name forKey:NSStringFromSelector(@selector(name))];
+    BPVSetKVCValue(name, name);
 }
 
 - (NSString *)name {
-    return [self valueForKey:NSStringFromSelector(@selector(name))];
+    BPVKVCValue(name);
+}
+
+- (void)setSurname:(NSString *)surname {
+    BPVSetKVCValue(surname, surname);
+}
+
+- (NSString *)surname {
+    BPVKVCValue(surname);
+}
+
+- (void)setEmail:(NSString *)email {
+    BPVSetKVCValue(email, email);
+}
+
+- (NSString *)userID {
+    BPVKVCValue(userID);
+}
+
+- (void)setUserID:(NSString *)userID {
+    BPVSetKVCValue(userID, userID);
+}
+
+- (NSString *)birthday {
+    BPVKVCValue(birthday);
+}
+
+- (void)setBirthday:(NSString *)birthday {
+    BPVSetKVCValue(birthday, birthday);
+}
+
+- (NSString *)imageURL {
+    BPVKVCValue(imageURL);
+}
+
+- (void)setImageURL:(NSString *)imageURL {
+    BPVSetKVCValue(imageURL, imageURL);
+}
+
+- (NSSet *)friends {
+    BPVKVCValue(friends);
+}
+
+- (void)setFriends:(NSSet *)friends {
+    
+    /////////////////////////////
+    BPVSetKVCValue(friends, friends);
+    
+    /////////////////////////
 }
 
 @end

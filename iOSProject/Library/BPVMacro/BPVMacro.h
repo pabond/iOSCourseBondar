@@ -97,13 +97,8 @@
 #define BPVStringFromSEL(selector) \
     NSStringFromSelector(@selector(selector))
 
-//#define BPVSetVelueForSEL(value, selector) \
-//    do { \
-//        [self setValue:value forKey:BPVStringFromSEL(selector)]; \
-//    } while (0)
-//
-//
-//#define BPVVelueForSEL(selector) \
-//    do { \
-//        return [self valueForKey:BPVStringFromSEL(selector)]; \
-//    } while (0)
+#define BPVSetKVCValue(value, valueGetter) \
+    [self setValue:value forKey:NSStringFromSelector(@selector(valueGetter))]
+
+#define BPVKVCValue(valueGetter) \
+    return [self valueForKey:NSStringFromSelector(@selector(valueGetter))]

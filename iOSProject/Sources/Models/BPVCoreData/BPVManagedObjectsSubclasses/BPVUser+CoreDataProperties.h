@@ -17,12 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString    *fullName;
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, copy)     NSString    *surname;
+@property (nonatomic, copy)     NSString    *imageURL;
 
 @property (nonatomic, copy)     NSString    *email;
 @property (nonatomic, copy)     NSString    *userID;
 @property (nonatomic, copy)     NSString    *birthday;
 
-@property (nonatomic, strong)   BPVImage    *images;
+@property (nonatomic, readonly) BPVImage    *image;
 @property (nonatomic, strong)   NSSet       *friends;
 
 @end

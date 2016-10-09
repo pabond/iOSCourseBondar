@@ -24,6 +24,4 @@
                                storeName:(NSString *)storeName
                                storeType:(NSString *)storeType;
 
-- (void)deleteCurrentStore;
-
 @end

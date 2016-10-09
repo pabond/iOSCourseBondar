@@ -26,7 +26,6 @@
 + (id)managedObjectWithEntity:(NSString *)entityName {
     return [NSEntityDescription insertNewObjectForEntityForName:entityName
                                          inManagedObjectContext:[self sharedContext]];
-    
 }
 
 + (NSArray *)fetchEntity:(NSString *)entityName
