@@ -32,7 +32,7 @@ BPVStringConstantWithValue(kBPVPermitionPublicProfile, public_profile);
                                                       user.state = BPVModelFailLoading;
                                                   }
                                                   
-                                                  user.ID = result.token.userID;
+                                                  user.userID = result.token.userID;
                                 
                                                   user.state = BPVModelDidLoadID;
                                               }];

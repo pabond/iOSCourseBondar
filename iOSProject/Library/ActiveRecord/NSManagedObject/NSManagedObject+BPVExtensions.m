@@ -19,9 +19,9 @@ typedef void(^BPVBlock)();
 #pragma mark -
 #pragma mark Class methods
 
-+ (NSArray *)fetchEntityWithSortDescriptors:(NSArray *)sortDescriptors
-                                  predicate:(NSPredicate *)predicate
-                              prefatchPaths:(NSArray *)prefetchPaths
++ (NSArray *)entitysWithSortDescriptors:(NSArray *)sortDescriptors
+                              predicate:(NSPredicate *)predicate
+                          prefatchPaths:(NSArray *)prefetchPaths
 {
     return [NSManagedObjectContext fetchEntity:NSStringFromClass([self class])
                            withSortDescriptors:sortDescriptors
@@ -36,7 +36,7 @@ typedef void(^BPVBlock)();
 #pragma mark -
 #pragma mark Public Implementations
 
-- (void)deleteManagedObject {
+- (void)removeManagedObject {
     [NSManagedObjectContext deleteManagedObject:self];
 }
 

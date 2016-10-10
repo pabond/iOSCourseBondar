@@ -10,13 +10,13 @@
 
 @interface NSManagedObject (BPVExtensions)
 
-+ (NSArray *)fetchEntityWithSortDescriptors:(NSArray *)sortDescriptors
-                                  predicate:(NSPredicate *)predicate
-                              prefatchPaths:(NSArray *)prefetchPaths;
++ (NSArray *)entitysWithSortDescriptors:(NSArray *)sortDescriptors
+                              predicate:(NSPredicate *)predicate
+                          prefatchPaths:(NSArray *)prefetchPaths;
 
 + (id)managedObject;
 
-- (void)deleteManagedObject;
+- (void)removeManagedObject;
 - (void)saveManagedObject;
 
 - (void)setCustomValue:(id)value forKey:(NSString *)key;

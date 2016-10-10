@@ -14,6 +14,8 @@ typedef void(^BPVBlock)();
 @property (nonatomic, assign)   NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observersSet;
 
++ (instancetype)observableObjectWithTarget:(id)target;
+
 - (void)addObserver:(id)observer;
 - (void)addObservers:(NSArray *)observers;
 

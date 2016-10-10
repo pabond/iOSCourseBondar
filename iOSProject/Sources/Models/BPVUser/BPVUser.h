@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 #import "BPVModel.h"
 
@@ -30,19 +32,13 @@ typedef NS_ENUM(NSUInteger, BPVUserLoadState) {
 
 @end
 
-@interface BPVUser : BPVModel <NSCoding>
-@property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, copy)     NSString    *surname;
-@property (nonatomic, readonly) NSString    *fullName;
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, readonly) BPVImage    *image;
-@property (nonatomic, strong)   NSURL       *imageURL;
-
-@property (nonatomic, copy)     NSString    *birthday;
-@property (nonatomic, copy)     NSString    *email;
-
-@property (nonatomic, copy)     NSString    *ID;
-
+@interface BPVUser : NSManagedObject <NSCoding>
 @property (nonatomic, readonly) BPVUsers    *friends;
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "BPVUser+CoreDataProperties.h"

@@ -13,8 +13,11 @@
 @interface BPVObservableObject ()
 @property (nonatomic, retain) NSHashTable   *observersTable;
 @property (nonatomic, assign) BOOL          shouldNotify;
+@property (nonatomic, weak)   id            target;
 
 - (void)notifyOfStateWithSelector:(SEL)selector object:(id)object;
+
+- (instancetype)initWithTarget:(id)target;
 
 @end
 
@@ -23,14 +26,24 @@
 @dynamic observersSet;
 
 #pragma mark -
+#pragma mark Class methods
+
++ (instancetype)observableObjectWithTarget:(id)target {
+    return [[self alloc] initWithTarget:target];
+}
+
+#pragma mark -
 #pragma mark Initialisations / Deallocations
 
 - (instancetype)init {
+    return [self initWithTarget:nil];
+}
+
+- (instancetype)initWithTarget:(id)target {
     self = [super init];
-    if (self) {
-        self.shouldNotify = YES;
-        self.observersTable = [NSHashTable weakObjectsHashTable];
-    }
+    self.shouldNotify = YES;
+    self.observersTable = [NSHashTable weakObjectsHashTable];
+    self.target = target ? target : self;
     
     return self;
 }

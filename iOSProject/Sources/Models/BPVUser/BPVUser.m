@@ -25,16 +25,15 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 BPVStringConstantWithValue(kBPVUserBirthday, userBirthday);
 BPVStringConstantWithValue(kBPVUserEmail, userEmail);
 
+BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
+BPVStringConstantWithValue(kBPVUserImageFormat, png);
+
 @interface BPVUser ()
 @property (nonatomic, strong)   BPVUsers    *friends;
 
 @end
 
 @implementation BPVUser
-
-@dynamic image;
-
-@dynamic fullName;
 
 #pragma mark -
 #pragma mark Initializations and deallocations

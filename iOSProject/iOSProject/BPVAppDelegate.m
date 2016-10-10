@@ -11,8 +11,8 @@
 #import "BPVSquareViewController.h"
 #import "BPVUsersViewController.h"
 #import "BPVLoginViewController.h"
-#import "BPVArrayModel.h"
 
+#import "BPVCoreDataManager.h"
 #import "BPVUsers.h"
 
 #import "UIViewController+BPVExtensions.h"
@@ -21,6 +21,13 @@
 #import "BPVMacro.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+
+BPVStringConstantWithValue(kBPVMomName, iOSProject);
+
+@interface BPVAppDelegate ()
+@property (nonatomic, strong) BPVCoreDataManager *codeDataManager;
+
+@end
 
 @implementation BPVAppDelegate
 
@@ -32,8 +39,7 @@
     UIWindow *window = [UIWindow window];
     self.window = window;
     
-    //    BPVTableViewController *controller = [BPVUsersViewController viewController];
-    //    controller.model = [BPVUsers new];
+    self.codeDataManager = [BPVCoreDataManager sharedManagerWithMomName:kBPVMomName];
     
     BPVLoginViewController *controller = [BPVLoginViewController viewController];
     

@@ -7,10 +7,20 @@
 //
 
 #import "BPVUser.h"
+
+#import "BPVUsers.h"
 #import "BPVImage.h"
 
 @implementation BPVUser
 
-// Insert code here to add functionality to your managed object subclass
+#pragma mark -
+#pragma mark Initializations and deallocations
+
+- (instancetype)init {
+    self = [super init];
+    self.friends = [NSSet set];
+    
+    return self;
+}
 
 @end
