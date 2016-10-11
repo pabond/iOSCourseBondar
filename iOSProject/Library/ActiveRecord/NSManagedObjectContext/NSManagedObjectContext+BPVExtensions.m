@@ -28,10 +28,10 @@
                                          inManagedObjectContext:[self sharedContext]];
 }
 
-+ (NSArray *)fetchEntity:(NSString *)entityName
-     withSortDescriptors:(NSArray *)sortDescriptions
-               predicate:(NSPredicate *)predicate
-           prefetchPaths:(NSArray *)prefetchPaths
++ (NSArray *)entity:(NSString *)entityName
+withSortDescriptors:(NSArray *)sortDescriptions
+          predicate:(NSPredicate *)predicate
+      prefetchPaths:(NSArray *)prefetchPaths
 {
     NSFetchRequest *request = [NSFetchRequest new];
     request.entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:[self sharedContext]];
@@ -49,12 +49,12 @@
                 ofEntity:(NSString *)entityName
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"@K like %@", valueName, property];
-    NSArray *result = [self fetchEntity:entityName withSortDescriptors:nil predicate:predicate prefetchPaths:nil];
+    NSArray *result = [self entity:entityName withSortDescriptors:nil predicate:predicate prefetchPaths:nil];
     
     return [result firstObject];
 }
 
-+ (void)deleteManagedObject:(NSManagedObject *)object {
++ (void)removeManagedObject:(NSManagedObject *)object {
     [[self sharedContext] deleteObject:object];
     [self saveManagedObjectContext];
 }

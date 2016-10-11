@@ -14,16 +14,16 @@
 
 + (id)managedObjectWithEntity:(NSString *)entityName;
 
-+ (NSArray *)fetchEntity:(NSString *)entityName
-     withSortDescriptors:(NSArray *)sortDescriptions
-               predicate:(NSPredicate *)predicate
-           prefetchPaths:(NSArray *)prefetchPaths;
++ (NSArray *)entity:(NSString *)entityName
+withSortDescriptors:(NSArray *)sortDescriptions
+          predicate:(NSPredicate *)predicate
+      prefetchPaths:(NSArray *)prefetchPaths;
 
 + (id)objectWithProperty:(id)property
                 forValue:(NSString *)valueName
                 ofEntity:(NSString *)entityName;
 
-+ (void)deleteManagedObject:(NSManagedObject *)object;
++ (void)removeManagedObject:(NSManagedObject *)object;
 + (void)resetManagedObjectContext;
 + (void)saveManagedObjectContext;
 
