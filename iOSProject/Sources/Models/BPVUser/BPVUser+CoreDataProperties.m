@@ -38,12 +38,4 @@
     return [BPVImage imageWithUrl:[NSURL URLWithString:self.imageURL]];
 }
 
-- (void)setFriends:(NSSet *)friends {
-    
-    /////////////////////////////
-    BPVSetKVCValue(friends, friends);
-    
-    /////////////////////////
-}
-
 @end

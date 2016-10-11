@@ -22,8 +22,6 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-BPVStringConstantWithValue(kBPVMomName, iOSProject);
-
 @interface BPVAppDelegate ()
 @property (nonatomic, strong) BPVCoreDataManager *codeDataManager;
 
@@ -39,7 +37,7 @@ BPVStringConstantWithValue(kBPVMomName, iOSProject);
     UIWindow *window = [UIWindow window];
     self.window = window;
     
-    self.codeDataManager = [BPVCoreDataManager sharedManagerWithMomName:kBPVMomName];
+    self.codeDataManager = [BPVCoreDataManager defaultManager];
     
     BPVLoginViewController *controller = [BPVLoginViewController viewController];
     

@@ -29,7 +29,7 @@ BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 @interface BPVUser ()
-@property (nonatomic, strong)   BPVUsers            *friends;
+@property (nonatomic, strong)   NSMutableSet        *friends;
 @property (nonatomic, strong)   BPVObservableObject *observableObject;
 
 @end
@@ -43,7 +43,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
      insertIntoManagedObjectContext:(nullable NSManagedObjectContext *)context
 {
     self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-    self.friends = [BPVUsers new];
+    self.friends = [NSMutableSet set];
     self.observableObject = [BPVObservableObject observableObjectWithTarget:self];
     
     return self;
@@ -62,6 +62,25 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 #pragma mark -
 #pragma mark Public implemantations
+
+- (void)addFriend:(BPVUser *)user {
+    [self.friends addObject:user];
+}
+
+- (void)removeFriend:(BPVUser *)user {
+    [self.friends removeObject:user];
+}
+- (void)addFriends:(NSSet *)users {
+    for (id user in users) {
+        [self addFriend:user];
+    }
+}
+
+- (void)removeFriends:(NSSet *)users {
+    for (id user in users) {
+        [self removeFriend:user];
+    }
+}
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     return self.observableObject;

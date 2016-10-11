@@ -10,7 +10,7 @@
 
 @interface NSManagedObject (BPVExtensions)
 
-+ (NSArray *)entitysWithSortDescriptors:(NSArray *)sortDescriptors
++ (NSArray *)entitisWithSortDescriptors:(NSArray *)sortDescriptors
                               predicate:(NSPredicate *)predicate
                           prefatchPaths:(NSArray *)prefetchPaths;
 

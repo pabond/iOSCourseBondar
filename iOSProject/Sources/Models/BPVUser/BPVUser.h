@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPVUser : NSManagedObject <NSCoding, BPVObservableObjectProtocol>
 @property (nonatomic, readonly) BPVObservableObject *observableObject;
-@property (nonatomic, readonly) BPVUsers            *friends;
+//@property (nonatomic, readonly) BPVUsers            *friends;
 
 @end
 

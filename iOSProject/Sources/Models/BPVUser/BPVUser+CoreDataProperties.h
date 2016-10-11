@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)     NSString    *birthday;
 
 @property (nonatomic, readonly) BPVImage    *image;
-@property (nonatomic, strong)   NSSet       *friends;
+@property (nonatomic, readonly) NSSet       *friends;
 
 @end
 

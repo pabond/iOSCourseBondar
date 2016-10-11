@@ -102,3 +102,6 @@
 
 #define BPVKVCValue(valueGetter) \
     return [self valueForKey:NSStringFromSelector(@selector(valueGetter))]
+
+#define BPVClassString \
+    NSStringFromClass([self class])

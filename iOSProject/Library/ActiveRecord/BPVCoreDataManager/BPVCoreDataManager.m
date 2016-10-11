@@ -52,6 +52,10 @@ BPVStringConstantWithValue(kBPVSQLite, sqlite);
     return __sharedManager;
 }
 
++ (instancetype)defaultManager {
+    return [self sharedManagerWithMomName:BPVClassString];
+}
+
 + (instancetype)sharedManagerWithMomName:(NSString *)momName {
     return [self sharedManagerWithMomName:momName storeName:BPVDefaultStoreName(momName)];
 }

@@ -15,6 +15,7 @@
 		2D328D6F1D5CADF70064C76D /* BPVImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D661D5CADF70064C76D /* BPVImage.m */; };
 		2D328D701D5CADF70064C76D /* BPVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D691D5CADF70064C76D /* BPVUser.m */; };
 		2D328D721D5CADF70064C76D /* BPVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D328D6E1D5CADF70064C76D /* BPVUsers.m */; };
+		2D33BFB51DAD2A6D00FADBF2 /* BPVFRCUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D33BFB41DAD2A6D00FADBF2 /* BPVFRCUsers.m */; };
 		2D3F41D11D3F65EB00A38A7B /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3F41D01D3F65EB00A38A7B /* iOSProjectUITests.m */; };
 		2D3F41EF1D3F6EB600A38A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3F41E51D3F6EB600A38A7B /* LaunchScreen.storyboard */; };
 		2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3F41E71D3F6EB600A38A7B /* Main.storyboard */; };
@@ -133,6 +134,8 @@
 		2D328D6D1D5CADF70064C76D /* BPVUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsers.h; sourceTree = "<group>"; };
 		2D328D6E1D5CADF70064C76D /* BPVUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsers.m; sourceTree = "<group>"; };
 		2D33BFB21DACE37500FADBF2 /* BPVObservableObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVObservableObjectProtocol.h; sourceTree = "<group>"; };
+		2D33BFB31DAD2A6D00FADBF2 /* BPVFRCUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVFRCUsers.h; sourceTree = "<group>"; };
+		2D33BFB41DAD2A6D00FADBF2 /* BPVFRCUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVFRCUsers.m; sourceTree = "<group>"; };
 		2D3F41A81D3F65EB00A38A7B /* iOSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3F41C11D3F65EB00A38A7B /* iOSProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3F41C71D3F65EB00A38A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -418,6 +421,8 @@
 			children = (
 				2D328D6D1D5CADF70064C76D /* BPVUsers.h */,
 				2D328D6E1D5CADF70064C76D /* BPVUsers.m */,
+				2D33BFB31DAD2A6D00FADBF2 /* BPVFRCUsers.h */,
+				2D33BFB41DAD2A6D00FADBF2 /* BPVFRCUsers.m */,
 			);
 			path = "BPVUsers collection";
 			sourceTree = "<group>";
@@ -1451,6 +1456,7 @@
 				2D1425B81D8FCAB200C5AD2E /* BPVImageView.m in Sources */,
 				2DE873A41D75C24800A3550A /* BPVMacro.m in Sources */,
 				2DD763A21D786A2600CEB5EA /* BPVRemoveModel.m in Sources */,
+				2D33BFB51DAD2A6D00FADBF2 /* BPVFRCUsers.m in Sources */,
 				2D805F021D8AD0140057A232 /* NSFileManager+BPVExtensions.m in Sources */,
 				2DA8E9671D4CDE880067032D /* BPVTableViewCell.m in Sources */,
 				2D805F0A1D8AD0140057A232 /* UINib+BPVExtensions.m in Sources */,

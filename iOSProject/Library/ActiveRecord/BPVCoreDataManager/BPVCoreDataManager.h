@@ -15,6 +15,8 @@
 @property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (instancetype)sharedManager;
+
++ (instancetype)defaultManager;
 + (instancetype)sharedManagerWithMomName:(NSString *)momName;
 
 + (instancetype)sharedManagerWithMomName:(NSString *)momName
