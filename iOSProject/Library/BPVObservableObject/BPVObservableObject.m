@@ -25,6 +25,8 @@
 
 @dynamic observersSet;
 
+@synthesize state = _state;
+
 #pragma mark -
 #pragma mark Class methods
 
@@ -156,7 +158,7 @@
         NSHashTable *observers = self.observersTable;
         for (id observer in observers) {
             if ([observer respondsToSelector:selector]) {
-                [observer performSelector:selector withObject:self withObject:object];
+                [observer performSelector:selector withObject:self.target withObject:object];
             }
         }
     }

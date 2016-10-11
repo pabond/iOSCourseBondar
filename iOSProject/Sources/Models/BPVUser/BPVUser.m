@@ -29,7 +29,8 @@ BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 @interface BPVUser ()
-@property (nonatomic, strong)   BPVUsers    *friends;
+@property (nonatomic, strong)   BPVUsers            *friends;
+@property (nonatomic, strong)   BPVObservableObject *observableObject;
 
 @end
 
@@ -38,9 +39,12 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 #pragma mark -
 #pragma mark Initializations and deallocations
 
-- (instancetype)init {
-    self = [super init];
+- (NSManagedObject *)initWithEntity:(NSEntityDescription *)entity
+     insertIntoManagedObjectContext:(nullable NSManagedObjectContext *)context
+{
+    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
     self.friends = [BPVUsers new];
+    self.observableObject = [BPVObservableObject observableObjectWithTarget:self];
     
     return self;
 }
@@ -53,11 +57,15 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 }
 
 - (BPVImage *)image {
-    return [BPVImage imageWithUrl:self.imageURL];
+    return [BPVImage imageWithUrl:[NSURL URLWithString:self.imageURL]];
 }
 
 #pragma mark -
 #pragma mark Public implemantations
+
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    return self.observableObject;
+}
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
@@ -74,7 +82,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
             return @selector(modelFailLoadingDetailedInfo:);
 
         default:
-            return [super selectorForState:state];
+            return [self.observableObject selectorForState:state];
     }
 }
 
@@ -88,7 +96,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
     [aCoder encodeObject:self.email forKey:kBPVUserEmail];
     [aCoder encodeObject:self.birthday forKey:kBPVUserBirthday];
     
-    [aCoder encodeObject:self.ID forKey:kBPVUserID];
+    [aCoder encodeObject:self.userID forKey:kBPVUserID];
     [aCoder encodeObject:self.imageURL forKey:kBPVUserURL];
 }
 
@@ -102,7 +110,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
         self.email = [aDecoder decodeObjectForKey:kBPVUserEmail];
         
         self.birthday = [aDecoder decodeObjectForKey:kBPVUserBirthday];
-        self.ID = [aDecoder decodeObjectForKey:kBPVUserID];
+        self.userID = [aDecoder decodeObjectForKey:kBPVUserID];
     }
     
     return self;

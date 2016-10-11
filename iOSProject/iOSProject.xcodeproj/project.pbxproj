@@ -132,6 +132,7 @@
 		2D328D691D5CADF70064C76D /* BPVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUser.m; sourceTree = "<group>"; };
 		2D328D6D1D5CADF70064C76D /* BPVUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVUsers.h; sourceTree = "<group>"; };
 		2D328D6E1D5CADF70064C76D /* BPVUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsers.m; sourceTree = "<group>"; };
+		2D33BFB21DACE37500FADBF2 /* BPVObservableObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVObservableObjectProtocol.h; sourceTree = "<group>"; };
 		2D3F41A81D3F65EB00A38A7B /* iOSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3F41C11D3F65EB00A38A7B /* iOSProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3F41C71D3F65EB00A38A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -819,6 +820,7 @@
 			children = (
 				2DA8E9601D4C89DC0067032D /* BPVObservableObject.h */,
 				2DA8E9611D4C89DC0067032D /* BPVObservableObject.m */,
+				2D33BFB21DACE37500FADBF2 /* BPVObservableObjectProtocol.h */,
 			);
 			path = BPVObservableObject;
 			sourceTree = "<group>";

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "BPVObservableObjectProtocol.h"
 
 #import "BPVModel.h"
 
@@ -34,8 +35,9 @@ typedef NS_ENUM(NSUInteger, BPVUserLoadState) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPVUser : NSManagedObject <NSCoding>
-@property (nonatomic, readonly) BPVUsers    *friends;
+@interface BPVUser : NSManagedObject <NSCoding, BPVObservableObjectProtocol>
+@property (nonatomic, readonly) BPVObservableObject *observableObject;
+@property (nonatomic, readonly) BPVUsers            *friends;
 
 @end
 
