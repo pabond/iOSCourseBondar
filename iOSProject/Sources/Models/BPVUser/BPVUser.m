@@ -12,6 +12,8 @@
 #import "BPVImage.h"
 #import "BPVGCD.h"
 
+#import "BPVCDArrayModel.h"
+
 #import "NSString+BPVRandomName.h"
 
 #import "BPVMacro.h"
@@ -29,12 +31,15 @@ BPVStringConstantWithValue(kBPVUserImageName, BPVUserLogo);
 BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 @interface BPVUser ()
-@property (nonatomic, strong)   NSMutableSet        *friends;
 @property (nonatomic, strong)   BPVObservableObject *observableObject;
+@property (nonatomic, strong)   BPVArrayModel       *arrayModel;
 
 @end
 
 @implementation BPVUser
+
+@dynamic fullName;
+@dynamic image;
 
 #pragma mark -
 #pragma mark Initializations and deallocations
@@ -43,7 +48,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
      insertIntoManagedObjectContext:(nullable NSManagedObjectContext *)context
 {
     self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-    self.friends = [NSMutableSet set];
+    self.arrayModel = [BPVCDArrayModel new];
     self.observableObject = [BPVObservableObject observableObjectWithTarget:self];
     
     return self;
@@ -57,30 +62,11 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 }
 
 - (BPVImage *)image {
-    return [BPVImage imageWithUrl:[NSURL URLWithString:self.imageURL]];
+    return [BPVImage imageWithUrl:[NSURL URLWithString:self.imageURLString]];
 }
 
 #pragma mark -
 #pragma mark Public implemantations
-
-- (void)addFriend:(BPVUser *)user {
-    [self.friends addObject:user];
-}
-
-- (void)removeFriend:(BPVUser *)user {
-    [self.friends removeObject:user];
-}
-- (void)addFriends:(NSSet *)users {
-    for (id user in users) {
-        [self addFriend:user];
-    }
-}
-
-- (void)removeFriends:(NSSet *)users {
-    for (id user in users) {
-        [self removeFriend:user];
-    }
-}
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     return self.observableObject;
@@ -116,7 +102,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
     [aCoder encodeObject:self.birthday forKey:kBPVUserBirthday];
     
     [aCoder encodeObject:self.userID forKey:kBPVUserID];
-    [aCoder encodeObject:self.imageURL forKey:kBPVUserURL];
+    [aCoder encodeObject:self.imageURLString forKey:kBPVUserURL];
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -125,7 +111,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
         self.name = [aDecoder decodeObjectForKey:kBPVUserName];
         self.surname = [aDecoder decodeObjectForKey:kBPVUserSurname];
         
-        self.imageURL = [aDecoder decodeObjectForKey:kBPVUserURL];
+        self.imageURLString = [aDecoder decodeObjectForKey:kBPVUserURL];
         self.email = [aDecoder decodeObjectForKey:kBPVUserEmail];
         
         self.birthday = [aDecoder decodeObjectForKey:kBPVUserBirthday];

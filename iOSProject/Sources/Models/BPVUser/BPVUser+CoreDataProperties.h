@@ -14,16 +14,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPVUser (CoreDataProperties)
-@property (nonatomic, readonly) NSString    *fullName;
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, copy)     NSString    *surname;
-@property (nonatomic, copy)     NSString    *imageURL;
+@property (nonatomic, copy)     NSString    *imageURLString;
 
 @property (nonatomic, copy)     NSString    *email;
 @property (nonatomic, copy)     NSString    *userID;
 @property (nonatomic, copy)     NSString    *birthday;
 
-@property (nonatomic, readonly) BPVImage    *image;
 @property (nonatomic, readonly) NSSet       *friends;
 
 @end

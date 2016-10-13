@@ -17,25 +17,12 @@
 
 @implementation BPVUser (CoreDataProperties)
 
-@dynamic fullName;
 @dynamic name;
 @dynamic surname;
 @dynamic email;
 @dynamic userID;
 @dynamic birthday;
-@dynamic image;
 @dynamic friends;
-@dynamic imageURL;
-
-#pragma mark -
-#pragma mark Accessors
-
-- (NSString *)fullName {
-    return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
-}
-
-- (BPVImage *)image {
-    return [BPVImage imageWithUrl:[NSURL URLWithString:self.imageURL]];
-}
+@dynamic imageURLString;
 
 @end
