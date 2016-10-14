@@ -24,10 +24,14 @@ typedef NS_ENUM(NSUInteger, BPVCDArrayModelState) {
 @end
 
 @interface BPVCDArrayModel : BPVArrayModel <NSFetchedResultsControllerDelegate>
-@property (nonatomic, readonly) NSSet               *modelsSet;
-@property (nonatomic, readonly) NSPredicate         *predicate;
+@property (nonatomic, assign)   NSPredicate         *predicate;
 @property (nonatomic, readonly) NSSortDescriptor    *sortDesriptor;
+@property (nonatomic, readonly) NSString            *keyPath;
 
-+ (instancetype)CDArrayModelWithObject:(id <BPVObservableObjectProtocol>)object;
++ (instancetype)CDArrayModelWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath;
+
+//Next methods not implemented
+//- (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+//- (void)insertModel:(id)model atIndex:(NSUInteger)index;
 
 @end

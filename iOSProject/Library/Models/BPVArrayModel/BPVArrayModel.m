@@ -151,6 +151,16 @@
     return [self modelAtIndex:index];
 }
 
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case BPVModelDidChange:
+            return @selector(model:didChangeWithModel:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
 #pragma mark -
 #pragma mark Private implementations
 
@@ -166,28 +176,6 @@
                                     count:(NSUInteger)length
 {
     return [self.mutableModels countByEnumeratingWithState:state objects:buffer count:length];
-}
-
-- (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case BPVModelDidChange:
-            return @selector(model:didChangeWithModel:);
-            
-        default:
-            return [super selectorForState:state];
-    }
-}
-
-#pragma mark -
-#pragma mark NSCopying
-
-- (id)copyWithZone:(nullable NSZone *)zone {
-    BPVArrayModel *objectCopy = [super copyWithZone:zone];
-    if (objectCopy) {
-        objectCopy.mutableModels = [NSMutableArray arrayWithArray:[self.mutableModels copyWithZone:zone]];
-    }
-    
-    return objectCopy;
 }
 
 @end

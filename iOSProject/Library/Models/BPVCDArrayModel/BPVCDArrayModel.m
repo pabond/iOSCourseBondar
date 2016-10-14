@@ -15,57 +15,73 @@
 
 #import "NSManagedObject+BPVExtensions.h"
 #import "NSManagedObjectContext+BPVExtensions.h"
+#import "NSArray+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
-static NSFetchedResultsController *__fetchedResultsController = nil;
 BPVConstant(NSUInteger, kBPVBatchSize, 20);
+BPVStringConstant(kBPVMaster);
+BPVStringConstantWithValue(kBPVUserID, userID);
 
 @interface BPVCDArrayModel ()
 @property (nonatomic, strong)   NSFetchedResultsController          *fetchedResultsController;
-@property (nonatomic, strong)   NSSet                               *modelsSet;
 @property (nonatomic, weak)     id <BPVObservableObjectProtocol>    object;
+@property (nonatomic, copy)     NSString                            *keyPath;
 
 @end
 
 @implementation BPVCDArrayModel
 
-+ (instancetype)CDArrayModelWithObject:(id <BPVObservableObjectProtocol>)object {
+#pragma mark -
+#pragma mark Class methods
+
++ (instancetype)CDArrayModelWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath {
     return [[self alloc] initWithObject:object];
 }
 
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
-- (instancetype)initWithObject:(id <BPVObservableObjectProtocol>)object {
+- (instancetype)initWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath {
     self = [super init];
-    self.fetchedResultsController = [self fetchedResultsController];
+    self.fetchedResultsController = [self controller];
+    self.keyPath = keyPath;
     
     return self;
 }
-- (NSFetchedResultsController *)fetchedResultsController {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BPVUser class])];
-    [fetchRequest setFetchBatchSize:kBPVBatchSize];
-    
-    fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"userID" ascending:NO]];
-    fetchRequest.predicate = self.predicate;
 
-    __fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                     managedObjectContext:[NSManagedObjectContext sharedContext]
-                                                                       sectionNameKeyPath:nil
-                                                                                cacheName:nil];
+- (NSFetchedResultsController *)controller {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BPVUser class])];
+    fetchRequest.fetchBatchSize = kBPVBatchSize;
+    
+    fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:kBPVUserID ascending:NO]];
+    fetchRequest.predicate = self.predicate;
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext sharedContext];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                 managedObjectContext:context
+                                                                                   sectionNameKeyPath:nil
+                                                                                            cacheName:kBPVMaster];
     
     NSError *error = nil;
-    if (![__fetchedResultsController performFetch:&error]) {
+    if (![controller performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
-    return __fetchedResultsController;
+    return controller;
 }
 
 #pragma mark -
 #pragma mark Accessors
+
+- (void)setFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != fetchedResultsController) {
+        _fetchedResultsController = fetchedResultsController;
+        
+        _fetchedResultsController.delegate = self;
+    }
+}
 
 - (NSPredicate *)predicate {
     return nil;
@@ -78,20 +94,28 @@ BPVConstant(NSUInteger, kBPVBatchSize, 20);
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)addModel:(id)model {
-    
-}
-
-- (void)removeModel:(id)model {
-
-}
-
-- (void)addModels:(NSArray *)models {
-
-}
-
 - (id)modelAtIndex:(NSUInteger)index {
+    return self.fetchedResultsController.fetchedObjects[index];
+}
 
+- (BOOL)containsModel:(NSManagedObject *)model {
+    NSArray *array = [self.fetchedResultsController.fetchedObjects filteredUsingBlock:^BOOL(NSManagedObject *object) {
+        return [object.objectID isEqual:model.objectID];
+    }];
+    
+    return (BOOL)array.count;
+}
+
+- (NSUInteger)indexOfModel:(id)model {
+    return [self.fetchedResultsController.fetchedObjects indexOfObject:model];
+}
+
+- (NSUInteger)count {
+    return self.fetchedResultsController.fetchedObjects.count;
+}
+
+- (NSArray *)models {
+    return self.fetchedResultsController.fetchedObjects;
 }
 
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
@@ -102,20 +126,16 @@ BPVConstant(NSUInteger, kBPVBatchSize, 20);
     return;
 }
 
-- (BOOL)containsModel:(id)model {
+#pragma mark -
+#pragma mark NSFastEnumeration
 
-}
-
-- (void)removeModelAtIndex:(NSUInteger)index {
-
-}
-
-- (NSUInteger)indexOfModel:(id)model {
-
-}
-
-- (id)objectAtIndexedSubscript:(NSUInteger)index {
-
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id __unsafe_unretained [])buffer
+                                    count:(NSUInteger)length
+{
+    return [self.fetchedResultsController.fetchedObjects countByEnumeratingWithState:state
+                                                                             objects:buffer
+                                                                               count:length];
 }
 
 @end

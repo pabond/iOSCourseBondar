@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, BPVModelChangeState) {
 
 @end
 
-@interface BPVArrayModel : BPVModel <NSFastEnumeration, NSCopying>
+@interface BPVArrayModel : BPVModel <NSFastEnumeration>
 @property (nonatomic, readonly) NSArray     *models;
 @property (nonatomic, readonly) NSUInteger  count;
 
