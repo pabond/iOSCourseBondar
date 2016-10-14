@@ -11,6 +11,7 @@
 #import "BPVRemoveModel.h"
 #import "BPVAddModel.h"
 #import "BPVMoveModel.h"
+#import "BPVUpdateModel.h"
 
 @implementation BPVArrayChange
 
@@ -23,6 +24,10 @@
 
 + (instancetype)addModelWithIndex:(NSUInteger)index object:(id)object {
     return [[BPVAddModel alloc] initWithIndex:index object:(id)object];
+}
+
++ (instancetype)updateModelWithIndex:(NSUInteger)index object:(id)object {
+    return [[BPVUpdateModel alloc] initWithIndex:index object:(id)object];
 }
 
 + (instancetype)moveModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex object:(id)object {

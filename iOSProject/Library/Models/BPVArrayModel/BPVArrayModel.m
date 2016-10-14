@@ -161,9 +161,6 @@
     }
 }
 
-#pragma mark -
-#pragma mark Private implementations
-
 - (void)notifyOfArrayChangeWithObject:(id)object {
     [self notifyOfState:BPVModelDidChange withObject:object];
 }

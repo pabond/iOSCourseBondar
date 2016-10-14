@@ -29,13 +29,13 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 - (NSString *)path {
     BPVUser *model = self.model;
     
-    return [NSString stringWithFormat:@"%@/%@", model.ID, kBPVFriends];
+    return [NSString stringWithFormat:@"%@/%@", model.userID, kBPVFriends];
 }
 
 - (NSString *)fileName {
     BPVUser *model = self.model;
     
-    return [NSString stringWithFormat:@"%@%@.%@", model.ID, kBPVFriends, kBPVPlist];
+    return [NSString stringWithFormat:@"%@%@.%@", model.userID, kBPVFriends, kBPVPlist];
 }
 
 #pragma mark -

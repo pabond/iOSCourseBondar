@@ -12,6 +12,7 @@
 
 #import <CoreData/CoreData.h>
 #import "BPVCoreDataManager.h"
+#import "BPVArrayChange.h"
 
 #import "NSManagedObject+BPVExtensions.h"
 #import "NSManagedObjectContext+BPVExtensions.h"
@@ -136,6 +137,43 @@ BPVStringConstantWithValue(kBPVUserID, userID);
     return [self.fetchedResultsController.fetchedObjects countByEnumeratingWithState:state
                                                                              objects:buffer
                                                                                count:length];
+}
+
+#pragma mark -
+#pragma mark NSFetchedResultsControllerDelegate
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    BPVArrayChange *object = nil;
+    
+    switch (type) {
+        case NSFetchedResultsChangeInsert: {
+            object = [BPVArrayChange addModelWithIndex:indexPath.row object:anObject];
+        }
+            
+        case NSFetchedResultsChangeDelete: {
+            object = [BPVArrayChange removeModelWithIndex:indexPath.row object:anObject];
+        }
+            
+        case NSFetchedResultsChangeMove: {
+            object = [BPVArrayChange moveModelWithIndex:newIndexPath.row
+                                              fromIndex:indexPath.row
+                                                 object:anObject];
+        }
+            
+        case NSFetchedResultsChangeUpdate: {
+            object = [BPVArrayChange updateModelWithIndex:indexPath.row object:anObject];
+        }
+            
+        default:
+            break;
+    }
+    
+    [self notifyOfArrayChangeWithObject:object];
 }
 
 @end

@@ -41,4 +41,6 @@ typedef NS_ENUM(NSUInteger, BPVModelChangeState) {
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 
+- (void)notifyOfArrayChangeWithObject:(id)object;
+
 @end

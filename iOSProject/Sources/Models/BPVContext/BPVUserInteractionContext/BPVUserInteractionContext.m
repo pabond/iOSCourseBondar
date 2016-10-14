@@ -18,10 +18,10 @@
     user.name = userInfo[kBPVName];
     user.surname = userInfo[kBPVSurname];
     
-    user.ID = userInfo[kBPVId];
+    user.userID = userInfo[kBPVId];
     
     NSDictionary *picture = userInfo[kBPVPicture][kBPVData];
-    user.imageURL = [NSURL URLWithString:picture[kBPVUrl]];
+    user.imageURLString = picture[kBPVUrl];
     
     user.email = userInfo[kBPVEmail];
     user.birthday = userInfo[kBPVBirthday];
@@ -30,8 +30,8 @@
 + (void)fillUser:(BPVUser *)user withUser:(BPVUser *)cachedUser {
     user.name = cachedUser.name;
     user.surname = cachedUser.surname;
-    user.ID = cachedUser.ID;
-    user.imageURL = cachedUser.imageURL;
+    user.userID = cachedUser.userID;
+    user.imageURLString = cachedUser.imageURLString;
     user.birthday = cachedUser.birthday;
     user.email = cachedUser.email;
 }

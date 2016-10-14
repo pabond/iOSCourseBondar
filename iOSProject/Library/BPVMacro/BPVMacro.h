@@ -94,8 +94,8 @@
         \
     } while (0)
 
-#define BPVStringFromSEL(selector) \
-    NSStringFromSelector(@selector(selector))
+#define BPVStringFromSEL(sel) \
+    NSStringFromSelector(@selector(sel))
 
 #define BPVSetKVCValue(value, valueGetter) \
     [self setValue:value forKey:NSStringFromSelector(@selector(valueGetter))]

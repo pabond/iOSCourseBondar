@@ -56,7 +56,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 - (NSString *)fileName {
     BPVUser *model = self.model;
     
-    return [NSString stringWithFormat:@"%@.%@", model.ID, kBPVPlist];
+    return [NSString stringWithFormat:@"%@.%@", model.userID, kBPVPlist];
 }
 
 - (NSString *)path {

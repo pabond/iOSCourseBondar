@@ -43,7 +43,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
     if (token) {
         BPVUser *user = [BPVUser new];
         self.user = user;
-        user.ID = token.userID;
+        user.userID = token.userID;
         user.state = BPVModelDidLoadID;
     }
 }

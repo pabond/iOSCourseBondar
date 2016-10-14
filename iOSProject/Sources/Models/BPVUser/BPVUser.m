@@ -12,7 +12,7 @@
 #import "BPVImage.h"
 #import "BPVGCD.h"
 
-#import "BPVCDArrayModel.h"
+#import "BPVCDUsers.h"
 
 #import "NSString+BPVRandomName.h"
 
@@ -48,7 +48,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
      insertIntoManagedObjectContext:(nullable NSManagedObjectContext *)context
 {
     self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-    self.arrayModel = [BPVCDArrayModel new];
+    self.arrayModel = [BPVCDUsers CDArrayModelWithObject:self keyPath:BPVStringFromSEL(friends)];
     self.observableObject = [BPVObservableObject observableObjectWithTarget:self];
     
     return self;

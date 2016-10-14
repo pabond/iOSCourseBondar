@@ -33,7 +33,7 @@
 - (NSString *)path {
     BPVUser *model = self.model;
     
-    return model.ID;
+    return model.userID;
 }
 
 #pragma mark -

@@ -15,6 +15,7 @@
 
 + (instancetype)removeModelWithIndex:(NSUInteger)index object:(id)object;
 + (instancetype)addModelWithIndex:(NSUInteger)index object:(id)object;
++ (instancetype)updateModelWithIndex:(NSUInteger)index object:(id)object;
 + (instancetype)moveModelWithIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex object:(id)object;
 
 @end
