@@ -49,11 +49,7 @@ BPVStringConstantWithValue(kBPVSQLite, sqlite);
 #pragma mark Class methods
 
 + (instancetype)sharedManager {
-    return __sharedManager ? __sharedManager : [self defaultManager];
-}
-
-+ (instancetype)defaultManager {
-    return [self sharedManagerWithMomName:NSStringFromClass([self class])];
+    return __sharedManager ? __sharedManager : [self sharedManagerWithMomName:NSStringFromClass([self class])];
 }
 
 + (instancetype)sharedManagerWithMomName:(NSString *)momName {

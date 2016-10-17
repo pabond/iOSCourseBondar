@@ -14,7 +14,7 @@
 
 #import "BPVCDUsers.h"
 
-#import "NSString+BPVRandomName.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 #import "BPVMacro.h"
 
@@ -40,6 +40,9 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 @dynamic fullName;
 @dynamic image;
+
+@synthesize arrayModel;
+@synthesize observableObject;
 
 #pragma mark -
 #pragma mark Initializations and deallocations
@@ -89,36 +92,6 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
         default:
             return [self.observableObject selectorForState:state];
     }
-}
-
-#pragma mark -
-#pragma mark NSCoding
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.name forKey:kBPVUserName];
-    [aCoder encodeObject:self.surname forKey:kBPVUserSurname];
-    
-    [aCoder encodeObject:self.email forKey:kBPVUserEmail];
-    [aCoder encodeObject:self.birthday forKey:kBPVUserBirthday];
-    
-    [aCoder encodeObject:self.userID forKey:kBPVUserID];
-    [aCoder encodeObject:self.imageURLString forKey:kBPVUserURL];
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
-    if (self) {
-        self.name = [aDecoder decodeObjectForKey:kBPVUserName];
-        self.surname = [aDecoder decodeObjectForKey:kBPVUserSurname];
-        
-        self.imageURLString = [aDecoder decodeObjectForKey:kBPVUserURL];
-        self.email = [aDecoder decodeObjectForKey:kBPVUserEmail];
-        
-        self.birthday = [aDecoder decodeObjectForKey:kBPVUserBirthday];
-        self.userID = [aDecoder decodeObjectForKey:kBPVUserID];
-    }
-    
-    return self;
 }
 
 @end

@@ -14,8 +14,7 @@
 #import "BPVUsers.h"
 
 #import "BPVUserInteractionContext.h"
-
-#import "NSManagedObject+BPVExtensions.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 BPVStringConstantWithValue(kBPVPlist, plist);
 
@@ -52,7 +51,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     if (friendsList) {
         BPVUser *user = nil;
         for (NSDictionary *friend in friendsList) {
-            user = [BPVUser managedObject];
+            user = [BPVUser MR_createEntity];
             [BPVUserInteractionContext fillUser:user withUserInfo:friend];
             
             [array addObject:user];
@@ -81,7 +80,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     for (NSUInteger iterator = 0; iterator < model.count; iterator++) {
         friend = friends[iterator];
         if (!friend) {
-            [friends addModel:[BPVUser managedObject]];
+            [friends addModel:[BPVUser MR_createEntity]];
             friend = friends[iterator];
         }
         

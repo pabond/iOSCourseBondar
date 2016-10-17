@@ -8,6 +8,8 @@
 
 #import "BPVUsers.h"
 
+#import <UIKit/UIApplication.h>
+
 #import "BPVUser.h"
 #import "BPVGCD.h"
 

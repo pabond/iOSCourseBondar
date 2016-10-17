@@ -14,8 +14,7 @@
 #import "BPVCoreDataManager.h"
 #import "BPVArrayChange.h"
 
-#import "NSManagedObject+BPVExtensions.h"
-#import "NSManagedObjectContext+BPVExtensions.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import "NSArray+BPVExtensions.h"
 
 #import "BPVMacro.h"
@@ -37,7 +36,7 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 #pragma mark Class methods
 
 + (instancetype)CDArrayModelWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath {
-    return [[self alloc] initWithObject:object];
+    return [[self alloc] initWithObject:object keyPath:keyPath];
 }
 
 #pragma mark -
@@ -58,7 +57,7 @@ BPVStringConstantWithValue(kBPVUserID, userID);
     fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:kBPVUserID ascending:NO]];
     fetchRequest.predicate = self.predicate;
     
-    NSManagedObjectContext *context = [NSManagedObjectContext sharedContext];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_context];
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                  managedObjectContext:context
                                                                                    sectionNameKeyPath:nil

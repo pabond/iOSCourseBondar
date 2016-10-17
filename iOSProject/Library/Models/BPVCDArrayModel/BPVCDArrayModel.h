@@ -30,6 +30,8 @@ typedef NS_ENUM(NSUInteger, BPVCDArrayModelState) {
 
 + (instancetype)CDArrayModelWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath;
 
+- (instancetype)initWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath;
+
 //Next methods not implemented
 //- (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 //- (void)insertModel:(id)model atIndex:(NSUInteger)index;
