@@ -12,12 +12,16 @@ PODS:
   - FBSDKShareKit (4.15.1):
     - FBSDKCoreKit
   - Kiwi (2.4.0)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
 
 DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - Kiwi (~> 2.3)
+  - MagicalRecord (~> 2.3.2)
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -25,7 +29,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 073f79b3b2e762fc6f54a283fe15f45372d59f5f
   FBSDKShareKit: 11cbb5a4d7b5fda8143cc95b76188147e6725736
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
-PODFILE CHECKSUM: 1e9740a3fc9b9e5e613a5eadad7a23ee9c9550e2
+PODFILE CHECKSUM: 730429205467f9bf3a1731d1307998561dbc8dc1
 
 COCOAPODS: 1.0.1

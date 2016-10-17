@@ -6,4 +6,5 @@ target 'iOSProject' do
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
     pod 'FBSDKShareKit'
+	pod 'MagicalRecord', '~> 2.3.2'
 end
