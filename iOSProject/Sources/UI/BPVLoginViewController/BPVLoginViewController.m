@@ -9,12 +9,13 @@
 #import "BPVLoginViewController.h"
 
 #import "BPVCurrentUserFriendsViewController.h"
-#import "BPVUsers.h"
+#import "BPVCDUsers.h"
 
 #import "BPVLoginView.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
+#import "NSManagedObject+BPVExtensions.h"
 #import "BPVGCD.h"
 #import "BPVImage.h"
 #import "BPVLoginFacebookContext.h"
@@ -41,7 +42,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 - (void)viewDidLoad {
     FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
     if (token) {
-        BPVUser *user = [BPVUser new];
+        BPVUser *user = [BPVUser managedObject];
         self.user = user;
         user.userID = token.userID;
         user.state = BPVModelDidLoadID;
@@ -64,7 +65,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 #pragma mark Interface Handling
 
 - (IBAction)onLogin:(id)sender {
-    self.user = [BPVUser new];
+    self.user = [BPVUser managedObject];
     
     [self loadModel];
 }

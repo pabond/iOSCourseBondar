@@ -15,6 +15,8 @@
 
 #import "BPVUserInteractionContext.h"
 
+#import "NSManagedObject+BPVExtensions.h"
+
 BPVStringConstantWithValue(kBPVPlist, plist);
 
 @implementation BPVFriendsListContext
@@ -50,7 +52,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     if (friendsList) {
         BPVUser *user = nil;
         for (NSDictionary *friend in friendsList) {
-            user = [BPVUser new];
+            user = [BPVUser managedObject];
             [BPVUserInteractionContext fillUser:user withUserInfo:friend];
             
             [array addObject:user];
@@ -79,11 +81,11 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     for (NSUInteger iterator = 0; iterator < model.count; iterator++) {
         friend = friends[iterator];
         if (!friend) {
-            [friends addModel:[BPVUser new]];
+            [friends addModel:[BPVUser managedObject]];
             friend = friends[iterator];
         }
         
-        [BPVUserInteractionContext fillUser:friend withUser:model[iterator]];
+        [BPVUserInteractionContext fillUser:friend withCachedUser:model[iterator]];
     }
 }
 

@@ -140,7 +140,7 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 }
 
 - (void)fillModelWithCachedModel:(id)model {
-    [BPVUserInteractionContext fillUser:self.model withUser:model];
+    [BPVUserInteractionContext fillUser:self.model withCachedUser:model];
 }
 
 - (NSUInteger)willLoadState {

@@ -23,14 +23,14 @@ typedef void(^BPVBlock)();
                               predicate:(NSPredicate *)predicate
                           prefatchPaths:(NSArray *)prefetchPaths
 {
-    return [NSManagedObjectContext entity:BPVClassString
+    return [NSManagedObjectContext entity:NSStringFromClass([self class])
                       withSortDescriptors:sortDescriptors
                                 predicate:predicate
                             prefetchPaths:prefetchPaths];
 }
 
 + (id)managedObject {
-    return [NSManagedObjectContext managedObjectWithEntity:BPVClassString];
+    return [NSManagedObjectContext managedObjectWithEntity:NSStringFromClass([self class])];
 }
 
 #pragma mark -

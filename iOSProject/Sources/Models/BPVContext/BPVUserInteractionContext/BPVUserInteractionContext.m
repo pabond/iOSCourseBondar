@@ -27,7 +27,7 @@
     user.birthday = userInfo[kBPVBirthday];
 }
 
-+ (void)fillUser:(BPVUser *)user withUser:(BPVUser *)cachedUser {
++ (void)fillUser:(BPVUser *)user withCachedUser:(BPVUser *)cachedUser {
     user.name = cachedUser.name;
     user.surname = cachedUser.surname;
     user.userID = cachedUser.userID;

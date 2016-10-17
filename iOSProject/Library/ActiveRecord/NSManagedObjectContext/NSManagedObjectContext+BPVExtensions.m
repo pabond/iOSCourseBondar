@@ -18,14 +18,15 @@
 #pragma mark Class methods
 
 + (NSManagedObjectContext *)sharedContext {
-    BPVReturnOnce(NSManagedObjectContext, context, ^{
-        return [[BPVCoreDataManager sharedManager] managedObjectContext];
-    });
+    BPVCoreDataManager *manager = [BPVCoreDataManager sharedManager];
+    NSManagedObjectContext *managedObjectContext = [manager managedObjectContext];
+        
+    return managedObjectContext;
 }
 
 + (id)managedObjectWithEntity:(NSString *)entityName {
-    return [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                         inManagedObjectContext:[self sharedContext]];
+    NSManagedObjectContext *context = [self sharedContext];
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
 }
 
 + (NSArray *)entity:(NSString *)entityName

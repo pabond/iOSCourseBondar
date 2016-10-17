@@ -13,6 +13,6 @@
 @interface BPVUserInteractionContext : BPVContext
 
 + (void)fillUser:(BPVUser *)user withUserInfo:(NSDictionary *)userInfo;
-+ (void)fillUser:(BPVUser *)user withUser:(BPVUser *)cachedUser;
++ (void)fillUser:(BPVUser *)user withCachedUser:(BPVUser *)cachedUser;
 
 @end

@@ -96,7 +96,7 @@
 
 - (void)setState:(NSUInteger)state {
     @synchronized (self) {
-        [self setState:state withObject:nil];
+        [self.target setState:state withObject:nil];
     }
 }
 
@@ -105,27 +105,27 @@
         if (_state != state) {
             _state = state;
             
-            [self notifyOfState:state withObject:object];
+            [self.target notifyOfState:state withObject:object];
         }
     }
 }
 
 - (void)notifyOfState:(NSUInteger)state {
-    [self notifyOfState:state withObject:nil];
+    [self.target notifyOfState:state withObject:nil];
 }
 
 - (void)notifyOfState:(NSUInteger)state withObject:(id)object {
     @synchronized (self) {
-        [self notifyOfStateWithSelector:[self selectorForState:state] object:object];
+        [self.target notifyOfStateWithSelector:[self selectorForState:state] object:object];
     }
 }
 
 - (void)performBlockWithNotification:(BPVBlock)block {
-    [self performBlock:block notify:YES];
+    [self.target performBlock:block notify:YES];
 }
 
 - (void)performBlockWithoutNotification:(BPVBlock)block {
-    [self performBlock:block notify:NO];
+    [self.target performBlock:block notify:NO];
 }
 
 - (void)performBlock:(BPVBlock)block notify:(BOOL)notify {
