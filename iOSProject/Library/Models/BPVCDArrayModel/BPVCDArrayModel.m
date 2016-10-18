@@ -16,6 +16,7 @@
 
 #import <MagicalRecord/MagicalRecord.h>
 #import "NSArray+BPVExtensions.h"
+#import "NSManagedObject+BPVExtensions.h"
 
 #import "BPVMacro.h"
 
@@ -25,7 +26,7 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 
 @interface BPVCDArrayModel ()
 @property (nonatomic, strong)   NSFetchedResultsController  *fetchedResultsController;
-@property (nonatomic, weak)     id <BPVObservableObject>    object;
+@property (nonatomic, weak)     NSManagedObject             *object;
 @property (nonatomic, copy)     NSString                    *keyPath;
 
 @end
@@ -35,16 +36,17 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)CDArrayModelWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath {
++ (instancetype)coreDataArrayModelWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath {
     return [[self alloc] initWithObject:object keyPath:keyPath];
 }
 
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
-- (instancetype)initWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath {
+- (instancetype)initWithObject:(NSManagedObject *)object keyPath:(NSString *)keyPath {
     self = [super init];
     self.fetchedResultsController = [self controller];
+    self.object = object;
     self.keyPath = keyPath;
     
     return self;
@@ -94,28 +96,61 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 #pragma mark -
 #pragma mark Public implementations
 
+- (void)addModel:(NSManagedObject *)model {
+    @synchronized (self) {
+        [self.object addCustomValue:model forKey:self.keyPath];
+    }
+}
+
+- (void)removeModel:(NSManagedObject *)model {
+    @synchronized (self) {
+        if ([self containsModel:model]) {
+            [self.object removeCustomValue:model forKey:self.keyPath];
+        }
+    }
+}
+
 - (id)modelAtIndex:(NSUInteger)index {
-    return self.fetchedResultsController.fetchedObjects[index];
+    @synchronized (self) {
+        return self.fetchedResultsController.fetchedObjects[index];
+    }
 }
 
 - (BOOL)containsModel:(NSManagedObject *)model {
-    NSArray *array = [self.fetchedResultsController.fetchedObjects filteredUsingBlock:^BOOL(NSManagedObject *object) {
-        return [object.objectID isEqual:model.objectID];
-    }];
-    
-    return (BOOL)array.count;
+    @synchronized (self) {
+        NSArray *array = [self.fetchedResultsController.fetchedObjects filteredUsingBlock:^BOOL(NSManagedObject *object) {
+            return [object.objectID isEqual:model.objectID];
+        }];
+        
+        return (BOOL)array.count;
+    }
 }
 
 - (NSUInteger)indexOfModel:(id)model {
-    return [self.fetchedResultsController.fetchedObjects indexOfObject:model];
+    @synchronized (self) {
+        return [[self models] indexOfObject:model];
+    }
 }
 
 - (NSUInteger)count {
-    return self.fetchedResultsController.fetchedObjects.count;
+    @synchronized (self) {
+        return self.models.count;
+    }
 }
 
 - (NSArray *)models {
-    return self.fetchedResultsController.fetchedObjects;
+    @synchronized (self) {
+        return self.fetchedResultsController.fetchedObjects;
+    }
+}
+
+- (void)removeModelAtIndex:(NSUInteger)index {
+    @synchronized (self) {
+        NSManagedObject *object = [self modelAtIndex:index];
+        if (object) {
+            [self removeModel:object];
+        }
+    }
 }
 
 - (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
@@ -133,9 +168,11 @@ BPVStringConstantWithValue(kBPVUserID, userID);
                                   objects:(id __unsafe_unretained [])buffer
                                     count:(NSUInteger)length
 {
-    return [self.fetchedResultsController.fetchedObjects countByEnumeratingWithState:state
-                                                                             objects:buffer
-                                                                               count:length];
+    @synchronized (self) {
+        return [self.fetchedResultsController.fetchedObjects countByEnumeratingWithState:state
+                                                                                 objects:buffer
+                                                                                   count:length];
+    }
 }
 
 #pragma mark -

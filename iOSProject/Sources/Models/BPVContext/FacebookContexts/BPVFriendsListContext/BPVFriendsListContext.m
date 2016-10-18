@@ -91,7 +91,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 - (id)modelToLoad {
     BPVUser *model = self.model;
     
-    return model.friends;
+    return model.arrayModel;
 }
 
 @end

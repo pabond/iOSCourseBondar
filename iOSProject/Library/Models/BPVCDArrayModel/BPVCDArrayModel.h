@@ -28,12 +28,12 @@ typedef NS_ENUM(NSUInteger, BPVCDArrayModelState) {
 @property (nonatomic, readonly) NSSortDescriptor    *sortDesriptor;
 @property (nonatomic, readonly) NSString            *keyPath;
 
-+ (instancetype)CDArrayModelWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath;
++ (instancetype)coreDataArrayModelWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath;
 
 - (instancetype)initWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath;
 
 //Next methods not implemented
-//- (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
-//- (void)insertModel:(id)model atIndex:(NSUInteger)index;
+- (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex    NS_UNAVAILABLE;
+- (void)insertModel:(id)model atIndex:(NSUInteger)index                         NS_UNAVAILABLE;
 
 @end

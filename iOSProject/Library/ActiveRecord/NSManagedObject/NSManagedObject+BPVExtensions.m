@@ -68,14 +68,14 @@ typedef void(^BPVBlock)();
 
 - (void)addCustomValues:(NSSet *)values forKey:(NSString *)key {
     NSMutableSet *primitiveSet = [self primitiveValueForKey:key];
-    [self changeValues:values forKey:key withBlock:^{
+    [self changeValues:values forKey:key setMutation:NSKeyValueUnionSetMutation withBlock:^{
         [primitiveSet unionSet:values];
     }];
 }
 
 - (void)removeCustomValues:(NSSet *)values forKey:(NSString *)key {
     NSMutableSet *primitiveSet = [self primitiveValueForKey:key];
-    [self changeValues:values forKey:key withBlock:^{
+    [self changeValues:values forKey:key setMutation:NSKeyValueMinusSetMutation withBlock:^{
         [primitiveSet minusSet:values];
     }];
 }
@@ -84,14 +84,17 @@ typedef void(^BPVBlock)();
     [[self primitiveValueForKey:key] addObject:value];
 }
 
-- (void)changeValues:(NSSet *)values forKey:(NSString *)key withBlock:(BPVBlock)block {
+- (void)changeValues:(NSSet *)values
+              forKey:(NSString *)key
+         setMutation:(NSKeyValueSetMutationKind)setMutation
+           withBlock:(BPVBlock)block {
     if (!block) {
         return;
     }
     
-    [self willChangeValueForKey:key withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
+    [self willChangeValueForKey:key withSetMutation:setMutation usingObjects:values];
     block();
-    [self didChangeValueForKey:key withSetMutation:NSKeyValueUnionSetMutation usingObjects:values];
+    [self didChangeValueForKey:key withSetMutation:setMutation usingObjects:values];
 }
 
 @end

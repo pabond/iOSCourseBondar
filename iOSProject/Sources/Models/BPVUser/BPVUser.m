@@ -51,7 +51,7 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
      insertIntoManagedObjectContext:(nullable NSManagedObjectContext *)context
 {
     self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-    self.arrayModel = [BPVCDUsers CDArrayModelWithObject:self keyPath:BPVStringFromSEL(friends)];
+    self.arrayModel = [BPVCDUsers coreDataArrayModelWithObject:self keyPath:BPVStringFromSEL(friends)];
     self.observableObject = [BPVObservableObject observableObjectWithTarget:self];
     
     return self;
