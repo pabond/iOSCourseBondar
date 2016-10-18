@@ -10,7 +10,7 @@
 
 #import "BPVObservableObjectProtocol.h"
 
-@interface BPVObservableObject : NSObject <NSCopying, BPVObservableObjectProtocol>
+@interface BPVObservableObject : NSObject <NSCopying, BPVObservableObject>
 
 + (instancetype)observableObjectWithTarget:(id)target;
 

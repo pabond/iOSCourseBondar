@@ -10,16 +10,16 @@
 
 typedef void(^BPVBlock)();
 
-@protocol BPVObservableObjectProtocol <NSObject>
+@protocol BPVObservableObject <NSObject>
 
 @property (nonatomic, assign)   NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observersSet;
 
 @optional
-- (void)addObserver:(id)observer;
+- (void)addObservationWith:(id)observer;
 - (void)addObservers:(NSArray *)observers;
 
-- (void)removeObserver:(NSObject *)observer;
+- (void)removeObservationWith:(NSObject *)observer;
 - (void)removeObservers:(NSArray *)observers;
 
 - (BOOL)containsObserver:(id)object;

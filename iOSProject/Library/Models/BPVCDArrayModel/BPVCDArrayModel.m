@@ -24,9 +24,9 @@ BPVStringConstant(kBPVMaster);
 BPVStringConstantWithValue(kBPVUserID, userID);
 
 @interface BPVCDArrayModel ()
-@property (nonatomic, strong)   NSFetchedResultsController          *fetchedResultsController;
-@property (nonatomic, weak)     id <BPVObservableObjectProtocol>    object;
-@property (nonatomic, copy)     NSString                            *keyPath;
+@property (nonatomic, strong)   NSFetchedResultsController  *fetchedResultsController;
+@property (nonatomic, weak)     id <BPVObservableObject>    object;
+@property (nonatomic, copy)     NSString                    *keyPath;
 
 @end
 
@@ -35,14 +35,14 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 #pragma mark -
 #pragma mark Class methods
 
-+ (instancetype)CDArrayModelWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath {
++ (instancetype)CDArrayModelWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath {
     return [[self alloc] initWithObject:object keyPath:keyPath];
 }
 
 #pragma mark -
 #pragma mark Initializationa and deallocations
 
-- (instancetype)initWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath {
+- (instancetype)initWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath {
     self = [super init];
     self.fetchedResultsController = [self controller];
     self.keyPath = keyPath;

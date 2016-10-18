@@ -62,7 +62,7 @@
 #pragma mark -
 #pragma mark Public implementations
 
-- (void)addObserver:(id)observer {
+- (void)addObservationWith:(id)observer {
     @synchronized (self) {
         if (observer) {
             [self.observersTable addObject:observer];
@@ -70,7 +70,7 @@
     }
 }
 
-- (void)removeObserver:(NSObject *)observer {
+- (void)removeObservationWith:(NSObject *)observer {
     @synchronized (self) {
         [self.observersTable removeObject:observer];
     }
@@ -78,13 +78,13 @@
 
 - (void)addObservers:(NSArray *)observers {
     for (id observer in observers) {
-        [self addObserver:observer];
+        [self addObservationWith:observer];
     }
 }
 
 - (void)removeObservers:(NSArray *)observers {
     for (id observer in observers) {
-        [self removeObserver:observer];
+        [self removeObservationWith:observer];
     }
 }
 
@@ -116,7 +116,7 @@
 
 - (void)notifyOfState:(NSUInteger)state withObject:(id)object {
     @synchronized (self) {
-        [self.target notifyOfStateWithSelector:[self selectorForState:state] object:object];
+        [self.target notifyOfStateWithSelector:[self.target selectorForState:state] object:object];
     }
 }
 

@@ -54,10 +54,10 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 
 - (void)setUser:(BPVUser *)user {
     if (_user != user) {
-        [_user removeObserver:self];
+        [_user removeObservationWith:self];
         
         _user = user;
-        [_user addObserver:self];
+        [_user addObservationWith:self];
     }
 }
 

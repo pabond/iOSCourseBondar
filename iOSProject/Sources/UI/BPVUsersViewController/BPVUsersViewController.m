@@ -71,7 +71,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
     if (_user != user) {
         _user = user;
         
-        self.model = _user.friends;
+        self.model = _user.arrayModel;
         
         if ([self isViewLoaded]) {
             [self loadModel];
@@ -108,7 +108,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVTableViewController, usersView, B
 
 - (void)loadModel {
     BPVUser *user = self.user;
-    self.model = user.friends;
+    self.model = user.arrayModel;
     
     BPVFriendsListContext *context = [BPVFriendsListContext new];
     context.model = user;

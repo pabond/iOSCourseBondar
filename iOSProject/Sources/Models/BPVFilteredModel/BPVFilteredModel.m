@@ -46,10 +46,10 @@
 
 - (void)setArrayModel:(BPVArrayModel *)arrayModel {
     if (_arrayModel != arrayModel) {
-        [_arrayModel removeObserver:self];
+        [_arrayModel removeObservationWith:self];
         
         _arrayModel = arrayModel;
-        [_arrayModel addObserver:self];
+        [_arrayModel addObservationWith:self];
         
         _arrayModel.state = BPVModelDidLoad;
     }

@@ -42,10 +42,10 @@
 
 - (void)setModel:(BPVUsers *)model {
     if (_model != model) {
-        [_model removeObserver:self];
+        [_model removeObservationWith:self];
         
         _model = model;
-        [_model addObserver:self];
+        [_model addObservationWith:self];
         
         if ([self isViewLoaded]) {
             [self loadModel];

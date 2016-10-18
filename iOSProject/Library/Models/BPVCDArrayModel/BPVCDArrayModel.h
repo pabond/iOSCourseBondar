@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, BPVCDArrayModelState) {
 
 @protocol BPVCDArrayModelProtocol <NSObject>
 
-- (void)arrayModel:(BPVCDArrayModel *)arrayModel didUpdateObject:(id <BPVObservableObjectProtocol>)object;
+- (void)arrayModel:(BPVCDArrayModel *)arrayModel didUpdateObject:(id <BPVObservableObject>)object;
 
 @end
 
@@ -28,9 +28,9 @@ typedef NS_ENUM(NSUInteger, BPVCDArrayModelState) {
 @property (nonatomic, readonly) NSSortDescriptor    *sortDesriptor;
 @property (nonatomic, readonly) NSString            *keyPath;
 
-+ (instancetype)CDArrayModelWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath;
++ (instancetype)CDArrayModelWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath;
 
-- (instancetype)initWithObject:(id <BPVObservableObjectProtocol>)object keyPath:(NSString *)keyPath;
+- (instancetype)initWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath;
 
 //Next methods not implemented
 //- (void)moveModelFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;

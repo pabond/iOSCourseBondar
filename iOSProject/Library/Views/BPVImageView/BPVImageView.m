@@ -49,10 +49,10 @@
 
 - (void)setImage:(BPVImage *)image {
     if (_image != image) {
-        [_image removeObserver:self];
+        [_image removeObservationWith:self];
         
         _image = image;
-        [_image addObserver:self];
+        [_image addObservationWith:self];
         [_image load];
     }
 }
