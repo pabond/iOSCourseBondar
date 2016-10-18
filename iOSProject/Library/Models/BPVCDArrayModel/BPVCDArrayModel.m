@@ -26,7 +26,6 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 
 @interface BPVCDArrayModel ()
 @property (nonatomic, strong)   NSFetchedResultsController  *fetchedResultsController;
-@property (nonatomic, weak)     NSManagedObject             *object;
 @property (nonatomic, copy)     NSString                    *keyPath;
 
 @end
@@ -45,9 +44,9 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 
 - (instancetype)initWithObject:(NSManagedObject *)object keyPath:(NSString *)keyPath {
     self = [super init];
-    self.fetchedResultsController = [self controller];
     self.object = object;
     self.keyPath = keyPath;
+    self.fetchedResultsController = [self controller];
     
     return self;
 }

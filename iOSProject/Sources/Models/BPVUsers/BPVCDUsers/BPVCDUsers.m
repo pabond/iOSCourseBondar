@@ -11,7 +11,7 @@
 @implementation BPVCDUsers
 
 - (NSPredicate *)predicate {
-    return [NSPredicate predicateWithFormat:@"%@ contains %@", self.keyPath, self.models];
+    return [NSPredicate predicateWithFormat:@"%@ contains %@", self.keyPath, self.object];
 }
 
 @end

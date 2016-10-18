@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, BPVCDArrayModelState) {
 @property (nonatomic, assign)   NSPredicate         *predicate;
 @property (nonatomic, readonly) NSSortDescriptor    *sortDesriptor;
 @property (nonatomic, readonly) NSString            *keyPath;
+@property (nonatomic, weak)     NSManagedObject     *object;
 
 + (instancetype)coreDataArrayModelWithObject:(id <BPVObservableObject>)object keyPath:(NSString *)keyPath;
 
