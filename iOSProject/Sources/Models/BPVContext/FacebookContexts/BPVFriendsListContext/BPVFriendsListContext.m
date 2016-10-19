@@ -68,8 +68,9 @@ BPVStringConstantWithValue(kBPVPlist, plist);
         BPVStrongifyAndReturnIfNil(self)
         [model addModels:array];
     }];
-    
-    [self saveObject:model.models];
+  
+    [[NSManagedObjectContext MR_context] save:nil];
+//    [self saveObject:model.models];
 
     model.state = BPVModelDidLoad;
 }

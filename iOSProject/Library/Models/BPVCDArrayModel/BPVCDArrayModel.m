@@ -27,10 +27,15 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 @interface BPVCDArrayModel ()
 @property (nonatomic, strong)   NSFetchedResultsController  *fetchedResultsController;
 @property (nonatomic, copy)     NSString                    *keyPath;
+@property (nonatomic, weak)     NSManagedObject             *object;
 
 @end
 
 @implementation BPVCDArrayModel
+
+@dynamic sortDesriptor;
+@dynamic batchSize;
+@dynamic predicate;
 
 #pragma mark -
 #pragma mark Class methods
@@ -53,9 +58,9 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 
 - (NSFetchedResultsController *)controller {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BPVUser class])];
-    fetchRequest.fetchBatchSize = kBPVBatchSize;
+    fetchRequest.fetchBatchSize = [self batchSize];
     
-    fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:kBPVUserID ascending:NO]];
+    fetchRequest.sortDescriptors = self.sortDesriptors;
     fetchRequest.predicate = self.predicate;
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_context];
@@ -85,11 +90,15 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 }
 
 - (NSPredicate *)predicate {
-    return nil;
+    return [NSPredicate predicateWithFormat:@"%K contains %@", self.keyPath, self.object];
 }
 
-- (NSSortDescriptor *)sortDesriptor {
-    return nil;
+- (NSArray<NSSortDescriptor *> *)sortDesriptors {
+    return @[[[NSSortDescriptor alloc] initWithKey:kBPVUserID ascending:NO]];
+}
+
+- (NSUInteger)batchSize {
+    return kBPVBatchSize;
 }
 
 #pragma mark -
@@ -184,24 +193,25 @@ BPVStringConstantWithValue(kBPVUserID, userID);
       newIndexPath:(NSIndexPath *)newIndexPath
 {
     BPVArrayChange *object = nil;
+    NSUInteger index = indexPath.row;
     
     switch (type) {
         case NSFetchedResultsChangeInsert: {
-            object = [BPVArrayChange addModelWithIndex:indexPath.row object:anObject];
+            object = [BPVArrayChange addModelWithIndex:index object:anObject];
         }
             
         case NSFetchedResultsChangeDelete: {
-            object = [BPVArrayChange removeModelWithIndex:indexPath.row object:anObject];
+            object = [BPVArrayChange removeModelWithIndex:index object:anObject];
         }
             
         case NSFetchedResultsChangeMove: {
             object = [BPVArrayChange moveModelWithIndex:newIndexPath.row
-                                              fromIndex:indexPath.row
+                                              fromIndex:index
                                                  object:anObject];
         }
             
         case NSFetchedResultsChangeUpdate: {
-            object = [BPVArrayChange updateModelWithIndex:indexPath.row object:anObject];
+            object = [BPVArrayChange updateModelWithIndex:index object:anObject];
         }
             
         default:
