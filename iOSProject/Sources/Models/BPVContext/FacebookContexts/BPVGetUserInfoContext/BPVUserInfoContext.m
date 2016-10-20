@@ -9,6 +9,7 @@
 #import "BPVUserInfoContext.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "NSManagedObject+BPVExtensions.h"
 
 #import "BPVUserViewController.h"
 #import "BPVUser.h"
@@ -47,7 +48,7 @@
     BPVUser *user = self.model;
     
     [BPVUserInteractionContext fillUser:user withUserInfo:info];
-    [self saveObject:user];
+    [user saveManagedObject];
 
     user.state = BPVModelDidLoadDetailedInfo;
 }

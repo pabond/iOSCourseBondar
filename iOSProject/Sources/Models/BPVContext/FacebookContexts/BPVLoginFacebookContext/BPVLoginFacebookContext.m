@@ -10,6 +10,7 @@
 
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "NSManagedObject+BPVExtensions.h"
 
 #import "BPVLoginViewController.h"
 #import "BPVUser.h"
@@ -33,6 +34,7 @@ BPVStringConstantWithValue(kBPVPermitionPublicProfile, public_profile);
                                                   }
                                                   
                                                   user.userID = result.token.userID;
+                                                  [user saveManagedObject];
                                 
                                                   user.state = BPVModelDidLoadID;
                                               }];

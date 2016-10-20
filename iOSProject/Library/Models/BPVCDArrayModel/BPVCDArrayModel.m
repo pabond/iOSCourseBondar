@@ -14,7 +14,6 @@
 #import "BPVCoreDataManager.h"
 #import "BPVArrayChange.h"
 
-#import <MagicalRecord/MagicalRecord.h>
 #import "NSArray+BPVExtensions.h"
 #import "NSManagedObject+BPVExtensions.h"
 
@@ -57,23 +56,17 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 }
 
 - (NSFetchedResultsController *)controller {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BPVUser class])];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([[self.object class] class])];
     fetchRequest.fetchBatchSize = [self batchSize];
     
     fetchRequest.sortDescriptors = self.sortDesriptors;
     fetchRequest.predicate = self.predicate;
     
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_context];
+    NSManagedObjectContext *context = self.object.managedObjectContext;
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                  managedObjectContext:context
                                                                                    sectionNameKeyPath:nil
                                                                                             cacheName:kBPVMaster];
-    
-    NSError *error = nil;
-    if (![controller performFetch:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
     
     return controller;
 }
@@ -103,6 +96,15 @@ BPVStringConstantWithValue(kBPVUserID, userID);
 
 #pragma mark -
 #pragma mark Public implementations
+
+- (void)performLoading {
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"%@", [error userInfo]);
+    }
+    
+    self.state = !error ? BPVModelDidLoad : BPVModelFailLoading;
+}
 
 - (void)addModel:(NSManagedObject *)model {
     @synchronized (self) {
@@ -198,20 +200,24 @@ BPVStringConstantWithValue(kBPVUserID, userID);
     switch (type) {
         case NSFetchedResultsChangeInsert: {
             object = [BPVArrayChange addModelWithIndex:index object:anObject];
+            break;
         }
             
         case NSFetchedResultsChangeDelete: {
             object = [BPVArrayChange removeModelWithIndex:index object:anObject];
+            break;
         }
             
         case NSFetchedResultsChangeMove: {
             object = [BPVArrayChange moveModelWithIndex:newIndexPath.row
                                               fromIndex:index
                                                  object:anObject];
+            break;
         }
             
         case NSFetchedResultsChangeUpdate: {
             object = [BPVArrayChange updateModelWithIndex:index object:anObject];
+            break;
         }
             
         default:

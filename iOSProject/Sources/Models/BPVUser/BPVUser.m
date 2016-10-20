@@ -14,8 +14,6 @@
 
 #import "BPVCDUsers.h"
 
-#import <MagicalRecord/MagicalRecord.h>
-
 #import "BPVMacro.h"
 
 BPVStringConstantWithValue(kBPVUserName, userName);

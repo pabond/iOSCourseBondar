@@ -9,12 +9,12 @@
 #import "BPVFriendsListContext.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "NSManagedObject+BPVExtensions.h"
 
 #import "BPVUser.h"
 #import "BPVUsers.h"
 
 #import "BPVUserInteractionContext.h"
-#import <MagicalRecord/MagicalRecord.h>
 
 BPVStringConstantWithValue(kBPVPlist, plist);
 
@@ -51,8 +51,9 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     if (friendsList) {
         BPVUser *user = nil;
         for (NSDictionary *friend in friendsList) {
-            user = [BPVUser MR_createEntity];
+            user = [BPVUser managedObject];
             [BPVUserInteractionContext fillUser:user withUserInfo:friend];
+            [user saveManagedObject];
             
             [array addObject:user];
         }
@@ -68,11 +69,8 @@ BPVStringConstantWithValue(kBPVPlist, plist);
         BPVStrongifyAndReturnIfNil(self)
         [model addModels:array];
     }];
-  
-    [[NSManagedObjectContext MR_context] save:nil];
-//    [self saveObject:model.models];
-
-    model.state = BPVModelDidLoad;
+    
+    [model performLoading];
 }
 
 - (void)fillModelWithCachedModel:(BPVUsers *)model {
@@ -81,7 +79,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     for (NSUInteger iterator = 0; iterator < model.count; iterator++) {
         friend = friends[iterator];
         if (!friend) {
-            [friends addModel:[BPVUser MR_createEntity]];
+            [friends addModel:[BPVUser managedObject]];
             friend = friends[iterator];
         }
         

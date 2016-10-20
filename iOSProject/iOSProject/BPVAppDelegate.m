@@ -12,7 +12,7 @@
 #import "BPVUsersViewController.h"
 #import "BPVLoginViewController.h"
 
-#import <MagicalRecord/MagicalRecord.h>
+#import "BPVCoreDataManager.h"
 #import "BPVUsers.h"
 
 #import "UIViewController+BPVExtensions.h"
@@ -21,6 +21,11 @@
 #import "BPVMacro.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+
+@interface BPVAppDelegate ()
+@property (nonatomic, strong) BPVCoreDataManager *codeDataManager;
+
+@end
 
 @implementation BPVAppDelegate
 
@@ -32,7 +37,7 @@
     UIWindow *window = [UIWindow window];
     self.window = window;
     
-    [MagicalRecord setupCoreDataStack];
+    self.codeDataManager = [BPVCoreDataManager sharedManager];
     
     BPVLoginViewController *controller = [BPVLoginViewController viewController];
     

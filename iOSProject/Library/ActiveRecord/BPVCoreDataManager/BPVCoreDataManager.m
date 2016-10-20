@@ -15,7 +15,7 @@
 static BPVCoreDataManager *__sharedManager = nil;
 
 BPVStringConstantWithValue(kBPVStore, Store);
-BPVStringConstantWithValue(kBPVDefaultStoreType, NSSQLiteStoreType);
+BPVStringConstantWithValue(kBPVDefaultStoreType, SQLite);
 BPVStringConstantWithValue(kBPVMomType, momd);
 BPVStringConstant(BPVFiles);
 BPVStringConstantWithValue(kBPVSQLite, sqlite);
@@ -118,10 +118,11 @@ BPVStringConstantWithValue(kBPVSQLite, sqlite);
         return _managedObjectModel;
     }
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSURL *url = [bundle URLForResource:self.momName withExtension:kBPVMomType];
-    
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:url];
+//    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+//    NSURL *url = [bundle URLForResource:self.momName withExtension:kBPVMomType];
+//    
+//    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:url];
+     _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     
     return _managedObjectModel;
 }
