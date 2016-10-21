@@ -11,9 +11,6 @@
 #import "BPVMacro.h"
 #import "BPVCoreDataManager.h"
 
-BPVConstant(NSUInteger, kBPVBatchSize, 1)
-BPVStringConstantWithValue(kBPVMaster, Master);
-
 @implementation BPVObject
 
 + (instancetype)objectWithPredicate:(NSPredicate *)predicat {
