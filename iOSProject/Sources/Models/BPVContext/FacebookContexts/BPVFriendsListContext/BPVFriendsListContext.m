@@ -51,7 +51,7 @@ BPVStringConstantWithValue(kBPVPlist, plist);
     if (friendsList) {
         BPVUser *user = nil;
         for (NSDictionary *friend in friendsList) {
-            user = [BPVUser managedObject];
+            user = [BPVUser objectWithID:friend[kBPVId]];
             [BPVUserInteractionContext fillUser:user withUserInfo:friend];
             [user saveManagedObject];
             
@@ -76,14 +76,18 @@ BPVStringConstantWithValue(kBPVPlist, plist);
 - (void)fillModelWithCachedModel:(BPVUsers *)model {
     BPVUsers *friends = [self modelToLoad];
     BPVUser *friend = nil;
+    BPVUser *cachedModel = nil;
+    
     for (NSUInteger iterator = 0; iterator < model.count; iterator++) {
         friend = friends[iterator];
+        cachedModel = model[iterator];
+        
         if (!friend) {
-            [friends addModel:[BPVUser managedObject]];
+            [friends addModel:[BPVUser objectWithID:cachedModel.userID]];
             friend = friends[iterator];
         }
         
-        [BPVUserInteractionContext fillUser:friend withCachedUser:model[iterator]];
+        [BPVUserInteractionContext fillUser:friend withCachedUser:cachedModel];
     }
 }
 

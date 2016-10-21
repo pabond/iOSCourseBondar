@@ -6,6 +6,7 @@
 //  Copyright © 2016 Pavel Bondar. All rights reserved.
 //
 
+#import "BPVObject.h"
 #import <CoreData/CoreData.h>
 #import "BPVObservableObjectProtocol.h"
 
@@ -36,10 +37,12 @@ typedef NS_ENUM(NSUInteger, BPVUserLoadState) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPVUser : NSManagedObject <BPVObservableObject>
+@interface BPVUser : BPVObject <BPVObservableObject>
 @property (nonatomic, readonly) BPVArrayModel   *arrayModel;
 @property (nonatomic, readonly) NSString        *fullName;
 @property (nonatomic, readonly) BPVImage        *image;
+
++ (instancetype)objectWithID:(nullable NSString *)userID;
 
 @end
 

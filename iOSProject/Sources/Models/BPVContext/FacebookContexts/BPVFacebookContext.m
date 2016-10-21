@@ -36,14 +36,9 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 @dynamic applicationModelsPath;
 @dynamic filePath;
 @dynamic fileName;
-@dynamic isCached;
 
 #pragma mark -
 #pragma mark Accessors
-
-- (BOOL)isCached {
-    return [[NSFileManager defaultManager] fileExistsAtPath:self.filePath];
-}
 
 - (NSString *)applicationModelsPath {
     return  [NSFileManager applicationDataPathWithFolderName:kBPVModelsFolder];
@@ -117,14 +112,6 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, NSDictionary *result, NSError *error) {
         BPVModel *model = [self modelToLoad];
         if (error) {
-            if (self.isCached) {
-                id cachedModel = [self cachedModel];
-                [self fillModelWithCachedModel:cachedModel];
-                model.state = [self didLoadState];
-                
-                return;
-            }
-            
             NSLog(@"Faild data load with error: %@", error);
             model.state = [self failLoadingState];
             
@@ -153,14 +140,6 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 - (NSUInteger)failLoadingState {
     return BPVModelFailLoading;
-}
-
-- (void)saveObject:(id)object {
-    if ([NSKeyedArchiver archiveRootObject:object toFile:self.filePath]) {
-        NSLog(@"[SAVE] Saving operation succeeds");
-    } else {
-        NSLog(@"[FAIL] Data not saved");
-    }
 }
 
 @end

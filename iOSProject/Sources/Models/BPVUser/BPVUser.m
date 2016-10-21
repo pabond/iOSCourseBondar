@@ -14,6 +14,8 @@
 
 #import "BPVCDUsers.h"
 
+#import "NSManagedObject+BPVExtensions.h"
+
 #import "BPVMacro.h"
 
 BPVStringConstantWithValue(kBPVUserName, userName);
@@ -44,6 +46,16 @@ BPVStringConstantWithValue(kBPVUserImageFormat, png);
 
 #pragma mark -
 #pragma mark Initializations and deallocations
+
++ (instancetype)objectWithID:(nullable NSString *)userID {
+    BPVUser *object = [self objectWithPredicate:[NSPredicate predicateWithFormat:@"userID = %@", userID]];
+    if (!object) {
+        object = [self managedObject];
+        object.userID = userID;
+    }
+    
+    return object;
+}
 
 - (NSManagedObject *)initWithEntity:(NSEntityDescription *)entity
      insertIntoManagedObjectContext:(nullable NSManagedObjectContext *)context

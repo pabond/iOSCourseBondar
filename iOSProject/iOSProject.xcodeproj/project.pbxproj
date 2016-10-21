@@ -27,6 +27,7 @@
 		2D33C0AF1DB116AD00FADBF2 /* BPVUpdateModel+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D33C0AE1DB116AD00FADBF2 /* BPVUpdateModel+UITableView.m */; };
 		2D33C0B41DB1184800FADBF2 /* BPVUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D33C0B31DB1184800FADBF2 /* BPVUsers.m */; };
 		2D33C0B71DB11DAF00FADBF2 /* BPVCDUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D33C0B61DB11DAF00FADBF2 /* BPVCDUsers.m */; };
+		2D33C10A1DBA07C500FADBF2 /* BPVObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D33C1091DBA07C500FADBF2 /* BPVObject.m */; };
 		2D3F41D11D3F65EB00A38A7B /* iOSProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3F41D01D3F65EB00A38A7B /* iOSProjectUITests.m */; };
 		2D3F41EF1D3F6EB600A38A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3F41E51D3F6EB600A38A7B /* LaunchScreen.storyboard */; };
 		2D3F41F01D3F6EB600A38A7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3F41E71D3F6EB600A38A7B /* Main.storyboard */; };
@@ -161,6 +162,8 @@
 		2D33C0B31DB1184800FADBF2 /* BPVUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVUsers.m; sourceTree = "<group>"; };
 		2D33C0B51DB11DAF00FADBF2 /* BPVCDUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVCDUsers.h; sourceTree = "<group>"; };
 		2D33C0B61DB11DAF00FADBF2 /* BPVCDUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVCDUsers.m; sourceTree = "<group>"; };
+		2D33C1081DBA07C500FADBF2 /* BPVObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPVObject.h; sourceTree = "<group>"; };
+		2D33C1091DBA07C500FADBF2 /* BPVObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPVObject.m; sourceTree = "<group>"; };
 		2D3F41A81D3F65EB00A38A7B /* iOSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3F41C11D3F65EB00A38A7B /* iOSProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3F41C71D3F65EB00A38A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -544,6 +547,15 @@
 			path = BPVCDUsers;
 			sourceTree = "<group>";
 		};
+		2D33C1071DBA079400FADBF2 /* BPVObject */ = {
+			isa = PBXGroup;
+			children = (
+				2D33C1081DBA07C500FADBF2 /* BPVObject.h */,
+				2D33C1091DBA07C500FADBF2 /* BPVObject.m */,
+			);
+			path = BPVObject;
+			sourceTree = "<group>";
+		};
 		2D3F419F1D3F65EB00A38A7B = {
 			isa = PBXGroup;
 			children = (
@@ -624,6 +636,7 @@
 				2D1425AD1D8FCAB200C5AD2E /* Views */,
 				2D805EAD1D8AD0140057A232 /* Category */,
 				2DD763B11D7D8BA500CEB5EA /* Queue */,
+				2D33C1071DBA079400FADBF2 /* BPVObject */,
 				2D1425CE1D92754E00C5AD2E /* BPVViewController */,
 				2D33C03D1DAE395700FADBF2 /* Models */,
 				2DD763841D782A3000CEB5EA /* BPVTableViewController */,
@@ -1510,6 +1523,7 @@
 				2DFBC63C1D9EB282001F3BFE /* BPVCurrentUserFriendsViewController.m in Sources */,
 				2D3F41FF1D3FA29800A38A7B /* main.m in Sources */,
 				2DFBC5E61D951D6E001F3BFE /* BPVContext.m in Sources */,
+				2D33C10A1DBA07C500FADBF2 /* BPVObject.m in Sources */,
 				2D805F001D8AD0140057A232 /* NSArray+BPVExtensions.m in Sources */,
 				2D805EF71D8AD0140057A232 /* BPVAddModel+BPVArrayModel.m in Sources */,
 				2DFBC5DE1D92E28C001F3BFE /* BPVLoginViewController.m in Sources */,

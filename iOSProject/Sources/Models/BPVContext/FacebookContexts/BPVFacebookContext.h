@@ -32,14 +32,11 @@ static NSString * const kBPVId = @"id";
 @property (nonatomic, strong)   id              model;
 @property (nonatomic, readonly) NSString        *applicationModelsPath;
 @property (nonatomic, readonly) NSString        *filePath;
-@property (nonatomic, readonly) BOOL            isCached;
 
 //this getters should be implemented in subclasses
 @property (nonatomic, readonly) NSString        *fileName;
 @property (nonatomic, readonly) NSString        *path;
 @property (nonatomic, readonly) NSDictionary    *paremeters;
-
-- (void)saveObject:(id)object;
 
 //this method should be implemented in subclasses
 - (void)fillModelWithInfo:(NSDictionary *)info;

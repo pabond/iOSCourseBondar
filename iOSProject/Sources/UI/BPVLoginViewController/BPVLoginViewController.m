@@ -42,9 +42,8 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 - (void)viewDidLoad {
     FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
     if (token) {
-        BPVUser *user = [BPVUser managedObject];
+        BPVUser *user = [BPVUser objectWithID:token.userID];
         self.user = user;
-        user.userID = token.userID;
         user.state = BPVModelDidLoadID;
     }
 }
@@ -65,7 +64,7 @@ BPVViewControllerBaseViewPropertyWithGetter(BPVLoginViewController, loginView, B
 #pragma mark Interface Handling
 
 - (IBAction)onLogin:(id)sender {
-    self.user = [BPVUser managedObject];
+    self.user = [BPVUser objectWithID:nil];
     
     [self loadModel];
 }
