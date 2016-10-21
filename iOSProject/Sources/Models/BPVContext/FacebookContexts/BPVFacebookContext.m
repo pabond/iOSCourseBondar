@@ -113,7 +113,8 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
         BPVModel *model = [self modelToLoad];
         if (error) {
             NSLog(@"Faild data load with error: %@", error);
-            model.state = [self failLoadingState];
+            
+            model.state = [self didLoadState];
             
             return;
         }
@@ -124,10 +125,6 @@ BPVStringConstantWithValue(kBPVModelsFolder, BPVModels);
 
 - (void)fillModelWithInfo:(NSDictionary *)info {
 
-}
-
-- (void)fillModelWithCachedModel:(id)model {
-    [BPVUserInteractionContext fillUser:self.model withCachedUser:model];
 }
 
 - (NSUInteger)willLoadState {

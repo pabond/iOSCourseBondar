@@ -40,7 +40,6 @@ static NSString * const kBPVId = @"id";
 
 //this method should be implemented in subclasses
 - (void)fillModelWithInfo:(NSDictionary *)info;
-- (void)fillModelWithCachedModel:(id)model;
 
 // youShould never call this method directly, only from subclasses
 - (id)cachedModel;
